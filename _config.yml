@@ -1,0 +1,38 @@
+# Site settings
+title: AI Forester
+description: Bridging Forestry Expertise & AI Capabilities
+url: "https://davidbeleznay.github.io"
+baseurl: ""
+
+# Author information
+author:
+  name: David Beleznay
+  bio: Forestry professional exploring AI applications in environmental sciences
+  location: "British Columbia, Canada"
+  links:
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: "mailto:contact@aiforester.com"
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Site structure
+include:
+  - _pages
+
+# Collections for content organization
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:path/
+  learning:
+    output: true
+    permalink: /:collection/:path/
+  resources:
+    output: true
+    permalink: /:collection/:path/
