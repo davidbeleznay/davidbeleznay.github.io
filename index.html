@@ -51,7 +51,10 @@
     <div class="container">
       <h1>Bridging Forestry Expertise and Artificial Intelligence</h1>
       <p>Exploring innovative applications of AI technology in forestry, environmental science, and natural resource management.</p>
-      <a href="/projects/" class="cta-button">View Projects</a>
+      <div class="hero-buttons">
+        <a href="/projects/" class="cta-button">View Projects</a>
+        <a href="/forest-flows/" class="secondary-button">Read Forest Flows</a>
+      </div>
     </div>
   </section>
 
@@ -64,6 +67,14 @@
       </div>
       <div class="featured-grid">
         <div class="featured-item">
+          <img src="/assets/images/projects/beaver-dam-ai.jpg" alt="Beaver and AI Assisted Ecological Restoration">
+          <div class="featured-content">
+            <h3>Dam Good Forestry: Beaver and AI Restoration</h3>
+            <p>Exploring how AI enhances beaver-assisted restoration for improved watershed management and climate resilience.</p>
+            <a href="/projects/beaver-ai-restoration.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="featured-item">
           <img src="/assets/images/projects/forestry-data-visualization.jpg" alt="Forestry Data Visualization">
           <div class="featured-content">
             <h3>Forestry Data Visualization</h3>
@@ -72,19 +83,27 @@
           </div>
         </div>
         <div class="featured-item">
-          <img src="/assets/images/projects/forest-inventory-analysis.jpg" alt="Forest Inventory Analysis">
-          <div class="featured-content">
-            <h3>Forest Inventory Analysis</h3>
-            <p>Leveraging machine learning to enhance traditional forest inventory methods for greater accuracy.</p>
-            <a href="/projects/forest-inventory-analysis.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="featured-item">
           <img src="/assets/images/projects/prompt-engineering.jpg" alt="Prompt Engineering for Forestry">
           <div class="featured-content">
             <h3>Prompt Engineering for Forestry</h3>
             <p>Developing specialized prompts to extract forestry insights from large language models.</p>
             <a href="/learning/prompt-engineering-for-forestry.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-container">
+        <div class="newsletter-content">
+          <h2>Forest Flows by David Beleznay</h2>
+          <p class="newsletter-description">Over two decades in the woods taught me forests are our best climate allies. Now translating that experience into actionable climate-smart forestry. Focused on where timber meets carbon, and where research meets reality.</p>
+          <div class="newsletter-actions">
+            <a href="/forest-flows/" class="cta-button">Read Latest Issue</a>
+            <a href="/forest-flows/#subscribe" class="secondary-button">Subscribe for Free</a>
           </div>
         </div>
       </div>
@@ -162,5 +181,70 @@
       });
     });
   </script>
+  
+  <style>
+    /* Additional styles */
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .secondary-button {
+      display: inline-block;
+      background-color: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .secondary-button:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    /* Newsletter section */
+    .newsletter-section {
+      background-color: var(--light);
+      padding: var(--spacing-lg) 0;
+      margin: var(--spacing-xl) 0;
+    }
+    
+    .newsletter-container {
+      background-color: white;
+      border-radius: 8px;
+      padding: var(--spacing-lg);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .newsletter-content h2 {
+      color: var(--accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .newsletter-description {
+      max-width: 700px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+    
+    .newsletter-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+    }
+    
+    @media (max-width: 768px) {
+      .hero-buttons,
+      .newsletter-actions {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+    }
+  </style>
 </body>
 </html>
