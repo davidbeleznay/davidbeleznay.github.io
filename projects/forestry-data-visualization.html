@@ -1,213 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forestry Data Visualization with Claude - AI Forester</title>
-    <style>
-        /* Base styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-
-        /* Header styles */
-        .site-header {
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-
-        .site-title {
-            font-size: 2.5em;
-            margin: 0;
-            color: #2c6e49;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .site-nav {
-            margin-top: 15px;
-        }
-
-        .site-nav a {
-            margin-right: 15px;
-            color: #4c956c;
-            text-decoration: none;
-        }
-
-        .site-nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main content styles */
-        .site-content {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .subtitle {
-            color: #6c757d;
-            font-size: 1.2em;
-            margin-top: -10px;
-        }
-
-        /* Typography */
-        h1, h2, h3 {
-            color: #2c6e49;
-        }
-
-        a {
-            color: #4c956c;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Project metadata */
-        .project-meta {
-            margin-top: -10px;
-            margin-bottom: 30px;
-            color: #6c757d;
-        }
-
-        /* Code blocks */
-        pre {
-            background-color: #f8f9fa;
-            border-left: 4px solid #4c956c;
-            padding: 15px;
-            overflow-x: auto;
-        }
-
-        code {
-            background-color: #f8f9fa;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-        /* Footer */
-        .site-footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e5e5;
-            text-align: center;
-            color: #6c757d;
-            font-size: 0.9em;
-        }
-
-        /* Container */
-        .container {
-            max-width: 100%;
-            margin-bottom: 30px;
-        }
-
-        /* Tags */
-        .tags {
-            margin: 15px 0;
-        }
-
-        .tag {
-            display: inline-block;
-            background-color: #e9f5db;
-            color: #4c956c;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 0.8em;
-            margin-right: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forestry Data Visualization with AI - AI Forester</title>
+  <meta name="description" content="Using AI to transform complex forestry datasets into intuitive, actionable visualizations for improved forest management and decision-making.">
+  
+  <!-- Microsoft Clarity Tracking -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "r6fqdz0i2c");
+  </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title">🌲 AI Forester</h1>
-            <nav class="site-nav">
-                <a href="/">Home</a>
-                <a href="/projects/">Projects</a>
-                <a href="/learning/">Learning</a>
-                <a href="/resources/">Resources</a>
-            </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="/" class="logo">AI<span>Forester</span></a>
+      <nav class="nav">
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Project Header -->
+  <section class="project-header">
+    <div class="container">
+      <h1>Forestry Data Visualization with AI</h1>
+      <div class="project-meta">
+        <span><i class="far fa-calendar-alt"></i> April 2025</span> &bull;
+        <span><i class="fas fa-tag"></i> Data Analysis</span>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Project Image -->
+  <div class="container">
+    <div class="project-featured-image">
+      <img src="/assets/images/projects/forestry-data-visualization.jpg" alt="Forestry data visualization showing tree growth patterns">
+    </div>
+  </div>
+
+  <!-- Project Content -->
+  <section class="project-content">
+    <div class="container">
+      <h2>Project Overview</h2>
+      <p>This project demonstrates how to use AI to analyze and visualize forestry data. By leveraging advanced AI capabilities, we can extract insights from complex datasets that might be difficult to identify through traditional analysis methods, transforming raw data into intuitive visualizations that aid in decision-making for forest management professionals.</p>
+      
+      <p>The power of AI-enhanced visualization lies in its ability to identify patterns across multiple variables simultaneously, revealing relationships that might otherwise remain hidden in traditional forestry reports and spreadsheets.</p>
+      
+      <h2>Approach & Methodology</h2>
+      <p>This project follows a systematic approach to forestry data visualization:</p>
+      
+      <ol>
+        <li><strong>Data Collection</strong>: Utilizing public forestry data from BC government sources, focusing on growth patterns, species distribution, and environmental factors.</li>
+        <li><strong>Data Preprocessing</strong>: Cleaning and organizing datasets to ensure consistency and compatibility with AI analysis tools.</li>
+        <li><strong>Prompt Engineering</strong>: Creating effective prompts for AI models to analyze the data and identify meaningful patterns.</li>
+        <li><strong>Visualization Development</strong>: Transforming AI insights into clear, actionable visual representations.</li>
+        <li><strong>Validation & Refinement</strong>: Testing visualizations with forestry professionals to ensure practical utility.</li>
+      </ol>
+      
+      <div class="project-image">
+        <img src="/assets/images/projects/forest-data-dashboard.jpg" alt="Interactive forest data dashboard showing multiple visualization types">
+        <p class="image-caption">Interactive dashboard combining multiple visualization types to provide comprehensive forest stand analysis.</p>
+      </div>
+      
+      <h2>Key Findings & Innovations</h2>
+      <p>The AI-powered visualization approach revealed several key insights:</p>
+      
+      <ul>
+        <li><strong>Hydrological Correlations</strong>: AI analysis identified previously unrecognized correlations between tree growth patterns and local hydrology, showing how subtle water table variations influence forest development.</li>
+        <li><strong>Species Interaction Patterns</strong>: Visualizations revealed complex relationships between different tree species in mixed stands, highlighting competition and facilitation dynamics.</li>
+        <li><strong>Temporal Patterns</strong>: Multi-variable analysis uncovered seasonal growth patterns not obvious in traditional reports, particularly regarding climate adaptation responses.</li>
+        <li><strong>Management Impact Visualization</strong>: Created intuitive before/after comparisons of different management approaches, making complex data accessible to stakeholders.</li>
+      </ul>
+      
+      <h2>Example Analysis & Visualization Techniques</h2>
+      <p>The project employed several innovative visualization approaches:</p>
+      
+      <div class="project-image">
+        <img src="/assets/images/projects/tree-growth-visualization.jpg" alt="Tree growth visualization showing multiple variables">
+        <p class="image-caption">Multi-variable tree growth visualization showing correlations between soil moisture, species, and growth rates.</p>
+      </div>
+      
+      <p>Below is a sample prompt used to analyze forestry data with AI:</p>
+      <div class="resource-callout">
+        <p>I have a dataset of tree measurements from a mixed-species stand in coastal British Columbia.<br>
+        The dataset includes:<br>
+        - species (Douglas-fir, Western Hemlock, Western Redcedar)<br>
+        - DBH (diameter at breast height, in cm)<br>
+        - height (in meters)<br>
+        - crown width (in meters)<br>
+        - soil moisture level (1-5 scale)<br>
+        <br>
+        Please analyze this data to identify:<br>
+        1. Correlations between tree size measurements and soil moisture<br>
+        2. Species-specific growth patterns<br>
+        3. Potential visualization approaches that would effectively communicate these patterns<br>
+        4. Recommendations for further data collection to enhance the analysis</p>
+      </div>
+      
+      <h2>Implementation Techniques</h2>
+      <p>The visualizations were created using a combination of tools and techniques:</p>
+      
+      <ul>
+        <li><strong>Interactive Time-Series Analysis</strong>: Dynamic visualizations showing forest change over time, with the ability to adjust variables and see immediate effects.</li>
+        <li><strong>Geospatial Mapping</strong>: Heat maps overlaid on topographical data to show the spatial distribution of key variables.</li>
+        <li><strong>3D Stand Visualization</strong>: Three-dimensional renderings of forest stands based on inventory data, allowing virtual "walk-throughs" of different management scenarios.</li>
+        <li><strong>Correlation Networks</strong>: Visual networks showing relationships between different variables, with line thickness indicating correlation strength.</li>
+        <li><strong>Prediction Modeling</strong>: Visual forecasts of forest development under different management and climate scenarios.</li>
+      </ul>
+
+      <h2>Future Directions</h2>
+      <p>This approach shows significant promise for enhancing forestry data communication. Next steps include:</p>
+      
+      <ul>
+        <li>Expanding the analysis to include climate change impact data, visualizing potential adaptation strategies</li>
+        <li>Creating more interactive visualizations for educational and stakeholder engagement purposes</li>
+        <li>Integrating multiple data sources for comprehensive ecosystem modeling and visualization</li>
+        <li>Developing standardized visualization templates that can be easily adapted by forestry professionals</li>
+        <li>Creating mobile-friendly visualization tools for field use in forest management</li>
+      </ul>
+      
+      <p>By continuing to refine these visualization techniques, we can bridge the gap between complex forestry data and practical decision-making, ultimately improving sustainable forest management practices.</p>
+    </div>
+  </section>
+  
+  <!-- Newsletter Callout -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-container">
+        <div class="newsletter-content">
+          <h2>Forest Flows by David Beleznay</h2>
+          <p class="newsletter-description">Over two decades in the woods taught me forests are our best climate allies. Now translating that experience into actionable climate-smart forestry. Focused on where timber meets carbon, and where research meets reality.</p>
+          <a href="/forest-flows/" class="cta-button">Read Latest Issue</a>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Project Navigation -->
+  <div class="container">
+    <div class="project-nav">
+      <a href="/projects/beaver-ai-restoration.html"><i class="fas fa-arrow-left"></i> Previous Project</a>
+      <a href="/projects/">View All Projects</a>
+    </div>
+  </div>
 
-    <main class="site-content">
-        <div class="container">
-            <h1>Forestry Data Visualization with Claude</h1>
-            <p class="subtitle">Using AI to visualize complex forest data patterns</p>
-            <div class="project-meta">
-                <p>April 18, 2025</p>
-                <div class="tags">
-                    <span class="tag">visualization</span>
-                    <span class="tag">claude</span>
-                    <span class="tag">data-analysis</span>
-                </div>
-            </div>
-            
-            <h2>Project Overview</h2>
-            <p>This project demonstrates how to use Claude to analyze and visualize forestry data. By leveraging Claude's capabilities, we can extract insights from complex datasets that might be difficult to identify through traditional analysis methods.</p>
-
-            <h2>Approach</h2>
-            <ol>
-                <li><strong>Data Collection</strong>: Public forestry data from BC government sources</li>
-                <li><strong>Data Preprocessing</strong>: Cleaning and organizing datasets for analysis</li>
-                <li><strong>Prompt Engineering</strong>: Creating effective prompts for Claude to analyze the data</li>
-                <li><strong>Visualization</strong>: Using Claude's outputs to create meaningful visualizations</li>
-            </ol>
-
-            <h2>Key Findings</h2>
-            <ul>
-                <li>AI analysis identified several correlations between tree growth patterns and local hydrology</li>
-                <li>Visual representation of complex datasets improved communication of technical concepts</li>
-                <li>Multi-variable analysis revealed seasonal patterns not obvious in traditional reports</li>
-            </ul>
-
-            <h2>Example Analysis</h2>
-            <p>Below is a sample prompt used to analyze forestry data with Claude:</p>
-            <pre><code>I have a dataset of tree measurements from a mixed-species stand in coastal British Columbia.
-The dataset includes:
-- species (Douglas-fir, Western Hemlock, Western Redcedar)
-- DBH (diameter at breast height, in cm)
-- height (in meters)
-- crown width (in meters)
-- soil moisture level (1-5 scale)
-
-Please analyze this data to identify:
-1. Correlations between tree size measurements and soil moisture
-2. Species-specific growth patterns
-3. Potential visualization approaches that would effectively communicate these patterns
-4. Recommendations for further data collection to enhance the analysis</code></pre>
-
-            <h2>Future Directions</h2>
-            <p>This approach shows promise for analyzing additional forestry datasets. Next steps include:</p>
-            <ul>
-                <li>Expanding the analysis to include climate change impact data</li>
-                <li>Creating interactive visualizations for educational purposes</li>
-                <li>Integrating multiple data sources for comprehensive ecosystem modeling</li>
-            </ul>
-
-            <h2>Resources</h2>
-            <ul>
-                <li><a href="https://catalogue.data.gov.bc.ca/dataset?q=forest" target="_blank">BC Forestry Data Portal</a></li>
-                <li><a href="https://docs.anthropic.com/" target="_blank">Claude Documentation</a></li>
-                <li><a href="https://www.tableau.com/learn/articles/data-visualization-tips" target="_blank">Visualization Techniques</a></li>
-            </ul>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>AI Forester</h4>
+          <p>Bridging forestry expertise and artificial intelligence to create innovative solutions for environmental challenges.</p>
         </div>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2025 AI Forester. All rights reserved.</p>
-            <p>Contact: <a href="mailto:contact@aiforester.com">contact@aiforester.com</a></p>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/learning/">Learning</a></li>
+            <li><a href="/resources/">Resources</a></li>
+          </ul>
         </div>
-    </footer>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:david@aiforester.com">david@aiforester.com</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 AI Forester. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for mobile menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const body = document.body;
+      
+      menuBtn.addEventListener('click', function() {
+        body.classList.toggle('mobile-menu-open');
+      });
+    });
+  </script>
+  
+  <style>
+    .project-image {
+      margin: var(--spacing-lg) 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .project-image img {
+      width: 100%;
+      display: block;
+      margin: 0;
+    }
+    
+    .image-caption {
+      background-color: var(--light);
+      padding: var(--spacing-sm);
+      font-style: italic;
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    /* Additional styles for newsletter section */
+    .newsletter-section {
+      background-color: var(--light);
+      padding: var(--spacing-lg) 0;
+      margin: var(--spacing-xl) 0;
+    }
+    
+    .newsletter-container {
+      background-color: white;
+      border-radius: 8px;
+      padding: var(--spacing-lg);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .newsletter-content h2 {
+      color: var(--accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .newsletter-description {
+      max-width: 700px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+  </style>
 </body>
 </html>
