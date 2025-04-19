@@ -37,7 +37,8 @@
         </button>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/projects/" class="active">Projects</a></li>
+          <li><a href="/products/">Products</a></li>
           <li><a href="/learning/">Learning</a></li>
           <li><a href="/resources/">Resources</a></li>
           <li><a href="/#contact">Contact</a></li>
@@ -164,6 +165,7 @@
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/projects/">Projects</a></li>
+            <li><a href="/products/">Products</a></li>
             <li><a href="/learning/">Learning</a></li>
             <li><a href="/resources/">Resources</a></li>
           </ul>
@@ -218,6 +220,11 @@
     .newsletter-description {
       max-width: 700px;
       margin: 0 auto var(--spacing-md) auto;
+    }
+    
+    /* Active nav link */
+    .nav a.active {
+      color: var(--accent);
     }
   </style>
 </body>
