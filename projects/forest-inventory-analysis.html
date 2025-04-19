@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Inventory Analysis with AI - AI Forester</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        /* Header styles */
+        .site-header {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .site-title {
+            font-size: 2.5em;
+            margin: 0;
+            color: #2c6e49;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .site-nav {
+            margin-top: 15px;
+        }
+
+        .site-nav a {
+            margin-right: 15px;
+            color: #4c956c;
+            text-decoration: none;
+        }
+
+        .site-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content styles */
+        .site-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1.2em;
+            margin-top: -10px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            color: #2c6e49;
+        }
+
+        a {
+            color: #4c956c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Project metadata */
+        .project-meta {
+            margin-top: -10px;
+            margin-bottom: 30px;
+            color: #6c757d;
+        }
+
+        /* Code blocks */
+        pre {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4c956c;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        /* Container */
+        .container {
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+
+        /* Tags */
+        .tags {
+            margin: 15px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e9f5db;
+            color: #4c956c;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">🌲 AI Forester</h1>
+            <nav class="site-nav">
+                <a href="/">Home</a>
+                <a href="/projects/">Projects</a>
+                <a href="/learning/">Learning</a>
+                <a href="/resources/">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-content">
+        <div class="container">
+            <h1>Forest Inventory Analysis with AI</h1>
+            <p class="subtitle">Exploring how machine learning can enhance traditional forest inventory approaches</p>
+            <div class="project-meta">
+                <p>December 15, 2023</p>
+                <div class="tags">
+                    <span class="tag">machine-learning</span>
+                    <span class="tag">inventory</span>
+                    <span class="tag">data-analysis</span>
+                </div>
+            </div>
+            
+            <h2>The Challenge</h2>
+            <p>Traditional forest inventory methods are time-consuming and often limited in scale. This exploration examines how machine learning techniques can complement these approaches to improve accuracy and efficiency.</p>
+
+            <h2>Approach</h2>
+            <p>This project utilized public forestry datasets to develop and test machine learning models that can predict forest attributes from limited sample data.</p>
+
+            <h2>Implementation</h2>
+            <p>Using Python and scikit-learn, I implemented several regression models to predict forest metrics:</p>
+            
+            <pre><code>from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+
+# Prepare data
+X_train, X_test, y_train, y_test = train_test_split(
+    features, targets, test_size=0.25, random_state=42)
+
+# Train model
+model = RandomForestRegressor(n_estimators=100)
+model.fit(X_train, y_train)
+
+# Evaluate model
+predictions = model.predict(X_test)
+mean_absolute_error = np.mean(np.abs(predictions - y_test))
+print(f"Mean Absolute Error: {mean_absolute_error:.2f}")
+
+# Feature importance
+importances = model.feature_importances_
+feature_names = features.columns
+indices = np.argsort(importances)[::-1]
+
+print("Feature ranking:")
+for i in range(len(indices)):
+    print(f"{i+1}. {feature_names[indices[i]]} ({importances[indices[i]]:.4f})")
+</code></pre>
+
+            <h2>Results</h2>
+            <p>The models achieved promising results, with the Random Forest Regressor performing particularly well at predicting tree density and volume metrics from sample plots. Key findings include:</p>
+            
+            <ul>
+                <li>Mean absolute error of less than 15% for volume predictions</li>
+                <li>Canopy height and density were the most predictive features</li>
+                <li>Models trained on mixed-species stands generalized well to similar forest types</li>
+                <li>Ensemble methods consistently outperformed single-model approaches</li>
+            </ul>
+
+            <h2>Visualization</h2>
+            <p>To help forestry professionals interpret the results, I created visualizations showing:</p>
+            
+            <ul>
+                <li>Feature importance rankings for different prediction targets</li>
+                <li>Actual vs. predicted values for key forest metrics</li>
+                <li>Error distribution across different forest conditions</li>
+                <li>Spatial prediction maps showing expected forest characteristics</li>
+            </ul>
+
+            <h2>Future Directions</h2>
+            <p>This initial exploration suggests several promising directions for further development:</p>
+            
+            <ol>
+                <li>Incorporating satellite imagery as additional input features</li>
+                <li>Testing more advanced models like gradient boosting and neural networks</li>
+                <li>Developing a user-friendly interface for forestry professionals to utilize these techniques</li>
+                <li>Integrating with existing forest inventory systems for seamless workflow</li>
+            </ol>
+
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://scikit-learn.org/stable/modules/ensemble.html" target="_blank">Scikit-learn Ensemble Methods Documentation</a></li>
+                <li><a href="https://www.nrcan.gc.ca/our-natural-resources/forests/sustainable-forest-management/measuring-reporting/forest-inventory" target="_blank">Canadian Forest Inventory Information</a></li>
+                <li><a href="https://github.com/topics/forest-inventory" target="_blank">Forest Inventory GitHub Resources</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 AI Forester. All rights reserved.</p>
+            <p>Contact: <a href="mailto:contact@aiforester.com">contact@aiforester.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>
