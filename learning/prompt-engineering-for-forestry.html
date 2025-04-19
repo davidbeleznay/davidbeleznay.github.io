@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Engineering for Forestry Applications - AI Forester</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        /* Header styles */
+        .site-header {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .site-title {
+            font-size: 2.5em;
+            margin: 0;
+            color: #2c6e49;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .site-nav {
+            margin-top: 15px;
+        }
+
+        .site-nav a {
+            margin-right: 15px;
+            color: #4c956c;
+            text-decoration: none;
+        }
+
+        .site-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content styles */
+        .site-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1.2em;
+            margin-top: -10px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            color: #2c6e49;
+        }
+
+        a {
+            color: #4c956c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Article metadata */
+        .article-meta {
+            margin-top: -10px;
+            margin-bottom: 30px;
+            color: #6c757d;
+        }
+
+        /* Code blocks */
+        pre {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4c956c;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        /* Container */
+        .container {
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+
+        /* Tags */
+        .tags {
+            margin: 15px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e9f5db;
+            color: #4c956c;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">🌲 AI Forester</h1>
+            <nav class="site-nav">
+                <a href="/">Home</a>
+                <a href="/projects/">Projects</a>
+                <a href="/learning/">Learning</a>
+                <a href="/resources/">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-content">
+        <div class="container">
+            <h1>Prompt Engineering for Forestry Applications</h1>
+            <p class="subtitle">Creating effective AI prompts for environmental science</p>
+            <div class="article-meta">
+                <p>April 18, 2025</p>
+                <div class="tags">
+                    <span class="tag">prompt-engineering</span>
+                    <span class="tag">AI</span>
+                    <span class="tag">forestry</span>
+                </div>
+            </div>
+            
+            <h2>Why Prompt Engineering Matters in Forestry</h2>
+            <p>When analyzing complex environmental data or seeking insights about forest ecosystems, the quality of your prompts directly impacts the usefulness of AI responses. Good prompts help the AI understand:</p>
+
+            <ul>
+                <li>The specific forestry context you're working in</li>
+                <li>Technical terminology specific to silviculture, hydrology, or ecology</li>
+                <li>The format and structure of data you're analyzing</li>
+                <li>The type of output that would be most useful to you</li>
+            </ul>
+
+            <h2>Core Principles for Forestry Prompts</h2>
+            
+            <h3>1. Provide Context</h3>
+            <p>Always establish the forestry context clearly. For example:</p>
+            <pre><code>I'm analyzing soil moisture data from a recently harvested Douglas-fir stand 
+in the Coastal Western Hemlock biogeoclimatic zone on Vancouver Island. The 
+stand was harvested using variable retention with approximately 30% retention.</code></pre>
+
+            <h3>2. Define Technical Terms</h3>
+            <p>When using specialized forestry terminology, provide brief definitions if they're uncommon:</p>
+            <pre><code>I'm examining "windthrow" events (trees uprooted by wind) at forest edges 
+following partial cutting treatments.</code></pre>
+
+            <h3>3. Specify Data Structure</h3>
+            <p>When working with forestry datasets, describe their structure:</p>
+            <pre><code>I have a CSV file with the following columns:
+- plot_id: Unique identifier for each sample plot
+- species: Tree species code (DF, HW, CW, etc.)
+- dbh_cm: Diameter at breast height in centimeters
+- height_m: Tree height in meters
+- age: Tree age in years</code></pre>
+
+            <h3>4. Request Specific Outputs</h3>
+            <p>Be clear about the type of analysis or visualization you need:</p>
+            <pre><code>Please analyze this tree measurement data to identify any correlation between 
+DBH and height, and create a scatter plot visualization with a trend line.</code></pre>
+
+            <h2>Example Prompts for Common Forestry Tasks</h2>
+            
+            <h3>Analyzing Inventory Data</h3>
+            <pre><code>I have forest inventory data for a 50-hectare mixed-species stand. The data 
+includes species, DBH, height, and health status for 40 sample plots. 
+Please help me:
+
+1. Calculate basic statistics (mean, median, range) for DBH and height by species
+2. Identify any potential outliers in the measurements
+3. Suggest additional calculations that might provide insights about stand structure</code></pre>
+
+            <h3>Interpreting Remote Sensing Data</h3>
+            <pre><code>I'm working with NDVI data from Landsat imagery for a forested watershed. 
+The data spans 10 years (2015-2025) with measurements every 16 days. 
+I want to:
+
+1. Identify seasonal patterns in vegetation vigor
+2. Detect any potential disturbances (fire, harvest, insect damage)
+3. Understand how to correlate NDVI values with field measurements of stand density</code></pre>
+
+            <h3>Planning Silvicultural Treatments</h3>
+            <pre><code>I need to develop a silvicultural prescription for a 40-year-old lodgepole 
+pine stand affected by mountain pine beetle. Site characteristics:
+- Elevation: 1200m
+- BEC zone: MS (Montane Spruce)
+- Current stocking: 800 stems/ha (60% affected by MPB)
+- Understory: Sparse natural regeneration of subalpine fir
+
+What treatment options should I consider, and what are the tradeoffs?</code></pre>
+
+            <h2>Common Pitfalls to Avoid</h2>
+            
+            <ol>
+                <li><strong>Vague requests</strong>: "Tell me about forest health" is too broad; specify region, species, and particular health concerns</li>
+                <li><strong>Missing context</strong>: Always include location, forest type, and management objectives</li>
+                <li><strong>Assuming forestry knowledge</strong>: Define local terminology, species codes, or regional practices</li>
+                <li><strong>Data overload</strong>: When sharing data, focus on relevant fields and provide sample rows rather than entire datasets</li>
+            </ol>
+
+            <h2>Advanced Techniques</h2>
+            
+            <h3>Chain-of-Thought Prompting</h3>
+            <p>For complex forestry analyses, guide the AI through a step-by-step process:</p>
+            <pre><code>I want to assess carbon sequestration potential in a second-growth coastal 
+Douglas-fir stand. Please:
+
+1. First, explain which tree and stand attributes are most relevant for carbon calculations
+2. Then, suggest appropriate allometric equations for this forest type
+3. Finally, outline a sampling methodology to collect the necessary field data</code></pre>
+
+            <h3>Few-Shot Learning with Forestry Examples</h3>
+            <p>Provide examples of the type of analysis you want:</p>
+            <pre><code>I need to interpret soil test results for reforestation planning. Here's how 
+I'd analyze one sample:
+
+Sample A: pH 5.2, CEC 12 meq/100g, 75% base saturation
+Analysis: Moderately acidic soil with adequate cation exchange capacity.
+Suitable for Douglas-fir but may need lime amendment for Western redcedar.
+
+Now, please analyze these new samples: [your data here]</code></pre>
+
+            <h2>Conclusion</h2>
+            <p>Effective prompt engineering can transform how forestry professionals use AI tools like Claude. By providing clear context, specific requests, and structured information, you can obtain much more valuable insights for forest management, planning, and research.</p>
+            
+            <p>In future articles, we'll explore specific applications like using AI for forest health assessment, wildfire risk modeling, and ecosystem classification.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 AI Forester. All rights reserved.</p>
+            <p>Contact: <a href="mailto:contact@aiforester.com">contact@aiforester.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>
