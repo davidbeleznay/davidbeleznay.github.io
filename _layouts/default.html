@@ -6,18 +6,17 @@
   <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <h1 class="site-title"><a href="{{ "/" | relative_url }}">{{ site.title }}</a></h1>
+      <h1 class="site-title"><a href="{{ "/" | relative_url }}">🌲 {{ site.title }}</a></h1>
       <nav class="site-nav">
         <a href="{{ "/" | relative_url }}">Home</a>
-        <a href="{{ "/about/" | relative_url }}">About</a>
         <a href="{{ "/projects/" | relative_url }}">Projects</a>
-        <a href="{{ "/learning/" | relative_url }}">Learning Lab</a>
+        <a href="{{ "/learning/" | relative_url }}">Learning</a>
         <a href="{{ "/resources/" | relative_url }}">Resources</a>
-        <a href="{{ "/contact/" | relative_url }}">Contact</a>
       </nav>
     </div>
   </header>
