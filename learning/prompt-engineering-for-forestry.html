@@ -179,7 +179,10 @@ Now, please analyze these new samples: [your data here]</code></pre>
     <div class="container">
       <h2>Explore More Learning Resources</h2>
       <p>Check back soon for more articles on forestry AI applications.</p>
-      <a href="/learning/" class="secondary-button">Browse All Resources</a>
+      <div class="article-links">
+        <a href="/learning/" class="secondary-button">Browse All Resources</a>
+        <a href="/services.html" class="cta-button">View AI Services</a>
+      </div>
     </div>
   </section>
 
@@ -335,6 +338,20 @@ Now, please analyze these new samples: [your data here]</code></pre>
     
     .related-articles p {
       margin-bottom: var(--spacing-md);
+    }
+    
+    .article-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+    }
+    
+    @media (max-width: 600px) {
+      .article-links {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
     }
     
     /* Active nav link */
