@@ -193,7 +193,7 @@
           <h4>Connect</h4>
           <ul>
             <li><a href="mailto:david@aiforester.com">david@aiforester.com</a></li>
-            <li><a href="https://linkedin.com/in/david-beleznay">LinkedIn</a></li>
+            <li><a href="https://linkedin.com/in-david-beleznay">LinkedIn</a></li>
             <li><a href="https://forestflows.substack.com">Substack Newsletter</a></li>
             <li><a href="https://www.youtube.com/@theAIForester">YouTube</a></li>
           </ul>
@@ -245,10 +245,12 @@
     /* Hero with Background Image */
     .hero-with-bg {
       position: relative;
-      background-image: url('/assets/images/projects/hero-background.svg');
+      background-image: url('/assets/images/projects/hero-background.jpg');
       background-size: cover;
       background-position: center;
       color: white;
+      /* Image loading optimization */
+      background-color: #1a4a3c; /* Fallback color while image loads */
     }
     
     .hero-overlay {
@@ -308,6 +310,11 @@
       .newsletter-actions {
         flex-direction: column;
         gap: var(--spacing-xs);
+      }
+      
+      /* Optimize background image for mobile */
+      .hero-with-bg {
+        background-position: center center;
       }
     }
   </style>
