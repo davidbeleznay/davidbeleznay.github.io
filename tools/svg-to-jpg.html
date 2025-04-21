@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG to JPG Converter - AI Forester</title>
+  <style>
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      color: #1b4332;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    #drop-area {
+      border: 2px dashed #1b4332;
+      border-radius: 10px;
+      padding: 50px;
+      text-align: center;
+      margin: 20px 0;
+      background-color: #e9f5ee;
+      transition: background-color 0.3s;
+    }
+    #drop-area.highlight {
+      background-color: #d8eedf;
+    }
+    .button {
+      display: inline-block;
+      background-color: #2a9d8f;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      border: none;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #1b4332;
+    }
+    #file-input {
+      display: none;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: 600;
+      color: #2a9d8f;
+    }
+    .instructions {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 30px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .instructions h2 {
+      color: #1b4332;
+      margin-top: 0;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .steps {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>SVG to JPG Converter</h1>
+  
+  <div class="instructions">
+    <h2>How to Convert SVG Files to JPG</h2>
+    <ol class="steps">
+      <li>Drag and drop SVG files onto the area below, or click to select files</li>
+      <li>The converter will automatically process each SVG file</li>
+      <li>JPG files will be downloaded to your default download location</li>
+    </ol>
+    <p><strong>Note:</strong> This tool works entirely in your browser. No files are uploaded to any server.</p>
+  </div>
+  
+  <div id="drop-area">
+    <form class="upload-form">
+      <p>Drag and drop SVG files here</p>
+      <p>or</p>
+      <input type="file" id="file-input" accept=".svg" multiple>
+      <label for="file-input" class="button">Select SVG Files</label>
+    </form>
+  </div>
+  
+  <p id="status">Ready to convert SVG files to JPG.</p>
+  
+  <div class="instructions">
+    <h2>Project Images</h2>
+    <p>The following SVG files have been added to your repository:</p>
+    <ul>
+      <li><code>assets/images/projects/prompt-engineering.svg</code></li>
+      <li><code>assets/images/projects/forestry-data-visualization.svg</code></li>
+      <li><code>assets/images/projects/beaver-dam-ai.svg</code></li>
+    </ul>
+    <p>After converting these to JPG format, you should replace the references in your HTML files to use the JPG versions instead of the missing JPG files.</p>
+  </div>
+  
+  <div class="footer">
+    <p>&copy; 2025 AI Forester. Created to help manage website assets.</p>
+  </div>
+  
+  <script src="../scripts/svg-to-jpg-converter.js"></script>
+</body>
+</html>
