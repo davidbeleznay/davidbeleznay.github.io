@@ -1,0 +1,88 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#f8f9fa"/>
+  
+  <!-- Forest Background Accent -->
+  <path d="M0,800 L1200,800 L1200,650 C1000,670 800,630 600,650 C400,670 200,630 0,650 Z" fill="#b7e4c7" opacity="0.5"/>
+  
+  <!-- Main Data Visualization Area -->
+  <rect x="150" y="120" width="900" height="500" rx="10" fill="white" stroke="#95d5b2" stroke-width="2"/>
+  
+  <!-- Graph Title -->
+  <text x="600" y="160" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1b4332">Forest Inventory Analysis</text>
+  
+  <!-- Chart Grid Lines -->
+  <g stroke="#e9ecef" stroke-width="1">
+    <line x1="200" y1="520" x2="1000" y2="520"/>
+    <line x1="200" y1="460" x2="1000" y2="460"/>
+    <line x1="200" y1="400" x2="1000" y2="400"/>
+    <line x1="200" y1="340" x2="1000" y2="340"/>
+    <line x1="200" y1="280" x2="1000" y2="280"/>
+    <line x1="200" y1="220" x2="1000" y2="220"/>
+  </g>
+  
+  <!-- X and Y Axes -->
+  <line x1="200" y1="520" x2="1000" y2="520" stroke="#343a40" stroke-width="2"/>
+  <line x1="200" y1="220" x2="200" y2="520" stroke="#343a40" stroke-width="2"/>
+  
+  <!-- X Axis Labels -->
+  <text x="280" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species A</text>
+  <text x="360" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species B</text>
+  <text x="440" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species C</text>
+  <text x="520" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species D</text>
+  <text x="600" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species E</text>
+  <text x="680" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species F</text>
+  <text x="760" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species G</text>
+  <text x="840" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species H</text>
+  <text x="920" y="545" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#495057">Species I</text>
+  
+  <!-- Y Axis Labels -->
+  <text x="190" y="520" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#495057">0</text>
+  <text x="190" y="460" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#495057">20</text>
+  <text x="190" y="400" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#495057">40</text>
+  <text x="190" y="340" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#495057">60</text>
+  <text x="190" y="280" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#495057">80</text>
+  <text x="190" y="220" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#495057">100</text>
+  
+  <!-- Data Bars -->
+  <rect x="255" y="380" width="50" height="140" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="335" y="300" width="50" height="220" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="415" y="410" width="50" height="110" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="495" y="260" width="50" height="260" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="575" y="340" width="50" height="180" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="655" y="420" width="50" height="100" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="735" y="320" width="50" height="200" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="815" y="450" width="50" height="70" fill="#2d6a4f" opacity="0.8"/>
+  <rect x="895" y="370" width="50" height="150" fill="#2d6a4f" opacity="0.8"/>
+  
+  <!-- Trend Line -->
+  <path d="M280,380 L360,300 L440,410 L520,260 L600,340 L680,420 L760,320 L840,450 L920,370" fill="none" stroke="#e63946" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- Data Points -->
+  <circle cx="280" cy="380" r="5" fill="#e63946"/>
+  <circle cx="360" cy="300" r="5" fill="#e63946"/>
+  <circle cx="440" cy="410" r="5" fill="#e63946"/>
+  <circle cx="520" cy="260" r="5" fill="#e63946"/>
+  <circle cx="600" cy="340" r="5" fill="#e63946"/>
+  <circle cx="680" cy="420" r="5" fill="#e63946"/>
+  <circle cx="760" cy="320" r="5" fill="#e63946"/>
+  <circle cx="840" cy="450" r="5" fill="#e63946"/>
+  <circle cx="920" cy="370" r="5" fill="#e63946"/>
+  
+  <!-- Legend -->
+  <rect x="700" y="580" width="20" height="20" fill="#2d6a4f" opacity="0.8"/>
+  <text x="730" y="595" font-family="Arial, sans-serif" font-size="14" fill="#495057">Density (trees/hectare)</text>
+  
+  <circle cx="810" cy="590" r="5" fill="#e63946"/>
+  <line x1="790" y1="590" x2="830" y2="590" stroke="#e63946" stroke-width="3"/>
+  <text x="840" y="595" font-family="Arial, sans-serif" font-size="14" fill="#495057">Growth Trend</text>
+  
+  <!-- AI Enhancement Badge -->
+  <g transform="translate(900, 160)">
+    <rect x="0" y="0" width="120" height="30" rx="15" fill="#1b4332" opacity="0.8"/>
+    <text x="60" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">AI Enhanced</text>
+  </g>
+  
+  <!-- Main Title -->
+  <text x="600" y="80" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#1b4332">Forestry Data Visualization</text>
+</svg>
