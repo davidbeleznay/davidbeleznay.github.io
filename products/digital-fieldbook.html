@@ -458,77 +458,6 @@
         </div>
       </div>
       
-      <h2>Pricing Options</h2>
-      
-      <div class="pricing-grid">
-        <div class="pricing-item">
-          <div class="pricing-header">
-            <h3>Starter</h3>
-            <div class="price">$49<span>/month</span></div>
-            <p>Per user, billed annually</p>
-          </div>
-          <div class="pricing-features">
-            <ul>
-              <li><i class="fas fa-check"></i> Single user license</li>
-              <li><i class="fas fa-check"></i> 10GB cloud storage</li>
-              <li><i class="fas fa-check"></i> Basic templates included</li>
-              <li><i class="fas fa-check"></i> Email support</li>
-              <li><i class="fas fa-times"></i> Custom form builder</li>
-              <li><i class="fas fa-times"></i> Team management</li>
-              <li><i class="fas fa-times"></i> Advanced AI features</li>
-            </ul>
-          </div>
-          <div class="pricing-cta">
-            <a href="mailto:david@aiforester.com?subject=Digital%20Fieldbook%20Starter%20Inquiry" class="cta-button">Get Started</a>
-          </div>
-        </div>
-        
-        <div class="pricing-item featured">
-          <div class="pricing-tag">Most Popular</div>
-          <div class="pricing-header">
-            <h3>Professional</h3>
-            <div class="price">$79<span>/month</span></div>
-            <p>Per user, billed annually</p>
-          </div>
-          <div class="pricing-features">
-            <ul>
-              <li><i class="fas fa-check"></i> Up to 5 user licenses</li>
-              <li><i class="fas fa-check"></i> 50GB cloud storage</li>
-              <li><i class="fas fa-check"></i> All templates included</li>
-              <li><i class="fas fa-check"></i> Priority support</li>
-              <li><i class="fas fa-check"></i> Custom form builder</li>
-              <li><i class="fas fa-check"></i> Team management</li>
-              <li><i class="fas fa-times"></i> Advanced AI features</li>
-            </ul>
-          </div>
-          <div class="pricing-cta">
-            <a href="mailto:david@aiforester.com?subject=Digital%20Fieldbook%20Professional%20Inquiry" class="cta-button">Get Started</a>
-          </div>
-        </div>
-        
-        <div class="pricing-item">
-          <div class="pricing-header">
-            <h3>Enterprise</h3>
-            <div class="price">$129<span>/month</span></div>
-            <p>Per user, billed annually</p>
-          </div>
-          <div class="pricing-features">
-            <ul>
-              <li><i class="fas fa-check"></i> Unlimited user licenses</li>
-              <li><i class="fas fa-check"></i> 250GB cloud storage</li>
-              <li><i class="fas fa-check"></i> All templates included</li>
-              <li><i class="fas fa-check"></i> 24/7 dedicated support</li>
-              <li><i class="fas fa-check"></i> Custom form builder</li>
-              <li><i class="fas fa-check"></i> Advanced team management</li>
-              <li><i class="fas fa-check"></i> Full AI feature suite</li>
-            </ul>
-          </div>
-          <div class="pricing-cta">
-            <a href="mailto:david@aiforester.com?subject=Digital%20Fieldbook%20Enterprise%20Inquiry" class="cta-button">Get Started</a>
-          </div>
-        </div>
-      </div>
-      
       <div class="cta-box">
         <h3>Ready to Modernize Your Field Data Collection?</h3>
         <p>Contact me to schedule a personalized demonstration of the Digital Fieldbook tailored to your specific forestry operations.</p>
@@ -903,99 +832,6 @@
       margin-bottom: var(--spacing-xs);
     }
     
-    /* Pricing Grid */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-md);
-      margin: var(--spacing-lg) 0;
-    }
-    
-    .pricing-item {
-      background-color: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      position: relative;
-    }
-    
-    .pricing-item.featured {
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      transform: scale(1.05);
-      z-index: 1;
-      border: 2px solid var(--accent);
-    }
-    
-    .pricing-tag {
-      background-color: var(--accent);
-      color: white;
-      padding: var(--spacing-xs) var(--spacing-sm);
-      font-weight: 600;
-      position: absolute;
-      top: 0;
-      right: 0;
-      border-bottom-left-radius: 8px;
-    }
-    
-    .pricing-header {
-      padding: var(--spacing-md);
-      text-align: center;
-      border-bottom: 1px solid var(--light-gray);
-    }
-    
-    .price {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin: var(--spacing-sm) 0;
-    }
-    
-    .price span {
-      font-size: 1rem;
-      font-weight: 400;
-    }
-    
-    .pricing-header p {
-      color: var(--gray);
-      margin-bottom: 0;
-    }
-    
-    .pricing-features {
-      padding: var(--spacing-md);
-    }
-    
-    .pricing-features ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .pricing-features li {
-      margin-bottom: var(--spacing-sm);
-      display: flex;
-      align-items: center;
-    }
-    
-    .pricing-features i {
-      margin-right: var(--spacing-xs);
-      width: 20px;
-      text-align: center;
-    }
-    
-    .pricing-features .fa-check {
-      color: var(--primary);
-    }
-    
-    .pricing-features .fa-times {
-      color: var(--gray);
-    }
-    
-    .pricing-cta {
-      padding: var(--spacing-md);
-      text-align: center;
-      border-top: 1px solid var(--light-gray);
-    }
-    
     /* CTA Box */
     .cta-box {
       background-color: var(--primary);
@@ -1070,11 +906,6 @@
       .customization-grid,
       .ai-assistants-grid {
         grid-template-columns: 1fr;
-      }
-      
-      .pricing-item.featured {
-        transform: none;
-        margin: var(--spacing-md) 0;
       }
       
       .newsletter-actions {
