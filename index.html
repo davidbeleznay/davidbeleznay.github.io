@@ -48,9 +48,12 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero hero-with-bg">
-    <div class="hero-overlay"></div>
+  <!-- Hero Section with Full Image -->
+  <section class="hero full-image-hero">
+    <div class="hero-image-container">
+      <img src="/assets/images/profile/hero-headshot.jpg" alt="David Beleznay in forest with data visualization elements" class="full-hero-image">
+      <div class="hero-overlay"></div>
+    </div>
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
@@ -60,9 +63,6 @@
             <a href="/projects/" class="cta-button">See My Work</a>
             <a href="/#contact" class="secondary-button">Let's Connect</a>
           </div>
-        </div>
-        <div class="hero-image">
-          <img src="/assets/images/profile/hero-headshot.jpg" alt="David Beleznay - Engineer, Forester, AI Explorer" class="profile-circle">
         </div>
       </div>
     </div>
@@ -313,16 +313,30 @@
       color: white;
     }
     
-    /* Hero with Background Image */
-    .hero-with-bg {
+    /* Full Image Hero Styles */
+    .full-image-hero {
       position: relative;
-      background-image: url('/assets/images/projects/hero-background.jpg');
-      background-size: cover;
-      background-position: center;
       color: white;
-      padding: var(--spacing-xl) 0;
-      /* Image loading optimization */
-      background-color: #1a4a3c; /* Fallback color while image loads */
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      max-height: 800px;
+      min-height: 600px;
+    }
+    
+    .hero-image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .full-hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
     
     .hero-overlay {
@@ -331,30 +345,28 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
       z-index: 1;
     }
     
-    .hero-with-bg .container {
+    .full-image-hero .container {
       position: relative;
       z-index: 2;
-    }
-    
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* Changed to equal columns */
+      height: 100%;
+      display: flex;
       align-items: center;
-      gap: var(--spacing-lg);
     }
     
-    .hero-text {
-      text-align: left;
+    .full-image-hero .hero-content {
+      width: 50%;
+      max-width: 600px;
     }
     
     .hero-text h1 {
-      font-size: 3.5rem;
+      font-size: 3.8rem;
       margin-bottom: var(--spacing-sm);
       line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
     
     .hero-text .highlight {
@@ -362,27 +374,10 @@
     }
     
     .hero-text p {
-      font-size: 1.4rem;
-      max-width: 600px;
+      font-size: 1.5rem;
       line-height: 1.4;
-    }
-    
-    .hero-with-bg h1, 
-    .hero-with-bg p {
-      color: white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    
-    .hero-image {
-      text-align: center;
-    }
-    
-    .profile-circle {
-      width: 100%;
-      max-width: 450px; /* Increased from 300px to 450px */
-      border-radius: 50%;
-      border: 6px solid white; /* Increased border thickness */
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+      margin-bottom: var(--spacing-md);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     }
     
     /* Expertise Section */
@@ -503,29 +498,29 @@
     
     /* Responsive Styles */
     @media (max-width: 992px) {
-      .hero-content {
-        grid-template-columns: 1fr 1fr;
+      .full-image-hero .hero-content {
+        width: 60%;
       }
       
-      .profile-circle {
-        max-width: 350px;
+      .hero-text h1 {
+        font-size: 3.2rem;
+      }
+      
+      .hero-text p {
+        font-size: 1.3rem;
       }
     }
     
     @media (max-width: 768px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
+      .full-image-hero {
+        height: auto;
+        min-height: 500px;
       }
       
-      .hero-text {
+      .full-image-hero .hero-content {
+        width: 100%;
+        padding: var(--spacing-xl) 0;
         text-align: center;
-        order: 2;
-      }
-      
-      .hero-image {
-        order: 1;
-        margin-bottom: var(--spacing-md);
       }
       
       .hero-text h1 {
@@ -534,7 +529,14 @@
       
       .hero-text p {
         font-size: 1.2rem;
-        margin: 0 auto;
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+      }
+      
+      .hero-overlay {
+        background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
       }
       
       .hero-buttons,
@@ -543,15 +545,6 @@
         flex-direction: column;
         gap: var(--spacing-xs);
         justify-content: center;
-      }
-      
-      /* Optimize background image for mobile */
-      .hero-with-bg {
-        background-position: center center;
-      }
-      
-      .profile-circle {
-        max-width: 280px; /* Larger than before on mobile */
       }
     }
   </style>
