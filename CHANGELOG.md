@@ -3,6 +3,9 @@
 This document tracks all changes and improvements made to the website.
 
 ## April 26, 2025
+- Completely redesigned hero section with full-screen professional image and left-aligned text overlay
+- Created immersive visual experience with gradient overlay for better text readability
+- Increased hero text size and enhanced text shadow for visual impact
 - Enhanced hero section with larger profile image (450px) and equal column layout
 - Updated services page with personal branding and forest background image
 - Added Twitter/X social link and removed GitHub social link
