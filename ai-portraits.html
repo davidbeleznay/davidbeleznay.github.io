@@ -50,43 +50,50 @@
   <section class="portrait-gallery-section">
     <div class="container">
       <h2>Featured Portraits</h2>
-      <p>Place AI-generated portraits in the /assets/images/ai-portraits/ directory, then display them in this gallery:</p>
+      <p>These AI-generated portraits demonstrate how artificial intelligence can visualize the intersection of forestry expertise and technological innovation.</p>
       
-      <!-- This is a placeholder for the AI portrait gallery -->
+      <!-- AI portrait gallery with actual portraits -->
       <div class="ai-portrait-gallery">
-        <!-- Sample portrait item 1 - replace with actual portraits -->
+        <!-- Portrait item 1 - using actual AI portrait -->
         <div class="ai-portrait-item">
-          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester in data visualization environment">
+          <img src="/assets/images/ai-portraits/95oGvFXfgL2E_b_CAYA1Z_4c5a7b60dde4499da32a9f5c72a1b92c.jpg" alt="AI Forester in forest data environment">
           <div class="ai-portrait-caption">
-            <h4>Data Forest Explorer</h4>
-            <p>Exploring the intersection of digital visualization and forest ecology</p>
+            <h4>Forest Data Specialist</h4>
+            <p>Analyzing environmental patterns with advanced AI visualization techniques</p>
           </div>
         </div>
         
-        <!-- Sample portrait item 2 - replace with actual portraits -->
+        <!-- Portrait item 2 - using actual AI portrait -->
         <div class="ai-portrait-item">
-          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester with augmented reality forest analysis">
+          <img src="/assets/images/ai-portraits/AI2.jpg" alt="AI Forester with forest technology integration">
           <div class="ai-portrait-caption">
-            <h4>AR Forest Analysis</h4>
-            <p>Using augmented reality to analyze forest health and composition</p>
+            <h4>Tech-Integrated Forestry</h4>
+            <p>Blending traditional forest management with modern technological approaches</p>
           </div>
         </div>
         
-        <!-- Sample portrait item 3 - replace with actual portraits -->
-        <div class="ai-portrait-item">
-          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester in high-tech field environment">
+        <!-- Additional placeholder slots for future portraits -->
+        <div class="ai-portrait-item future-slot">
+          <div class="placeholder-image">
+            <i class="fas fa-tree"></i>
+            <i class="fas fa-plus"></i>
+            <i class="fas fa-microchip"></i>
+          </div>
           <div class="ai-portrait-caption">
-            <h4>Field Technology Integration</h4>
-            <p>Bringing advanced technology into practical field applications</p>
+            <h4>Future Portrait</h4>
+            <p>Additional AI-generated portraits coming soon</p>
           </div>
         </div>
         
-        <!-- Sample portrait item 4 - replace with actual portraits -->
-        <div class="ai-portrait-item">
-          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester with digital forest mapping">
+        <div class="ai-portrait-item future-slot">
+          <div class="placeholder-image">
+            <i class="fas fa-tree"></i>
+            <i class="fas fa-plus"></i>
+            <i class="fas fa-microchip"></i>
+          </div>
           <div class="ai-portrait-caption">
-            <h4>Digital Forest Mapping</h4>
-            <p>Creating next-generation forest resource maps with AI assistance</p>
+            <h4>Future Portrait</h4>
+            <p>Additional AI-generated portraits coming soon</p>
           </div>
         </div>
       </div>
@@ -94,7 +101,49 @@
       <div class="section-notes">
         <h3>About These Portraits</h3>
         <p>These AI-generated portraits represent the fusion of forestry expertise and technological innovation. Each portrait exemplifies a specific aspect of how modern AI and data science tools can enhance traditional forestry practices.</p>
-        <p>Add your own AI-generated portraits to the <code>/assets/images/ai-portraits/</code> directory and update this gallery as needed.</p>
+        <p>The portraits are created using advanced generative AI models that have been trained to understand the unique visual language of forestry professionals and environmental technologists.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications Section -->
+  <section class="applications-section">
+    <div class="container">
+      <h2>Applications of AI Imagery</h2>
+      <p>AI-generated imagery offers numerous practical applications for forestry and environmental professionals:</p>
+      
+      <div class="applications-grid">
+        <div class="application-card">
+          <div class="application-icon">
+            <i class="fas fa-file-powerpoint"></i>
+          </div>
+          <h3>Professional Presentations</h3>
+          <p>Create custom, high-impact visuals for presentations and reports that precisely match your narrative without stock photo limitations.</p>
+        </div>
+        
+        <div class="application-card">
+          <div class="application-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h3>Educational Materials</h3>
+          <p>Develop tailored educational content with visual examples that perfectly illustrate complex forestry and environmental concepts.</p>
+        </div>
+        
+        <div class="application-card">
+          <div class="application-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <h3>Outreach & Communication</h3>
+          <p>Design unique imagery for websites, social media, and marketing materials that communicate your specific message effectively.</p>
+        </div>
+        
+        <div class="application-card">
+          <div class="application-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Conceptual Visualization</h3>
+          <p>Visualize potential scenarios, management approaches, or future states of forest ecosystems for planning and strategic discussions.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -185,6 +234,137 @@
       padding: 2px 5px;
       border-radius: 3px;
       font-family: monospace;
+    }
+    
+    /* AI Portrait Gallery Styles */
+    .ai-portrait-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .ai-portrait-item {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: white;
+    }
+    
+    .ai-portrait-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .ai-portrait-item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .ai-portrait-caption {
+      padding: var(--spacing-md);
+    }
+    
+    .ai-portrait-caption h4 {
+      margin-bottom: var(--spacing-xs);
+      color: var(--primary);
+    }
+    
+    .ai-portrait-caption p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    
+    /* Future Portrait Placeholder Styles */
+    .future-slot .placeholder-image {
+      height: 350px;
+      background-color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 2rem;
+      position: relative;
+    }
+    
+    .future-slot .placeholder-image i {
+      margin: 0 10px;
+      opacity: 0.7;
+    }
+    
+    .future-slot .placeholder-image i.fa-tree {
+      color: var(--primary);
+    }
+    
+    .future-slot .placeholder-image i.fa-microchip {
+      color: var(--accent);
+    }
+    
+    /* Applications Section Styles */
+    .applications-section {
+      padding: var(--spacing-xl) 0;
+      background-color: var(--light);
+    }
+    
+    .applications-section h2 {
+      text-align: center;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .applications-section > .container > p {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-lg) auto;
+    }
+    
+    .applications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    .application-card {
+      background-color: white;
+      padding: var(--spacing-lg);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .application-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .application-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .application-card h3 {
+      margin-bottom: var(--spacing-sm);
+      color: var(--primary);
+    }
+    
+    .application-card p {
+      color: var(--gray);
+      margin-bottom: 0;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .ai-portrait-gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .applications-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </body>
