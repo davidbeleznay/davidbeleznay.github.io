@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Portraits | AI Forester</title>
+  <meta name="description" content="AI-generated portraits showcasing the blend of forestry expertise and artificial intelligence.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="/" class="logo">AI <span>Forester</span></a>
+      <nav class="nav">
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/products/">Products</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- AI Portrait Gallery Page -->
+  <section class="portrait-header">
+    <div class="container">
+      <h1>AI Portrait Gallery</h1>
+      <p class="page-description">A collection of AI-generated portraits showcasing the blend of forestry and technology</p>
+    </div>
+  </section>
+
+  <section class="portrait-gallery-section">
+    <div class="container">
+      <h2>Featured Portraits</h2>
+      <p>Place AI-generated portraits in the /assets/images/ai-portraits/ directory, then display them in this gallery:</p>
+      
+      <!-- This is a placeholder for the AI portrait gallery -->
+      <div class="ai-portrait-gallery">
+        <!-- Sample portrait item 1 - replace with actual portraits -->
+        <div class="ai-portrait-item">
+          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester in data visualization environment">
+          <div class="ai-portrait-caption">
+            <h4>Data Forest Explorer</h4>
+            <p>Exploring the intersection of digital visualization and forest ecology</p>
+          </div>
+        </div>
+        
+        <!-- Sample portrait item 2 - replace with actual portraits -->
+        <div class="ai-portrait-item">
+          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester with augmented reality forest analysis">
+          <div class="ai-portrait-caption">
+            <h4>AR Forest Analysis</h4>
+            <p>Using augmented reality to analyze forest health and composition</p>
+          </div>
+        </div>
+        
+        <!-- Sample portrait item 3 - replace with actual portraits -->
+        <div class="ai-portrait-item">
+          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester in high-tech field environment">
+          <div class="ai-portrait-caption">
+            <h4>Field Technology Integration</h4>
+            <p>Bringing advanced technology into practical field applications</p>
+          </div>
+        </div>
+        
+        <!-- Sample portrait item 4 - replace with actual portraits -->
+        <div class="ai-portrait-item">
+          <img src="/assets/images/profile/hero-headshot.jpg" alt="AI Forester with digital forest mapping">
+          <div class="ai-portrait-caption">
+            <h4>Digital Forest Mapping</h4>
+            <p>Creating next-generation forest resource maps with AI assistance</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-notes">
+        <h3>About These Portraits</h3>
+        <p>These AI-generated portraits represent the fusion of forestry expertise and technological innovation. Each portrait exemplifies a specific aspect of how modern AI and data science tools can enhance traditional forestry practices.</p>
+        <p>Add your own AI-generated portraits to the <code>/assets/images/ai-portraits/</code> directory and update this gallery as needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>AI Forester</h4>
+          <p>Bridging forestry expertise and artificial intelligence to create innovative solutions for environmental challenges.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/learning/">Learning</a></li>
+            <li><a href="/resources/">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:david@aiforester.com">david@aiforester.com</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay">LinkedIn</a></li>
+            <li><a href="https://forestflows.substack.com">Substack Newsletter</a></li>
+            <li><a href="https://www.youtube.com/@theAIForester">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 AI Forester. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for mobile menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const body = document.body;
+      
+      menuBtn.addEventListener('click', function() {
+        body.classList.toggle('mobile-menu-open');
+      });
+    });
+  </script>
+  
+  <style>
+    /* Portrait Gallery Page Styles */
+    .portrait-header {
+      background-color: var(--light);
+      padding: var(--spacing-xl) 0;
+      text-align: center;
+    }
+    
+    .portrait-header h1 {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .page-description {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      color: var(--gray);
+    }
+    
+    .portrait-gallery-section {
+      padding: var(--spacing-xl) 0;
+    }
+    
+    .section-notes {
+      margin-top: var(--spacing-xl);
+      padding: var(--spacing-lg);
+      background-color: var(--light);
+      border-radius: 8px;
+    }
+    
+    .section-notes h3 {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .section-notes code {
+      background-color: rgba(0,0,0,0.05);
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</body>
+</html>
