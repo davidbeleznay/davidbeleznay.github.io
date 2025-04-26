@@ -22,3 +22,6 @@
 - Updated AI portrait gallery page with actual AI images
 - Enhanced AI portrait gallery with placeholder slots for future images
 - Added new Applications of AI Imagery section to portrait gallery page
+- Replaced placeholder image references on services page with actual AI portraits
+- Added link from services page to AI portrait gallery
+- Optimized image display heights for better consistency
