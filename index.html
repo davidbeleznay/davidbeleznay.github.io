@@ -342,7 +342,7 @@
     
     .hero-content {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 1fr; /* Changed to equal columns */
       align-items: center;
       gap: var(--spacing-lg);
     }
@@ -379,10 +379,10 @@
     
     .profile-circle {
       width: 100%;
-      max-width: 300px;
+      max-width: 450px; /* Increased from 300px to 450px */
       border-radius: 50%;
-      border: 5px solid white;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border: 6px solid white; /* Increased border thickness */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
     }
     
     /* Expertise Section */
@@ -502,6 +502,16 @@
     }
     
     /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero-content {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .profile-circle {
+        max-width: 350px;
+      }
+    }
+    
     @media (max-width: 768px) {
       .hero-content {
         grid-template-columns: 1fr;
@@ -541,7 +551,7 @@
       }
       
       .profile-circle {
-        max-width: 200px;
+        max-width: 280px; /* Larger than before on mobile */
       }
     }
   </style>
