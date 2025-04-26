@@ -18,3 +18,7 @@
 - Fixed products page logo spacing and updated newsletter section title
 - Ensured consistent "AI Forester" branding across all site headers
 - Updated LinkedIn and social links to use consistent formatting
+- Added AI-generated portrait images to /assets/images/ai-portraits/ directory
+- Updated AI portrait gallery page with actual AI images
+- Enhanced AI portrait gallery with placeholder slots for future images
+- Added new Applications of AI Imagery section to portrait gallery page
