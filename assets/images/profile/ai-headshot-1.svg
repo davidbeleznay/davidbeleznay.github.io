@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <!-- Background -->
+  <rect width="500" height="500" fill="#f0f4f8" />
+  
+  <!-- Portrait Frame -->
+  <rect x="100" y="70" width="300" height="360" rx="5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+  
+  <!-- Head shape -->
+  <ellipse cx="250" cy="190" rx="100" ry="110" fill="#b0bec5" />
+  
+  <!-- Face features suggestion -->
+  <ellipse cx="220" cy="170" rx="12" ry="8" fill="#37474f" opacity="0.8" />
+  <ellipse cx="280" cy="170" rx="12" ry="8" fill="#37474f" opacity="0.8" />
+  <path d="M220,230 Q250,250 280,230" stroke="#37474f" stroke-width="3" fill="transparent" />
+  
+  <!-- Shoulders/shirt suggestion -->
+  <path d="M150,300 Q250,330 350,300 L350,430 L150,430 Z" fill="#2c6e49" />
+  
+  <!-- Collar suggestion -->
+  <path d="M220,300 L250,330 L280,300" stroke="#ffffff" stroke-width="3" fill="transparent" />
+  
+  <!-- Multimodal AI Label -->
+  <rect x="125" y="350" width="250" height="50" rx="5" fill="rgba(255,255,255,0.8)" />
+  <text x="150" y="380" font-family="Arial, sans-serif" font-size="16" fill="#2c6e49" font-weight="bold">AI-Generated Professional Headshot</text>
+</svg>
