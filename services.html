@@ -77,6 +77,49 @@
     </div>
   </section>
 
+  <!-- Multimodal AI Section -->
+  <section class="multimodal-ai">
+    <div class="container">
+      <h2>Harnessing Multimodal AI</h2>
+      <p class="lead">The future of AI in forestry extends beyond text and code. Multimodal AI systems that combine visual, textual, and data processing capabilities create powerful new opportunities for environmental professionals.</p>
+      
+      <div class="multimodal-grid">
+        <div class="multimodal-content">
+          <h3>Beyond Text: Visual AI Applications</h3>
+          <p>Multimodal AI systems can now process and generate content across multiple formats, opening new possibilities for forestry professionals:</p>
+          
+          <ul class="multimodal-benefits">
+            <li><strong>Visual Analysis:</strong> Identify tree species, diseases, and growth patterns from photos taken in the field</li>
+            <li><strong>Custom Visualizations:</strong> Generate custom visual representations of complex environmental data</li>
+            <li><strong>Professional Image Creation:</strong> Create professional imagery for reports, presentations, and communications</li>
+            <li><strong>Video Processing:</strong> Analyze drone footage for forest inventory and health assessment</li>
+            <li><strong>Field Identification:</strong> Real-time species identification through smartphone cameras</li>
+          </ul>
+          
+          <p>These capabilities reduce the barriers between data collection, analysis, and communication, creating more seamless workflows for environmental professionals.</p>
+        </div>
+        
+        <div class="multimodal-example">
+          <h3>Example: AI-Generated Professional Headshots</h3>
+          <p>I recently trained a multimodal AI model on my likeness to generate professional headshots, demonstrating how AI can create high-quality visual assets customized to specific needs.</p>
+          
+          <div class="headshots-grid">
+            <div class="headshot">
+              <img src="/assets/images/profile/ai-headshot-1.jpg" alt="AI-generated professional headshot in formal setting">
+              <p class="caption">Formal Professional Setting</p>
+            </div>
+            <div class="headshot">
+              <img src="/assets/images/profile/ai-headshot-2.jpg" alt="AI-generated professional headshot in outdoor setting">
+              <p class="caption">Outdoor Professional Setting</p>
+            </div>
+          </div>
+          
+          <p class="tech-note">This technology can be applied to create custom visual assets for reports, presentations, and marketing materials while maintaining professional consistency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Team Approach Visual Section -->
   <section class="team-approach">
     <div class="container">
@@ -396,6 +439,7 @@
               <option value="ai-team-design">AI Team Design</option>
               <option value="prompt-engineering">Prompt Engineering</option>
               <option value="enterprise-ai">Enterprise AI Integration</option>
+              <option value="multimodal-ai">Multimodal AI Development</option>
               <option value="other">Other (please specify)</option>
             </select>
           </div>
@@ -514,6 +558,83 @@
     
     .benefits-list li {
       margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Multimodal AI Section Styles */
+    .multimodal-ai {
+      padding: var(--spacing-xl) 0;
+      background-color: var(--light);
+    }
+    
+    .multimodal-ai h2 {
+      text-align: center;
+      margin-bottom: var(--spacing-md);
+      color: var(--primary);
+    }
+    
+    .multimodal-ai p.lead {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-lg) auto;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+    
+    .multimodal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+      align-items: start;
+    }
+    
+    .multimodal-content h3, 
+    .multimodal-example h3 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .multimodal-benefits {
+      margin-left: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .multimodal-benefits li {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .headshots-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+    }
+    
+    .headshot {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .headshot img {
+      width: 100%;
+      display: block;
+    }
+    
+    .headshot .caption {
+      padding: var(--spacing-xs);
+      text-align: center;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 0;
+      background-color: #f8f9fa;
+    }
+    
+    .tech-note {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-top: var(--spacing-sm);
     }
     
     /* Team Approach Styles */
@@ -920,6 +1041,14 @@
     @media (max-width: 768px) {
       .page-hero h1 {
         font-size: 2.5rem;
+      }
+      
+      .multimodal-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .headshots-grid {
+        grid-template-columns: 1fr;
       }
       
       .process-step {
