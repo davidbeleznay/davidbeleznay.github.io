@@ -3,6 +3,7 @@
 This document tracks all changes and improvements made to the website.
 
 ## April 26, 2025
+- Enhanced hero section with larger profile image (450px) and equal column layout
 - Updated services page with personal branding and forest background image
 - Added Twitter/X social link and removed GitHub social link
 - Set hero-headshot.jpg as the profile image in hero section
