@@ -345,7 +345,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+      /* Updated gradient to darken the right side instead of left */
+      background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%);
       z-index: 1;
     }
     
@@ -355,11 +356,13 @@
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: flex-end; /* Align content to the right */
     }
     
     .full-image-hero .hero-content {
       width: 50%;
       max-width: 600px;
+      margin-right: 5%; /* Add some margin from the right edge */
     }
     
     .hero-text h1 {
