@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <!-- Background with forest gradient -->
+  <defs>
+    <linearGradient id="forestGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c6e49;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#4c956c;stop-opacity:0.3" />
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" fill="url(#forestGradient)" />
+  
+  <!-- Portrait Frame -->
+  <rect x="100" y="70" width="300" height="360" rx="5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+  
+  <!-- Head shape -->
+  <ellipse cx="250" cy="190" rx="100" ry="110" fill="#b0bec5" />
+  
+  <!-- Face features suggestion - slightly different expression -->
+  <ellipse cx="220" cy="170" rx="12" ry="7" fill="#37474f" opacity="0.8" />
+  <ellipse cx="280" cy="170" rx="12" ry="7" fill="#37474f" opacity="0.8" />
+  <path d="M210,235 Q250,260 290,235" stroke="#37474f" stroke-width="3" fill="transparent" />
+  
+  <!-- Shoulders/shirt suggestion - different color -->
+  <path d="M150,300 Q250,330 350,300 L350,430 L150,430 Z" fill="#455a64" />
+  
+  <!-- Collar suggestion -->
+  <path d="M230,300 L250,320 L270,300" stroke="#ffffff" stroke-width="2" fill="transparent" />
+  
+  <!-- Forest background suggestion behind portrait -->
+  <g opacity="0.1">
+    <path d="M130,400 L150,350 L170,400 Z" fill="#2c6e49" />
+    <path d="M180,400 L200,340 L220,400 Z" fill="#2c6e49" />
+    <path d="M230,400 L250,330 L270,400 Z" fill="#2c6e49" />
+    <path d="M280,400 L300,350 L320,400 Z" fill="#2c6e49" />
+    <path d="M330,400 L350,360 L370,400 Z" fill="#2c6e49" />
+  </g>
+  
+  <!-- Multimodal AI Label -->
+  <rect x="125" y="350" width="250" height="50" rx="5" fill="rgba(255,255,255,0.8)" />
+  <text x="150" y="380" font-family="Arial, sans-serif" font-size="16" fill="#2c6e49" font-weight="bold">Outdoor Professional Setting</text>
+</svg>
