@@ -1,5 +1,11 @@
 # Changelog
 
+## 2025-04-27
+- Replaced SVG diagrams with JPG images in services.html:
+  - Updated team approach visual with AIteam.jpg 
+  - Updated implementation approaches visual with Service2.jpg
+- Improved alt text for better accessibility and SEO
+
 ## 2025-04-26
 - Updated hero section with right-aligned text overlay to prevent covering the person in the image
 - Modified gradient overlay direction from left-to-right to right-to-left for better text readability
@@ -19,7 +25,7 @@
 - Ensured consistent "AI Forester" branding across all site headers
 - Updated LinkedIn and social links to use consistent formatting
 - Added AI-generated portrait images to /assets/images/ai-portraits/ directory
-- Updated AI portrait gallery page with actual AI images
+- Updated AI portrait gallery with actual AI images
 - Enhanced AI portrait gallery with placeholder slots for future images
 - Added new Applications of AI Imagery section to portrait gallery page
 - Replaced placeholder image references on services page with actual AI portraits
