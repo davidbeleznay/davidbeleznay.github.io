@@ -78,9 +78,13 @@
       
       <p>In a changing climate, we either have too much water in winter or not enough in summer. People often point to forestry as the primary reason for water scarcity. However, trees consume water, and if we want to store it, we need to turn to our four-legged friends. Beavers have solved this problem for thousands of years. Their beaver dam analogues (BDAs) create natural water storage systems that regulate flow and filter sediment.</p>
       
-      <div class="project-image bda-small-image">
-        <img src="/assets/images/projects/BDA.jpg" alt="Beaver Dam Analogue (BDA) installation">
-        <p class="image-caption">Beaver Dam Analogue (BDA) installed to encourage beaver colonization and natural dam building. Note: This is not how professional BDAs are typically made. While BDAs are low-tech solutions, they require technical expertise and proper design. For detailed technical guidance, refer to the <a href="https://lowtechpbr.restoration.usu.edu/manual/" target="_blank">Low-Tech Process-Based Restoration Design Manual</a>.</p>
+      <div class="bda-layout-container">
+        <div class="bda-image-side">
+          <img src="/assets/images/projects/BDA.jpg" alt="Beaver Dam Analogue (BDA) installation">
+        </div>
+        <div class="bda-text-side">
+          <p class="image-caption"><strong>Not a real BDA</strong> - This is an improvised structure, not a properly designed Beaver Dam Analogue. While BDAs are low-tech solutions, they require technical expertise and proper design to function effectively and safely. For detailed technical specifications and design guidelines, refer to the <a href="https://lowtechpbr.restoration.usu.edu/manual/" target="_blank">Low-Tech Process-Based Restoration Design Manual</a>.</p>
+        </div>
       </div>
       
       <h2>AI Integration Methodology</h2>
@@ -213,17 +217,56 @@
       color: var(--accent);
     }
     
-    /* Custom style for smaller BDA image */
-    .bda-small-image {
-      max-width: 600px; /* Limit maximum width */
-      margin: 0 auto; /* Center the image container */
+    /* BDA image-text layout */
+    .bda-layout-container {
+      display: flex;
+      align-items: center;
+      margin: var(--spacing-md) 0;
+      background-color: var(--light);
+      border-radius: 8px;
+      padding: var(--spacing-sm);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     
-    .bda-small-image img {
-      max-height: 400px; /* Control the height */
-      display: block;
-      margin: 0 auto;
-      object-fit: contain; /* Ensure the image maintains its aspect ratio */
+    .bda-image-side {
+      flex: 0 0 45%;
+      padding-right: var(--spacing-sm);
+    }
+    
+    .bda-image-side img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    
+    .bda-text-side {
+      flex: 0 0 55%;
+      padding-left: var(--spacing-sm);
+    }
+    
+    .bda-text-side .image-caption {
+      margin-bottom: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    
+    /* Responsive adjustment for mobile */
+    @media (max-width: 768px) {
+      .bda-layout-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .bda-image-side, .bda-text-side {
+        flex: 0 0 100%;
+        padding: var(--spacing-sm) 0;
+        width: 100%;
+      }
+      
+      .bda-text-side {
+        text-align: center;
+      }
     }
   </style>
 </body>
