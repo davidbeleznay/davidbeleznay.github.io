@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2025-04-27
+- Updated professional visuals description to include "professional headshots for busy professionals"
 - Replaced SVG diagrams with JPG images in services.html:
   - Updated team approach visual with AIteam.jpg 
   - Updated implementation approaches visual with Service2.jpg
