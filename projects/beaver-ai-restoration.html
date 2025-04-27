@@ -98,7 +98,9 @@
       </ul>
       
       <div class="project-image ai-dashboard-container">
-        <img src="/assets/images/projects/AIData.jpg" alt="AI monitoring dashboard for beaver activity showing data visualizations and environmental metrics">
+        <div class="ai-dashboard-image-wrapper">
+          <img src="/assets/images/projects/AIData.jpg" alt="AI monitoring dashboard for beaver activity showing data visualizations and environmental metrics">
+        </div>
         <p class="image-caption">AI monitoring dashboard displaying real-time data on beaver activity patterns, hydrological impacts, and ecosystem health metrics collected from field sensors and camera traps.</p>
       </div>
       
@@ -258,9 +260,15 @@
       border-radius: 8px;
       padding: var(--spacing-sm);
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 800px; /* Added max-width to make the dashboard smaller */
+      max-width: 600px; /* Reduced from 800px to 600px (75% of original) */
       margin-left: auto;
       margin-right: auto;
+    }
+    
+    .ai-dashboard-image-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
     
     .ai-dashboard-container img {
