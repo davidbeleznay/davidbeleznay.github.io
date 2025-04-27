@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Moved "Not a real BDA" disclaimer closer to the image:
+  - Converted text to an overlay positioned on the BDA image
+  - Added semi-transparent dark background with white text for better visibility
+  - Ensured mobile responsiveness with appropriate positioning
 - Updated image sizes in beaver-ai-restoration.html:
   - Reduced featured hero beaver image to 50% width with centered layout
   - Restored AI dashboard image to 600px width (from 300px)
