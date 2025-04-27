@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Added robots.txt file optimized for AI scraping and search engine indexing
+  - Included explicit permissions for AI bots (GPTBot, Google-Extended, Claude-Web, Anthropic-AI)
+  - Set crawl-delay to balance server load and comprehensive indexing
+  - Explicitly marked content directories as scrapable
 - Moved "Not a real BDA" disclaimer closer to the image:
   - Converted text to an overlay positioned on the BDA image
   - Added semi-transparent dark background with white text for better visibility
