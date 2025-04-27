@@ -1,236 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forest Inventory Analysis with AI - AI Forester</title>
-    <style>
-        /* Base styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-
-        /* Header styles */
-        .site-header {
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-
-        .site-title {
-            font-size: 2.5em;
-            margin: 0;
-            color: #2c6e49;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .site-nav {
-            margin-top: 15px;
-        }
-
-        .site-nav a {
-            margin-right: 15px;
-            color: #4c956c;
-            text-decoration: none;
-        }
-
-        .site-nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main content styles */
-        .site-content {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .subtitle {
-            color: #6c757d;
-            font-size: 1.2em;
-            margin-top: -10px;
-        }
-
-        /* Typography */
-        h1, h2, h3 {
-            color: #2c6e49;
-        }
-
-        a {
-            color: #4c956c;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Project metadata */
-        .project-meta {
-            margin-top: -10px;
-            margin-bottom: 30px;
-            color: #6c757d;
-        }
-
-        /* Code blocks */
-        pre {
-            background-color: #f8f9fa;
-            border-left: 4px solid #4c956c;
-            padding: 15px;
-            overflow-x: auto;
-        }
-
-        code {
-            background-color: #f8f9fa;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-        /* Footer */
-        .site-footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e5e5;
-            text-align: center;
-            color: #6c757d;
-            font-size: 0.9em;
-        }
-
-        /* Container */
-        .container {
-            max-width: 100%;
-            margin-bottom: 30px;
-        }
-
-        /* Tags */
-        .tags {
-            margin: 15px 0;
-        }
-
-        .tag {
-            display: inline-block;
-            background-color: #e9f5db;
-            color: #4c956c;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 0.8em;
-            margin-right: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climate-Smart Forestry: Adaptation & Mitigation | AI Forester</title>
+  <meta name="description" content="Leveraging AI to support climate-smart forestry practices, carbon sequestration analysis, and natural asset valuation for a sustainable, resilient future.">
+  
+  <!-- Microsoft Clarity Tracking -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "r6fqdz0i2c");
+  </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title">🌲 AI Forester</h1>
-            <nav class="site-nav">
-                <a href="/">Home</a>
-                <a href="/projects/">Projects</a>
-                <a href="/learning/">Learning</a>
-                <a href="/resources/">Resources</a>
-            </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="/" class="logo">AI <span>Forester</span></a>
+      <nav class="nav">
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects/" class="active">Projects</a></li>
+          <li><a href="/products/">Products</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Project Hero -->
+  <section class="project-hero forest-bg-section">
+    <div class="overlay"></div>
+    <div class="container">
+      <h1>Climate-Smart Forestry</h1>
+      <p class="lead">Leveraging AI to advance adaptation and mitigation strategies in working forests</p>
+    </div>
+  </section>
+
+  <!-- Project Overview -->
+  <section class="project-overview">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="overview-content">
+          <h2>The Crucial Role of Working Forests in Climate Action</h2>
+          <p>Forests represent one of our most powerful allies in addressing climate change—both through mitigation (carbon sequestration) and adaptation (building resilience in our ecosystems). Drawing from my experience leading climate initiatives and building extensive monitoring networks, I'm passionate about combining AI technologies with forestry expertise to accelerate our progress toward climate-smart forestry practices.</p>
+          
+          <blockquote>
+            "The forests are borrowed from my children, and it is a great challenge for us all to reduce our emissions and ensure a resilient forest that can sustain the climate our future foresters will be living in."
+          </blockquote>
+          
+          <p>As the recipient of the Forest Professionals BC's 2023 Climate Change Innovator Award, I've dedicated my career to developing practical solutions that help working forests maximize their climate potential while remaining economically viable. Now, I'm focused on how AI can transform our ability to measure, monitor, and manage forests for optimal climate outcomes.</p>
         </div>
-    </header>
-
-    <main class="site-content">
-        <div class="container">
-            <h1>Forest Inventory Analysis with AI</h1>
-            <p class="subtitle">Exploring how machine learning can enhance traditional forest inventory approaches</p>
-            <div class="project-meta">
-                <p>December 15, 2023</p>
-                <div class="tags">
-                    <span class="tag">machine-learning</span>
-                    <span class="tag">inventory</span>
-                    <span class="tag">data-analysis</span>
-                </div>
-            </div>
-            
-            <h2>The Challenge</h2>
-            <p>Traditional forest inventory methods are time-consuming and often limited in scale. This exploration examines how machine learning techniques can complement these approaches to improve accuracy and efficiency.</p>
-
-            <h2>Approach</h2>
-            <p>This project utilized public forestry datasets to develop and test machine learning models that can predict forest attributes from limited sample data.</p>
-
-            <h2>Implementation</h2>
-            <p>Using Python and scikit-learn, I implemented several regression models to predict forest metrics:</p>
-            
-            <pre><code>from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-
-# Prepare data
-X_train, X_test, y_train, y_test = train_test_split(
-    features, targets, test_size=0.25, random_state=42)
-
-# Train model
-model = RandomForestRegressor(n_estimators=100)
-model.fit(X_train, y_train)
-
-# Evaluate model
-predictions = model.predict(X_test)
-mean_absolute_error = np.mean(np.abs(predictions - y_test))
-print(f"Mean Absolute Error: {mean_absolute_error:.2f}")
-
-# Feature importance
-importances = model.feature_importances_
-feature_names = features.columns
-indices = np.argsort(importances)[::-1]
-
-print("Feature ranking:")
-for i in range(len(indices)):
-    print(f"{i+1}. {feature_names[indices[i]]} ({importances[indices[i]]:.4f})")
-</code></pre>
-
-            <h2>Results</h2>
-            <p>The models achieved promising results, with the Random Forest Regressor performing particularly well at predicting tree density and volume metrics from sample plots. Key findings include:</p>
-            
-            <ul>
-                <li>Mean absolute error of less than 15% for volume predictions</li>
-                <li>Canopy height and density were the most predictive features</li>
-                <li>Models trained on mixed-species stands generalized well to similar forest types</li>
-                <li>Ensemble methods consistently outperformed single-model approaches</li>
-            </ul>
-
-            <h2>Visualization</h2>
-            <p>To help forestry professionals interpret the results, I created visualizations showing:</p>
-            
-            <ul>
-                <li>Feature importance rankings for different prediction targets</li>
-                <li>Actual vs. predicted values for key forest metrics</li>
-                <li>Error distribution across different forest conditions</li>
-                <li>Spatial prediction maps showing expected forest characteristics</li>
-            </ul>
-
-            <h2>Future Directions</h2>
-            <p>This initial exploration suggests several promising directions for further development:</p>
-            
-            <ol>
-                <li>Incorporating satellite imagery as additional input features</li>
-                <li>Testing more advanced models like gradient boosting and neural networks</li>
-                <li>Developing a user-friendly interface for forestry professionals to utilize these techniques</li>
-                <li>Integrating with existing forest inventory systems for seamless workflow</li>
-            </ol>
-
-            <h2>Resources</h2>
-            <ul>
-                <li><a href="https://scikit-learn.org/stable/modules/ensemble.html" target="_blank">Scikit-learn Ensemble Methods Documentation</a></li>
-                <li><a href="https://www.nrcan.gc.ca/our-natural-resources/forests/sustainable-forest-management/measuring-reporting/forest-inventory" target="_blank">Canadian Forest Inventory Information</a></li>
-                <li><a href="https://github.com/topics/forest-inventory" target="_blank">Forest Inventory GitHub Resources</a></li>
-            </ul>
+        <div class="overview-image">
+          <img src="/assets/images/projects/forestry-data-visualization.jpg" alt="Climate-smart forestry visualization showing carbon sequestration potential">
         </div>
-    </main>
+      </div>
+    </div>
+  </section>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2025 AI Forester. All rights reserved.</p>
-            <p>Contact: <a href="mailto:contact@aiforester.com">contact@aiforester.com</a></p>
+  <!-- Project Details -->
+  <section class="project-details">
+    <div class="container">
+      <h2>AI-Powered Climate Solutions for Forests</h2>
+      
+      <div class="details-grid">
+        <div class="detail-card">
+          <div class="detail-icon"><i class="fas fa-tree"></i></div>
+          <h3>Advanced Carbon Monitoring</h3>
+          <p>AI systems can now process complex satellite and LiDAR data to provide much more accurate carbon stock assessments across large forest landscapes. These tools allow us to move beyond traditional inventory methods to track carbon in real-time and model future scenarios under different management regimes.</p>
         </div>
-    </footer>
+        
+        <div class="detail-card">
+          <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Natural Asset Valuation</h3>
+          <p>The true value of forests extends far beyond timber—they provide clean water, biodiversity habitat, and carbon sequestration. AI helps quantify these ecosystem services, enabling more holistic management decisions and creating new revenue streams for forest owners through carbon markets and other mechanisms.</p>
+        </div>
+        
+        <div class="detail-card">
+          <div class="detail-icon"><i class="fas fa-cloud-sun-rain"></i></div>
+          <h3>Adaptation Modeling</h3>
+          <p>Climate change is already affecting forest health and productivity. By analyzing vast datasets from weather stations, soil sensors, and tree monitoring systems, AI can help predict how different forest types will respond to changing conditions and identify the most resilient management practices.</p>
+        </div>
+        
+        <div class="detail-card">
+          <div class="detail-icon"><i class="fas fa-seedling"></i></div>
+          <h3>Regeneration Optimization</h3>
+          <p>The forests we plant today will grow in a different climate than we've experienced historically. AI can analyze complex climate models alongside site-specific data to recommend the best species and genetic varieties for long-term forest health and carbon sequestration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study -->
+  <section class="case-study">
+    <div class="container">
+      <h2>Case Study: BigCoast Forest Climate Initiative</h2>
+      
+      <div class="case-study-content">
+        <p>I led the groundwork for Mosaic's BigCoast Forest Climate Initiative, a program that enables companies to achieve their carbon footprint goals more rapidly by investing in improved forest management. This initiative represents the intersection of forest economics, climate science, and practical forestry—a perfect application area for AI tools that can:</p>
+        
+        <ul class="case-study-points">
+          <li><strong>Improve measurement accuracy</strong> - Using AI to analyze remote sensing data, we can provide more precise carbon accounting at lower costs</li>
+          <li><strong>Model scenarios</strong> - AI helps us predict how different management regimes will affect carbon sequestration rates over decades</li>
+          <li><strong>Optimize monitoring networks</strong> - I oversaw a network of 36 satellite-linked weather stations; AI now helps us determine optimal placement and data integration</li>
+          <li><strong>Generate compelling visualizations</strong> - Complex carbon data becomes accessible through AI-powered visualization tools that communicate the climate benefits of forests</li>
+        </ul>
+        
+        <div class="case-study-image">
+          <img src="/assets/images/projects/climate-monitoring-network.jpg" alt="Network of climate monitoring stations in forest landscapes">
+          <p class="image-caption">A visualization of interconnected climate monitoring stations providing real-time data for AI analysis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recognition -->
+  <section class="recognition-section">
+    <div class="container">
+      <h2>Recognition in Climate Innovation</h2>
+      
+      <div class="recognition-content">
+        <div class="recognition-image">
+          <img src="/assets/images/projects/climate-award.jpg" alt="Forest Professionals BC's 2023 Climate Change Innovator Award ceremony">
+        </div>
+        
+        <div class="recognition-text">
+          <p>In 2023, I was honored to receive the Forest Professionals BC's Climate Change Innovator Award, recognizing contributions to climate-smart forestry practices. This award highlights the importance of practical innovation in forestry that addresses the twin challenges of mitigation and adaptation.</p>
+          
+          <p>Key recognized achievements include:</p>
+          <ul>
+            <li>Overseeing a network of 36 satellite-linked weather stations to improve forest management</li>
+            <li>Leading Mosaic's Climate Solutions Team for net-zero by 2035</li>
+            <li>Establishing the framework for the BigCoast Forest Climate Initiative</li>
+            <li>Developing practical methods to integrate climate considerations into operational forestry</li>
+          </ul>
+          
+          <p>The award reflects a commitment to ensuring forests play their crucial role in addressing climate change while continuing to provide sustainable timber and other ecosystem services.</p>
+          
+          <a href="https://www.mosaicforests.com/news-views/mosaics-david-beleznay-is-a-climate-change-innovator" class="read-more" target="_blank">Read more about the award <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The AI Opportunity -->
+  <section class="ai-opportunity">
+    <div class="container">
+      <h2>The AI Opportunity: Bringing Natural Asset Stories Forward</h2>
+      
+      <div class="opportunity-content">
+        <p>There's a tremendous opportunity to use AI to amplify the stories and case studies that demonstrate the value of natural assets. Working forests are often overlooked in climate discussions, yet they represent some of our most powerful climate solutions when managed properly.</p>
+        
+        <div class="opportunity-grid">
+          <div class="opportunity-item">
+            <h3>Data Integration</h3>
+            <p>AI systems can integrate diverse forest data—from LiDAR and satellite imagery to ground-level measurements and historical records—creating a comprehensive picture of forest carbon dynamics that would be impossible to assemble manually.</p>
+          </div>
+          
+          <div class="opportunity-item">
+            <h3>Scenario Modeling</h3>
+            <p>By processing thousands of variables, AI can model how different forest management approaches will affect carbon sequestration, biodiversity, water quality, and timber production—helping foresters make optimal decisions for multiple values.</p>
+          </div>
+          
+          <div class="opportunity-item">
+            <h3>Communication Tools</h3>
+            <p>One of AI's most powerful applications is in translating complex forest data into compelling visuals and narratives that clearly communicate the climate benefits of working forests to stakeholders, investors, and the public.</p>
+          </div>
+          
+          <div class="opportunity-item">
+            <h3>Monitoring & Verification</h3>
+            <p>For carbon markets to function effectively, we need cost-effective, reliable methods to verify carbon benefits. AI dramatically reduces the cost and improves the accuracy of monitoring forest carbon stocks at scale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical Applications -->
+  <section class="practical-applications">
+    <div class="container">
+      <h2>Practical Applications for Forest Professionals</h2>
+      
+      <div class="applications-intro">
+        <p>Climate-smart forestry isn't just a theoretical concept—it's a practical approach that can benefit various stakeholders in the forestry sector. Here are some specific ways I can help you implement these principles:</p>
+      </div>
+      
+      <div class="applications-grid">
+        <div class="application-card">
+          <div class="application-icon"><i class="fas fa-building"></i></div>
+          <h3>For Forest Companies</h3>
+          <ul class="application-list">
+            <li>Develop carbon inventory protocols that align with market standards</li>
+            <li>Set up AI-enhanced monitoring systems for forest health and carbon</li>
+            <li>Create climate adaptation plans for your specific forest holdings</li>
+            <li>Optimize silvicultural practices for both timber and carbon values</li>
+          </ul>
+          <a href="/services.html#forest-companies" class="action-link">Learn how we can work together <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="application-card">
+          <div class="application-icon"><i class="fas fa-users"></i></div>
+          <h3>For Indigenous Communities</h3>
+          <ul class="application-list">
+            <li>Develop natural asset inventories that reflect Indigenous values</li>
+            <li>Create decision support tools that integrate traditional knowledge</li>
+            <li>Design monitoring systems that provide employment opportunities</li>
+            <li>Develop carbon projects that respect Indigenous sovereignty</li>
+          </ul>
+          <a href="/services.html#indigenous-partners" class="action-link">Explore partnership opportunities <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="application-card">
+          <div class="application-icon"><i class="fas fa-chart-pie"></i></div>
+          <h3>For Carbon Project Developers</h3>
+          <ul class="application-list">
+            <li>Design robust monitoring, reporting, and verification (MRV) systems</li>
+            <li>Create data visualization tools that explain carbon benefits</li>
+            <li>Identify high-potential project areas using AI landscape analysis</li>
+            <li>Develop transparent baseline calculations that satisfy standards</li>
+          </ul>
+          <a href="/services.html#carbon-projects" class="action-link">See how AI enhances carbon projects <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="project-cta">
+    <div class="container">
+      <h2>Partner with Me on Climate-Smart Forestry Initiatives</h2>
+      <p>Whether you're managing forest lands, developing carbon projects, or looking to integrate climate considerations into your forestry operations, I can help you leverage AI to improve outcomes for both climate and business.</p>
+      <div class="cta-buttons">
+        <a href="/services.html" class="cta-button">Explore Services</a>
+        <a href="/#contact" class="secondary-button">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section class="resources-section">
+    <div class="container">
+      <h2>Climate-Smart Forestry Resources</h2>
+      <div class="resources-intro">
+        <p>Want to learn more about climate-smart forestry and how AI can enhance your forest management practices? Explore these valuable resources:</p>
+      </div>
+      
+      <div class="resources-grid">
+        <div class="resource-item">
+          <div class="resource-icon"><i class="fas fa-book"></i></div>
+          <h3>Read the Blog</h3>
+          <p>Dive deeper into climate-smart forestry concepts and applications in my latest blog post.</p>
+          <a href="/content/blog/climate-smart-forestry/" class="cta-button small">Read Now</a>
+        </div>
+        
+        <div class="resource-item">
+          <div class="resource-icon"><i class="fas fa-newspaper"></i></div>
+          <h3>Forest Flows Newsletter</h3>
+          <p>Stay updated with the latest in climate-smart forestry and AI applications through my monthly newsletter.</p>
+          <a href="https://forestflows.substack.com" class="cta-button small">Subscribe</a>
+        </div>
+        
+        <div class="resource-item">
+          <div class="resource-icon"><i class="fas fa-calendar-alt"></i></div>
+          <h3>Schedule a Consultation</h3>
+          <p>Ready to discuss how climate-smart forestry principles can benefit your specific situation? Let's talk.</p>
+          <a href="mailto:david@aiforester.com?subject=Climate-Smart%20Forestry%20Consultation" class="cta-button small">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>AI Forester</h4>
+          <p>Bridging forestry expertise and artificial intelligence to create innovative solutions for environmental challenges.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/learning/">Learning</a></li>
+            <li><a href="/resources/">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:david@aiforester.com">david@aiforester.com</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay">LinkedIn</a></li>
+            <li><a href="https://x.com/forester_ai">Twitter/X</a></li>
+            <li><a href="https://forestflows.substack.com">Substack Newsletter</a></li>
+            <li><a href="https://www.youtube.com/@theAIForester">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 AI Forester. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for mobile menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const body = document.body;
+      
+      menuBtn.addEventListener('click', function() {
+        body.classList.toggle('mobile-menu-open');
+      });
+    });
+  </script>
+  
+  <style>
+    /* Project Page Styles */
+    .project-hero {
+      position: relative;
+      color: white;
+      padding: var(--spacing-xl) 0;
+      text-align: center;
+    }
+    
+    .forest-bg-section {
+      background-image: url('/assets/images/projects/hero-background.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+    .project-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .project-hero h1 {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .project-hero p.lead {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Project Overview */
+    .project-overview {
+      padding: var(--spacing-xl) 0;
+    }
+    
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: var(--spacing-lg);
+      align-items: center;
+    }
+    
+    .overview-content h2 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .overview-content p {
+      margin-bottom: var(--spacing-md);
+      line-height: 1.6;
+    }
+    
+    .overview-content blockquote {
+      border-left: 4px solid var(--accent);
+      padding-left: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      font-style: italic;
+      color: var(--primary-dark);
+    }
+    
+    .overview-image img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Project Details */
+    .project-details {
+      padding: var(--spacing-xl) 0;
+      background-color: var(--light);
+    }
+    
+    .project-details h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    .detail-card {
+      background-color: white;
+      padding: var(--spacing-lg);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .detail-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .detail-card h3 {
+      color: var(--primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Case Study */
+    .case-study {
+      padding: var(--spacing-xl) 0;
+    }
+    
+    .case-study h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .case-study-points {
+      margin-left: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .case-study-points li {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .case-study-image {
+      margin-top: var(--spacing-lg);
+    }
+    
+    .case-study-image img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .image-caption {
+      text-align: center;
+      font-style: italic;
+      margin-top: var(--spacing-sm);
+      color: var(--gray);
+    }
+    
+    /* Recognition Section */
+    .recognition-section {
+      padding: var(--spacing-xl) 0;
+      background-color: var(--light);
+    }
+    
+    .recognition-section h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .recognition-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--spacing-lg);
+      align-items: start;
+    }
+    
+    .recognition-image img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .recognition-text ul {
+      margin-left: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .recognition-text li {
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .recognition-text .read-more {
+      display: inline-flex;
+      align-items: center;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: var(--spacing-sm);
+    }
+    
+    .recognition-text .read-more i {
+      margin-left: var(--spacing-xs);
+    }
+    
+    /* AI Opportunity */
+    .ai-opportunity {
+      padding: var(--spacing-xl) 0;
+    }
+    
+    .ai-opportunity h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .opportunity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .opportunity-item {
+      background-color: var(--light);
+      padding: var(--spacing-md);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .opportunity-item h3 {
+      color: var(--primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Practical Applications Section */
+    .practical-applications {
+      padding: var(--spacing-xl) 0;
+      background-color: var(--light);
+    }
+    
+    .practical-applications h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .applications-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-lg);
+    }
+    
+    .applications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    .application-card {
+      background-color: white;
+      padding: var(--spacing-lg);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .application-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .application-card h3 {
+      color: var(--primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .application-list {
+      margin-left: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .application-list li {
+      margin-bottom: var(--spacing-xs);
+      line-height: 1.5;
+    }
+    
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .action-link i {
+      margin-left: var(--spacing-xs);
+      transition: transform 0.3s ease;
+    }
+    
+    .action-link:hover i {
+      transform: translateX(3px);
+    }
+    
+    /* Project CTA */
+    .project-cta {
+      padding: var(--spacing-xl) 0;
+      background-color: var(--primary-dark);
+      color: white;
+      text-align: center;
+    }
+    
+    .project-cta h2 {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .project-cta p {
+      max-width: 800px;
+      margin: 0 auto var(--spacing-lg);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+    }
+    
+    .secondary-button {
+      display: inline-block;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .secondary-button:hover {
+      background-color: white;
+      color: var(--primary-dark);
+    }
+    
+    /* Resources Section */
+    .resources-section {
+      padding: var(--spacing-xl) 0;
+      background-color: white;
+    }
+    
+    .resources-section h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .resources-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-lg);
+    }
+    
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    .resource-item {
+      background-color: var(--light);
+      padding: var(--spacing-lg);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    .resource-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .resource-item h3 {
+      color: var(--primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .resource-item p {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .cta-button.small {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .overview-grid,
+      .recognition-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .overview-image {
+        order: -1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .project-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .project-hero p.lead {
+        font-size: 1.1rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+      }
+    }
+  </style>
 </body>
 </html>
