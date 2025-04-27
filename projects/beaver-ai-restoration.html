@@ -78,7 +78,7 @@
       
       <p>In a changing climate, we either have too much water in winter or not enough in summer. People often point to forestry as the primary reason for water scarcity. However, trees consume water, and if we want to store it, we need to turn to our four-legged friends. Beavers have solved this problem for thousands of years. Their beaver dam analogues (BDAs) create natural water storage systems that regulate flow and filter sediment.</p>
       
-      <div class="project-image">
+      <div class="project-image bda-small-image">
         <img src="/assets/images/projects/BDA.jpg" alt="Beaver Dam Analogue (BDA) installation">
         <p class="image-caption">Beaver Dam Analogue (BDA) installed to encourage beaver colonization and natural dam building. Note: This is not how professional BDAs are typically made. While BDAs are low-tech solutions, they require technical expertise and proper design. For detailed technical guidance, refer to the <a href="https://lowtechpbr.restoration.usu.edu/manual/" target="_blank">Low-Tech Process-Based Restoration Design Manual</a>.</p>
       </div>
@@ -211,6 +211,19 @@
     /* Active nav link */
     .nav a.active {
       color: var(--accent);
+    }
+    
+    /* Custom style for smaller BDA image */
+    .bda-small-image {
+      max-width: 600px; /* Limit maximum width */
+      margin: 0 auto; /* Center the image container */
+    }
+    
+    .bda-small-image img {
+      max-height: 400px; /* Control the height */
+      display: block;
+      margin: 0 auto;
+      object-fit: contain; /* Ensure the image maintains its aspect ratio */
     }
   </style>
 </body>
