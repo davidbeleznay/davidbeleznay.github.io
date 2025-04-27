@@ -1,12 +1,12 @@
 # Changelog
 
 ## 2025-04-27
-- Updated forest-inventory-analysis.html with completely new content focused on forest measurement and AI analytics
-- Added climate-smart-forester.jpg award photo to forest-inventory-analysis.html recognition section
-- Used beaver-dam-ai.jpg as case study visualization in forest-inventory-analysis.html
-- Improved meta title and description for better SEO on forest-inventory-analysis.html
-- Enhanced CTAs throughout forest-inventory page with clearer action links
-- Created more engaging, hands-on examples of AI applications in forestry data analysis
+- Completely replaced forest-inventory-analysis.html with Climate-Smart Forestry content
+- Updated images in forest-inventory-analysis.html:
+  - Added climate-smart-forester.jpg award ceremony photo to recognition section
+  - Added beaver-dam-ai.jpg to case study section as visualization
+- Enhanced alt text for award ceremony photo for better accessibility
+- Updated image captions to be more descriptive and SEO-friendly
 - Enhanced climate-smart forestry content with practical applications section targeting specific user groups
 - Added resources section to climate-smart forestry page with links to blog and consultation options
 - Replaced old Forest Inventory Analysis page with comprehensive Climate-Smart Forestry content
