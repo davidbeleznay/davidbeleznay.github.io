@@ -60,7 +60,7 @@
   
   <!-- Featured Project Image -->
   <div class="container">
-    <div class="project-featured-image">
+    <div class="project-featured-image beaver-hero-container">
       <img src="/assets/images/projects/beaver-dam-ai.jpg" alt="Beaver dam analogues (BDA) in a forest setting with AI monitoring visualization overlay">
     </div>
   </div>
@@ -253,6 +253,13 @@
       line-height: 1.5;
     }
     
+    /* AI Beaver in Hero Image - reduce size by 50% */
+    .beaver-hero-container {
+      position: relative;
+      max-width: 50%;
+      margin: 0 auto;
+    }
+    
     /* AI Dashboard styling */
     .ai-dashboard-container {
       margin: var(--spacing-md) 0;
@@ -260,7 +267,7 @@
       border-radius: 8px;
       padding: var(--spacing-sm);
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 300px; /* Further reduced from 600px to 300px (50% smaller) */
+      max-width: 600px; /* Restored to 600px from 300px */
       margin-left: auto;
       margin-right: auto;
     }
@@ -299,6 +306,10 @@
       
       .bda-text-side {
         text-align: center;
+      }
+      
+      .beaver-hero-container {
+        max-width: 80%; /* Wider on mobile for better visibility */
       }
     }
   </style>
