@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2025-04-27
+- Updated homepage to link to new climate-smart forestry page
 - Created new Climate-Smart Forestry project page highlighting adaptation and mitigation work
 - Added personal story about training AI headshot model with 6-year-old's help
 - Removed old SVG files to resolve caching issues:
