@@ -1,6 +1,9 @@
 # Changelog
 
 ## 2025-04-27
+- Updated homepage featured projects section to link to climate-smart forestry content via forest-inventory-analysis.html
+- Updated homepage to use climate-smart-forestry-cover.jpg for featured project image
+- Simplified climate-smart forestry project description on homepage for better readability
 - Completely replaced forest-inventory-analysis.html with Climate-Smart Forestry content
 - Updated images in forest-inventory-analysis.html:
   - Added climate-smart-forester.jpg award ceremony photo to recognition section
