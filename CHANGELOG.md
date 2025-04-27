@@ -1,6 +1,9 @@
 # Changelog
 
 ## 2025-04-27
+- Updated AI monitoring dashboard image to use AIData.jpg for a more realistic data visualization
+- Added custom styling for the AI dashboard container with background, shadow, and improved caption
+- Enhanced the dashboard image alt text and caption to provide more context about the monitoring system
 - Redesigned BDA image layout with side-by-side format (image left, text right)
 - Added clearer "Not a real BDA" disclaimer to the caption
 - Added light background and subtle shadow to the image-text container for better visual separation
