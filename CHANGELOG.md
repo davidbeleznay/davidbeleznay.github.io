@@ -1,6 +1,9 @@
 # Changelog
 
 ## 2025-04-27
+- Removed old SVG files to resolve caching issues:
+  - Cleaned up `assets/images/services/ai-team-structure.svg`
+  - Cleaned up `assets/images/services/implementation-approaches.svg`
 - Updated professional visuals description to include "professional headshots for busy professionals"
 - Replaced SVG diagrams with JPG images in services.html:
   - Updated team approach visual with AIteam.jpg 
