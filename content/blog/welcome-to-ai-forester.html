@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to AI Forester | AI Forester Blog</title>
+  <meta name="description" content="Introducing AI Forester, where forestry expertise meets cutting-edge AI technology to solve real-world environmental challenges.">
+  
+  <!-- Microsoft Clarity Tracking -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "r6fqdz0i2c");
+  </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <style>
+    /* Blog Post Styles */
+    .blog-post-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .blog-post-hero {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .blog-post-hero h1 {
+      color: var(--primary-dark);
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .blog-post-meta {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .blog-post-meta-item {
+      display: flex;
+      align-items: center;
+    }
+    
+    .blog-post-meta-item i {
+      margin-right: 6px;
+    }
+    
+    .blog-post-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .blog-post-content {
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+    
+    .blog-post-content h2 {
+      color: var(--primary-dark);
+      margin: var(--spacing-lg) 0 var(--spacing-md);
+      font-size: 1.8rem;
+    }
+    
+    .blog-post-content p {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .blog-post-content ul, 
+    .blog-post-content ol {
+      margin-bottom: var(--spacing-md);
+      padding-left: var(--spacing-lg);
+    }
+    
+    .blog-post-content li {
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .blog-post-content strong {
+      color: var(--primary-dark);
+    }
+    
+    .blog-post-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .blog-post-tag {
+      background-color: var(--light);
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+    
+    .blog-post-share {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .blog-post-share-label {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+    
+    .blog-post-share-icons {
+      display: flex;
+      gap: var(--spacing-xs);
+    }
+    
+    .blog-post-share-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .blog-post-share-icon:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .blog-post-author {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin: var(--spacing-xl) 0;
+      padding: var(--spacing-md);
+      background-color: var(--light);
+      border-radius: 8px;
+    }
+    
+    .blog-post-author-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .blog-post-author-info h3 {
+      color: var(--primary-dark);
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .blog-post-author-info p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    
+    .blog-post-cta {
+      margin: var(--spacing-xl) 0;
+      padding: var(--spacing-lg);
+      background-color: var(--primary-light);
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .blog-post-cta h3 {
+      color: var(--primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .blog-post-cta p {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .blog-post-cta .cta-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    
+    .blog-post-cta .cta-button:hover {
+      background-color: var(--accent-dark);
+    }
+    
+    .blog-post-nav {
+      display: flex;
+      justify-content: space-between;
+      margin: var(--spacing-xl) 0;
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--light-gray);
+    }
+    
+    .blog-post-nav a {
+      display: flex;
+      align-items: center;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .blog-post-nav a:hover {
+      color: var(--accent);
+    }
+    
+    .blog-post-nav-prev i {
+      margin-right: var(--spacing-xs);
+    }
+    
+    .blog-post-nav-next i {
+      margin-left: var(--spacing-xs);
+    }
+    
+    .blog-post-related {
+      margin: var(--spacing-xl) 0;
+    }
+    
+    .blog-post-related h3 {
+      color: var(--primary-dark);
+      margin-bottom: var(--spacing-md);
+      text-align: center;
+    }
+    
+    .related-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    .related-post-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .related-post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    
+    .related-post-image {
+      height: 150px;
+      overflow: hidden;
+    }
+    
+    .related-post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .related-post-card:hover .related-post-image img {
+      transform: scale(1.05);
+    }
+    
+    .related-post-content {
+      padding: var(--spacing-sm);
+    }
+    
+    .related-post-card h4 {
+      margin-bottom: var(--spacing-xs);
+      color: var(--primary-dark);
+      font-size: 1rem;
+    }
+    
+    .related-post-card p {
+      font-size: 0.9rem;
+      margin-bottom: var(--spacing-xs);
+      color: var(--gray);
+    }
+    
+    @media (max-width: 768px) {
+      .blog-post-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-xs);
+      }
+      
+      .blog-post-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .blog-post-content {
+        font-size: 1rem;
+      }
+      
+      .blog-post-author {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .blog-post-nav {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="/" class="logo">AI <span>Forester</span></a>
+      <nav class="nav">
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/products/">Products</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/blog/" class="active">Blog</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Blog Post Content -->
+  <div class="blog-post-container">
+    <article class="blog-post">
+      <div class="blog-post-hero">
+        <h1>Welcome to AI Forester</h1>
+        <div class="blog-post-meta">
+          <div class="blog-post-meta-item">
+            <i class="far fa-calendar"></i>
+            <span>April 26, 2025</span>
+          </div>
+          <div class="blog-post-meta-item">
+            <i class="far fa-user"></i>
+            <span>David Beleznay</span>
+          </div>
+          <div class="blog-post-meta-item">
+            <i class="far fa-folder"></i>
+            <span>Introduction</span>
+          </div>
+        </div>
+      </div>
+      
+      <img src="/assets/images/projects/hero-background.jpg" alt="Forest canopy view representing the launch of AI Forester" class="blog-post-image">
+      
+      <div class="blog-post-content">
+        <p>If you're reading this, you're among the first to join me at the intersection of forestry expertise and artificial intelligence. I'm David Beleznay, a forester and engineer with a passion for applying AI technologies to solve real-world environmental challenges.</p>
+
+        <h2>Why AI + Forestry?</h2>
+        <p>Forestry professionals today face unprecedented challenges:</p>
+        <ul>
+          <li><strong>Climate change</strong> is altering forest ecosystems faster than traditional management can adapt</li>
+          <li><strong>Complex data</strong> from remote sensing, field measurements, and predictive models is overwhelming traditional analysis methods</li>
+          <li><strong>Decision-making timelines</strong> are shrinking while the stakes for our forests continue to grow</li>
+        </ul>
+        <p>AI tools offer powerful solutions to these challenges, but only when they're designed and implemented by people who understand the nuances of forest ecosystems and management practices.</p>
+        <p>That's where AI Forester comes in.</p>
+
+        <h2>What You'll Find Here</h2>
+        <p>This blog will be a practical resource for forestry and environmental professionals looking to leverage AI in their work. You can expect:</p>
+        <ul>
+          <li><strong>Practical tutorials</strong> on using AI tools like Claude and GPT systems for forestry applications</li>
+          <li><strong>Case studies</strong> showcasing real-world implementations of AI in forest management</li>
+          <li><strong>Reviews and guides</strong> for specialized AI tools relevant to environmental work</li>
+          <li><strong>Insights</strong> into emerging technologies and their potential impact on forestry practices</li>
+        </ul>
+        <p>I'm not interested in hype or techno-optimism. Instead, I'll focus on tangible, implementable approaches that respect your expertise while enhancing your capabilities.</p>
+
+        <h2>Join the Journey</h2>
+        <p>The integration of AI into forestry practice is just beginning, and we have an opportunity to shape how these powerful tools support rather than replace professional judgment and ecological understanding.</p>
+        <p>Whether you're a forester curious about AI, a technologist interested in environmental applications, or someone who simply cares about the sustainable management of our forest resources, I invite you to join this exploration.</p>
+        <p>Subscribe to updates, reach out with questions, and let me know what topics you'd like to see covered in future posts.</p>
+        <p>The forests of tomorrow need the best of both our traditional wisdom and emerging technologies. Let's discover that path together.</p>
+      </div>
+      
+      <div class="blog-post-tags">
+        <span class="blog-post-tag">introduction</span>
+        <span class="blog-post-tag">ai</span>
+        <span class="blog-post-tag">forestry</span>
+        <span class="blog-post-tag">technology</span>
+      </div>
+      
+      <div class="blog-post-share">
+        <span class="blog-post-share-label">Share this post:</span>
+        <div class="blog-post-share-icons">
+          <a href="https://twitter.com/intent/tweet?url=https://aiforester.com/content/blog/welcome-to-ai-forester.html&text=Welcome to AI Forester: Where forestry expertise meets AI technology" class="blog-post-share-icon" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://aiforester.com/content/blog/welcome-to-ai-forester.html&title=Welcome to AI Forester" class="blog-post-share-icon" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:?subject=Interesting article: Welcome to AI Forester&body=I thought you might find this interesting: https://aiforester.com/content/blog/welcome-to-ai-forester.html" class="blog-post-share-icon">
+            <i class="far fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="blog-post-author">
+        <img src="/assets/images/ai-portraits/95oGvFXfgL2E_b_CAYA1Z_4c5a7b60dde4499da32a9f5c72a1b92c.jpg" alt="David Beleznay, AI Forester" class="blog-post-author-image">
+        <div class="blog-post-author-info">
+          <h3>About David Beleznay</h3>
+          <p>David is a forester, engineer, and AI consultant specializing in the integration of emerging technologies with traditional forestry expertise. With experience spanning both field work and technical development, he bridges the gap between technical capabilities and practical applications.</p>
+        </div>
+      </div>
+      
+      <div class="blog-post-cta">
+        <h3>Have a specific AI + forestry challenge?</h3>
+        <p>Let's explore solutions together through a personalized consultation.</p>
+        <a href="/services.html" class="cta-button">Book Your Free Strategy Call</a>
+      </div>
+      
+      <div class="blog-post-nav">
+        <div class="blog-post-nav-prev">
+          <!-- Future previous post link would go here -->
+        </div>
+        <div class="blog-post-nav-next">
+          <a href="/blog/" class="blog-post-nav-next">Back to Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>AI Forester</h4>
+          <p>Bridging forestry expertise and artificial intelligence to create innovative solutions for environmental challenges.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/learning/">Learning</a></li>
+            <li><a href="/resources/">Resources</a></li>
+            <li><a href="/blog/">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:david@aiforester.com">david@aiforester.com</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay">LinkedIn</a></li>
+            <li><a href="https://x.com/forester_ai">Twitter/X</a></li>
+            <li><a href="https://forestflows.substack.com">Substack Newsletter</a></li>
+            <li><a href="https://www.youtube.com/@theAIForester">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 AI Forester. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for mobile menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const body = document.body;
+      
+      menuBtn.addEventListener('click', function() {
+        body.classList.toggle('mobile-menu-open');
+      });
+    });
+  </script>
+</body>
+</html>
