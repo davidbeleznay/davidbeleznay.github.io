@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Further reduced AI dashboard image size to 75% of previous size
+  - Decreased max-width from 800px to 600px
+  - Added wrapper div for better control of image display
+  - Improved centering and proportion for better page balance
 - Adjusted BDA image layout proportions - increased image size and reduced spacing between image and text
   - Increased BDA image column width from 45% to 50%
   - Increased BDA image max height from 300px to 400px
