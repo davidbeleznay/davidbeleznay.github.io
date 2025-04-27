@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Updated beaver-ai-restoration.html to use BDA.jpg image for the Beaver-Dam Analogue installation section
+- Added note that the pictured approach is not how professional BDAs are typically made
+- Added link to the Low-Tech Process-Based Restoration Design Manual at https://lowtechpbr.restoration.usu.edu/manual/
+- Removed the "Results & Innovations" section with specific metrics and claims for a more accurate representation
 - Updated all "beaver dam" references to "beaver dam analogues (BDA)" for consistency across the site
 - Updated alt text and descriptions related to beaver projects
 - Updated beaver-ai-restoration.html page with correct BDA terminology
