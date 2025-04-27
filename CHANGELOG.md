@@ -1,6 +1,13 @@
 # Changelog
 
 ## 2025-04-27
+- Adjusted BDA image layout proportions - increased image size and reduced spacing between image and text
+  - Increased BDA image column width from 45% to 50%
+  - Increased BDA image max height from 300px to 400px
+  - Reduced padding between image and text for tighter layout
+- Reduced AI dashboard image size with max-width constraint and centered layout
+  - Added max-width of 800px to the dashboard container
+  - Added auto margins for proper centering
 - Updated AI monitoring dashboard image to use AIData.jpg for a more realistic data visualization
 - Added custom styling for the AI dashboard container with background, shadow, and improved caption
 - Enhanced the dashboard image alt text and caption to provide more context about the monitoring system
