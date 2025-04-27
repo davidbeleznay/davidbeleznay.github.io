@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Redesigned BDA image layout with side-by-side format (image left, text right)
+- Added clearer "Not a real BDA" disclaimer to the caption
+- Added light background and subtle shadow to the image-text container for better visual separation
+- Implemented responsive layout adjustment for mobile devices
 - Reduced BDA image size in beaver-ai-restoration.html for better visual balance
 - Added custom CSS to control BDA image dimensions and ensure proper display
 - Updated beaver-ai-restoration.html to use BDA.jpg image for the Beaver-Dam Analogue installation section
