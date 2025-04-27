@@ -1,15 +1,17 @@
 # Changelog
 
 ## 2025-04-27
-- Updated projects index page to use climate-smart-forestry-cover.jpg image
-- Updated projects index page link to point to forest-inventory-analysis.html
+- Updated forest-inventory-analysis.html page case study section to use climate-smart-forestry.jpg instead of beaver-dam-ai.jpg
+- Updated projects index page to use climate-smart-forestry.jpg instead of climate-smart-forestry-cover.jpg
+- Updated homepage to use climate-smart-forestry.jpg instead of climate-smart-forestry-cover.jpg
+- Updated image caption text for better context and description
+- Updated projects index page to link to forest-inventory-analysis.html
 - Updated homepage featured projects section to link to climate-smart forestry content via forest-inventory-analysis.html
-- Updated homepage to use climate-smart-forestry-cover.jpg for featured project image
 - Simplified climate-smart forestry project description on homepage for better readability
 - Completely replaced forest-inventory-analysis.html with Climate-Smart Forestry content
 - Updated images in forest-inventory-analysis.html:
   - Added climate-smart-forester.jpg award ceremony photo to recognition section
-  - Added beaver-dam-ai.jpg to case study section as visualization
+  - Updated case study section with the primary climate-smart-forestry.jpg image
 - Enhanced alt text for award ceremony photo for better accessibility
 - Updated image captions to be more descriptive and SEO-friendly
 - Enhanced climate-smart forestry content with practical applications section targeting specific user groups
