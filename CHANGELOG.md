@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Updated image sizes in beaver-ai-restoration.html:
+  - Reduced featured hero beaver image to 50% width with centered layout
+  - Restored AI dashboard image to 600px width (from 300px)
+  - Added responsive adjustments for mobile viewing
 - Further reduced AI dashboard image size to 50% of its previous size
   - Decreased max-width from 600px to 300px
   - Maintained the wrapper div structure for consistent centering
