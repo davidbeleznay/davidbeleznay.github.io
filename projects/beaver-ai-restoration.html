@@ -97,9 +97,9 @@
         <li><strong>Climate Resilience Assessment</strong>: Analyzing how beaver-modified landscapes may respond to various climate change scenarios, with particular focus on drought resilience and flood mitigation.</li>
       </ul>
       
-      <div class="project-image">
-        <img src="/assets/images/projects/beaver-ai-monitoring.jpg" alt="AI monitoring dashboard for beaver activity">
-        <p class="image-caption">AI monitoring dashboard showing beaver activity patterns and hydrological impacts over time.</p>
+      <div class="project-image ai-dashboard-container">
+        <img src="/assets/images/projects/AIData.jpg" alt="AI monitoring dashboard for beaver activity showing data visualizations and environmental metrics">
+        <p class="image-caption">AI monitoring dashboard displaying real-time data on beaver activity patterns, hydrological impacts, and ecosystem health metrics collected from field sensors and camera traps.</p>
       </div>
       
       <h2>Implementation Approaches</h2>
@@ -249,6 +249,28 @@
       margin-bottom: 0;
       font-size: 1rem;
       line-height: 1.5;
+    }
+    
+    /* AI Dashboard styling */
+    .ai-dashboard-container {
+      margin: var(--spacing-md) 0;
+      background-color: var(--light);
+      border-radius: 8px;
+      padding: var(--spacing-sm);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .ai-dashboard-container img {
+      width: 100%;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .ai-dashboard-container .image-caption {
+      margin-top: var(--spacing-sm);
+      text-align: center;
+      font-style: italic;
+      color: var(--gray);
     }
     
     /* Responsive adjustment for mobile */
