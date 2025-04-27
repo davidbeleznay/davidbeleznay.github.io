@@ -1,6 +1,11 @@
 # Changelog
 
 ## 2025-04-27
+- Updated all "beaver dam" references to "beaver dam analogues (BDA)" for consistency across the site
+- Updated alt text and descriptions related to beaver projects
+- Updated beaver-ai-restoration.html page with correct BDA terminology
+- Updated homepage beaver project section with correct BDA terminology
+- Updated projects index page with correct BDA terminology
 - Updated forest-inventory-analysis.html page case study section to use climate-smart-forestry.jpg instead of beaver-dam-ai.jpg
 - Updated projects index page to use climate-smart-forestry.jpg instead of climate-smart-forestry-cover.jpg
 - Updated homepage to use climate-smart-forestry.jpg instead of climate-smart-forestry-cover.jpg
