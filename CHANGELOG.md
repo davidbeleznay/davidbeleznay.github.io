@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2025-04-27
+- Added personal story about training AI headshot model with 6-year-old's help
 - Removed old SVG files to resolve caching issues:
   - Cleaned up `assets/images/services/ai-team-structure.svg`
   - Cleaned up `assets/images/services/implementation-approaches.svg`
