@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Added sitemap.xml for improved search engine and AI crawler indexing
+  - Included all main pages and sections with appropriate priority levels
+  - Set lastmod dates to reflect recent content updates
+  - Organized with logical hierarchy (homepage > main sections > specific content)
 - Added robots.txt file optimized for AI scraping and search engine indexing
   - Included explicit permissions for AI bots (GPTBot, Google-Extended, Claude-Web, Anthropic-AI)
   - Set crawl-delay to balance server load and comprehensive indexing
