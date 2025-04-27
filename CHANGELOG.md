@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2025-04-27
+- Further reduced AI dashboard image size to 50% of its previous size
+  - Decreased max-width from 600px to 300px
+  - Maintained the wrapper div structure for consistent centering
+  - Improved overall page proportion with smaller dashboard visualization
 - Further reduced AI dashboard image size to 75% of previous size
   - Decreased max-width from 800px to 600px
   - Added wrapper div for better control of image display
