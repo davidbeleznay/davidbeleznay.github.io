@@ -81,9 +81,12 @@
       <div class="bda-layout-container">
         <div class="bda-image-side">
           <img src="/assets/images/projects/BDA.jpg" alt="Beaver Dam Analogue (BDA) installation">
+          <div class="bda-image-caption">
+            <span class="not-real-bda-note"><strong>Not a real BDA</strong></span>
+          </div>
         </div>
         <div class="bda-text-side">
-          <p class="image-caption"><strong>Not a real BDA</strong> - This is an improvised structure, not a properly designed Beaver Dam Analogue. While BDAs are low-tech solutions, they require technical expertise and proper design to function effectively and safely. For detailed technical specifications and design guidelines, refer to the <a href="https://lowtechpbr.restoration.usu.edu/manual/" target="_blank">Low-Tech Process-Based Restoration Design Manual</a>.</p>
+          <p class="image-caption">This is an improvised structure, not a properly designed Beaver Dam Analogue. While BDAs are low-tech solutions, they require technical expertise and proper design to function effectively and safely. For detailed technical specifications and design guidelines, refer to the <a href="https://lowtechpbr.restoration.usu.edu/manual/" target="_blank">Low-Tech Process-Based Restoration Design Manual</a>.</p>
         </div>
       </div>
       
@@ -231,26 +234,44 @@
     }
     
     .bda-image-side {
-      flex: 0 0 50%; /* Increased from 45% to 50% */
-      padding-right: 0.5rem; /* Reduced padding to minimize white space */
+      flex: 0 0 50%;
+      padding-right: 0.5rem;
+      position: relative;
     }
     
     .bda-image-side img {
       max-width: 100%;
-      max-height: 400px; /* Increased from 300px to 400px */
+      max-height: 400px;
       object-fit: contain;
       border-radius: 4px;
     }
     
     .bda-text-side {
-      flex: 0 0 50%; /* Adjusted to match image side */
-      padding-left: 0.5rem; /* Reduced padding to minimize white space */
+      flex: 0 0 50%;
+      padding-left: 0.5rem;
     }
     
     .bda-text-side .image-caption {
       margin-bottom: 0;
       font-size: 1rem;
       line-height: 1.5;
+    }
+    
+    /* Styles for the "Not a real BDA" note */
+    .bda-image-caption {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      margin: 0;
+    }
+    
+    .not-real-bda-note {
+      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.9rem;
     }
     
     /* AI Beaver in Hero Image - reduce size by 50% */
@@ -310,6 +331,15 @@
       
       .beaver-hero-container {
         max-width: 80%; /* Wider on mobile for better visibility */
+      }
+      
+      /* Adjust the "Not a real BDA" positioning for mobile */
+      .bda-image-caption {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        text-align: center;
+        margin-top: 10px;
       }
     }
   </style>
