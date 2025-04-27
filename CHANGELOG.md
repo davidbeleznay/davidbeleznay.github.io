@@ -1,6 +1,12 @@
 # Changelog
 
 ## 2025-04-27
+- Enhanced climate-smart forestry content with practical applications section targeting specific user groups
+- Added resources section to climate-smart forestry page with links to blog and consultation options
+- Replaced old Forest Inventory Analysis page with comprehensive Climate-Smart Forestry content
+- Updated projects index to reflect climate-smart forestry focus
+- Created new blog post on climate-smart forestry in /content/blog/climate-smart-forestry/
+- Improved SEO with enhanced meta titles and descriptions focused on climate-smart forestry
 - Updated homepage to link to new climate-smart forestry page
 - Created new Climate-Smart Forestry project page highlighting adaptation and mitigation work
 - Added personal story about training AI headshot model with 6-year-old's help
