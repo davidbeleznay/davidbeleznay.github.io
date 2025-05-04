@@ -637,6 +637,88 @@
         object-position: center 25%; /* Focus even higher on face */
       }
     }
+    
+    /* Landscape mode specific styles */
+    @media (max-width: 920px) and (orientation: landscape) {
+      /* Reduce height to prevent content overflow */
+      .full-image-hero {
+        height: auto;
+        min-height: 450px;
+      }
+      
+      /* Use side-by-side layout for landscape */
+      .full-image-hero .container {
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 0;
+      }
+      
+      /* Narrower content area */
+      .full-image-hero .hero-content {
+        width: 50%;
+        padding-right: 5%;
+        text-align: left;
+      }
+      
+      /* Use horizontal gradient instead of vertical */
+      .hero-overlay {
+        background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.7) 100%);
+      }
+      
+      /* Smaller text for landscape */
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      
+      .hero-text p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      
+      /* Horizontal button layout for landscape */
+      .hero-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+      
+      /* Smaller buttons */
+      .cta-button, .secondary-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* iOS-specific fixes */
+    @supports (-webkit-touch-callout: none) {
+      /* Fix for iOS height issues */
+      .full-image-hero {
+        height: -webkit-fill-available;
+      }
+      
+      /* iOS landscape specific tweaks */
+      @media (orientation: landscape) {
+        .full-image-hero {
+          height: 450px;
+          min-height: 450px;
+        }
+        
+        .full-image-hero .container {
+          padding-bottom: 0;
+        }
+
+        .hero-title {
+          margin-bottom: 0.5rem;
+        }
+        
+        .hero-text p {
+          margin-bottom: 0.5rem;
+        }
+        
+        .hero-buttons {
+          margin-top: 0.5rem;
+        }
+      }
+    }
   </style>
 </body>
 </html>
