@@ -578,7 +578,7 @@
         background: linear-gradient(
           to bottom,
           rgba(0,0,0,0) 0%,
-          rgba(0,0,0,0) 60%,
+          rgba(0,0,0,0) 65%,
           rgba(0,0,0,0.7) 80%,
           rgba(0,0,0,0.9) 100%
         );
@@ -588,8 +588,8 @@
         justify-content: center;
         /* Push content to the very bottom */
         align-items: flex-end;
-        /* Add padding to push content higher from bottom edge */
-        padding-bottom: 5%;
+        /* Add bottom padding - increase this to push content up more */
+        padding-bottom: 10%;
       }
       
       .full-image-hero .hero-content {
@@ -597,29 +597,37 @@
         max-width: none;
         text-align: center;
         margin-right: 0;
-        /* Set a max height to control how far up content can go */
-        max-height: 35vh;
-        overflow: hidden;
+        /* Remove max-height and overflow restrictions that were cutting off text */
       }
       
       .hero-title {
         font-size: 2.2rem;
+        margin-bottom: 0.5rem; /* Smaller margin to save space */
       }
       
       .hero-text p {
         font-size: 1.1rem;
+        margin-bottom: 0.8rem; /* Smaller margin to save space */
       }
       
       .hero-buttons {
         justify-content: center;
+        margin-top: 0.8rem; /* Smaller margin to save space */
       }
       
       .hero-buttons,
       .newsletter-actions,
       .about-buttons {
-        flex-direction: column;
-        gap: var(--spacing-xs);
+        flex-direction: row; /* Keep buttons side by side */
+        gap: 0.5rem; /* Closer together */
         justify-content: center;
+      }
+      
+      /* Smaller buttons for portrait mode */
+      .hero-buttons .cta-button,
+      .hero-buttons .secondary-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
       }
     }
     
@@ -630,8 +638,8 @@
       }
       
       .hero-text p {
-        font-size: 1rem;
-        margin-bottom: 0.8rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
       }
       
       .full-hero-image {
@@ -642,15 +650,21 @@
         background: linear-gradient(
           to bottom,
           rgba(0,0,0,0) 0%,
-          rgba(0,0,0,0) 65%,
-          rgba(0,0,0,0.7) 80%,
+          rgba(0,0,0,0) 68%,
+          rgba(0,0,0,0.7) 84%,
           rgba(0,0,0,0.9) 100%
         );
       }
       
-      /* Even smaller max height to keep text away from face */
-      .full-image-hero .hero-content {
-        max-height: 30vh;
+      .full-image-hero .container {
+        padding-bottom: 8%; /* Slightly less padding */
+      }
+      
+      /* Even smaller buttons for small devices */
+      .hero-buttons .cta-button,
+      .hero-buttons .secondary-button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
       }
     }
     
@@ -674,7 +688,6 @@
         width: 50%;
         padding-right: 5%;
         text-align: left;
-        max-height: none; /* Remove max height limitation from portrait */
       }
       
       /* Use horizontal gradient instead of vertical */
@@ -685,17 +698,19 @@
       /* Smaller text for landscape */
       .hero-title {
         font-size: 1.8rem;
+        margin-bottom: 0.4rem;
       }
       
       .hero-text p {
         font-size: 0.9rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.7rem;
       }
       
       /* Horizontal button layout for landscape */
       .hero-buttons {
         flex-direction: row;
         justify-content: flex-start;
+        margin-top: 0.5rem;
       }
       
       /* Smaller buttons */
@@ -719,15 +734,15 @@
           background: linear-gradient(
             to bottom,
             rgba(0,0,0,0) 0%,
-            rgba(0,0,0,0) 65%,
+            rgba(0,0,0,0) 70%,
             rgba(0,0,0,0.8) 85%,
             rgba(0,0,0,0.95) 100%
           );
         }
         
-        .full-image-hero .hero-content {
-          /* Even smaller for iOS in portrait */
-          max-height: 28vh;
+        /* More padding to push content down on iOS */
+        .full-image-hero .container {
+          padding-bottom: 12%;
         }
       }
       
@@ -740,18 +755,6 @@
         
         .full-image-hero .container {
           padding-bottom: 0;
-        }
-
-        .hero-title {
-          margin-bottom: 0.5rem;
-        }
-        
-        .hero-text p {
-          margin-bottom: 0.5rem;
-        }
-        
-        .hero-buttons {
-          margin-top: 0.5rem;
         }
       }
     }
