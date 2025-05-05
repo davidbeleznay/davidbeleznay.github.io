@@ -570,7 +570,7 @@
       }
       
       .full-hero-image {
-        object-position: center 30%; /* Focus on face area in image */
+        object-position: center 15%; /* Adjusted - Move image higher to show face in portrait mode */
       }
       
       .hero-overlay {
@@ -643,7 +643,7 @@
       }
       
       .full-hero-image {
-        object-position: center 25%; /* Focus even higher on face */
+        object-position: center 10%; /* Adjusted - Focus even higher on face */
       }
       
       .hero-overlay {
@@ -729,6 +729,10 @@
       
       /* iOS-specific portrait enhancements */
       @media (orientation: portrait) {
+        .full-hero-image {
+          object-position: center 5%; /* Adjusted for iOS - Move image even higher to ensure face is visible */
+        }
+        
         .hero-overlay {
           /* Even darker gradient at bottom for iOS */
           background: linear-gradient(
