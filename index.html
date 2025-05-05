@@ -562,7 +562,8 @@
       }
     }
     
-    @media (max-width: 768px) {
+    /* Portrait mode styles for mobile */
+    @media (max-width: 768px) and (orientation: portrait) {
       .full-image-hero {
         height: 100vh;
         min-height: 500px;
@@ -573,22 +574,22 @@
       }
       
       .hero-overlay {
-        /* Use a split gradient that has full transparency in top half */
+        /* Use a split gradient that starts in the bottom half */
         background: linear-gradient(
           to bottom,
           rgba(0,0,0,0) 0%,
-          rgba(0,0,0,0) 45%,
-          rgba(0,0,0,0.5) 55%,
-          rgba(0,0,0,0.8) 75%,
+          rgba(0,0,0,0) 60%,
+          rgba(0,0,0,0.7) 80%,
           rgba(0,0,0,0.9) 100%
         );
       }
       
       .full-image-hero .container {
         justify-content: center;
-        /* This is critical - align to the bottom instead of center */
+        /* Push content to the very bottom */
         align-items: flex-end;
-        padding-bottom: 10%;
+        /* Add padding to push content higher from bottom edge */
+        padding-bottom: 5%;
       }
       
       .full-image-hero .hero-content {
@@ -596,6 +597,9 @@
         max-width: none;
         text-align: center;
         margin-right: 0;
+        /* Set a max height to control how far up content can go */
+        max-height: 35vh;
+        overflow: hidden;
       }
       
       .hero-title {
@@ -619,22 +623,34 @@
       }
     }
     
-    /* Small mobile devices */
-    @media (max-width: 480px) {
+    /* Small mobile devices portrait */
+    @media (max-width: 480px) and (orientation: portrait) {
       .hero-title {
         font-size: 1.8rem;
       }
       
       .hero-text p {
         font-size: 1rem;
-      }
-      
-      .full-image-hero .container {
-        padding-bottom: 15%; /* More space at bottom on smallest devices */
+        margin-bottom: 0.8rem;
       }
       
       .full-hero-image {
         object-position: center 25%; /* Focus even higher on face */
+      }
+      
+      .hero-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) 65%,
+          rgba(0,0,0,0.7) 80%,
+          rgba(0,0,0,0.9) 100%
+        );
+      }
+      
+      /* Even smaller max height to keep text away from face */
+      .full-image-hero .hero-content {
+        max-height: 30vh;
       }
     }
     
@@ -658,6 +674,7 @@
         width: 50%;
         padding-right: 5%;
         text-align: left;
+        max-height: none; /* Remove max height limitation from portrait */
       }
       
       /* Use horizontal gradient instead of vertical */
@@ -693,6 +710,25 @@
       /* Fix for iOS height issues */
       .full-image-hero {
         height: -webkit-fill-available;
+      }
+      
+      /* iOS-specific portrait enhancements */
+      @media (orientation: portrait) {
+        .hero-overlay {
+          /* Even darker gradient at bottom for iOS */
+          background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0) 65%,
+            rgba(0,0,0,0.8) 85%,
+            rgba(0,0,0,0.95) 100%
+          );
+        }
+        
+        .full-image-hero .hero-content {
+          /* Even smaller for iOS in portrait */
+          max-height: 28vh;
+        }
       }
       
       /* iOS landscape specific tweaks */
