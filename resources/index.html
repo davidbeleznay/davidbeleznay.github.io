@@ -321,7 +321,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize EmailJS with your public key
-      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS public key
+      emailjs.init("xicpYOZqOxz__Oh1J");
       
       // Mobile menu
       const menuBtn = document.querySelector('.mobile-menu-btn');
@@ -357,77 +357,16 @@
         button.disabled = true;
         
         try {
-          // OPTION 1: EmailJS (Recommended for quick setup)
-          // Sign up at https://www.emailjs.com/ for free
-          // 1. Create an email service (Gmail, Outlook, etc.)
-          // 2. Create an email template
-          // 3. Get your public key and template ID
-          
-          /*
+          // Send email using EmailJS
           await emailjs.send(
-            "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-            "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+            "service_snup99l",  // Your EmailJS service ID
+            "template_61o5oev", // Your EmailJS template ID
             {
-              to_email: "david@aiforester.com",
               from_email: email,
-              reply_to: email,
-              subject: "New AI Forester Prompts Library Request",
-              message: `New signup for AI Forester Prompts Library from: ${email}`
+              date: new Date().toLocaleDateString(),
+              time: new Date().toLocaleTimeString()
             }
           );
-          */
-          
-          // OPTION 2: Google Forms (No code needed)
-          // Create a Google Form with an email field
-          // Use the form action URL here
-          /*
-          const formData = new FormData();
-          formData.append('entry.YOUR_FIELD_ID', email); // Replace with your Google Form field ID
-          
-          await fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse', {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData
-          });
-          */
-          
-          // OPTION 3: Formspree (Simple form backend)
-          // Sign up at https://formspree.io/
-          /*
-          await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              email: email,
-              _subject: 'New AI Forester Prompts Library Request'
-            })
-          });
-          */
-          
-          // OPTION 4: Web3Forms (Free and simple)
-          // Get your access key at https://web3forms.com/
-          /*
-          await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              access_key: 'YOUR_ACCESS_KEY',
-              email: email,
-              subject: 'New AI Forester Prompts Library Request',
-              from_name: 'AI Forester Website'
-            })
-          });
-          */
-          
-          // For now, just log it (remove this in production)
-          console.log('Email signup:', email);
-          
-          // Simulate success (remove this when you implement a real solution)
-          await new Promise(resolve => setTimeout(resolve, 1000));
           
           // Store access in localStorage
           localStorage.setItem('aiforester_prompt_library_access', 'true');
@@ -441,7 +380,7 @@
           promptSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
           
         } catch (error) {
-          console.error('Error:', error);
+          console.error('EmailJS Error:', error);
           alert('There was an error processing your request. Please try again or contact david@aiforester.com directly.');
           button.textContent = originalText;
           button.disabled = false;
