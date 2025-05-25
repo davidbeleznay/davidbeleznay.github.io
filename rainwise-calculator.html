@@ -389,6 +389,20 @@
       color: white;
     }
     
+    .result-card.environmental {
+      background: #28a745;
+      color: white;
+    }
+    
+    .result-card.environmental h3 {
+      color: white;
+      opacity: 0.9;
+    }
+    
+    .result-card.environmental .value {
+      color: white;
+    }
+    
     .rebate-breakdown {
       background: white;
       padding: 2rem;
@@ -411,6 +425,62 @@
       font-weight: 700;
       font-size: 1.2rem;
       color: var(--primary-dark);
+    }
+    
+    .environmental-impact {
+      background: linear-gradient(135deg, #28a745, #20c997);
+      color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    
+    .environmental-impact h3 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .impact-stat {
+      text-align: center;
+    }
+    
+    .impact-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: block;
+    }
+    
+    .impact-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-top: 0.25rem;
+    }
+    
+    .payback-explanation {
+      background: #e8f4f8;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .payback-explanation h4 {
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .payback-explanation p {
+      margin: 0;
+      color: var(--gray);
+      line-height: 1.5;
     }
     
     .pdf-btn {
@@ -457,6 +527,10 @@
       .results-grid {
         grid-template-columns: 1fr;
       }
+      
+      .impact-stats {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -486,7 +560,7 @@
   <section class="project-header">
     <div class="container">
       <h1>Rainwise ROI Calculator</h1>
-      <p class="subtitle">Calculate your water savings and discover all available RDN rebates</p>
+      <p class="subtitle">Calculate your water savings, environmental impact, and discover all available RDN rebates</p>
     </div>
   </section>
 
@@ -495,19 +569,24 @@
     <div class="calculator-container">
       <!-- Email Gate -->
       <div id="emailGate" class="email-gate-section">
-        <h2>🌊 Maximize Your RDN Rebates & Water Savings</h2>
-        <p>Get personalized calculations for all 6 RDN rebate programs and see your complete savings potential.</p>
+        <h2>🌊 Maximize Your Impact: Water, Money & Environment</h2>
+        <p>See your complete savings potential across all 6 RDN rebate programs plus environmental benefits.</p>
         
         <div class="benefits-grid">
           <div class="benefit-card">
             <i class="fas fa-tint"></i>
-            <h3>Save Water</h3>
-            <p>Reduce usage by up to 50%</p>
+            <h3>Conserve Water</h3>
+            <p>Save thousands of gallons annually</p>
           </div>
           <div class="benefit-card">
             <i class="fas fa-dollar-sign"></i>
             <h3>Get Up to $1000</h3>
             <p>All RDN rebate programs</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-leaf"></i>
+            <h3>Environmental Impact</h3>
+            <p>Reduce water footprint</p>
           </div>
           <div class="benefit-card">
             <i class="fas fa-file-pdf"></i>
@@ -522,7 +601,7 @@
         </form>
         
         <p style="font-size: 0.85rem; color: #666; margin-top: 1rem;">
-          Complete rebate analysis for RDN homeowners. Unsubscribe anytime.
+          Complete analysis for RDN homeowners. Unsubscribe anytime.
         </p>
       </div>
       
@@ -789,10 +868,10 @@
       
       <!-- Results Section -->
       <div id="resultsSection" class="results-section">
-        <h2>Your Personalized Rebate & Savings Analysis</h2>
+        <h2>Your Complete Impact Analysis</h2>
         
         <div class="results-grid">
-          <div class="result-card">
+          <div class="result-card environmental">
             <h3>Annual Water Savings</h3>
             <div class="value" id="waterSavings">--</div>
           </div>
@@ -808,9 +887,38 @@
           </div>
           
           <div class="result-card">
-            <h3>Net Payback Period</h3>
+            <h3>Complete Payback Period</h3>
             <div class="value" id="paybackPeriod">--</div>
           </div>
+        </div>
+        
+        <div class="payback-explanation">
+          <h4><i class="fas fa-info-circle"></i> Understanding Your Payback</h4>
+          <p><strong>Your payback period includes ongoing water savings!</strong> This calculation shows how quickly your investment pays for itself through the combination of upfront rebates plus annual water bill savings. The environmental benefits of water conservation continue for years beyond the payback period.</p>
+        </div>
+        
+        <div class="environmental-impact">
+          <h3><i class="fas fa-leaf"></i> Your Environmental Impact</h3>
+          <p>Beyond the financial benefits, you're making a real difference for water conservation:</p>
+          <div class="impact-stats">
+            <div class="impact-stat">
+              <span class="impact-value" id="lifetimeWaterSavings">--</span>
+              <span class="impact-label">Gallons saved over 10 years</span>
+            </div>
+            <div class="impact-stat">
+              <span class="impact-value" id="waterReduction">--</span>
+              <span class="impact-label">% reduction in water use</span>
+            </div>
+            <div class="impact-stat">
+              <span class="impact-value" id="equivalentHomes">--</span>
+              <span class="impact-label">Equivalent homes' daily water</span>
+            </div>
+            <div class="impact-stat">
+              <span class="impact-value" id="co2Equivalent">--</span>
+              <span class="impact-label">lbs CO₂ saved annually*</span>
+            </div>
+          </div>
+          <small style="opacity: 0.8; font-size: 0.8rem;">*Energy savings from reduced water treatment and pumping</small>
         </div>
         
         <div class="rebate-breakdown">
@@ -829,6 +937,7 @@
             <li>Apply for RDN pre-approval for eligible rebates</li>
             <li>Get quotes from IIABC-certified contractors</li>
             <li>Complete your upgrades and claim your rebates!</li>
+            <li>Enjoy ongoing water savings and environmental benefits</li>
           </ol>
         </div>
       </div>
@@ -1066,7 +1175,8 @@
           costSavings: 0,
           totalRebates: 0,
           rebateBreakdown: {},
-          paybackPeriod: 0
+          paybackPeriod: 0,
+          environmentalImpact: {}
         };
         
         // Calculate water savings based on current system and area
@@ -1087,6 +1197,14 @@
         const dripUsage = usageRates.drip * area;
         results.waterSavings = Math.max(0, currentUsage - dripUsage) * (months / 12);
         results.costSavings = results.waterSavings * (waterCost / 1000);
+        
+        // Calculate environmental impact
+        results.environmentalImpact = {
+          lifetimeWaterSavings: results.waterSavings * 10,
+          waterReduction: currentUsage > 0 ? Math.round(((currentUsage - dripUsage) / currentUsage) * 100) : 0,
+          equivalentHomes: Math.round(results.waterSavings / 80), // Average daily home usage ~80 gallons
+          co2Equivalent: Math.round(results.waterSavings * 0.006) // ~6 lbs CO2 per 1000 gallons water processing
+        };
         
         // Calculate rebates for each selected upgrade
         let totalProjectCost = 0;
@@ -1224,6 +1342,16 @@
         document.getElementById('paybackPeriod').textContent = 
           results.paybackPeriod < 15 ? results.paybackPeriod.toFixed(1) + ' years' : '15+ years';
         
+        // Display environmental impact
+        document.getElementById('lifetimeWaterSavings').textContent = 
+          Math.round(results.environmentalImpact.lifetimeWaterSavings).toLocaleString();
+        document.getElementById('waterReduction').textContent = 
+          results.environmentalImpact.waterReduction + '%';
+        document.getElementById('equivalentHomes').textContent = 
+          results.environmentalImpact.equivalentHomes.toLocaleString();
+        document.getElementById('co2Equivalent').textContent = 
+          results.environmentalImpact.co2Equivalent.toLocaleString();
+        
         // Display rebate breakdown
         const breakdownElement = document.getElementById('rebateDetails');
         breakdownElement.innerHTML = '';
@@ -1271,7 +1399,7 @@
         
         // Title
         doc.setFontSize(20);
-        doc.text('Your Personal RDN Rebate Action Plan', 20, 30);
+        doc.text('Your Personal RDN Rebate & Water Conservation Plan', 20, 30);
         
         // Property info
         doc.setFontSize(12);
@@ -1281,17 +1409,25 @@
         
         // Results summary
         doc.setFontSize(14);
-        doc.text('Summary', 20, 90);
+        doc.text('Financial Summary', 20, 90);
         doc.setFontSize(12);
         doc.text(`Annual Water Savings: ${document.getElementById('waterSavings').textContent}`, 20, 105);
         doc.text(`Annual Cost Savings: ${document.getElementById('costSavings').textContent}`, 20, 115);
         doc.text(`Total Available Rebates: ${document.getElementById('totalRebates').textContent}`, 20, 125);
-        doc.text(`Payback Period: ${document.getElementById('paybackPeriod').textContent}`, 20, 135);
+        doc.text(`Complete Payback Period: ${document.getElementById('paybackPeriod').textContent}`, 20, 135);
+        
+        // Environmental impact
+        doc.setFontSize(14);
+        doc.text('Environmental Impact (10-Year Projection)', 20, 155);
+        doc.setFontSize(12);
+        doc.text(`Water Saved: ${document.getElementById('lifetimeWaterSavings').textContent} gallons`, 20, 170);
+        doc.text(`Water Use Reduction: ${document.getElementById('waterReduction').textContent}`, 20, 180);
+        doc.text(`CO₂ Savings: ${document.getElementById('co2Equivalent').textContent} lbs annually`, 20, 190);
         
         // Rebate breakdown
         doc.setFontSize(14);
-        doc.text('Rebate Breakdown', 20, 155);
-        let yPos = 170;
+        doc.text('Rebate Breakdown', 20, 210);
+        let yPos = 225;
         
         Object.entries(window.calculationResults.rebateBreakdown).forEach(([program, amount]) => {
           doc.setFontSize(12);
@@ -1310,7 +1446,7 @@
           '2. Get quotes from IIABC-certified contractors',
           '3. Complete installations with proper documentation',
           '4. Submit rebate applications within 90 days',
-          '5. Enjoy your water savings and rebate money!'
+          '5. Enjoy ongoing water & money savings plus environmental benefits!'
         ];
         
         steps.forEach(step => {
@@ -1324,7 +1460,7 @@
         doc.text(`Created: ${new Date().toLocaleDateString()}`, 20, 290);
         
         // Save the PDF
-        doc.save('RDN-Rebate-Action-Plan.pdf');
+        doc.save('RDN-Water-Conservation-Action-Plan.pdf');
       }
     });
   </script>
