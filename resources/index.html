@@ -52,246 +52,213 @@
   <section class="project-header">
     <div class="container">
       <h1>Resources</h1>
-      <p class="subtitle">Useful tools and information for forestry AI applications</p>
-    </div>
-  </section>
-
-  <!-- Featured Resource Section (moved to top) -->
-  <section class="featured-resource">
-    <div class="container">
-      <div class="featured-resource-card">
-        <div class="featured-content">
-          <div class="featured-badge">Featured Resource</div>
-          <h2>AI Forester Top Prompts Library</h2>
-          <p class="featured-description">Get instant access to 50+ battle-tested AI prompts specifically designed for forestry professionals. Transform your workflow with prompts for inventory analysis, growth modeling, climate assessments, and more.</p>
-          
-          <div class="benefits-list">
-            <div class="benefit-item">
-              <i class="fas fa-check-circle"></i>
-              <span>50+ forestry-specific prompts</span>
-            </div>
-            <div class="benefit-item">
-              <i class="fas fa-check-circle"></i>
-              <span>Ready to use with Claude, ChatGPT & Gemini</span>
-            </div>
-            <div class="benefit-item">
-              <i class="fas fa-check-circle"></i>
-              <span>Real-world tested by professionals</span>
-            </div>
-            <div class="benefit-item">
-              <i class="fas fa-check-circle"></i>
-              <span>Regular updates with new prompts</span>
-            </div>
-          </div>
-          
-          <div id="promptLibraryGate" class="product-email-gate">
-            <h3>Get Free Instant Access</h3>
-            <form id="promptLibraryForm" class="product-email-form">
-              <input type="email" id="promptLibraryEmail" placeholder="Enter your email address" required>
-              <button type="submit">Send Me The Prompts</button>
-            </form>
-            <p class="form-note">Join 500+ forestry professionals using AI. Unsubscribe anytime.</p>
-          </div>
-          
-          <div id="promptLibrarySuccess" class="access-success" style="display: none;">
-            <i class="fas fa-check-circle"></i>
-            <h3>Success! Check Your Email</h3>
-            <p>The AI Forester Top Prompts Library is on its way to your inbox.</p>
-            <div class="prompt-download-section" style="margin-top: 2rem;">
-              <p style="margin-bottom: 1rem;">While you wait, you can also download it directly:</p>
-              <a href="https://drive.google.com/drive/folders/1hNs6pFCquZ3ABCzNpUNW5r10h6rrYHzd" target="_blank" class="download-button">
-                <i class="fas fa-download"></i> Download Prompts Library
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="featured-image">
-          <img src="/assets/images/prompt-library-preview.png" alt="AI Forester Prompts Library Preview" onerror="this.style.display='none'">
-        </div>
-      </div>
+      <p class="subtitle">AI tools, calculators, and helpful links for forestry professionals</p>
     </div>
   </section>
 
   <!-- Resources Content -->
   <section class="resource-content">
     <div class="container">
-      <div class="resource-categories">
-        <!-- AI Forester Tools & Resources (moved after featured) -->
-        <div class="resource-category">
-          <h2><i class="fas fa-tools"></i> AI Forester Tools & Resources</h2>
-          <div class="resource-grid">
-            <!-- Prompt Library Card -->
-            <div class="resource-card gated-resource" data-product="prompt-library">
-              <span class="resource-badge">Free with Email</span>
-              <h3>AI Forester Top Prompts Library</h3>
-              <p>50+ tested prompts for forestry applications including inventory analysis, growth modeling, and climate impact assessments.</p>
-              <a href="#promptLibraryGate" class="resource-link gated-link">Get Free Access <i class="fas fa-lock-open"></i></a>
+      <!-- AI Forester Tools - Featured Section -->
+      <div class="featured-tools-section">
+        <h2 class="section-title"><i class="fas fa-star"></i> AI Forester Tools & Resources</h2>
+        <div class="featured-tools-grid">
+          <!-- Prompt Library Card -->
+          <div class="featured-tool-card gated-resource" data-product="prompt-library">
+            <div class="tool-icon">
+              <i class="fas fa-file-alt"></i>
             </div>
-            
-            <!-- Prompt Engineering Assistant GPT -->
-            <div class="resource-card">
-              <span class="resource-badge new-badge">New</span>
-              <h3>Prompt Engineering Assistant GPT</h3>
-              <p>Custom ChatGPT trained to help you create effective prompts for forestry applications. Optimizes your AI interactions for better results.</p>
-              <a href="https://chatgpt.com/g/g-681be321dee081918107cb6ad63caca1-prompt-engineering-assistant" target="_blank" class="resource-link">Try It Now <i class="fas fa-external-link-alt"></i></a>
+            <h3>AI Forester Top Prompts Library</h3>
+            <p>Get instant access to 50+ battle-tested AI prompts specifically designed for forestry professionals. Transform your workflow with prompts for inventory analysis, growth modeling, climate assessments, and more.</p>
+            <ul class="tool-features">
+              <li><i class="fas fa-check"></i> 50+ forestry-specific prompts</li>
+              <li><i class="fas fa-check"></i> Ready for Claude, ChatGPT & Gemini</li>
+              <li><i class="fas fa-check"></i> Real-world tested</li>
+              <li><i class="fas fa-check"></i> Regular updates</li>
+            </ul>
+            <button class="tool-cta-btn" onclick="showPromptGate()">
+              <i class="fas fa-download"></i> Get Free Access
+            </button>
+          </div>
+          
+          <!-- Prompt Engineering Assistant -->
+          <div class="featured-tool-card">
+            <div class="tool-icon">
+              <i class="fas fa-robot"></i>
             </div>
+            <h3>Prompt Engineering Assistant GPT</h3>
+            <p>Custom ChatGPT trained to help you create effective prompts for forestry applications. Optimizes your AI interactions for better results with specialized knowledge of forestry terminology and workflows.</p>
+            <ul class="tool-features">
+              <li><i class="fas fa-check"></i> Forestry-specific training</li>
+              <li><i class="fas fa-check"></i> Prompt optimization</li>
+              <li><i class="fas fa-check"></i> Best practices guidance</li>
+              <li><i class="fas fa-check"></i> Instant access</li>
+            </ul>
+            <a href="https://chatgpt.com/g/g-681be321dee081918107cb6ad63caca1-prompt-engineering-assistant" target="_blank" class="tool-cta-btn">
+              <i class="fas fa-external-link-alt"></i> Try It Now
+            </a>
+          </div>
+          
+          <!-- Rainwise Calculator -->
+          <div class="featured-tool-card">
+            <div class="tool-icon">
+              <i class="fas fa-tint"></i>
+            </div>
+            <h3>Rainwise ROI Calculator</h3>
+            <p>Calculate your water savings and ROI for converting spray irrigation to drip systems. Includes rebate calculations for Nanaimo & RDN homeowners with detailed payback analysis.</p>
+            <ul class="tool-features">
+              <li><i class="fas fa-check"></i> Water savings calculator</li>
+              <li><i class="fas fa-check"></i> RDN rebate eligibility</li>
+              <li><i class="fas fa-check"></i> ROI & payback period</li>
+              <li><i class="fas fa-check"></i> Customized results</li>
+            </ul>
+            <a href="/rainwise-calculator" class="tool-cta-btn">
+              <i class="fas fa-calculator"></i> Calculate Savings
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prompt Library Email Gate Modal -->
+      <div id="promptLibraryModal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <span class="close" onclick="closePromptGate()">&times;</span>
+          <div class="modal-body">
+            <h2>Get Your AI Forester Prompts Library</h2>
+            <p>Join 500+ forestry professionals using AI to transform their work.</p>
             
-            <!-- Rainwise Calculator -->
-            <div class="resource-card gated-resource" data-product="rainwise">
-              <span class="resource-badge new-badge">New</span>
-              <h3>Rainwise ROI Calculator</h3>
-              <p>Calculate your water savings and ROI for converting spray irrigation to drip systems. Includes rebate calculations for Nanaimo & RDN homeowners.</p>
-              <a href="/rainwise-calculator" class="resource-link">Calculate Savings <i class="fas fa-calculator"></i></a>
+            <form id="promptLibraryForm" class="modal-email-form">
+              <input type="email" id="promptLibraryEmail" placeholder="Enter your email address" required>
+              <button type="submit">Send Me The Prompts</button>
+            </form>
+            
+            <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
+            
+            <div id="promptLibrarySuccess" class="modal-success" style="display: none;">
+              <i class="fas fa-check-circle"></i>
+              <h3>Success! Check Your Email</h3>
+              <p>The AI Forester Top Prompts Library is on its way to your inbox.</p>
+              <a href="https://drive.google.com/drive/folders/1hNs6pFCquZ3ABCzNpUNW5r10h6rrYHzd" target="_blank" class="download-button">
+                <i class="fas fa-download"></i> Download Now
+              </a>
             </div>
           </div>
         </div>
+      </div>
 
+      <!-- Other Resources - Smaller Cards -->
+      <div class="resource-categories">
         <!-- AI Tools -->
         <div class="resource-category">
-          <h2><i class="fas fa-robot"></i> AI Tools</h2>
-          <div class="resource-grid">
-            <div class="resource-card">
-              <h3>Claude (Anthropic)</h3>
-              <p>An advanced AI assistant with strong natural language capabilities and document analysis features perfect for forestry research.</p>
-              <a href="https://claude.ai" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+          <h3><i class="fas fa-robot"></i> AI Tools</h3>
+          <div class="resource-links-grid">
+            <div class="resource-link-card">
+              <h4><a href="https://claude.ai" target="_blank">Claude (Anthropic) <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Advanced AI assistant with strong natural language capabilities.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Notebook LM (Google)</h3>
-              <p>AI-powered note-taking and research tool with multimodal capabilities for organizing forestry knowledge.</p>
-              <a href="https://notebooklm.google.com/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://notebooklm.google.com/" target="_blank">Notebook LM <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>AI-powered note-taking and research tool with multimodal capabilities.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Gemini (Google)</h3>
-              <p>Advanced AI model with strong technical and visual capabilities for analyzing forestry data and imagery.</p>
-              <a href="https://gemini.google.com/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://gemini.google.com/" target="_blank">Gemini <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Google's AI model for analyzing data and imagery.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Elicit</h3>
-              <p>Research assistant specialized in scientific literature, ideal for reviewing forestry research papers and studies.</p>
-              <a href="https://www.elicit.org/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.elicit.org/" target="_blank">Elicit <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Research assistant for scientific literature.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Perplexity</h3>
-              <p>AI search engine with citation tracking that provides well-sourced information on forestry topics.</p>
-              <a href="https://www.perplexity.ai/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.perplexity.ai/" target="_blank">Perplexity <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>AI search with citation tracking.</p>
             </div>
           </div>
         </div>
         
         <!-- Ecosystem Restoration Resources -->
         <div class="resource-category">
-          <h2><i class="fas fa-leaf"></i> Ecosystem Restoration Resources</h2>
-          <div class="resource-grid">
-            <div class="resource-card">
-              <h3>EEAGER</h3>
-              <p>A neural network model for finding beaver complexes in satellite and aerial imagery. Developed by Google Research to help identify and monitor beaver habitats for ecosystem restoration.</p>
-              <a href="https://research.google/pubs/eeager-a-neural-network-model-for-finding-beaver-complexes-in-satellite-and-aerial-imagery/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+          <h3><i class="fas fa-leaf"></i> Ecosystem Restoration</h3>
+          <div class="resource-links-grid">
+            <div class="resource-link-card">
+              <h4><a href="https://research.google/pubs/eeager-a-neural-network-model-for-finding-beaver-complexes-in-satellite-and-aerial-imagery/" target="_blank">EEAGER <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Neural network for finding beaver complexes in imagery.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>BRAT (Beaver Restoration Assessment Tool)</h3>
-              <p>A capacity model for assessing the upper limits of riverscapes to support dam-building activities by beaver. Essential tool for planning beaver-based restoration projects.</p>
-              <a href="https://brat.riverscapes.net/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://brat.riverscapes.net/" target="_blank">BRAT <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Beaver Restoration Assessment Tool for riverscapes.</p>
             </div>
           </div>
         </div>
         
         <!-- Forestry Data Sources -->
         <div class="resource-category">
-          <h2><i class="fas fa-database"></i> Forestry Data Sources</h2>
-          <div class="resource-grid">
-            <div class="resource-card">
-              <h3>BC Data Catalogue - Forestry</h3>
-              <p>Public forestry datasets from British Columbia with extensive coverage of regional forest characteristics.</p>
-              <a href="https://catalogue.data.gov.bc.ca/dataset?q=forest" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+          <h3><i class="fas fa-database"></i> Data Sources</h3>
+          <div class="resource-links-grid">
+            <div class="resource-link-card">
+              <h4><a href="https://catalogue.data.gov.bc.ca/dataset?q=forest" target="_blank">BC Data Catalogue <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Public forestry datasets from British Columbia.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>State of Canada's Forests Report</h3>
-              <p>Annual report with comprehensive data on Canadian forests, including inventories, management and environmental impacts.</p>
-              <a href="https://www.nrcan.gc.ca/our-natural-resources/forests/state-canadas-forests-report/16496" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.nrcan.gc.ca/our-natural-resources/forests/state-canadas-forests-report/16496" target="_blank">State of Canada's Forests <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Annual report on Canadian forests.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>FAO Forest Resources Assessment</h3>
-              <p>Global forest resources data providing comparative information across different countries and regions.</p>
-              <a href="https://www.fao.org/forest-resources-assessment" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.fao.org/forest-resources-assessment" target="_blank">FAO Forest Assessment <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Global forest resources data.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>USDA Forest Service Tools & Data</h3>
-              <p>Research tools and datasets for forestry with extensive coverage of North American forest ecosystems.</p>
-              <a href="https://www.fs.usda.gov/research/tools" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.fs.usda.gov/research/tools" target="_blank">USDA Forest Service <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Research tools and datasets.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>NASA Earthdata</h3>
-              <p>Earth science data, including forest cover and change tracking through satellite imagery and remote sensing.</p>
-              <a href="https://earthdata.nasa.gov/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://earthdata.nasa.gov/" target="_blank">NASA Earthdata <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Earth science and forest cover data.</p>
             </div>
           </div>
         </div>
         
         <!-- Technical Resources -->
         <div class="resource-category">
-          <h2><i class="fas fa-code"></i> Technical Resources</h2>
-          <div class="resource-grid">
-            <div class="resource-card">
-              <h3>Claude Documentation</h3>
-              <p>Official guides for working with Claude, including prompt engineering techniques and best practices.</p>
-              <a href="https://docs.anthropic.com/claude/docs" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+          <h3><i class="fas fa-code"></i> Technical Resources</h3>
+          <div class="resource-links-grid">
+            <div class="resource-link-card">
+              <h4><a href="https://docs.anthropic.com/claude/docs" target="_blank">Claude Documentation <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Official guides for working with Claude.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Prompting Guide</h3>
-              <p>Comprehensive guide to prompt engineering with techniques applicable to forestry domain expertise.</p>
-              <a href="https://www.promptingguide.ai/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.promptingguide.ai/" target="_blank">Prompting Guide <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Comprehensive prompt engineering guide.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>LangChain Documentation</h3>
-              <p>Framework for developing applications with LLMs, useful for creating forestry-specific AI tools.</p>
-              <a href="https://python.langchain.com/docs/get_started/introduction" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://python.langchain.com/docs/get_started/introduction" target="_blank">LangChain <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Framework for LLM applications.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Scikit-learn</h3>
-              <p>Machine learning library for Python with tools applicable to forestry data analysis and modeling.</p>
-              <a href="https://scikit-learn.org/stable/index.html" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://scikit-learn.org/stable/index.html" target="_blank">Scikit-learn <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Machine learning library for Python.</p>
             </div>
           </div>
         </div>
         
         <!-- Organizations & Publications -->
         <div class="resource-category">
-          <h2><i class="fas fa-university"></i> Forestry Organizations & Publications</h2>
-          <div class="resource-grid">
-            <div class="resource-card">
-              <h3>Canadian Institute of Forestry</h3>
-              <p>Professional forestry organization in Canada providing resources, events, and networking opportunities.</p>
-              <a href="https://www.cif-ifc.org/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+          <h3><i class="fas fa-university"></i> Organizations & Publications</h3>
+          <div class="resource-links-grid">
+            <div class="resource-link-card">
+              <h4><a href="https://www.cif-ifc.org/" target="_blank">Canadian Institute of Forestry <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Professional forestry organization in Canada.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Forest Research Institute of Canada</h3>
-              <p>Canadian forestry research organization producing cutting-edge studies on forest management and sustainability.</p>
-              <a href="https://www.forestry.ca/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.forestry.ca/" target="_blank">Forest Research Institute <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Canadian forestry research organization.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Forestry: An International Journal</h3>
-              <p>Peer-reviewed forestry research covering diverse aspects of forest science and management.</p>
-              <a href="https://academic.oup.com/forestry" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://academic.oup.com/forestry" target="_blank">Forestry Journal <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>International peer-reviewed research.</p>
             </div>
-            
-            <div class="resource-card">
-              <h3>Canadian Journal of Forest Research</h3>
-              <p>Leading forestry journal publishing research particularly relevant to Canadian forests and ecosystems.</p>
-              <a href="https://www.tandfonline.com/journals/tfor20" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            <div class="resource-link-card">
+              <h4><a href="https://www.tandfonline.com/journals/tfor20" target="_blank">Canadian Journal of Forest Research <i class="fas fa-external-link-alt"></i></a></h4>
+              <p>Leading Canadian forestry journal.</p>
             </div>
           </div>
         </div>
@@ -349,24 +316,12 @@
         body.classList.toggle('mobile-menu-open');
       });
       
-      // Email gate functionality for Prompt Library
-      const promptForm = document.getElementById('promptLibraryForm');
-      const promptGate = document.getElementById('promptLibraryGate');
-      const promptSuccess = document.getElementById('promptLibrarySuccess');
-      const promptEmail = document.getElementById('promptLibraryEmail');
-      
-      // Check if user has already registered for prompt library
-      const hasPromptAccess = localStorage.getItem('aiforester_prompt_library_access');
-      if (hasPromptAccess) {
-        promptGate.style.display = 'none';
-        promptSuccess.style.display = 'block';
-      }
-      
       // Handle prompt library form submission
+      const promptForm = document.getElementById('promptLibraryForm');
       promptForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const email = promptEmail.value;
+        const email = document.getElementById('promptLibraryEmail').value;
         const button = this.querySelector('button');
         const originalText = button.textContent;
         
@@ -391,11 +346,8 @@
           localStorage.setItem('aiforester_prompt_library_email', email);
           
           // Show success
-          promptGate.style.display = 'none';
-          promptSuccess.style.display = 'block';
-          
-          // Smooth scroll to success message
-          promptSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          document.querySelector('.modal-email-form').style.display = 'none';
+          document.getElementById('promptLibrarySuccess').style.display = 'block';
           
         } catch (error) {
           console.error('EmailJS Error:', error);
@@ -404,212 +356,294 @@
           button.disabled = false;
         }
       });
-      
-      // Handle gated resource clicks
-      document.querySelectorAll('.gated-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const product = this.closest('.gated-resource').dataset.product;
-          
-          if (product === 'prompt-library') {
-            // Scroll to the featured section
-            document.querySelector('.featured-resource').scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'center' 
-            });
-            
-            // Focus on email input
-            setTimeout(() => {
-              document.getElementById('promptLibraryEmail').focus();
-            }, 500);
-          }
-        });
-      });
     });
+    
+    // Modal functions
+    function showPromptGate() {
+      document.getElementById('promptLibraryModal').style.display = 'block';
+      document.getElementById('promptLibraryEmail').focus();
+    }
+    
+    function closePromptGate() {
+      document.getElementById('promptLibraryModal').style.display = 'none';
+    }
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('promptLibraryModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
   </script>
   
   <style>
-    /* Additional styles for resource cards */
-    .resource-categories {
-      padding: 2rem 0;
-    }
-    
-    .resource-category {
+    /* Featured Tools Section */
+    .featured-tools-section {
       margin-bottom: 4rem;
     }
     
-    .resource-category h2 {
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 0.5rem;
+    .section-title {
+      font-size: 2rem;
+      color: var(--primary-dark);
       margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid var(--accent);
     }
     
-    .resource-category h2 i {
+    .section-title i {
       color: var(--accent);
       margin-right: 0.5rem;
     }
     
-    .resource-grid {
+    .featured-tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
+      margin-bottom: 4rem;
     }
     
-    .resource-card {
-      background-color: var(--light);
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
+    .featured-tool-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
     
-    .resource-card:hover {
+    .featured-tool-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border-color: var(--accent);
     }
     
-    .resource-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
+    .tool-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent), #e67e22);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tool-icon i {
+      font-size: 1.8rem;
+      color: white;
+    }
+    
+    .featured-tool-card h3 {
+      font-size: 1.5rem;
       color: var(--primary-dark);
+      margin-bottom: 1rem;
     }
     
-    .resource-card p {
+    .featured-tool-card p {
       color: var(--gray);
-      margin-bottom: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tool-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tool-features li {
+      padding: 0.5rem 0;
+      color: var(--gray);
       font-size: 0.95rem;
     }
     
-    .resource-link {
+    .tool-features i {
+      color: #4CAF50;
+      margin-right: 0.5rem;
+    }
+    
+    .tool-cta-btn {
       display: inline-block;
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    
-    .resource-link i {
-      font-size: 0.8rem;
-      margin-left: 0.25rem;
-    }
-    
-    /* Featured Resource Section */
-    .featured-resource {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
-      padding: 4rem 0;
-      margin-bottom: 3rem;
-    }
-    
-    .featured-resource-card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    
-    .featured-badge {
-      display: inline-block;
+      width: 100%;
+      padding: 1rem;
       background: var(--accent);
       color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      text-decoration: none;
+      border: none;
+      border-radius: 8px;
       font-weight: 600;
-      margin-bottom: 1rem;
+      font-size: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     
-    .featured-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary-dark);
+    .tool-cta-btn:hover {
+      background: #e67e22;
+      transform: translateY(-2px);
     }
     
-    .featured-description {
-      font-size: 1.2rem;
-      color: var(--gray);
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-    
-    .benefits-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .benefit-item {
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--gray);
+      justify-content: center;
     }
     
-    .benefit-item i {
-      color: #4CAF50;
-      font-size: 1.2rem;
-    }
-    
-    /* Product Email Gate */
-    .product-email-gate {
-      background: #f8f9fa;
+    .modal-content {
+      background-color: white;
+      padding: 0;
       border-radius: 12px;
-      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    .close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 2rem;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    .close:hover {
+      color: #333;
+    }
+    
+    .modal-body {
+      padding: 3rem;
       text-align: center;
     }
     
-    .product-email-gate h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    .modal-body h2 {
+      font-size: 1.8rem;
       color: var(--primary-dark);
+      margin-bottom: 1rem;
     }
     
-    .product-email-form {
+    .modal-body p {
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    
+    .modal-email-form {
       display: flex;
       gap: 1rem;
-      max-width: 500px;
-      margin: 0 auto 1rem;
+      margin-bottom: 1rem;
     }
     
-    .product-email-form input {
+    .modal-email-form input {
       flex: 1;
       padding: 1rem;
       border: 2px solid #e0e0e0;
       border-radius: 8px;
       font-size: 1rem;
-      transition: border-color 0.3s ease;
     }
     
-    .product-email-form input:focus {
-      border-color: var(--accent);
-      outline: none;
-    }
-    
-    .product-email-form button {
+    .modal-email-form button {
       padding: 1rem 2rem;
-      background-color: var(--accent);
+      background: var(--accent);
       color: white;
       border: none;
       border-radius: 8px;
       font-weight: 600;
-      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      white-space: nowrap;
     }
     
-    .product-email-form button:hover {
-      background-color: #e67e22;
-      transform: translateY(-2px);
+    .modal-success {
+      animation: fadeIn 0.5s ease;
     }
     
-    .product-email-form button:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+    .modal-success i {
+      font-size: 3rem;
+      color: #4CAF50;
+      margin-bottom: 1rem;
+    }
+    
+    .modal-success h3 {
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+    
+    /* Other Resources - Smaller Cards */
+    .resource-categories {
+      padding: 2rem 0;
+    }
+    
+    .resource-category {
+      margin-bottom: 3rem;
+    }
+    
+    .resource-category h3 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .resource-category h3 i {
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+    
+    .resource-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .resource-link-card {
+      background: #f8f9fa;
+      padding: 1.25rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .resource-link-card:hover {
+      background: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    
+    .resource-link-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .resource-link-card h4 a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .resource-link-card h4 a:hover {
+      color: var(--accent);
+    }
+    
+    .resource-link-card h4 i {
+      font-size: 0.75rem;
+      margin-left: 0.25rem;
+      opacity: 0.5;
+    }
+    
+    .resource-link-card p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin: 0;
+      line-height: 1.4;
     }
     
     .form-note {
@@ -617,84 +651,21 @@
       color: #666;
     }
     
-    /* Success Message */
-    .access-success {
-      text-align: center;
-      padding: 2rem;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .access-success i {
-      font-size: 3rem;
-      color: #4CAF50;
-      margin-bottom: 1rem;
-    }
-    
-    .access-success h3 {
-      font-size: 1.5rem;
-      color: var(--primary-dark);
-      margin-bottom: 0.5rem;
-    }
-    
-    .access-success p {
-      color: var(--gray);
-    }
-    
-    /* Download Button */
     .download-button {
       display: inline-block;
       padding: 1rem 2rem;
-      background-color: var(--primary);
+      background: var(--primary);
       color: white;
       text-decoration: none;
       border-radius: 8px;
       font-weight: 600;
+      margin-top: 1rem;
       transition: all 0.3s ease;
     }
     
     .download-button:hover {
-      background-color: var(--primary-dark);
+      background: var(--primary-dark);
       transform: translateY(-2px);
-    }
-    
-    .download-button i {
-      margin-right: 0.5rem;
-    }
-    
-    /* Resource Badges */
-    .resource-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--accent);
-      color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    
-    .new-badge {
-      background: #e74c3c;
-    }
-    
-    .gated-resource {
-      border: 2px solid var(--accent);
-      background: linear-gradient(135deg, #fff 0%, #fef9f3 100%);
-    }
-    
-    .coming-soon {
-      opacity: 0.7;
-    }
-    
-    .coming-soon .resource-badge {
-      background: #999;
-    }
-    
-    .resource-link.disabled {
-      color: #999;
-      cursor: not-allowed;
-      pointer-events: none;
     }
     
     @keyframes fadeIn {
@@ -704,24 +675,20 @@
     
     /* Responsive */
     @media (max-width: 768px) {
-      .resource-grid {
+      .featured-tools-grid {
         grid-template-columns: 1fr;
       }
       
-      .product-email-form {
+      .resource-links-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-email-form {
         flex-direction: column;
       }
       
-      .featured-content h2 {
-        font-size: 2rem;
-      }
-      
-      .featured-resource-card {
-        padding: 2rem 1.5rem;
-      }
-      
-      .benefits-list {
-        grid-template-columns: 1fr;
+      .section-title {
+        font-size: 1.5rem;
       }
     }
   </style>
