@@ -97,6 +97,12 @@
             <i class="fas fa-check-circle"></i>
             <h3>Success! Check Your Email</h3>
             <p>The AI Forester Top Prompts Library is on its way to your inbox.</p>
+            <div class="prompt-download-section" style="margin-top: 2rem;">
+              <p style="margin-bottom: 1rem;">While you wait, you can also download it directly:</p>
+              <a href="https://drive.google.com/your-prompt-library-link" target="_blank" class="download-button">
+                <i class="fas fa-download"></i> Download Prompts Library
+              </a>
+            </div>
           </div>
         </div>
         <div class="featured-image">
@@ -308,9 +314,15 @@
     </div>
   </footer>
 
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
   <!-- JavaScript for mobile menu and email gates -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize EmailJS with your public key
+      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS public key
+      
       // Mobile menu
       const menuBtn = document.querySelector('.mobile-menu-btn');
       const body = document.body;
@@ -344,60 +356,96 @@
         button.textContent = 'Processing...';
         button.disabled = true;
         
-        // Here you would send the email to your backend
-        // Example integration points:
-        
-        // ConvertKit
-        // await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({
-        //     api_key: 'YOUR_API_KEY',
-        //     email: email,
-        //     tags: ['prompt-library']
-        //   })
-        // });
-        
-        // Mailchimp
-        // await fetch('YOUR_MAILCHIMP_ENDPOINT', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({
-        //     email_address: email,
-        //     status: 'subscribed',
-        //     tags: ['prompt-library']
-        //   })
-        // });
-        
-        // Custom backend
-        // await fetch('/api/subscribe', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({
-        //     email: email,
-        //     product: 'prompt-library'
-        //   })
-        // });
-        
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Store access in localStorage
-        localStorage.setItem('aiforester_prompt_library_access', 'true');
-        localStorage.setItem('aiforester_prompt_library_email', email);
-        
-        // Show success
-        promptGate.style.display = 'none';
-        promptSuccess.style.display = 'block';
-        
-        // Smooth scroll to success message
-        promptSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        // In production, you would:
-        // 1. Send welcome email with download link
-        // 2. Add to email sequence
-        // 3. Track conversion
-        console.log('Prompt Library signup:', email);
+        try {
+          // OPTION 1: EmailJS (Recommended for quick setup)
+          // Sign up at https://www.emailjs.com/ for free
+          // 1. Create an email service (Gmail, Outlook, etc.)
+          // 2. Create an email template
+          // 3. Get your public key and template ID
+          
+          /*
+          await emailjs.send(
+            "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+            "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+            {
+              to_email: "david@aiforester.com",
+              from_email: email,
+              reply_to: email,
+              subject: "New AI Forester Prompts Library Request",
+              message: `New signup for AI Forester Prompts Library from: ${email}`
+            }
+          );
+          */
+          
+          // OPTION 2: Google Forms (No code needed)
+          // Create a Google Form with an email field
+          // Use the form action URL here
+          /*
+          const formData = new FormData();
+          formData.append('entry.YOUR_FIELD_ID', email); // Replace with your Google Form field ID
+          
+          await fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+          });
+          */
+          
+          // OPTION 3: Formspree (Simple form backend)
+          // Sign up at https://formspree.io/
+          /*
+          await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: email,
+              _subject: 'New AI Forester Prompts Library Request'
+            })
+          });
+          */
+          
+          // OPTION 4: Web3Forms (Free and simple)
+          // Get your access key at https://web3forms.com/
+          /*
+          await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              access_key: 'YOUR_ACCESS_KEY',
+              email: email,
+              subject: 'New AI Forester Prompts Library Request',
+              from_name: 'AI Forester Website'
+            })
+          });
+          */
+          
+          // For now, just log it (remove this in production)
+          console.log('Email signup:', email);
+          
+          // Simulate success (remove this when you implement a real solution)
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          
+          // Store access in localStorage
+          localStorage.setItem('aiforester_prompt_library_access', 'true');
+          localStorage.setItem('aiforester_prompt_library_email', email);
+          
+          // Show success
+          promptGate.style.display = 'none';
+          promptSuccess.style.display = 'block';
+          
+          // Smooth scroll to success message
+          promptSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+        } catch (error) {
+          console.error('Error:', error);
+          alert('There was an error processing your request. Please try again or contact david@aiforester.com directly.');
+          button.textContent = originalText;
+          button.disabled = false;
+        }
       });
       
       // Handle gated resource clicks
@@ -633,6 +681,27 @@
     
     .access-success p {
       color: var(--gray);
+    }
+    
+    /* Download Button */
+    .download-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .download-button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .download-button i {
+      margin-right: 0.5rem;
     }
     
     /* Resource Badges */
