@@ -56,6 +56,56 @@
     </div>
   </section>
 
+  <!-- Featured Resource Section -->
+  <section class="featured-resource">
+    <div class="container">
+      <div class="featured-resource-card">
+        <div class="featured-content">
+          <div class="featured-badge">Featured Resource</div>
+          <h2>AI Forester Top Prompts Library</h2>
+          <p class="featured-description">Get instant access to 50+ battle-tested AI prompts specifically designed for forestry professionals. Transform your workflow with prompts for inventory analysis, growth modeling, climate assessments, and more.</p>
+          
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>50+ forestry-specific prompts</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Ready to use with Claude, ChatGPT & Gemini</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Real-world tested by professionals</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Regular updates with new prompts</span>
+            </div>
+          </div>
+          
+          <div id="promptLibraryGate" class="product-email-gate">
+            <h3>Get Free Instant Access</h3>
+            <form id="promptLibraryForm" class="product-email-form">
+              <input type="email" id="promptLibraryEmail" placeholder="Enter your email address" required>
+              <button type="submit">Send Me The Prompts</button>
+            </form>
+            <p class="form-note">Join 500+ forestry professionals using AI. Unsubscribe anytime.</p>
+          </div>
+          
+          <div id="promptLibrarySuccess" class="access-success" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+            <h3>Success! Check Your Email</h3>
+            <p>The AI Forester Top Prompts Library is on its way to your inbox.</p>
+          </div>
+        </div>
+        <div class="featured-image">
+          <img src="/assets/images/prompt-library-preview.png" alt="AI Forester Prompts Library Preview" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Resources Content -->
   <section class="resource-content">
     <div class="container">
@@ -96,6 +146,36 @@
           </div>
         </div>
         
+        <!-- AI Forester Tools & Resources -->
+        <div class="resource-category">
+          <h2><i class="fas fa-tools"></i> AI Forester Tools & Resources</h2>
+          <div class="resource-grid">
+            <!-- Prompt Library Card -->
+            <div class="resource-card gated-resource" data-product="prompt-library">
+              <span class="resource-badge">Free with Email</span>
+              <h3>AI Forester Top Prompts Library</h3>
+              <p>50+ tested prompts for forestry applications including inventory analysis, growth modeling, and climate impact assessments.</p>
+              <a href="#promptLibraryGate" class="resource-link gated-link">Get Free Access <i class="fas fa-lock-open"></i></a>
+            </div>
+            
+            <!-- Future Product Placeholder -->
+            <div class="resource-card coming-soon">
+              <span class="resource-badge">Coming Soon</span>
+              <h3>Forestry Custom GPT</h3>
+              <p>Pre-configured ChatGPT with forestry knowledge, specialized instructions, and domain-specific capabilities.</p>
+              <a href="#" class="resource-link disabled">Coming Soon</a>
+            </div>
+            
+            <!-- Future Product Placeholder -->
+            <div class="resource-card coming-soon">
+              <span class="resource-badge">Coming Soon</span>
+              <h3>Field Data Templates</h3>
+              <p>Professional templates for field data collection, analysis, and reporting optimized for AI processing.</p>
+              <a href="#" class="resource-link disabled">Coming Soon</a>
+            </div>
+          </div>
+        </div>
+        
         <!-- Forestry Data Sources -->
         <div class="resource-category">
           <h2><i class="fas fa-database"></i> Forestry Data Sources</h2>
@@ -128,62 +208,6 @@
               <h3>NASA Earthdata</h3>
               <p>Earth science data, including forest cover and change tracking through satellite imagery and remote sensing.</p>
               <a href="https://earthdata.nasa.gov/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Premium Resources Section -->
-        <div class="resource-category premium-section">
-          <h2><i class="fas fa-star"></i> Premium Resources</h2>
-          <p class="premium-intro">Get access to exclusive AI Forester resources including prompt templates, custom GPTs, and specialized tools.</p>
-          
-          <!-- Email Gate -->
-          <div id="emailGate" class="email-gate">
-            <div class="email-gate-content">
-              <h3>🔒 Unlock Premium Resources</h3>
-              <p>Join the AI Forester community to access:</p>
-              <ul>
-                <li>✓ Forestry-specific AI prompt templates</li>
-                <li>✓ Custom GPT configurations</li>
-                <li>✓ Exclusive tools and workflows</li>
-                <li>✓ Monthly resource updates</li>
-              </ul>
-              <form id="emailForm" class="email-form">
-                <input type="email" id="userEmail" placeholder="Enter your email" required>
-                <button type="submit">Get Free Access</button>
-              </form>
-              <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
-            </div>
-          </div>
-          
-          <!-- Premium Resources (Hidden initially) -->
-          <div id="premiumResources" class="resource-grid premium-resources" style="display: none;">
-            <div class="resource-card premium">
-              <span class="premium-badge">Premium</span>
-              <h3>Forestry AI Prompt Library</h3>
-              <p>50+ tested prompts for forestry applications including inventory analysis, growth modeling, and climate impact assessments.</p>
-              <a href="#" class="resource-link premium-link" data-resource="prompt-library">Access Resource <i class="fas fa-lock-open"></i></a>
-            </div>
-            
-            <div class="resource-card premium">
-              <span class="premium-badge">Premium</span>
-              <h3>Custom Forestry GPT</h3>
-              <p>Pre-configured ChatGPT with forestry knowledge, specialized instructions, and domain-specific capabilities.</p>
-              <a href="#" class="resource-link premium-link" data-resource="custom-gpt">Access Resource <i class="fas fa-lock-open"></i></a>
-            </div>
-            
-            <div class="resource-card premium">
-              <span class="premium-badge">Premium</span>
-              <h3>AI Workflow Templates</h3>
-              <p>Step-by-step workflows for common forestry AI applications including remote sensing analysis and inventory predictions.</p>
-              <a href="#" class="resource-link premium-link" data-resource="workflow-templates">Access Resource <i class="fas fa-lock-open"></i></a>
-            </div>
-            
-            <div class="resource-card premium">
-              <span class="premium-badge">Premium</span>
-              <h3>Claude Project Templates</h3>
-              <p>Pre-built Claude Projects configured for forestry applications with context, instructions, and example prompts.</p>
-              <a href="#" class="resource-link premium-link" data-resource="claude-templates">Access Resource <i class="fas fa-lock-open"></i></a>
             </div>
           </div>
         </div>
@@ -284,7 +308,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript for mobile menu and email gate -->
+  <!-- JavaScript for mobile menu and email gates -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Mobile menu
@@ -295,67 +319,105 @@
         body.classList.toggle('mobile-menu-open');
       });
       
-      // Email gate functionality
-      const emailForm = document.getElementById('emailForm');
-      const emailGate = document.getElementById('emailGate');
-      const premiumResources = document.getElementById('premiumResources');
-      const userEmail = document.getElementById('userEmail');
+      // Email gate functionality for Prompt Library
+      const promptForm = document.getElementById('promptLibraryForm');
+      const promptGate = document.getElementById('promptLibraryGate');
+      const promptSuccess = document.getElementById('promptLibrarySuccess');
+      const promptEmail = document.getElementById('promptLibraryEmail');
       
-      // Check if user has already registered
-      const hasAccess = localStorage.getItem('aiforester_premium_access');
-      if (hasAccess) {
-        emailGate.style.display = 'none';
-        premiumResources.style.display = 'grid';
+      // Check if user has already registered for prompt library
+      const hasPromptAccess = localStorage.getItem('aiforester_prompt_library_access');
+      if (hasPromptAccess) {
+        promptGate.style.display = 'none';
+        promptSuccess.style.display = 'block';
       }
       
-      // Handle form submission
-      emailForm.addEventListener('submit', async function(e) {
+      // Handle prompt library form submission
+      promptForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const email = userEmail.value;
+        const email = promptEmail.value;
+        const button = this.querySelector('button');
+        const originalText = button.textContent;
         
-        // Here you would normally send the email to your backend
-        // For now, we'll just simulate it
-        console.log('Email captured:', email);
+        // Show loading state
+        button.textContent = 'Processing...';
+        button.disabled = true;
         
-        // You can integrate with services like:
-        // - ConvertKit
-        // - Mailchimp
-        // - Custom backend
-        // Example:
-        // await fetch('your-api-endpoint', {
+        // Here you would send the email to your backend
+        // Example integration points:
+        
+        // ConvertKit
+        // await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
         //   method: 'POST',
         //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ email: email })
+        //   body: JSON.stringify({
+        //     api_key: 'YOUR_API_KEY',
+        //     email: email,
+        //     tags: ['prompt-library']
+        //   })
         // });
         
+        // Mailchimp
+        // await fetch('YOUR_MAILCHIMP_ENDPOINT', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({
+        //     email_address: email,
+        //     status: 'subscribed',
+        //     tags: ['prompt-library']
+        //   })
+        // });
+        
+        // Custom backend
+        // await fetch('/api/subscribe', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({
+        //     email: email,
+        //     product: 'prompt-library'
+        //   })
+        // });
+        
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
         // Store access in localStorage
-        localStorage.setItem('aiforester_premium_access', 'true');
-        localStorage.setItem('aiforester_user_email', email);
+        localStorage.setItem('aiforester_prompt_library_access', 'true');
+        localStorage.setItem('aiforester_prompt_library_email', email);
         
-        // Show success and reveal resources
-        emailGate.innerHTML = `
-          <div class="email-success">
-            <h3>🎉 Welcome to the AI Forester Community!</h3>
-            <p>Check your email for your premium resources. You now have full access below.</p>
-          </div>
-        `;
+        // Show success
+        promptGate.style.display = 'none';
+        promptSuccess.style.display = 'block';
         
-        setTimeout(() => {
-          emailGate.style.display = 'none';
-          premiumResources.style.display = 'grid';
-        }, 3000);
+        // Smooth scroll to success message
+        promptSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // In production, you would:
+        // 1. Send welcome email with download link
+        // 2. Add to email sequence
+        // 3. Track conversion
+        console.log('Prompt Library signup:', email);
       });
       
-      // Handle premium resource clicks
-      document.querySelectorAll('.premium-link').forEach(link => {
+      // Handle gated resource clicks
+      document.querySelectorAll('.gated-link').forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
-          const resource = this.getAttribute('data-resource');
+          const product = this.closest('.gated-resource').dataset.product;
           
-          // Here you would handle the actual resource delivery
-          // For now, we'll show an alert
-          alert(`Premium resource "${resource}" would be delivered here. In production, this would link to the actual resource or trigger a download.`);
+          if (product === 'prompt-library') {
+            // Scroll to the featured section
+            document.querySelector('.featured-resource').scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+            
+            // Focus on email input
+            setTimeout(() => {
+              document.getElementById('promptLibraryEmail').focus();
+            }, 500);
+          }
         });
       });
     });
@@ -426,98 +488,155 @@
       margin-left: 0.25rem;
     }
     
-    /* Premium Section Styles */
-    .premium-section {
-      background-color: #f8f9fa;
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 3rem 0;
+    /* Featured Resource Section */
+    .featured-resource {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+      padding: 4rem 0;
+      margin-bottom: 3rem;
     }
     
-    .premium-intro {
-      font-size: 1.1rem;
-      color: var(--gray);
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    
-    .email-gate {
+    .featured-resource-card {
       background: white;
-      border-radius: 12px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
       padding: 3rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: 0 auto 3rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
     }
     
-    .email-gate-content {
-      text-align: center;
+    .featured-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
     
-    .email-gate h3 {
-      font-size: 1.8rem;
+    .featured-content h2 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
       color: var(--primary-dark);
     }
     
-    .email-gate ul {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0;
-      text-align: left;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+    .featured-description {
+      font-size: 1.2rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      line-height: 1.6;
     }
     
-    .email-gate li {
-      padding: 0.5rem 0;
+    .benefits-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--gray);
     }
     
-    .email-form {
-      display: flex;
-      gap: 1rem;
-      max-width: 400px;
-      margin: 2rem auto;
+    .benefit-item i {
+      color: #4CAF50;
+      font-size: 1.2rem;
     }
     
-    .email-form input {
+    /* Product Email Gate */
+    .product-email-gate {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .product-email-gate h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+    
+    .product-email-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto 1rem;
+    }
+    
+    .product-email-form input {
       flex: 1;
-      padding: 0.75rem 1rem;
+      padding: 1rem;
       border: 2px solid #e0e0e0;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 1rem;
       transition: border-color 0.3s ease;
     }
     
-    .email-form input:focus {
+    .product-email-form input:focus {
       border-color: var(--accent);
       outline: none;
     }
     
-    .email-form button {
-      padding: 0.75rem 1.5rem;
+    .product-email-form button {
+      padding: 1rem 2rem;
       background-color: var(--accent);
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
     
-    .email-form button:hover {
+    .product-email-form button:hover {
       background-color: #e67e22;
+      transform: translateY(-2px);
     }
     
-    .privacy-note {
+    .product-email-form button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    
+    .form-note {
       font-size: 0.85rem;
-      color: #999;
-      margin-top: 1rem;
+      color: #666;
     }
     
-    .premium-badge {
+    /* Success Message */
+    .access-success {
+      text-align: center;
+      padding: 2rem;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .access-success i {
+      font-size: 3rem;
+      color: #4CAF50;
+      margin-bottom: 1rem;
+    }
+    
+    .access-success h3 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .access-success p {
+      color: var(--gray);
+    }
+    
+    /* Resource Badges */
+    .resource-badge {
       position: absolute;
       top: 1rem;
       right: 1rem;
@@ -529,14 +648,23 @@
       font-weight: 600;
     }
     
-    .resource-card.premium {
+    .gated-resource {
       border: 2px solid var(--accent);
       background: linear-gradient(135deg, #fff 0%, #fef9f3 100%);
     }
     
-    .email-success {
-      text-align: center;
-      animation: fadeIn 0.5s ease;
+    .coming-soon {
+      opacity: 0.7;
+    }
+    
+    .coming-soon .resource-badge {
+      background: #999;
+    }
+    
+    .resource-link.disabled {
+      color: #999;
+      cursor: not-allowed;
+      pointer-events: none;
     }
     
     @keyframes fadeIn {
@@ -544,17 +672,26 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
+    /* Responsive */
     @media (max-width: 768px) {
       .resource-grid {
         grid-template-columns: 1fr;
       }
       
-      .email-form {
+      .product-email-form {
         flex-direction: column;
       }
       
-      .email-gate {
+      .featured-content h2 {
+        font-size: 2rem;
+      }
+      
+      .featured-resource-card {
         padding: 2rem 1.5rem;
+      }
+      
+      .benefits-list {
+        grid-template-columns: 1fr;
       }
     }
   </style>
