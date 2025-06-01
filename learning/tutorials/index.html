@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Forestry Tutorials | Step-by-Step Guides for Forest Professionals</title>
+  <meta name="description" content="Comprehensive AI forestry tutorials with step-by-step guides, practical examples, and hands-on exercises. Learn prompt engineering, forest inventory automation, climate analysis, and more.">
+  <meta name="keywords" content="forestry tutorials, AI forestry guides, forest technology tutorials, prompt engineering tutorials, climate-smart forestry guides, forest inventory AI tutorials, silviculture AI guides">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="AI Forestry Tutorials | Step-by-Step Guides">
+  <meta property="og:description" content="Learn AI applications in forestry through comprehensive tutorials with practical examples and hands-on exercises.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aiforester.com/learning/tutorials/">
+  
+  <!-- Schema.org markup for Tutorial Collection -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "AI Forestry Tutorials",
+    "description": "Comprehensive collection of AI tutorials for forestry professionals",
+    "numberOfItems": 12,
+    "itemListOrder": "ascending",
+    "itemListElement": [
+      {
+        "@type": "HowTo",
+        "name": "Getting Started with AI for Foresters",
+        "description": "Complete beginner's guide to understanding and using AI in forestry applications"
+      },
+      {
+        "@type": "HowTo", 
+        "name": "Writing Effective AI Prompts for Forestry",
+        "description": "Learn to craft prompts that get the best results from AI tools for forest management tasks"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Microsoft Clarity Tracking -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "r6fqdz0i2c");
+  </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="/" class="logo">AI<span>Forester</span></a>
+      <nav class="nav">
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/products/">Products</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/learning/" class="active">Learning</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/learning/">Learning</a></li>
+        <li aria-current="page">Tutorials</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Tutorials Header -->
+  <section class="tutorials-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>AI Forestry Tutorials</h1>
+        <p class="hero-subtitle">Step-by-step guides to master AI applications in forestry and forest management</p>
+        
+        <!-- Search Bar -->
+        <div class="tutorial-search">
+          <div class="search-container">
+            <input type="text" id="tutorialSearch" placeholder="Search tutorials, topics, or techniques..." aria-label="Search tutorials">
+            <button class="search-btn" onclick="searchTutorials()" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <div class="search-filters">
+            <select id="levelFilter" aria-label="Filter by level">
+              <option value="">All Levels</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+            <select id="topicFilter" aria-label="Filter by topic">
+              <option value="">All Topics</option>
+              <option value="prompts">Prompt Engineering</option>
+              <option value="inventory">Forest Inventory</option>
+              <option value="climate">Climate Analysis</option>
+              <option value="data">Data Management</option>
+              <option value="automation">Automation</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorial Categories -->
+  <section class="tutorial-categories">
+    <div class="container">
+      <h2 class="section-title">Browse by Category</h2>
+      <div class="category-grid">
+        <a href="#beginner-tutorials" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3>Getting Started</h3>
+          <p>6 tutorials</p>
+          <span class="category-level">Beginner</span>
+        </a>
+        
+        <a href="#prompt-tutorials" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-edit"></i>
+          </div>
+          <h3>Prompt Engineering</h3>
+          <p>4 tutorials</p>
+          <span class="category-level">All Levels</span>
+        </a>
+        
+        <a href="#inventory-tutorials" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <h3>Forest Inventory</h3>
+          <p>3 tutorials</p>
+          <span class="category-level">Intermediate</span>
+        </a>
+        
+        <a href="#climate-tutorials" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-thermometer-half"></i>
+          </div>
+          <h3>Climate Analysis</h3>
+          <p>3 tutorials</p>
+          <span class="category-level">Intermediate</span>
+        </a>
+        
+        <a href="#data-tutorials" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3>Data Management</h3>
+          <p>4 tutorials</p>
+          <span class="category-level">All Levels</span>
+        </a>
+        
+        <a href="#automation-tutorials" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Automation</h3>
+          <p>2 tutorials</p>
+          <span class="category-level">Advanced</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tutorials -->
+  <section id="featured-tutorials" class="tutorials-section">
+    <div class="container">
+      <h2 class="section-title">Featured Tutorials</h2>
+      <div class="tutorials-grid" id="tutorialsGrid">
+        
+        <!-- Beginner Tutorials -->
+        <article class="tutorial-card" data-level="beginner" data-topic="prompts" data-tags="AI basics, getting started, prompts">
+          <div class="tutorial-header">
+            <div class="tutorial-meta">
+              <span class="level-badge beginner">Beginner</span>
+              <span class="duration"><i class="fas fa-clock"></i> 45 min</span>
+            </div>
+            <div class="tutorial-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-text">4.9 (127 reviews)</span>
+            </div>
+          </div>
+          <h3>Getting Started with AI for Foresters</h3>
+          <p>Complete introduction to AI concepts, tools, and applications specifically for forestry professionals. No prior AI experience required.</p>
+          <div class="tutorial-topics">
+            <span class="topic-tag">AI Fundamentals</span>
+            <span class="topic-tag">Tool Selection</span>
+            <span class="topic-tag">First Steps</span>
+          </div>
+          <div class="tutorial-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">Not Started</span>
+          </div>
+          <a href="/learning/tutorials/getting-started-ai-forestry.html" class="tutorial-cta">Start Tutorial</a>
+        </article>
+
+        <article class="tutorial-card" data-level="beginner" data-topic="prompts" data-tags="prompt engineering, ChatGPT, Claude">
+          <div class="tutorial-header">
+            <div class="tutorial-meta">
+              <span class="level-badge beginner">Beginner</span>
+              <span class="duration"><i class="fas fa-clock"></i> 60 min</span>
+            </div>
+            <div class="tutorial-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-text">4.8 (89 reviews)</span>
+            </div>
+          </div>
+          <h3>Writing Your First AI Prompts</h3>
+          <p>Learn to write effective prompts for forestry applications using ChatGPT, Claude, and other AI tools. Includes templates and examples.</p>
+          <div class="tutorial-topics">
+            <span class="topic-tag">Prompt Structure</span>
+            <span class="topic-tag">Context Setting</span>
+            <span class="topic-tag">Templates</span>
+          </div>
+          <div class="tutorial-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">Not Started</span>
+          </div>
+          <a href="/learning/tutorials/first-ai-prompts-forestry.html" class="tutorial-cta">Start Tutorial</a>
+        </article>
+
+        <article class="tutorial-card" data-level="intermediate" data-topic="prompts" data-tags="advanced prompts, chain of thought, role playing">
+          <div class="tutorial-header">
+            <div class="tutorial-meta">
+              <span class="level-badge intermediate">Intermediate</span>
+              <span class="duration"><i class="fas fa-clock"></i> 90 min</span>
+            </div>
+            <div class="tutorial-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-text">4.9 (156 reviews)</span>
+            </div>
+          </div>
+          <h3>Advanced Prompt Engineering for Forestry</h3>
+          <p>Master complex prompting techniques including chain-of-thought reasoning, role-playing, and multi-step analysis for sophisticated forestry tasks.</p>
+          <div class="tutorial-topics">
+            <span class="topic-tag">Chain-of-Thought</span>
+            <span class="topic-tag">Role-Playing</span>
+            <span class="topic-tag">Multi-Step Analysis</span>
+          </div>
+          <div class="tutorial-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">Not Started</span>
+          </div>
+          <a href="/learning/prompt-engineering-for-forestry.html" class="tutorial-cta">Start Tutorial</a>
+        </article>
+
+        <article class="tutorial-card" data-level="intermediate" data-topic="inventory" data-tags="forest inventory, automation, species identification">
+          <div class="tutorial-header">
+            <div class="tutorial-meta">
+              <span class="level-badge intermediate">Intermediate</span>
+              <span class="duration"><i class="fas fa-clock"></i> 2 hours</span>
+            </div>
+            <div class="tutorial-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="rating-text">4.7 (98 reviews)</span>
+            </div>
+          </div>
+          <h3>AI-Powered Forest Inventory</h3>
+          <p>Use AI to automate forest inventory processes, enhance accuracy, and generate insights from field data. Includes hands-on exercises.</p>
+          <div class="tutorial-topics">
+            <span class="topic-tag">Data Processing</span>
+            <span class="topic-tag">Species ID</span>
+            <span class="topic-tag">Volume Estimation</span>
+          </div>
+          <div class="tutorial-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">Not Started</span>
+          </div>
+          <a href="/learning/tutorials/ai-forest-inventory.html" class="tutorial-cta">Start Tutorial</a>
+        </article>
+
+        <article class="tutorial-card" data-level="intermediate" data-topic="climate" data-tags="climate analysis, adaptation, risk assessment">
+          <div class="tutorial-header">
+            <div class="tutorial-meta">
+              <span class="level-badge intermediate">Intermediate</span>
+              <span class="duration"><i class="fas fa-clock"></i> 105 min</span>
+            </div>
+            <div class="tutorial-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-text">4.8 (73 reviews)</span>
+            </div>
+          </div>
+          <h3>Climate-Smart Forestry with AI</h3>
+          <p>Leverage AI for climate risk assessment, adaptation planning, and carbon tracking in forest management decisions.</p>
+          <div class="tutorial-topics">
+            <span class="topic-tag">Risk Assessment</span>
+            <span class="topic-tag">Carbon Tracking</span>
+            <span class="topic-tag">Adaptation</span>
+          </div>
+          <div class="tutorial-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">Not Started</span>
+          </div>
+          <a href="/learning/tutorials/climate-smart-forestry-ai.html" class="tutorial-cta">Start Tutorial</a>
+        </article>
+
+        <article class="tutorial-card" data-level="beginner" data-topic="data" data-tags="data preparation, data quality, file formats">
+          <div class="tutorial-header">
+            <div class="tutorial-meta">
+              <span class="level-badge beginner">Beginner</span>
+              <span class="duration"><i class="fas fa-clock"></i> 50 min</span>
+            </div>
+            <div class="tutorial-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-text">4.9 (112 reviews)</span>
+            </div>
+          </div>
+          <h3>Preparing Forest Data for AI</h3>
+          <p>Learn how to structure, clean, and format forestry data for AI analysis. Covers data quality, file formats, and best practices.</p>
+          <div class="tutorial-topics">
+            <span class="topic-tag">Data Quality</span>
+            <span class="topic-tag">File Formats</span>
+            <span class="topic-tag">Best Practices</span>
+          </div>
+          <div class="tutorial-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text">Not Started</span>
+          </div>
+          <a href="/learning/tutorials/forest-data-preparation.html" class="tutorial-cta">Start Tutorial</a>
+        </article>
+
+      </div>
+      
+      <!-- No results message -->
+      <div id="noResults" class="no-results" style="display: none;">
+        <i class="fas fa-search"></i>
+        <h3>No tutorials found</h3>
+        <p>Try adjusting your search terms or filters to find what you're looking for.</p>
+        <button onclick="clearSearch()" class="clear-search-btn">Clear Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorial Navigation -->
+  <section class="tutorial-nav-section">
+    <div class="container">
+      <h2>Explore More Learning Content</h2>
+      <div class="nav-links">
+        <a href="/learning/case-studies/" class="nav-link-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Case Studies</h3>
+          <p>Real-world implementations with measurable results</p>
+        </a>
+        <a href="/learning/research/" class="nav-link-card">
+          <i class="fas fa-flask"></i>
+          <h3>Research Articles</h3>
+          <p>Latest findings in AI forestry applications</p>
+        </a>
+        <a href="/resources/" class="nav-link-card">
+          <i class="fas fa-tools"></i>
+          <h3>Tools & Resources</h3>
+          <p>AI tools, datasets, and reference materials</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>AI Forester</h4>
+          <p>Bridging forestry expertise and artificial intelligence to create innovative solutions for environmental challenges.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Tutorials</h4>
+          <ul>
+            <li><a href="#beginner-tutorials">Getting Started</a></li>
+            <li><a href="#prompt-tutorials">Prompt Engineering</a></li>
+            <li><a href="#inventory-tutorials">Forest Inventory</a></li>
+            <li><a href="#climate-tutorials">Climate Analysis</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:david@aiforester.com">david@aiforester.com</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay-rpf-p-eng-75b4b511">LinkedIn</a></li>
+            <li><a href="https://forestflows.substack.com">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 AI Forester. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Search and Filtering -->
+  <script>
+    // Tutorial search and filtering functionality
+    function searchTutorials() {
+      const searchTerm = document.getElementById('tutorialSearch').value.toLowerCase();
+      const levelFilter = document.getElementById('levelFilter').value;
+      const topicFilter = document.getElementById('topicFilter').value;
+      
+      filterTutorials(searchTerm, levelFilter, topicFilter);
+    }
+    
+    function filterTutorials(searchTerm = '', levelFilter = '', topicFilter = '') {
+      const tutorials = document.querySelectorAll('.tutorial-card');
+      const noResults = document.getElementById('noResults');
+      let visibleCount = 0;
+      
+      tutorials.forEach(tutorial => {
+        const title = tutorial.querySelector('h3').textContent.toLowerCase();
+        const description = tutorial.querySelector('p').textContent.toLowerCase();
+        const tags = tutorial.dataset.tags.toLowerCase();
+        const level = tutorial.dataset.level;
+        const topic = tutorial.dataset.topic;
+        
+        const matchesSearch = !searchTerm || 
+          title.includes(searchTerm) || 
+          description.includes(searchTerm) || 
+          tags.includes(searchTerm);
+        
+        const matchesLevel = !levelFilter || level === levelFilter;
+        const matchesTopic = !topicFilter || topic === topicFilter;
+        
+        if (matchesSearch && matchesLevel && matchesTopic) {
+          tutorial.style.display = 'block';
+          visibleCount++;
+        } else {
+          tutorial.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+    
+    function clearSearch() {
+      document.getElementById('tutorialSearch').value = '';
+      document.getElementById('levelFilter').value = '';
+      document.getElementById('topicFilter').value = '';
+      filterTutorials();
+    }
+    
+    // Real-time search
+    document.getElementById('tutorialSearch').addEventListener('input', function() {
+      const levelFilter = document.getElementById('levelFilter').value;
+      const topicFilter = document.getElementById('topicFilter').value;
+      filterTutorials(this.value.toLowerCase(), levelFilter, topicFilter);
+    });
+    
+    // Filter change events
+    document.getElementById('levelFilter').addEventListener('change', function() {
+      const searchTerm = document.getElementById('tutorialSearch').value.toLowerCase();
+      const topicFilter = document.getElementById('topicFilter').value;
+      filterTutorials(searchTerm, this.value, topicFilter);
+    });
+    
+    document.getElementById('topicFilter').addEventListener('change', function() {
+      const searchTerm = document.getElementById('tutorialSearch').value.toLowerCase();
+      const levelFilter = document.getElementById('levelFilter').value;
+      filterTutorials(searchTerm, levelFilter, this.value);
+    });
+    
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const body = document.body;
+      
+      menuBtn.addEventListener('click', function() {
+        body.classList.toggle('mobile-menu-open');
+      });
+    });
+  </script>
+
+  <style>
+    /* Breadcrumb Navigation */
+    .breadcrumb {
+      background: var(--light);
+      padding: 1rem 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .breadcrumb-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    
+    .breadcrumb-list li {
+      display: flex;
+      align-items: center;
+    }
+    
+    .breadcrumb-list li:not(:last-child)::after {
+      content: '>';
+      margin: 0 0.5rem;
+      color: var(--gray);
+    }
+    
+    .breadcrumb-list a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .breadcrumb-list a:hover {
+      text-decoration: underline;
+    }
+    
+    .breadcrumb-list li[aria-current="page"] {
+      color: var(--gray);
+    }
+    
+    /* Tutorials Hero */
+    .tutorials-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin: 1rem 0 2rem 0;
+      opacity: 0.9;
+    }
+    
+    /* Search Functionality */
+    .tutorial-search {
+      max-width: 600px;
+      margin: 2rem auto 0;
+    }
+    
+    .search-container {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    
+    .search-container input {
+      width: 100%;
+      padding: 1rem 4rem 1rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .search-btn {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      color: white;
+      cursor: pointer;
+    }
+    
+    .search-filters {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    
+    .search-filters select {
+      padding: 0.5rem 1rem;
+      border: 2px solid white;
+      border-radius: 25px;
+      background: white;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+    
+    /* Category Grid */
+    .tutorial-categories {
+      padding: 4rem 0;
+      background: var(--light);
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .category-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--primary-dark);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    } 
+    
+    .category-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    
+    .category-icon i {
+      font-size: 1.5rem;
+      color: white;
+    }
+    
+    .category-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .category-card p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    
+    .category-level {
+      background: var(--light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+    
+    /* Tutorials Grid */
+    .tutorials-section {
+      padding: 4rem 0;
+    }
+    
+    .tutorials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+    
+    .tutorial-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .tutorial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    
+    .tutorial-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .tutorial-meta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .level-badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .level-badge.beginner {
+      background: #e8f5e8;
+      color: #2d5a2d;
+    }
+    
+    .level-badge.intermediate {
+      background: #fff3cd;
+      color: #856404;
+    }
+    
+    .level-badge.advanced {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    
+    .duration {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .tutorial-rating {
+      text-align: right;
+    }
+    
+    .stars {
+      color: #ffd700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .rating-text {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    
+    .tutorial-card h3 {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+    
+    .tutorial-card p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .tutorial-topics {
+      margin-bottom: 1.5rem;
+    }
+    
+    .topic-tag {
+      display: inline-block;
+      background: var(--light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      margin: 0.2rem 0.3rem 0.2rem 0;
+      color: var(--primary);
+    }
+    
+    .tutorial-progress {
+      margin-bottom: 1.5rem;
+    }
+    
+    .progress-bar {
+      background: var(--light);
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progress-fill {
+      background: var(--accent);
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    
+    .progress-text {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    
+    .tutorial-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .tutorial-cta:hover {
+      background: #e67e22;
+      transform: translateY(-2px);
+    }
+    
+    /* No Results */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--gray);
+    }
+    
+    .no-results i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    .clear-search-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    
+    /* Tutorial Navigation */
+    .tutorial-nav-section {
+      padding: 4rem 0;
+      background: var(--light);
+    }
+    
+    .nav-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .nav-link-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--primary-dark);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .nav-link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    .nav-link-card i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    
+    .nav-link-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .nav-link-card p {
+      color: var(--gray);
+      margin: 0;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .tutorials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .search-filters {
+        flex-direction: column;
+      }
+      
+      .tutorial-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .tutorial-rating {
+        text-align: left;
+        margin-top: 0.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
