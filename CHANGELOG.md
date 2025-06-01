@@ -1,6 +1,11 @@
 # Changelog
 
 ## 2025-06-01
+- **EDUCATIONAL REFRAMING:** Updated homepage hero section with educational focus
+  - Changed hero subtitle from "Helping busy builders unlock real-world potential with AI + tech solutions..." to "Exploring the intersection of forestry and AI to foster sustainable practices."
+  - Updated primary CTA from "See My Work" to "Dive into Learning" to emphasize educational value
+  - Enhanced meta descriptions and page titles to reflect educational positioning
+  - Shifted brand positioning from service-focused to education and exploration-focused
 - **FIXED:** Updated Google Drive link in prompt library from folder to specific file
   - Changed from: `https://drive.google.com/drive/folders/1hNs6pFCquZ3ABCzNpUNW5r10h6rrYHzd`
   - Changed to: `https://drive.google.com/file/d/16ZgRiskDNVCyqpxBFA-IskUzwNYNUogO/view?usp=sharing`
