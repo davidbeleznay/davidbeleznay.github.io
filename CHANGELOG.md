@@ -1,5 +1,11 @@
 # Changelog
 
+## 2025-06-01
+- **FIXED:** Updated Google Drive link in prompt library from folder to specific file
+  - Changed from: `https://drive.google.com/drive/folders/1hNs6pFCquZ3ABCzNpUNW5r10h6rrYHzd`
+  - Changed to: `https://drive.google.com/file/d/16ZgRiskDNVCyqpxBFA-IskUzwNYNUogO/view?usp=sharing`
+  - Updated in resources/index.html modal success section for proper prompt library access
+
 ## 2025-04-27
 - Added sitemap.xml for improved search engine and AI crawler indexing
   - Included all main pages and sections with appropriate priority levels
