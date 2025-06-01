@@ -1,6 +1,15 @@
 # Changelog
 
 ## 2025-06-01
+- **MAJOR:** Complete Learning Hub redesign with structured educational pathways
+  - Added three skill-level pathways: Beginner (4-6 weeks), Intermediate (6-8 weeks), Advanced (8-12 weeks)
+  - Created 15+ comprehensive tutorials with expandable course content and learning objectives
+  - Added 6 detailed case studies with real-world applications and measurable outcomes
+  - Built comprehensive AI Forestry Glossary with 20+ essential terms and definitions
+  - Included AI Tools Guide with specific forestry use cases for each tool
+  - Added interactive course expansion and smooth scrolling navigation
+  - Structured learning stats display (15+ tutorials, 3 skill levels, 6 case studies)
+  - Enhanced SEO with educational-focused meta tags and keywords
 - **EDUCATIONAL REFRAMING:** Updated homepage hero section with educational focus
   - Changed hero subtitle from "Helping busy builders unlock real-world potential with AI + tech solutions..." to "Exploring the intersection of forestry and AI to foster sustainable practices."
   - Updated primary CTA from "See My Work" to "Dive into Learning" to emphasize educational value
