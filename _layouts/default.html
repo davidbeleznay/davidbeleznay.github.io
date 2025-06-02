@@ -3,7 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  
+  <!-- Page Title -->
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}AI Forester | Forestry Education, AI Tutorials & Climate-Smart Solutions | David Beleznay{% endif %}</title>
+  
+  <!-- Meta Description -->
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Explore sustainable forestry through AI education, free tutorials, and climate-smart solutions. Learn from 20+ years of forestry expertise combined with cutting-edge AI applications for environmental professionals.{% endif %}">
+  
+  <!-- Keywords -->
+  <meta name="keywords" content="AI forester, forestry education, sustainable forestry practices, AI environmental solutions, forest engineering learning, climate-smart forestry education, forest management AI, environmental technology education, silviculture AI, forest inventory automation">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}AI Forester | Forestry Education & Climate-Smart AI Solutions{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Explore sustainable forestry through AI education, free tutorials, and climate-smart solutions. Educational platform for modern forest professionals.{% endif %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/images/profile/hero-headshot.jpg' | absolute_url }}">
+  <meta property="og:site_name" content="AI Forester">
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}AI Forester | Forestry Education & Climate-Smart AI Solutions{% endif %}">
+  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}Explore sustainable forestry through AI education, free tutorials, and climate-smart solutions for forest professionals.{% endif %}">
+  <meta name="twitter:image" content="{{ '/assets/images/profile/hero-headshot.jpg' | absolute_url }}">
+  <meta name="twitter:site" content="@forester_ai">
+  
+  <!-- Schema.org markup for Professional Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AI Forester",
+    "description": "Educational platform exploring the intersection of forestry and AI to foster sustainable practices",
+    "url": "{{ site.url }}",
+    "founder": {
+      "@type": "Person",
+      "name": "David Beleznay",
+      "jobTitle": "Professional Forester & AI Specialist",
+      "hasCredential": ["Professional Forester (RPF)", "Professional Engineer (P.Eng)"]
+    },
+    "areaServed": "Global",
+    "serviceType": ["Forestry Education", "AI Training", "Environmental Consulting"],
+    "potentialAction": {
+      "@type": "LearnAction",
+      "target": "{{ '/learning/' | absolute_url }}"
+    }
+  }
+  </script>
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
   
   <!-- Microsoft Clarity Tracking -->
   <script type="text/javascript">
@@ -14,9 +63,10 @@
     })(window, document, "clarity", "script", "r6fqdz0i2c");
   </script>
   
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <header class="site-header">
