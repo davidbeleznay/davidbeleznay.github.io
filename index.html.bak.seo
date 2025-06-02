@@ -1,0 +1,5 @@
+<!-- 
+This file has been moved to _layouts/default.html to fix blank page issue.
+The SEO metadata from this file is now integrated into the Jekyll layout system.
+Jekyll will now properly process index.md with the default layout.
+-->
