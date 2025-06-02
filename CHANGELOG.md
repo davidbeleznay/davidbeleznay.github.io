@@ -1,5 +1,14 @@
 # Changelog
 
+## 2025-06-02
+- **CRITICAL FIX:** Resolved blank page issue caused by conflicting index files
+  - **Problem:** Both index.html and index.md existed in root, causing Jekyll build conflicts
+  - **Solution:** Moved conflicting index.html content to enhanced _layouts/default.html
+  - **Enhanced SEO:** Integrated all SEO metadata, Open Graph tags, and Schema.org markup into Jekyll layout system
+  - **Improved:** Added dynamic meta tags that work with Jekyll front matter variables
+  - **Added:** Font Awesome CSS for icon support across all pages
+  - **Result:** Jekyll now properly processes index.md as homepage with full SEO metadata
+
 ## 2025-06-01
 - **SEO & METADATA ENHANCEMENT:** Comprehensive SEO optimization across all educational pages
   - Enhanced homepage with educational-focused title: "AI Forester | Forestry Education, AI Tutorials & Climate-Smart Solutions"
