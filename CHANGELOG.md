@@ -1,6 +1,13 @@
 # Changelog
 
 ## 2025-06-04
+- **BLANK PAGE FIXED:** Final resolution of Jekyll index file conflicts
+  - **Problem:** Empty index.html file was causing blank page display
+  - **Solution:** Replaced index.html with proper Jekyll content including hero image layout
+  - **Added:** Hero section with personal headshot and "Engineer. Forester. AI Explorer." tagline
+  - **Result:** Site now displays proper hero layout with professional image and branding
+  - **Note:** GitHub Pages should rebuild and display correctly within 2-3 minutes
+
 - **CRITICAL FIX:** Resolved conflicting index.html file that was preventing hero image from displaying
   - **Problem:** An old index.html file was taking precedence over index.md, showing the old forest background design
   - **Solution:** Deleted conflicting index.html file to allow Jekyll to properly process index.md
