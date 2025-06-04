@@ -12,13 +12,19 @@
   <meta property="og:description" content="Innovative applications of AI in forestry, environmental science, and natural resource management.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aiforester.com">
+  <meta property="og:image" content="https://aiforester.com/assets/images/profile/hero-headshot.jpg">
   <meta property="og:site_name" content="AI Forester">
   
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Forester | Bridging Forestry Expertise & AI">
+  <meta name="twitter:description" content="Innovative applications of AI in forestry, environmental science, and natural resource management.">
+  <meta name="twitter:image" content="https://aiforester.com/assets/images/profile/hero-headshot.jpg">
+  <meta name="twitter:site" content="@forester_ai">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://aiforester.com">
+  
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -27,122 +33,145 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "r6fqdz0i2c");
   </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
+  <!-- Header -->
   <header class="header">
     <div class="container header-container">
-      <div class="logo">
-        <a href="/">🌲 AI <span>Forester</span></a>
-      </div>
+      <a href="/" class="logo">AI <span>Forester</span></a>
       <nav class="nav">
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
         <ul>
-          <li><a href="/">Home</a></li>
+          <li><a href="/" class="active">Home</a></li>
           <li><a href="/projects/">Projects</a></li>
+          <li><a href="/products/">Products</a></li>
+          <li><a href="/services.html">Services</a></li>
           <li><a href="/learning/">Learning</a></li>
           <li><a href="/resources/">Resources</a></li>
-          <li><a href="/services.html">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="mobile-menu-btn">
-        <i class="fas fa-bars"></i>
-      </button>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <h1>Bridging Forestry Expertise and Artificial Intelligence</h1>
-        <p>Exploring innovative applications of AI technology in forestry, environmental science, and natural resource management.</p>
-        <a href="/projects/" class="cta-button">View Projects</a>
-      </div>
-    </section>
+  <!-- Hero Section with Background Image -->
+  <section class="page-hero hero-with-bg">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <h1>Bridging Forestry Expertise and Artificial Intelligence</h1>
+      <p>Exploring innovative applications of AI technology in forestry, environmental science, and natural resource management.</p>
+      <a href="/projects/" class="cta-button hero-cta">View Projects</a>
+    </div>
+  </section>
 
-    <section class="featured">
-      <div class="container">
-        <div class="featured-header">
-          <h2>Featured Projects</h2>
-          <p>Practical applications at the intersection of forestry expertise and AI capabilities</p>
-        </div>
-        <div class="featured-grid">
-          <div class="featured-item">
-            <img src="/assets/images/projects/forestry-data-visualization.jpg" alt="Forestry Data Visualization" onerror="this.style.display='none'">
-            <div class="featured-content">
-              <h3>Forestry Data Visualization</h3>
-              <p>Using AI to transform complex forestry datasets into intuitive, actionable visualizations.</p>
-              <a href="/projects/forestry-data-visualization.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="featured-item">
-            <img src="/assets/images/projects/forest-inventory-analysis.jpg" alt="Forest Inventory Analysis" onerror="this.style.display='none'">
-            <div class="featured-content">
-              <h3>Forest Inventory Analysis</h3>
-              <p>Leveraging machine learning to enhance traditional forest inventory methods for greater accuracy.</p>
-              <a href="/projects/forest-inventory-analysis.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="featured-item">
-            <img src="/assets/images/projects/prompt-engineering.jpg" alt="Prompt Engineering for Forestry" onerror="this.style.display='none'">
-            <div class="featured-content">
-              <h3>Prompt Engineering for Forestry</h3>
-              <p>Developing specialized prompts to extract forestry insights from large language models.</p>
-              <a href="/learning/prompt-engineering-for-forestry.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
+  <!-- Featured Projects Section -->
+  <section class="featured">
+    <div class="container">
+      <div class="featured-header">
+        <h2>Featured Projects</h2>
+        <p>Practical applications at the intersection of forestry expertise and AI capabilities</p>
+      </div>
+      <div class="featured-grid">
+        <div class="featured-item">
+          <img src="/assets/images/projects/forestry-data-visualization.jpg" alt="Forestry Data Visualization" onerror="this.style.display='none'">
+          <div class="featured-content">
+            <h3>Forestry Data Visualization</h3>
+            <p>Using AI to transform complex forestry datasets into intuitive, actionable visualizations.</p>
+            <a href="/projects/forestry-data-visualization.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="about">
-      <div class="container about-container">
-        <div class="about-image">
-          <img src="/assets/images/profile/david-beleznay.jpg" alt="David Beleznay, AI Forester" onerror="this.style.display='none'">
+        <div class="featured-item">
+          <img src="/assets/images/projects/forest-inventory-analysis.jpg" alt="Forest Inventory Analysis" onerror="this.style.display='none'">
+          <div class="featured-content">
+            <h3>Forest Inventory Analysis</h3>
+            <p>Leveraging machine learning to enhance traditional forest inventory methods for greater accuracy.</p>
+            <a href="/projects/forest-inventory-analysis.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-        <div class="about-content">
-          <h2>About AI Forester</h2>
-          <p>AI Forester was created to explore the emerging intersection between traditional forestry expertise and cutting-edge artificial intelligence capabilities.</p>
-          <p>As a professional forester and engineer with experience in hydrology and terrain analysis, I've witnessed firsthand how AI tools can enhance our understanding and management of forest ecosystems.</p>
-          <p>Through this platform, I share projects, insights, and resources that demonstrate the practical applications of AI in forestry contexts, while building a bridge between these two specialized domains.</p>
-          <a href="/learning/" class="cta-button">Explore Resources</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="container">
-        <h2>Get in Touch</h2>
-        <p>Interested in the intersection of AI and forestry? Have questions about a specific project or want to discuss potential applications? I'd love to hear from you.</p>
-        <a href="mailto:david@aiforester.com" class="contact-button">david@aiforester.com</a>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/david-beleznay" class="social-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/davidbeleznay" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+        <div class="featured-item">
+          <img src="/assets/images/projects/prompt-engineering.jpg" alt="Prompt Engineering for Forestry" onerror="this.style.display='none'">
+          <div class="featured-content">
+            <h3>Prompt Engineering for Forestry</h3>
+            <p>Developing specialized prompts to extract forestry insights from large language models.</p>
+            <a href="/learning/prompt-engineering-for-forestry.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
+  <!-- About Section -->
+  <section class="about">
+    <div class="container about-container">
+      <div class="about-image">
+        <img src="/assets/images/profile/hero-headshot.jpg" alt="David Beleznay, AI Forester" loading="lazy">
+      </div>
+      <div class="about-content">
+        <h2>About AI Forester</h2>
+        <p>AI Forester was created to explore the emerging intersection between traditional forestry expertise and cutting-edge artificial intelligence capabilities.</p>
+        <p>As a professional forester and engineer with experience in hydrology and terrain analysis, I've witnessed firsthand how AI tools can enhance our understanding and management of forest ecosystems.</p>
+        <p>Through this platform, I share projects, insights, and resources that demonstrate the practical applications of AI in forestry contexts, while building a bridge between these two specialized domains.</p>
+        <a href="/learning/" class="cta-button">Explore Resources</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <p>Interested in the intersection of AI and forestry? Have questions about a specific project or want to discuss potential applications? I'd love to hear from you.</p>
+      <a href="mailto:david@aiforester.com" class="contact-button">david@aiforester.com</a>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/david-beleznay" class="social-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/davidbeleznay" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://x.com/forester_ai" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://forestflows.substack.com" class="social-icon" target="_blank"><i class="fas fa-newspaper"></i></a>
+        <a href="https://www.youtube.com/@theAIForester" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-container">
         <div class="footer-col">
           <h4>AI Forester</h4>
-          <p>Bridging forestry expertise and artificial intelligence for sustainable forest management.</p>
+          <p>Bridging forestry expertise and artificial intelligence to create innovative solutions for environmental challenges.</p>
         </div>
         <div class="footer-col">
-          <h4>Quick Links</h4>
+          <h4>Explore</h4>
           <ul>
+            <li><a href="/">Home</a></li>
             <li><a href="/projects/">Projects</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/services.html">Services</a></li>
             <li><a href="/learning/">Learning</a></li>
             <li><a href="/resources/">Resources</a></li>
-            <li><a href="/services.html">Services</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Connect</h4>
           <ul>
-            <li><a href="mailto:david@aiforester.com">Email</a></li>
-            <li><a href="https://linkedin.com/in/david-beleznay" target="_blank">LinkedIn</a></li>
-            <li><a href="https://github.com/davidbeleznay" target="_blank">GitHub</a></li>
+            <li><a href="mailto:david@aiforester.com">david@aiforester.com</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay">LinkedIn</a></li>
+            <li><a href="https://x.com/forester_ai">Twitter/X</a></li>
+            <li><a href="https://forestflows.substack.com">Substack Newsletter</a></li>
+            <li><a href="https://www.youtube.com/@theAIForester">YouTube</a></li>
           </ul>
         </div>
       </div>
@@ -152,11 +181,83 @@
     </div>
   </footer>
 
-  <!-- Mobile menu functionality -->
+  <!-- JavaScript for mobile menu -->
   <script>
-    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-      document.body.classList.toggle('mobile-menu-open');
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const body = document.body;
+      
+      menuBtn.addEventListener('click', function() {
+        body.classList.toggle('mobile-menu-open');
+      });
     });
   </script>
+  
+  <style>
+    /* Hero Styles matching your services page */
+    .page-hero {
+      color: white;
+      padding: var(--spacing-xl) 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .page-hero h1 {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .page-hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto var(--spacing-md);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-cta {
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Hero with Background Image */
+    .hero-with-bg {
+      background-image: url('/assets/images/projects/hero-background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: #1a4a3c; /* Fallback color */
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    /* Active navigation state */
+    .nav a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .page-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .page-hero p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </body>
 </html>
