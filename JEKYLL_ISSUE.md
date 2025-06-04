@@ -1,0 +1,1 @@
+JEKYLL ISSUE: index.html conflicts with index.md - need to completely remove index.html
