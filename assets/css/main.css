@@ -151,11 +151,18 @@ img {
   cursor: pointer;
 }
 
-/* Hero Section */
+/* Hero Section - Clean Background */
 .hero {
   padding: var(--spacing-xl) 0;
-  background-color: var(--light);
+  background-color: white !important;
+  background-image: none !important;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  display: none !important;
 }
 
 .hero h1 {
@@ -177,6 +184,8 @@ img {
 /* Hero with Image Layout */
 .hero-with-image {
   text-align: left;
+  background-color: white !important;
+  background-image: none !important;
 }
 
 .hero-content {
@@ -186,6 +195,8 @@ img {
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-image img {
@@ -214,6 +225,7 @@ img {
   margin-left: 0;
   margin-right: 0;
   margin-bottom: var(--spacing-lg);
+  color: var(--dark);
 }
 
 .cta-button {
