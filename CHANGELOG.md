@@ -1,6 +1,13 @@
 # Changelog
 
 ## 2025-06-04
+- **HOMEPAGE RESTORED:** Fixed styling and layout issues after site came back online
+  - **Problem:** Temporary HTML homepage was interfering with Jekyll processing
+  - **Solution:** Restored proper Jekyll-based index.md with layout: default
+  - **Fixed:** Removed conflicting index.html file that was bypassing Jekyll layouts
+  - **Enabled Jekyll:** Removed .nojekyll file to allow proper CSS and layout processing
+  - **Result:** Site now uses proper Jekyll layouts, CSS, and styling as intended
+
 - **EMERGENCY FIX:** Final resolution of persistent blank page issue
   - **Problem:** Empty index.html file still present in root directory causing Jekyll conflicts
   - **Solution:** Completely removed conflicting index.html file from root directory
