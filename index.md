@@ -1,14 +1,21 @@
 ---
 layout: default
 title: AI Forester
-subtitle: Bridging Forestry Expertise and Artificial Intelligence
+subtitle: Engineer. Forester. AI Explorer.
 ---
 
-<section class="hero">
+<section class="hero hero-with-image">
   <div class="container">
-    <h1>Bridging Forestry Expertise and Artificial Intelligence</h1>
-    <p>Exploring innovative applications of AI technology in forestry, environmental science, and natural resource management.</p>
-    <a href="/projects/" class="cta-button">View Projects</a>
+    <div class="hero-content">
+      <div class="hero-image">
+        <img src="/assets/images/profile/hero-headshot.jpg" alt="David Beleznay, AI Forester">
+      </div>
+      <div class="hero-text">
+        <h1><span class="highlight">Engineer. Forester.</span><br>AI Explorer.</h1>
+        <p>Exploring the intersection of forestry and AI to foster sustainable practices and innovative solutions for our natural world.</p>
+        <a href="/projects/" class="cta-button">View Projects</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -30,8 +37,8 @@ subtitle: Bridging Forestry Expertise and Artificial Intelligence
       <div class="featured-item">
         <img src="/assets/images/projects/forest-inventory-analysis.jpg" alt="Forest Inventory Analysis">
         <div class="featured-content">
-          <h3>Forest Inventory Analysis</h3>
-          <p>Leveraging machine learning to enhance traditional forest inventory methods for greater accuracy.</p>
+          <h3>Climate-Smart Forestry</h3>
+          <p>Leveraging machine learning to enhance forest management practices for climate adaptation.</p>
           <a href="/projects/forest-inventory-analysis.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
