@@ -1,6 +1,27 @@
 # Changelog
 
 ## 2025-06-04
+- **HERO SECTION RESTORED:** Implemented hero image layout with professional tagline
+  - **Added:** Hero image using `/assets/images/profile/hero-headshot.jpg`
+  - **Enhanced:** Tagline changed to "Engineer. Forester. AI Explorer." with green highlighting
+  - **Improved:** Two-column layout with image on left, content on right
+  - **Mobile-responsive:** Stacks vertically on mobile devices
+  - **Result:** Professional appearance matching original design vision
+
+- **RESOURCES PAGE FIXED:** Resolved blank screen issue and added comprehensive content
+  - **Problem:** Jekyll collection loop was commented out, causing empty appearance
+  - **Solution:** Added featured resources grid with actual useful content
+  - **Added:** Links to AI Prompt Library (50+ prompts), Learning Hub, and RainWise Calculator
+  - **Enhanced:** External resources section with forestry and AI tools
+  - **Styled:** Custom CSS for resource cards with hover effects
+  - **Result:** Resources page now provides real value to visitors
+
+- **CSS ENHANCEMENTS:** Added new hero layout styles and improved responsive design
+  - **Added:** `.hero-with-image` class for side-by-side layout
+  - **Enhanced:** Professional styling with shadows and rounded corners
+  - **Improved:** Mobile responsiveness for hero section
+  - **Result:** Better visual hierarchy and professional appearance
+
 - **HOMEPAGE RESTORED:** Fixed styling and layout issues after site came back online
   - **Problem:** Temporary HTML homepage was interfering with Jekyll processing
   - **Solution:** Restored proper Jekyll-based index.md with layout: default
