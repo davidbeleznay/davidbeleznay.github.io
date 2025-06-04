@@ -1,6 +1,12 @@
 # Changelog
 
 ## 2025-06-04
+- **CRITICAL FIX:** Resolved conflicting index.html file that was preventing hero image from displaying
+  - **Problem:** An old index.html file was taking precedence over index.md, showing the old forest background design
+  - **Solution:** Deleted conflicting index.html file to allow Jekyll to properly process index.md
+  - **Result:** Hero section now displays proper layout with personal headshot and "Engineer. Forester. AI Explorer." tagline
+  - **Note:** Site should fully rebuild within 2-3 minutes after this commit
+
 - **HERO SECTION RESTORED:** Implemented hero image layout with professional tagline
   - **Added:** Hero image using `/assets/images/profile/hero-headshot.jpg`
   - **Enhanced:** Tagline changed to "Engineer. Forester. AI Explorer." with green highlighting
@@ -20,6 +26,7 @@
   - **Added:** `.hero-with-image` class for side-by-side layout
   - **Enhanced:** Professional styling with shadows and rounded corners
   - **Improved:** Mobile responsiveness for hero section
+  - **Forced:** Clean white background on hero sections (no forest background images)
   - **Result:** Better visual hierarchy and professional appearance
 
 - **HOMEPAGE RESTORED:** Fixed styling and layout issues after site came back online
