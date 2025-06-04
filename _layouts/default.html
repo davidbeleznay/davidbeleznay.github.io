@@ -65,31 +65,70 @@
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1 class="site-title"><a href="{{ "/" | relative_url }}">🌲 {{ site.title }}</a></h1>
-      <nav class="site-nav">
-        <a href="{{ "/" | relative_url }}">Home</a>
-        <a href="{{ "/projects/" | relative_url }}">Projects</a>
-        <a href="{{ "/learning/" | relative_url }}">Learning</a>
-        <a href="{{ "/resources/" | relative_url }}">Resources</a>
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <a href="{{ "/" | relative_url }}">🌲 AI <span>Forester</span></a>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="{{ "/" | relative_url }}">Home</a></li>
+          <li><a href="{{ "/projects/" | relative_url }}">Projects</a></li>
+          <li><a href="{{ "/learning/" | relative_url }}">Learning</a></li>
+          <li><a href="{{ "/resources/" | relative_url }}">Resources</a></li>
+          <li><a href="/services.html">Services</a></li>
+        </ul>
       </nav>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </header>
 
-  <main class="site-content">
+  <main>
     {{ content }}
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container">
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
-      <p>Contact: <a href="mailto:david@aiforester.com">david@aiforester.com</a></p>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>AI Forester</h4>
+          <p>Bridging forestry expertise and artificial intelligence for sustainable forest management.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="{{ "/projects/" | relative_url }}">Projects</a></li>
+            <li><a href="{{ "/learning/" | relative_url }}">Learning</a></li>
+            <li><a href="{{ "/resources/" | relative_url }}">Resources</a></li>
+            <li><a href="/services.html">Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:david@aiforester.com">Email</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/davidbeleznay" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; {{ site.time | date: '%Y' }} AI Forester. All rights reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Mobile menu functionality -->
+  <script>
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      document.body.classList.toggle('mobile-menu-open');
+    });
+  </script>
 </body>
 </html>
