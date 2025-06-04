@@ -1,0 +1,7 @@
+# Jekyll Configuration Fix
+
+This file replaces .nojekyll to enable Jekyll processing for proper site rendering.
+
+The presence of .nojekyll was preventing Jekyll from processing the index.md file and applying proper layouts and styling.
+
+Site should now render properly with Jekyll layouts and CSS.
