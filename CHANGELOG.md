@@ -1,6 +1,20 @@
 # Changelog
 
 ## 2025-06-04
+- **HERO SECTION COMPLETELY REDESIGNED:** Created impactful hero without banners, much more professional
+  - **Enhanced:** Larger hero image (400x400px) with professional hover effects and shadows
+  - **Added:** Compelling stats section (20+ Years Experience, 50+ AI Prompts, 15+ Projects)
+  - **Improved:** Better typography with gradient text effects on "Engineer. Forester."
+  - **Enhanced:** More descriptive subtitle highlighting 20+ years of forestry expertise
+  - **Added:** Professional CTA button with gradient and hover animations
+  - **Responsive:** Mobile-optimized with stacked layout on smaller screens
+  - **NO BANNERS:** Clean, professional design focused on personal branding
+
+- **RESOURCES NAVIGATION FIXED:** Corrected links to ensure resources page works properly
+  - **Problem:** Resources link was not working from pure HTML homepage
+  - **Solution:** Updated navigation to properly link to `/resources/` Jekyll page
+  - **Result:** Resources page should now be accessible and display properly
+
 - **LAYOUT ISSUES FIXED:** Resolved "weird" layout problems after hero image restoration
   - **Problem:** Jekyll front matter in index.html was causing rendering issues
   - **Solution:** Created proper HTML file without Jekyll syntax conflicts
