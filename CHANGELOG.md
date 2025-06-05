@@ -1,6 +1,13 @@
 # Changelog
 
 ## 2025-06-04
+- **LAYOUT ISSUES FIXED:** Resolved "weird" layout problems after hero image restoration
+  - **Problem:** Jekyll front matter in index.html was causing rendering issues
+  - **Solution:** Created proper HTML file without Jekyll syntax conflicts
+  - **Added:** Complete HTML structure with proper header, navigation, and footer
+  - **Fixed:** All sections now display correctly with proper styling
+  - **Result:** Site displays professional layout with hero image and all content properly formatted
+
 - **BLANK PAGE FIXED:** Final resolution of Jekyll index file conflicts
   - **Problem:** Empty index.html file was causing blank page display
   - **Solution:** Replaced index.html with proper Jekyll content including hero image layout
