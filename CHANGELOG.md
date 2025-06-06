@@ -1,6 +1,19 @@
 # Changelog
 
 ## 2025-06-04
+- **RESOURCES PAGE FIXED:** Created working standalone HTML resources page
+  - **Problem:** Resources page at /resources/ was not displaying properly due to Jekyll processing issues
+  - **Solution:** Created standalone HTML version with complete header, navigation, and footer
+  - **Added:** Professional styling with enhanced resource cards and hover effects
+  - **Enhanced:** Better organization with featured resources and external resource sections
+  - **Improved:** SEO meta tags and social media optimization for resources page
+  - **Result:** Resources page now works properly and displays all content beautifully
+
+- **PROJECT IMAGE FIXED:** Corrected Climate-Smart Forestry image path
+  - **Problem:** Climate-Smart Forestry project card showing broken image placeholder
+  - **Solution:** Updated image path to use existing climate-smart-forestry.jpg
+  - **Result:** Project card now displays proper image instead of broken placeholder
+
 - **HERO SECTION COMPLETELY REDESIGNED:** Created impactful hero without banners, much more professional
   - **Enhanced:** Larger hero image (400x400px) with professional hover effects and shadows
   - **Added:** Compelling stats section (20+ Years Experience, 50+ AI Prompts, 15+ Projects)
