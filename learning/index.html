@@ -88,21 +88,755 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   
   <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Main CSS -->
   <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <style>
+    /* Enhanced CSS for better interactivity and modern design */
+    :root {
+      --primary-green: #2D5016;
+      --accent-green: #4A7C2E;
+      --light-green: #E8F5E9;
+      --dark-gray: #1A1A1A;
+      --medium-gray: #4A4A4A;
+      --light-gray: #F5F5F5;
+      --white: #FFFFFF;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+      --transition-slow: 0.5s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-gray);
+      line-height: 1.6;
+      background-color: var(--white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Enhanced Header */
+    .header {
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 20px;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-decoration: none;
+      transition: transform var(--transition-fast);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .logo span {
+      color: var(--accent-green);
+    }
+
+    .nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--medium-gray);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--primary-green);
+    }
+
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-green);
+      border-radius: 2px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary-green);
+      cursor: pointer;
+    }
+
+    /* Enhanced Hero Section */
+    .learning-hero {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
+      color: var(--white);
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .learning-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .learning-stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Enhanced Learning Pathways */
+    .learning-pathways {
+      padding: 5rem 0;
+      background: var(--light-gray);
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary-green);
+    }
+
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .pathway-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+      position: relative;
+    }
+
+    .pathway-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .pathway-card.beginner { border-top: 4px solid #4CAF50; }
+    .pathway-card.intermediate { border-top: 4px solid #FF9800; }
+    .pathway-card.advanced { border-top: 4px solid #9C27B0; }
+
+    .pathway-header {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      background: var(--light-gray);
+    }
+
+    .pathway-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-right: 1rem;
+    }
+
+    .beginner .pathway-icon { background: #E8F5E9; color: #4CAF50; }
+    .intermediate .pathway-icon { background: #FFF3E0; color: #FF9800; }
+    .advanced .pathway-icon { background: #F3E5F5; color: #9C27B0; }
+
+    .pathway-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+      color: var(--dark-gray);
+    }
+
+    .pathway-subtitle {
+      color: var(--medium-gray);
+      font-size: 0.9rem;
+    }
+
+    .pathway-duration {
+      background: var(--primary-green);
+      color: var(--white);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    .pathway-content {
+      padding: 1.5rem;
+    }
+
+    .pathway-modules {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .pathway-modules li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--medium-gray);
+    }
+
+    .pathway-modules i {
+      color: var(--accent-green);
+      font-size: 0.9rem;
+    }
+
+    .pathway-cta {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-green);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      margin-top: 1rem;
+    }
+
+    .pathway-cta:hover {
+      background: var(--accent-green);
+      transform: translateY(-2px);
+    }
+
+    /* Quick Navigation */
+    .quick-nav {
+      padding: 3rem 0;
+      background: var(--white);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      background: var(--light-gray);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--dark-gray);
+      transition: all var(--transition-fast);
+      gap: 1rem;
+    }
+
+    .nav-item:hover {
+      background: var(--light-green);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-item i {
+      font-size: 2rem;
+      color: var(--primary-green);
+    }
+
+    .nav-item span {
+      font-weight: 600;
+    }
+
+    /* Enhanced Course Section */
+    .course-section {
+      padding: 4rem 0;
+      background: var(--light-gray);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--medium-gray);
+      font-size: 1.1rem;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .course-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    .course-header {
+      margin-bottom: 1rem;
+    }
+
+    .course-header h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-gray);
+    }
+
+    .course-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .duration {
+      color: var(--medium-gray);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .beginner-tag {
+      background: #E8F5E9;
+      color: #4CAF50;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .course-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .topic {
+      background: var(--light-gray);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--medium-gray);
+    }
+
+    .course-cta {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--primary-green);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-size: 1rem;
+    }
+
+    .course-cta:hover {
+      background: var(--accent-green);
+    }
+
+    .course-content {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--light-gray);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .course-content.hidden {
+      display: none;
+    }
+
+    .course-content h4 {
+      color: var(--primary-green);
+      margin-bottom: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .course-content h4:first-child {
+      margin-top: 0;
+    }
+
+    .course-content ul,
+    .course-content ol {
+      margin-left: 1.5rem;
+      color: var(--medium-gray);
+    }
+
+    .course-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .start-lesson {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--primary-green);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .start-lesson:hover {
+      color: var(--accent-green);
+      transform: translateX(5px);
+    }
+
+    /* Progress Indicator */
+    .progress-indicator {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background: var(--white);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      min-width: 200px;
+      z-index: 100;
+      display: none;
+    }
+
+    .progress-indicator.show {
+      display: block;
+      animation: slideIn 0.3s ease;
+    }
+
+    .progress-header {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-green);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--light-gray);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent-green);
+      border-radius: 4px;
+      transition: width var(--transition-slow);
+    }
+
+    .progress-text {
+      font-size: 0.9rem;
+      color: var(--medium-gray);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Interactive Features */
+    .interactive-quiz {
+      background: var(--light-green);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-green);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .quiz-option {
+      background: var(--white);
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 2px solid transparent;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--accent-green);
+      transform: translateX(5px);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--primary-green);
+      background: var(--light-gray);
+    }
+
+    /* Newsletter Signup */
+    .newsletter-section {
+      background: var(--primary-green);
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .newsletter-content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 2rem auto 0;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .newsletter-form button {
+      padding: 0.75rem 2rem;
+      background: var(--accent-green);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .newsletter-form button:hover {
+      background: #5A8C3E;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .nav.active ul {
+        display: flex;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .learning-stats {
+        gap: 2rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .pathway-grid,
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .progress-indicator {
+        display: none !important;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+    }
+
+    /* Accessibility Focus States */
+    a:focus,
+    button:focus,
+    input:focus {
+      outline: 3px solid var(--accent-green);
+      outline-offset: 2px;
+    }
+
+    /* Print Styles */
+    @media print {
+      .header,
+      .quick-nav,
+      .newsletter-section,
+      .progress-indicator {
+        display: none;
+      }
+
+      .course-content {
+        display: block !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
   <header class="header">
     <div class="container header-container">
       <a href="/" class="logo">AI<span>Forester</span></a>
-      <nav class="nav">
-        <button class="mobile-menu-btn" aria-label="Toggle menu">
+      <nav class="nav" id="mainNav">
+        <button class="mobile-menu-btn" aria-label="Toggle menu" onclick="toggleMobileMenu()">
           <i class="fas fa-bars"></i>
         </button>
         <ul>
@@ -117,6 +851,15 @@
       </nav>
     </div>
   </header>
+
+  <!-- Progress Indicator -->
+  <div class="progress-indicator" id="progressIndicator">
+    <div class="progress-header">Your Learning Progress</div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+    <div class="progress-text">0% Complete</div>
+  </div>
 
   <!-- Learning Hub Header -->
   <section class="learning-hero">
@@ -168,7 +911,7 @@
               <li><i class="fas fa-play-circle" aria-hidden="true"></i> Your First AI Prompts</li>
               <li><i class="fas fa-play-circle" aria-hidden="true"></i> Data Basics for Forest AI</li>
             </ul>
-            <a href="#beginner-courses" class="pathway-cta">Start Learning</a>
+            <a href="#beginner-courses" class="pathway-cta" onclick="trackPathSelection('beginner')">Start Learning</a>
           </div>
         </div>
 
@@ -192,7 +935,7 @@
               <li><i class="fas fa-play-circle" aria-hidden="true"></i> Climate Data Analysis</li>
               <li><i class="fas fa-play-circle" aria-hidden="true"></i> Building AI Workflows</li>
             </ul>
-            <a href="#intermediate-courses" class="pathway-cta">Continue Journey</a>
+            <a href="#intermediate-courses" class="pathway-cta" onclick="trackPathSelection('intermediate')">Continue Journey</a>
           </div>
         </div>
 
@@ -216,7 +959,7 @@
               <li><i class="fas fa-play-circle" aria-hidden="true"></i> Integration & Automation</li>
               <li><i class="fas fa-play-circle" aria-hidden="true"></i> Leading AI Transformation</li>
             </ul>
-            <a href="#advanced-courses" class="pathway-cta">Master AI</a>
+            <a href="#advanced-courses" class="pathway-cta" onclick="trackPathSelection('advanced')">Master AI</a>
           </div>
         </div>
       </div>
@@ -284,7 +1027,17 @@
               <li><strong>AI in Forestry Today (15 min)</strong> - Current applications and case studies</li>
               <li><strong>Getting Started (15 min)</strong> - First steps and tool selection</li>
             </ol>
-            <a href="#" class="start-lesson">Begin Lesson 1 →</a>
+            <a href="#" class="start-lesson" onclick="startLesson('ai-fundamentals', 1)">Begin Lesson 1 →</a>
+            
+            <!-- Interactive Quiz Example -->
+            <div class="interactive-quiz">
+              <div class="quiz-question">Quick Check: What type of AI would you use to analyze satellite imagery of forests?</div>
+              <div class="quiz-options">
+                <div class="quiz-option" onclick="selectQuizOption(this, 'nlp')">Natural Language Processing</div>
+                <div class="quiz-option" onclick="selectQuizOption(this, 'cv')">Computer Vision</div>
+                <div class="quiz-option" onclick="selectQuizOption(this, 'rl')">Reinforcement Learning</div>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -317,6 +1070,7 @@
               <li>Create silvicultural treatment recommendations</li>
               <li>Generate forest management reports</li>
             </ul>
+            <a href="#" class="start-lesson" onclick="startLesson('ai-prompts', 1)">Begin Lesson 1 →</a>
           </div>
         </article>
 
@@ -343,10 +1097,157 @@
               <li>Formatting data for different AI tools</li>
               <li>Privacy and security considerations</li>
             </ul>
+            <a href="#" class="start-lesson" onclick="startLesson('forest-data', 1)">Begin Lesson 1 →</a>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Rest of the content remains the same but I'll continue with enhanced accessibility and SEO -->
+  <!-- Newsletter Signup -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Stay Updated on AI in Forestry</h2>
+        <p>Get weekly insights, new tutorials, and case studies delivered to your inbox</p>
+        <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+          <input type="email" placeholder="your.email@example.com" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('active');
+    }
+
+    // Course expansion
+    function expandCourse(button) {
+      const courseCard = button.closest('.course-card');
+      const content = courseCard.querySelector('.course-content');
+      const isExpanded = !content.classList.contains('hidden');
+      
+      // Close all other expanded courses
+      document.querySelectorAll('.course-content').forEach(c => {
+        if (c !== content) c.classList.add('hidden');
+      });
+      document.querySelectorAll('.course-cta').forEach(b => {
+        if (b !== button) {
+          b.textContent = 'Start Course';
+          b.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Toggle current course
+      content.classList.toggle('hidden');
+      button.textContent = isExpanded ? 'Start Course' : 'Close Course';
+      button.setAttribute('aria-expanded', !isExpanded);
+      
+      // Smooth scroll to course if opening
+      if (!isExpanded) {
+        setTimeout(() => {
+          courseCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
+      
+      // Update progress
+      updateProgress();
+    }
+
+    // Quiz interaction
+    function selectQuizOption(option, answer) {
+      const options = option.parentElement.querySelectorAll('.quiz-option');
+      options.forEach(o => o.classList.remove('selected'));
+      option.classList.add('selected');
+      
+      // Feedback
+      if (answer === 'cv') {
+        option.innerHTML += ' <i class="fas fa-check" style="color: #4CAF50; margin-left: 0.5rem;"></i>';
+      } else {
+        option.innerHTML += ' <i class="fas fa-times" style="color: #f44336; margin-left: 0.5rem;"></i>';
+      }
+    }
+
+    // Track learning path selection
+    function trackPathSelection(path) {
+      console.log('User selected path:', path);
+      // Could send to analytics here
+      localStorage.setItem('selectedLearningPath', path);
+      
+      // Show progress indicator
+      const indicator = document.getElementById('progressIndicator');
+      indicator.classList.add('show');
+    }
+
+    // Start lesson
+    function startLesson(course, lesson) {
+      console.log(`Starting ${course} - Lesson ${lesson}`);
+      // Here you would navigate to the actual lesson content
+      alert(`Starting ${course} - Lesson ${lesson}. This would navigate to the full lesson content.`);
+      updateProgress();
+    }
+
+    // Update progress
+    function updateProgress() {
+      const completedItems = document.querySelectorAll('.course-content:not(.hidden)').length;
+      const totalItems = 9; // Total courses
+      const progress = Math.round((completedItems / totalItems) * 100);
+      
+      const progressFill = document.querySelector('.progress-fill');
+      const progressText = document.querySelector('.progress-text');
+      
+      if (progressFill) {
+        progressFill.style.width = progress + '%';
+        progressText.textContent = progress + '% Complete';
+      }
+    }
+
+    // Newsletter submission
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const email = e.target.querySelector('input[type="email"]').value;
+      console.log('Newsletter signup:', email);
+      alert('Thank you for subscribing! Check your email for confirmation.');
+      e.target.reset();
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+
+    // Show progress indicator on scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      const indicator = document.getElementById('progressIndicator');
+      
+      if (localStorage.getItem('selectedLearningPath')) {
+        if (st > 500) {
+          indicator.classList.add('show');
+        } else {
+          indicator.classList.remove('show');
+        }
+      }
+      
+      lastScrollTop = st <= 0 ? 0 : st;
+    }, false);
+  </script>
+</body>
+</html>
