@@ -1,32 +1,331 @@
-  <title>AI Tools & Resources for Foresters | Free Prompt Library & Educational Materials</title>
-  <meta name="description" content="Access comprehensive AI tools, resources, and educational materials for forestry professionals. Features 50+ battle-tested AI prompts, tool guides, and curated resources for sustainable forest management.">
-  <meta name="keywords" content="AI forestry tools, forestry resources, AI prompt library, forest management tools, environmental AI resources, forestry education materials, climate-smart forestry tools, forest inventory AI, silviculture AI tools, sustainable forestry resources">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Resources | AI Forester</title>
+  
+  <meta name="description" content="AI Tools & Resources for Foresters | Free Prompt Library & Educational Materials for sustainable forestry and climate-smart solutions.">
+  
+  <meta name="keywords" content="AI forestry resources, forestry AI tools, forest management resources, AI prompts forestry, sustainable forestry tools">
   
   <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="AI Tools & Resources for Foresters | Free Prompt Library">
-  <meta property="og:description" content="Access 50+ battle-tested AI prompts and comprehensive resources for forestry professionals. Free educational tools for sustainable forest management.">
+  <meta property="og:title" content="AI Forestry Resources | Tools & Prompts">
+  <meta property="og:description" content="Free AI tools, prompts, and resources for forestry professionals. 50+ AI prompts, educational materials, and climate-smart forestry resources.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aiforester.com/resources/">
-  <meta property="og:image" content="https://aiforester.com/assets/images/resources/ai-forestry-tools-hero.jpg">
+  <meta property="og:image" content="https://aiforester.com/assets/images/profile/hero-headshot.jpg">
+  <meta property="og:site_name" content="AI Forester">
   
-  <!-- Schema.org markup for Resource Collection -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "DataCatalog",
-    "name": "AI Forester Resources & Tools",
-    "description": "Comprehensive collection of AI tools, prompts, and educational resources for forestry professionals",
-    "url": "https://aiforester.com/resources/",
-    "publisher": {
-      "@type": "Person", 
-      "name": "David Beleznay"
-    },
-    "hasPart": [
-      {
-        "@type": "Dataset",
-        "name": "AI Forester Top Prompts Library",
-        "description": "50+ battle-tested AI prompts for forestry applications"
-      }
-    ]
-  }
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://aiforester.com/resources/">
+  
+  <!-- Microsoft Clarity Tracking -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "r6fqdz0i2c");
   </script>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    .page-header {
+      padding: 4rem 0 2rem;
+      background-color: var(--light);
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+    
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .resource-content {
+      padding: 4rem 0;
+    }
+    
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .resource-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #f0f0f0;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .resource-card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+
+    .resource-card h3 a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .resource-card h3 a:hover {
+      color: var(--accent);
+    }
+
+    .resource-card p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .resource-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .type {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .categories {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .category {
+      background-color: var(--light);
+      color: var(--dark);
+      padding: 0.3rem 0.6rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .external-resources {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 2px solid var(--light);
+    }
+    
+    .external-resources h3 {
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .external-resources ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .external-resources li {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .external-resources li:before {
+      content: "🌲";
+      position: absolute;
+      left: 0;
+    }
+    
+    .external-resources a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .external-resources a:hover {
+      color: var(--accent);
+    }
+    
+    .resource-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    
+    .resource-section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <a href="/">🌲 AI <span>Forester</span></a>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/resources/" class="active">Resources</a></li>
+          <li><a href="/services.html">Services</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1>AI Forester Resources</h1>
+        <p class="page-subtitle">Useful tools, datasets, and references for the forestry-AI intersection</p>
+      </div>
+    </div>
+
+    <div class="container resource-content">
+      <h2>Featured Resources</h2>
+      
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3><a href="https://drive.google.com/file/d/16ZgRiskDNVCyqpxBFA-IskUzwNYNUogO/view?usp=sharing" target="_blank">AI Prompts for Forestry (50+ Prompts)</a></h3>
+          <p>A comprehensive collection of AI prompts specifically designed for forestry professionals, covering everything from forest inventory to climate adaptation planning.</p>
+          <div class="resource-meta">
+            <span class="type">Prompt Library</span>
+            <span class="categories">
+              <span class="category">AI Tools</span>
+              <span class="category">Forestry</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3><a href="/learning/">AI Forestry Learning Hub</a></h3>
+          <p>Structured educational pathways, tutorials, and case studies for learning how to apply AI in forestry contexts.</p>
+          <div class="resource-meta">
+            <span class="type">Educational</span>
+            <span class="categories">
+              <span class="category">Tutorials</span>
+              <span class="category">Case Studies</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3><a href="/tools/rainwise-calculator.html">RainWise Calculator</a></h3>
+          <p>Interactive tool for calculating precipitation and rainfall patterns, useful for forest hydrology assessments.</p>
+          <div class="resource-meta">
+            <span class="type">Calculator</span>
+            <span class="categories">
+              <span class="category">Hydrology</span>
+              <span class="category">Tools</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="external-resources">
+        <div class="resource-sections">
+          <div class="resource-section">
+            <h3>AI & Machine Learning for Environmental Science</h3>
+            <ul>
+              <li><a href="https://earthengine.google.com/" target="_blank">Google Earth Engine</a> - Cloud-based platform for planetary-scale geospatial analysis</li>
+              <li><a href="https://platform.openai.com/docs" target="_blank">OpenAI API Documentation</a> - For integrating AI language models into forestry applications</li>
+              <li><a href="https://huggingface.co/transformers/" target="_blank">Hugging Face Transformers</a> - Open-source machine learning library</li>
+            </ul>
+          </div>
+
+          <div class="resource-section">
+            <h3>Forestry Data & Tools</h3>
+            <ul>
+              <li><a href="https://www.fs.usda.gov/rds/" target="_blank">USDA Forest Service Research Data Archive</a> - Open access to forest research datasets</li>
+              <li><a href="https://www.globalforestwatch.org/" target="_blank">Global Forest Watch</a> - Real-time forest monitoring platform</li>
+              <li><a href="https://www.fia.fs.usda.gov/" target="_blank">Forest Inventory and Analysis (FIA) Database</a> - Comprehensive forest data for the United States</li>
+            </ul>
+          </div>
+
+          <div class="resource-section">
+            <h3>Climate & Environmental Data</h3>
+            <ul>
+              <li><a href="https://www.ncdc.noaa.gov/cdo-web/" target="_blank">Climate Data Online</a> - Historical weather and climate data</li>
+              <li><a href="https://earthdata.nasa.gov/" target="_blank">NASA Earthdata</a> - Earth science data from NASA missions</li>
+              <li><a href="https://www.worldclim.org/" target="_blank">WorldClim</a> - Global climate data for ecological modeling</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>AI Forester</h4>
+          <p>Bridging forestry expertise and artificial intelligence for sustainable forest management.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/learning/">Learning</a></li>
+            <li><a href="/resources/">Resources</a></li>
+            <li><a href="/services.html">Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:david@aiforester.com">Email</a></li>
+            <li><a href="https://linkedin.com/in/david-beleznay" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/davidbeleznay" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 AI Forester. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile menu functionality -->
+  <script>
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      document.body.classList.toggle('mobile-menu-open');
+    });
+  </script>
+</body>
+</html>
