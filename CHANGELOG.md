@@ -1,5 +1,17 @@
 # Changelog
 
+## 2025-06-07
+- **RAINWISE CALCULATOR ENHANCED:** Added water consumption input and personalized recommendations
+  - **Added:** New Step 2 for water consumption history with 6 bi-monthly input fields
+  - **Enhanced:** Visual chart display using Chart.js to show consumption trends
+  - **Added:** Usage insights that analyze seasonal patterns and highlight high-usage periods
+  - **Improved:** Calculator now uses actual consumption data when available for more accurate savings calculations
+  - **Added:** Water-saving alternatives section with 4 additional conservation strategies
+  - **Enhanced:** Alternative savings include low-flow fixtures (2,500 gal/year), native plants (5,000 gal/year), leak fixes (3,000 gal/year), and optimized watering schedules (1,500 gal/year)
+  - **Updated:** Progress bar to show 5 steps instead of 4
+  - **Enhanced:** PDF report now includes consumption analysis when data is provided
+  - **Result:** More personalized and accurate water savings calculations based on actual usage patterns
+
 ## 2025-06-06
 - **LEARNING HUB MAJOR ENHANCEMENT:** Complete redesign for better interactivity and engagement
   - **Redesigned:** Modern UI with enhanced visual hierarchy and animations
