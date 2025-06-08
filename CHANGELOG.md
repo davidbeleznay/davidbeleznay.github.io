@@ -1,5 +1,19 @@
 # Changelog
 
+## 2025-06-08
+- **RAINWISE CALCULATOR FIXED:** Restored complete enhanced version after truncation issue
+  - **Problem:** File was truncated showing only JavaScript portion (13KB instead of 48KB)
+  - **Solution:** Restored complete HTML file with all structure, styles, and scripts
+  - **Verified:** All enhanced features are now working properly
+  - **Features Restored:**
+    - Water consumption history tracking (Step 2)
+    - Visual charts using Chart.js
+    - Usage insights and personalized recommendations
+    - Water-saving alternatives section
+    - Enhanced PDF generation with consumption analysis
+    - Complete 5-step progress bar
+  - **Result:** Calculator is fully functional with all recent enhancements
+
 ## 2025-06-07
 - **RAINWISE CALCULATOR ENHANCED:** Added water consumption input and personalized recommendations
   - **Added:** New Step 2 for water consumption history with 6 bi-monthly input fields
