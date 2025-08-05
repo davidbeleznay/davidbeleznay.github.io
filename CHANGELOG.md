@@ -1,6 +1,13 @@
 # Changelog
 
 ## 2025-08-05
+- **RDN ROI CALCULATOR DEPLOYMENT ISSUE:** Working on file upload limitations
+  - **Problem:** GitHub API has file size limitations preventing full HTML upload
+  - **Attempted:** Multiple approaches to upload complete enhanced calculator file
+  - **Issue:** File contains extensive HTML, CSS, and JavaScript making it too large for single upload
+  - **Next Steps:** Will need to either compress the file further or split into separate files
+  - **Status:** Calculator functionality complete locally but deployment pending resolution
+
 - **ENHANCED RDN ROI CALCULATOR V2:** Created improved version with modern UI patterns
   - **New UI:** Implemented card-based upgrade selection with visual benefits display
   - **Enhanced:** Side-by-side layout with upgrade details panel for better information architecture
