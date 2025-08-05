@@ -1,6 +1,23 @@
 # Changelog
 
 ## 2025-08-04
+- **RAINWISE CALCULATOR ENHANCED WITH ROI:** Major upgrade to include comprehensive ROI analysis
+  - **Added:** Complete ROI calculation functionality with payback periods and 5-year return analysis
+  - **Enhanced:** Property type selection (single family, townhouse, condo, estate) with auto-populated typical irrigation areas
+  - **Added:** Current irrigation system type selection affecting water usage calculations
+  - **Improved:** Water consumption modeling with system efficiency factors (manual: 0.06, timer: 0.045, in-ground: 0.035)
+  - **Added:** Professional installation cost estimates for all upgrade types with detailed breakdowns
+  - **Enhanced:** Smart controller cost scaling based on zone count (4-16 zones)
+  - **Added:** Drip irrigation cost calculator at $1.00-1.50 per sq ft with automatic updates
+  - **Added:** MP Rotator cost calculation at $20-30 per head installed
+  - **Enhanced:** Soil improvement calculator with RDN amendment tables and bulk/bag options
+  - **Added:** 10-year financial projections showing net benefit for each upgrade
+  - **Enhanced:** Environmental impact metrics including CO₂ reduction and property value increase
+  - **Improved:** Savings potential messaging based on current tier with specific dollar amounts
+  - **Added:** Visual cost breakdown boxes showing equipment vs installation costs
+  - **Enhanced:** PDF export now includes complete financial summary and ROI metrics
+  - **Result:** Calculator now serves as complete investment analysis tool for water conservation projects
+
 - **RDN ROI CALCULATOR FIXED:** Resolved file corruption and deployed complete functional version
   - **Problem:** File was getting truncated during GitHub API uploads, showing only partial JavaScript
   - **Solution:** Used compressed but complete HTML with optimized CSS and functional JavaScript
