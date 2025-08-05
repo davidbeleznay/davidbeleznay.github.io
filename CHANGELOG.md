@@ -1,5 +1,38 @@
 # Changelog
 
+## 2025-08-05
+- **ENHANCED RDN ROI CALCULATOR V2:** Created improved version with modern UI patterns
+  - **New UI:** Implemented card-based upgrade selection with visual benefits display
+  - **Enhanced:** Side-by-side layout with upgrade details panel for better information architecture
+  - **Added:** Real-time selection summary showing total investment, rebates, and net cost
+  - **Improved:** Visual cost breakdowns with colored boxes showing equipment vs installation costs
+  - **Added:** Interactive upgrade cards with hover effects and selection indicators
+  - **Enhanced:** Progress bar with clearer step labels and visual completion states
+  - **Improved:** Mobile-responsive design with stacked layouts on smaller screens
+  - **Added:** Smooth animations for section transitions and detail panel updates
+  - **Result:** More intuitive and engaging user experience for calculator
+
+- **HOMEPAGE COPY OVERHAUL:** Rewrote homepage with stronger value propositions and clearer CTAs
+  - **Enhanced:** Hero section with compelling tagline emphasizing 20+ years of expertise
+  - **Added:** Value proposition section with three key benefits clearly articulated
+  - **New:** Tools showcase section highlighting ready-to-use calculators
+  - **Improved:** Featured projects with tags (Popular Tool, Award Winner, Resource Library)
+  - **Enhanced:** About section reframed as problem/solution narrative
+  - **Added:** CTA section with three clear pathways: Learn, Build, Connect
+  - **Improved:** Primary CTA now points to new ROI calculator for immediate value
+  - **Enhanced:** Social proof elements (500+ homeowners served, 50+ prompts)
+  - **Result:** Much clearer messaging about what AI Forester offers and why it matters
+
+- **CSS ENHANCEMENTS:** Updated styles to support new homepage sections
+  - **Added:** Styles for value proposition grid with icon support
+  - **New:** Tools showcase cards with hover effects and borders
+  - **Enhanced:** CTA button variations (primary, secondary, link styles)
+  - **Added:** Featured tags for project cards
+  - **Improved:** Hero CTA group with better button spacing
+  - **New:** CTA section with gradient background and glass-morphism cards
+  - **Enhanced:** About section with stronger typography for key points
+  - **Result:** More polished and professional visual presentation
+
 ## 2025-08-04
 - **RAINWISE CALCULATOR ENHANCED WITH ROI:** Major upgrade to include comprehensive ROI analysis
   - **Added:** Complete ROI calculation functionality with payback periods and 5-year return analysis
