@@ -1,6 +1,14 @@
 # Changelog
 
 ## 2025-08-04
+- **RDN ROI CALCULATOR FIXED:** Resolved file corruption and deployed complete functional version
+  - **Problem:** File was getting truncated during GitHub API uploads, showing only partial JavaScript
+  - **Solution:** Used compressed but complete HTML with optimized CSS and functional JavaScript
+  - **Fixed:** All ROI calculation functionality now working properly
+  - **Verified:** Complete 4-step wizard with water baseline analysis, upgrade selection, and ROI results
+  - **Features Working:** Nanaimo tiered water rate calculations, payback analysis, PDF generation, soil calculator
+  - **Result:** Full-featured ROI calculator now accessible at `/rdn-roi-calculator.html`
+
 - **MAJOR NEW TOOL:** Created comprehensive RDN Water Conservation ROI Calculator
   - **Complete Tool:** Built full-featured water conservation ROI calculator at `/rdn-roi-calculator.html`
   - **Financial Analysis:** Implements Nanaimo's 2025 tiered water rates for accurate cost savings calculations
@@ -85,7 +93,7 @@
 - **HERO SECTION COMPLETELY REDESIGNED:** Created impactful hero without banners, much more professional
   - **Enhanced:** Larger hero image (400x400px) with professional hover effects and shadows
   - **Added:** Compelling stats section (20+ Years Experience, 50+ AI Prompts, 15+ Projects)
-  - **Improved:** Better typography with gradient text effects on \"Engineer. Forester.\"
+  - **Improved:** Better typography with gradient text effects on "Engineer. Forester."
   - **Enhanced:** More descriptive subtitle highlighting 20+ years of forestry expertise
   - **Added:** Professional CTA button with gradient and hover animations
   - **Responsive:** Mobile-optimized with stacked layout on smaller screens
@@ -96,7 +104,7 @@
   - **Solution:** Updated navigation to properly link to `/resources/` Jekyll page
   - **Result:** Resources page should now be accessible and display properly
 
-- **LAYOUT ISSUES FIXED:** Resolved \"weird\" layout problems after hero image restoration
+- **LAYOUT ISSUES FIXED:** Resolved "weird" layout problems after hero image restoration
   - **Problem:** Jekyll front matter in index.html was causing rendering issues
   - **Solution:** Created proper HTML file without Jekyll syntax conflicts
   - **Added:** Complete HTML structure with proper header, navigation, and footer
@@ -106,19 +114,19 @@
 - **BLANK PAGE FIXED:** Final resolution of Jekyll index file conflicts
   - **Problem:** Empty index.html file was causing blank page display
   - **Solution:** Replaced index.html with proper Jekyll content including hero image layout
-  - **Added:** Hero section with personal headshot and \"Engineer. Forester. AI Explorer.\" tagline
+  - **Added:** Hero section with personal headshot and "Engineer. Forester. AI Explorer." tagline
   - **Result:** Site now displays proper hero layout with professional image and branding
   - **Note:** GitHub Pages should rebuild and display correctly within 2-3 minutes
 
 - **CRITICAL FIX:** Resolved conflicting index.html file that was preventing hero image from displaying
   - **Problem:** An old index.html file was taking precedence over index.md, showing the old forest background design
   - **Solution:** Deleted conflicting index.html file to allow Jekyll to properly process index.md
-  - **Result:** Hero section now displays proper layout with personal headshot and \"Engineer. Forester. AI Explorer.\" tagline
+  - **Result:** Hero section now displays proper layout with personal headshot and "Engineer. Forester. AI Explorer." tagline
   - **Note:** Site should fully rebuild within 2-3 minutes after this commit
 
 - **HERO SECTION RESTORED:** Implemented hero image layout with professional tagline
   - **Added:** Hero image using `/assets/images/profile/hero-headshot.jpg`
-  - **Enhanced:** Tagline changed to \"Engineer. Forester. AI Explorer.\" with green highlighting
+  - **Enhanced:** Tagline changed to "Engineer. Forester. AI Explorer." with green highlighting
   - **Improved:** Two-column layout with image on left, content on right
   - **Mobile-responsive:** Stacks vertically on mobile devices
   - **Result:** Professional appearance matching original design vision
@@ -163,12 +171,12 @@
 
 ## 2025-06-01
 - **SEO & METADATA ENHANCEMENT:** Comprehensive SEO optimization across all educational pages
-  - Enhanced homepage with educational-focused title: \"AI Forester | Forestry Education, AI Tutorials & Climate-Smart Solutions\"
-  - Added comprehensive keywords including \"AI forester, forestry education, sustainable forestry practices, forest management AI, environmental technology education\"
+  - Enhanced homepage with educational-focused title: "AI Forester | Forestry Education, AI Tutorials & Climate-Smart Solutions"
+  - Added comprehensive keywords including "AI forester, forestry education, sustainable forestry practices, forest management AI, environmental technology education"
   - Implemented Schema.org markup for Professional Service with educational focus
-  - Updated learning hub title: \"AI Forestry Education Hub | Free Courses, Tutorials & Case Studies for Forest Professionals\"
+  - Updated learning hub title: "AI Forestry Education Hub | Free Courses, Tutorials & Case Studies for Forest Professionals"
   - Added Educational Organization schema markup with course details and provider credentials
-  - Enhanced resources page with \"AI Tools & Resources for Foresters | Free Prompt Library & Educational Materials\"
+  - Enhanced resources page with "AI Tools & Resources for Foresters | Free Prompt Library & Educational Materials"
   - Implemented DataCatalog schema for resource collection with 50+ AI prompts
   - Added comprehensive accessibility improvements with aria-labels and semantic HTML
   - Optimized meta descriptions to emphasize educational value and free resources
@@ -182,8 +190,8 @@
   - Structured learning stats display (15+ tutorials, 3 skill levels, 6 case studies)
   - Enhanced SEO with educational-focused meta tags and keywords
 - **EDUCATIONAL REFRAMING:** Updated homepage hero section with educational focus
-  - Changed hero subtitle from \"Helping busy builders unlock real-world potential with AI + tech solutions...\" to \"Exploring the intersection of forestry and AI to foster sustainable practices.\"
-  - Updated primary CTA from \"See My Work\" to \"Dive into Learning\" to emphasize educational value
+  - Changed hero subtitle from "Helping busy builders unlock real-world potential with AI + tech solutions..." to "Exploring the intersection of forestry and AI to foster sustainable practices."
+  - Updated primary CTA from "See My Work" to "Dive into Learning" to emphasize educational value
   - Enhanced meta descriptions and page titles to reflect educational positioning
   - Shifted brand positioning from service-focused to education and exploration-focused
 - **FIXED:** Updated Google Drive link in prompt library from folder to specific file
@@ -200,7 +208,7 @@
   - Included explicit permissions for AI bots (GPTBot, Google-Extended, Claude-Web, Anthropic-AI)
   - Set crawl-delay to balance server load and comprehensive indexing
   - Explicitly marked content directories as scrapable
-- Moved \"Not a real BDA\" disclaimer closer to the image:
+- Moved "Not a real BDA" disclaimer closer to the image:
   - Converted text to an overlay positioned on the BDA image
   - Added semi-transparent dark background with white text for better visibility
   - Ensured mobile responsiveness with appropriate positioning
@@ -208,92 +216,3 @@
   - Reduced featured hero beaver image to 50% width with centered layout
   - Restored AI dashboard image to 600px width (from 300px)
   - Added responsive adjustments for mobile viewing
-- Further reduced AI dashboard image size to 50% of its previous size
-  - Decreased max-width from 600px to 300px
-  - Maintained the wrapper div structure for consistent centering
-  - Improved overall page proportion with smaller dashboard visualization
-- Further reduced AI dashboard image size to 75% of previous size
-  - Decreased max-width from 800px to 600px
-  - Added wrapper div for better control of image display
-  - Improved centering and proportion for better page balance
-- Adjusted BDA image layout proportions - increased image size and reduced spacing between image and text
-  - Increased BDA image column width from 45% to 50%
-  - Increased BDA image max height from 300px to 400px
-  - Reduced padding between image and text for tighter layout
-- Reduced AI dashboard image size with max-width constraint and centered layout
-  - Added max-width of 800px to the dashboard container
-  - Added auto margins for proper centering
-- Updated AI monitoring dashboard image to use AIData.jpg for a more realistic data visualization
-- Added custom styling for the AI dashboard container with background, shadow, and improved caption
-- Enhanced the dashboard image alt text and caption to provide more context about the monitoring system
-- Redesigned BDA image layout with side-by-side format (image left, text right)
-- Added clearer \"Not a real BDA\" disclaimer to the caption
-- Added light background and subtle shadow to the image-text container for better visual separation
-- Implemented responsive layout adjustment for mobile devices
-- Reduced BDA image size in beaver-ai-restoration.html for better visual balance
-- Added custom CSS to control BDA image dimensions and ensure proper display
-- Updated beaver-ai-restoration.html to use BDA.jpg image for the Beaver-Dam Analogue installation section
-- Added note that the pictured approach is not how professional BDAs are typically made
-- Added link to the Low-Tech Process-Based Restoration Design Manual at https://lowtechpbr.restoration.usu.edu/manual/
-- Removed the \"Results & Innovations\" section with specific metrics and claims for a more accurate representation
-- Updated all \"beaver dam\" references to \"beaver dam analogues (BDA)\" for consistency across the site
-- Updated alt text and descriptions related to beaver projects
-- Updated beaver-ai-restoration.html page with correct BDA terminology
-- Updated homepage beaver project section with correct BDA terminology
-- Updated projects index page with correct BDA terminology
-- Updated forest-inventory-analysis.html page case study section to use climate-smart-forestry.jpg instead of beaver-dam-ai.jpg
-- Updated projects index page to use climate-smart-forestry.jpg instead of climate-smart-forestry-cover.jpg
-- Updated homepage to use climate-smart-forestry.jpg instead of climate-smart-forestry-cover.jpg
-- Updated image caption text for better context and description
-- Updated projects index page to link to forest-inventory-analysis.html
-- Updated homepage featured projects section to link to climate-smart forestry content via forest-inventory-analysis.html
-- Simplified climate-smart forestry project description on homepage for better readability
-- Completely replaced forest-inventory-analysis.html with Climate-Smart Forestry content
-- Updated images in forest-inventory-analysis.html:
-  - Added climate-smart-forester.jpg award ceremony photo to recognition section
-  - Updated case study section with the primary climate-smart-forestry.jpg image
-- Enhanced alt text for award ceremony photo for better accessibility
-- Updated image captions to be more descriptive and SEO-friendly
-- Enhanced climate-smart forestry content with practical applications section targeting specific user groups
-- Added resources section to climate-smart forestry page with links to blog and consultation options
-- Replaced old Forest Inventory Analysis page with comprehensive Climate-Smart Forestry content
-- Updated projects index to reflect climate-smart forestry focus
-- Created new blog post on climate-smart forestry in /content/blog/climate-smart-forestry/
-- Improved SEO with enhanced meta titles and descriptions focused on climate-smart forestry
-- Updated homepage to link to new climate-smart forestry page
-- Created new Climate-Smart Forestry project page highlighting adaptation and mitigation work
-- Added personal story about training AI headshot model with 6-year-old's help
-- Removed old SVG files to resolve caching issues:
-  - Cleaned up `assets/images/services/ai-team-structure.svg`
-  - Cleaned up `assets/images/services/implementation-approaches.svg`
-- Updated professional visuals description to include \"professional headshots for busy professionals\"
-- Replaced SVG diagrams with JPG images in services.html:
-  - Updated team approach visual with AIteam.jpg 
-  - Updated implementation approaches visual with Service2.jpg
-- Improved alt text for better accessibility and SEO
-
-## 2025-04-26
-- Updated hero section with right-aligned text overlay to prevent covering the person in the image
-- Modified gradient overlay direction from left-to-right to right-to-left for better text readability
-- Adjusted content positioning for optimal visual balance
-- Changed header branding from \"David Beleznay\" to \"AI Forester\" throughout site
-- Improved hero text styling with green coloring for \"Engineer. Forester.\"
-- Added AI portrait gallery structure and styles for future AI-generated headshots
-- Updated meta information to reflect AI Forester branding
-- Created /assets/images/services/ directory for service diagrams
-- Added AI team structure SVG diagram
-- Added implementation approaches SVG diagram 
-- Updated services page to use AI Forester branding
-- Removed client success stories section from services page
-- Updated headshots section on services page to reference AI-generated visuals
-- Fixed projects page logo spacing and branding
-- Fixed products page logo spacing and updated newsletter section title
-- Ensured consistent \"AI Forester\" branding across all site headers
-- Updated LinkedIn and social links to use consistent formatting
-- Added AI-generated portrait images to /assets/images/ai-portraits/ directory
-- Updated AI portrait gallery with actual AI images
-- Enhanced AI portrait gallery with placeholder slots for future images
-- Added new Applications of AI Imagery section to portrait gallery page
-- Replaced placeholder image references on services page with actual AI portraits
-- Added link from services page to AI portrait gallery
-- Optimized image display heights for better consistency
