@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RDN Water Conservation ROI Calculator & Rebate Application Helper | AI Forester</title>
+  <meta name="description" content="Calculate water savings, ROI, and payback periods for RDN rebate programs. Get detailed consumption analysis, installation costs, and prepare your complete application.">
+  <link rel="stylesheet" href="rdn-calculator.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>RDN Water Conservation ROI Calculator</h1>
+      <p class="subtitle">Complete Financial Analysis & Rebate Application Helper</p>
+      <div class="badges">
+        <span class="badge">💰 Up to $875 in Rebates</span>
+        <span class="badge">📊 ROI & Payback Analysis</span>
+        <span class="badge">💧 Water Savings Calculator</span>
+        <span class="badge">🔧 Installation Cost Estimates</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="roi-showcase">
+      <h2>🎯 Complete Return on Investment Analysis</h2>
+      <div class="roi-intro">
+        <h3>Enhanced with Professional Cost Estimates</h3>
+        <p>✅ Analyzes your water consumption baseline using RDN seasonal patterns</p>
+        <p>✅ Provides rough installation cost estimates for budgeting</p>
+        <p>✅ Calculates potential water savings for each upgrade scenario</p>
+        <p>✅ Applies Nanaimo's tiered water rates to determine actual cost savings</p>
+        <p>✅ Computes payback periods based on net project costs after rebates</p>
+        <p>✅ Provides 10-year financial projections and environmental impact</p>
+      </div>
+      
+      <div class="water-rates-info">
+        <h4>💰 Nanaimo Water Rates (2025) - Tiered Pricing Structure</h4>
+        <div class="rate-tier"><span>Base Rate (Daily):</span><span class="tier-rate">$1.06/day</span></div>
+        <div class="rate-tier"><span>Tier 1 (0-110 gal/day):</span><span class="tier-rate">$0.00223/gallon</span></div>
+        <div class="rate-tier"><span>Tier 2 (110-220 gal/day):</span><span class="tier-rate">$0.00555/gallon</span></div>
+        <div class="rate-tier"><span>Tier 3 (220-330 gal/day):</span><span class="tier-rate">$0.00971/gallon</span></div>
+        <div class="rate-tier"><span>Tier 4 (330+ gal/day):</span><span class="tier-rate">$0.01703/gallon</span></div>
+      </div>
+    </div>
+
+    <div class="calculator-wrapper">
+      <div class="progress-bar">
+        <div class="progress-step active" id="step1"><div class="step-circle">1</div><div class="step-label">Property & Contact</div></div>
+        <div class="progress-step" id="step2"><div class="step-circle">2</div><div class="step-label">Water Usage Baseline</div></div>
+        <div class="progress-step" id="step3"><div class="step-circle">3</div><div class="step-label">Select Upgrades</div></div>
+        <div class="progress-step" id="step4"><div class="step-circle">4</div><div class="step-label">ROI Analysis</div></div>
+      </div>
+
+      <div class="form-section active" id="section1">
+        <h2>Property Owner Information</h2>
+        <div class="form-row">
+          <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" placeholder="John Smith"></div>
+          <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="john@email.com"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="phoneMain">Phone (Main)</label><input type="tel" id="phoneMain" placeholder="250-555-0123"></div>
+          <div class="form-group"><label for="phoneAlt">Phone (Alt)</label><input type="tel" id="phoneAlt" placeholder="250-555-0456"></div>
+        </div>
+        <div class="form-group"><label for="propertyAddress">Property Address</label><input type="text" id="propertyAddress" placeholder="123 Main Street"></div>
+        <div class="form-row">
+          <div class="form-group"><label for="city">City</label><input type="text" id="city" placeholder="Nanaimo" value="Nanaimo"></div>
+          <div class="form-group"><label for="postalCode">Postal Code</label><input type="text" id="postalCode" placeholder="V9S 1A1"></div>
+        </div>
+        <div class="form-group">
+          <label for="propertyType">Property Type</label>
+          <select id="propertyType" onchange="updatePropertyDefaults()">
+            <option value="single">Single Family Home</option>
+            <option value="townhouse">Townhouse</option>
+            <option value="condo">Condo with Garden</option>
+            <option value="large">Large Estate (1+ acre)</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="nextStep(1)" style="float:right;">Next: Water Usage →</button>
+      </div>
+
+      <div class="form-section" id="section2">
+        <h2>Water Usage Baseline</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="irrigatedArea">Irrigated Area (sq ft)</label>
+            <input type="number" id="irrigatedArea" placeholder="2000" onchange="updateUsageAnalysis()">
+            <p class="help-text">Total lawn and garden area that receives irrigation</p>
+          </div>
+          <div class="form-group">
+            <label for="irrigationMonths">Irrigation Months/Year</label>
+            <input type="number" id="irrigationMonths" placeholder="6" value="6" onchange="updateUsageAnalysis()">
+            <p class="help-text">Typically May-October in Nanaimo</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="irrigationSystem">Current Irrigation System</label>
+          <select id="irrigationSystem" onchange="updateUsageAnalysis()">
+            <option value="manual">Manual Watering (hose/sprinkler)</option>
+            <option value="timer">Basic Timer System</option>
+            <option value="inground">In-ground Sprinklers</option>
+            <option value="mixed">Mixed System</option>
+          </select>
+        </div>
+        <h3>Water Bills (Optional - Improves Accuracy)</h3>
+        <p class="help-text">Enter your gallons from recent water bills for more accurate consumption analysis</p>
+        <div class="water-usage-grid">
+          <div><label for="usage1">Winter 2024-25</label><input type="number" id="usage1" placeholder="8,000" onchange="updateUsageAnalysis()"></div>
+          <div><label for="usage2">Fall 2024</label><input type="number" id="usage2" placeholder="12,000" onchange="updateUsageAnalysis()"></div>
+          <div><label for="usage3">Summer 2024</label><input type="number" id="usage3" placeholder="20,000" onchange="updateUsageAnalysis()"></div>
+          <div><label for="usage4">Spring 2024</label><input type="number" id="usage4" placeholder="15,000" onchange="updateUsageAnalysis()"></div>
+        </div>
+        <div class="usage-analysis" id="usageAnalysis" style="display:none;">
+          <h4>📊 Water Consumption Analysis</h4>
+          <div class="analysis-grid">
+            <div class="analysis-metric"><div class="metric-value" id="avgDailyUsage">0</div><div>Daily Usage</div></div>
+            <div class="analysis-metric"><div class="metric-value" id="outdoorUsage">0%</div><div>Outdoor Use</div></div>
+            <div class="analysis-metric"><div class="metric-value" id="currentTier">Tier 1</div><div>Rate Tier</div></div>
+            <div class="analysis-metric"><div class="metric-value" id="annualCost">$0</div><div>Annual Cost</div></div>
+          </div>
+          <div style="margin-top:15px;padding:15px;background:#f0f8ff;border-radius:8px;">
+            <strong>Savings Potential:</strong> <span id="savingsPotential">Calculating...</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:30px;">
+          <button class="btn btn-secondary" onclick="previousStep(2)">← Back</button>
+          <button class="btn btn-primary" onclick="nextStep(2)">Next: Upgrades →</button>
+        </div>
+      </div>
+
+      <div class="form-section" id="section3">
+        <h2>Select Your Water Conservation Upgrades</h2>
+        <p style="color: #666; margin-bottom: 20px;">Choose the upgrades you'd like to include in your ROI analysis. Click each option to see details and customize settings.</p>
+        
+        <div class="upgrades-container">
+          <div class="upgrades-list">
+            <div class="upgrade-card" onclick="selectUpgrade('rainSensor')" id="card-rainSensor">
+              <div class="upgrade-header">
+                <span class="upgrade-title">Rain Sensor</span>
+                <span class="rebate-badge">$75 rebate</span>
+              </div>
+              <div class="upgrade-benefits">
+                <div class="benefit-item">
+                  <span class="benefit-icon">💧</span>
+                  <span>10-15% savings</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-icon">🌧️</span>
+                  <span>Auto shutoff</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="upgrade-card" onclick="selectUpgrade('smartController')" id="card-smartController">
+              <div class="upgrade-header">
+                <span class="upgrade-title">Smart Controller</span>
+                <span class="rebate-badge">$100 rebate</span>
+              </div>
+              <div class="upgrade-benefits">
+                <div class="benefit-item">
+                  <span class="benefit-icon">💧</span>
+                  <span>20-40% savings</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-icon">📱</span>
+                  <span>Weather-based</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="upgrade-card" onclick="selectUpgrade('dripConversion')" id="card-dripConversion">
+              <div class="upgrade-header">
+                <span class="upgrade-title">Drip Irrigation</span>
+                <span class="rebate-badge">$400 rebate</span>
+              </div>
+              <div class="upgrade-benefits">
+                <div class="benefit-item">
+                  <span class="benefit-icon">💧</span>
+                  <span>30-50% savings</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-icon">🎯</span>
+                  <span>Targeted watering</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="upgrade-card" onclick="selectUpgrade('mpRotators')" id="card-mpRotators">
+              <div class="upgrade-header">
+                <span class="upgrade-title">MP Rotators</span>
+                <span class="rebate-badge">$100 rebate</span>
+              </div>
+              <div class="upgrade-benefits">
+                <div class="benefit-item">
+                  <span class="benefit-icon">💧</span>
+                  <span>20-30% savings</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-icon">🌀</span>
+                  <span>Even coverage</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="upgrade-card" onclick="selectUpgrade('soilImprovements')" id="card-soilImprovements">
+              <div class="upgrade-header">
+                <span class="upgrade-title">Soil Improvements</span>
+                <span class="rebate-badge">50% up to $100</span>
+              </div>
+              <div class="upgrade-benefits">
+                <div class="benefit-item">
+                  <span class="benefit-icon">💧</span>
+                  <span>25% less water</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-icon">🌱</span>
+                  <span>Better retention</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="upgrade-details-panel">
+            <div class="details-placeholder" id="detailsPlaceholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="9" y1="9" x2="15" y2="9" />
+                <line x1="9" y1="15" x2="15" y2="15" />
+              </svg>
+              <h3>Select an upgrade to view details</h3>
+              <p>Click any upgrade option to customize settings and see cost estimates</p>
+            </div>
+            
+            <!-- Dynamic detail content will be inserted here -->
+          </div>
+        </div>
+        
+        <div style="display:flex;justify-content:space-between;margin-top:30px;">
+          <button class="btn btn-secondary" onclick="previousStep(3)">← Back</button>
+          <button class="btn btn-primary" onclick="nextStep(3)">Calculate ROI →</button>
+        </div>
+      </div>
+
+      <div class="form-section" id="section4">
+        <h2>ROI Analysis Results</h2>
+        <div id="roiResults"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:30px;">
+          <button class="btn btn-secondary" onclick="previousStep(4)">← Back</button>
+          <button class="btn btn-primary" onclick="generatePDF()">Generate PDF Report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="rdn-calculator.js"></script>
+</body>
+</html>
