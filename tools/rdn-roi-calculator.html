@@ -30,13 +30,16 @@
         <p>✅ Analyzes your water consumption baseline using RDN seasonal patterns</p>
         <p>✅ Provides rough installation cost estimates for budgeting</p>
         <p>✅ Calculates potential water savings for each upgrade scenario</p>
-        <p>✅ Applies Nanaimo's tiered water rates to determine actual cost savings</p>
+        <p>✅ Applies your local water rates to determine actual cost savings</p>
         <p>✅ Computes payback periods based on net project costs after rebates</p>
         <p>✅ Provides 10-year financial projections and environmental impact</p>
       </div>
       
       <div class="water-rates-info">
-        <h4>💰 Nanaimo Water Rates (2025) - Tiered Pricing Structure</h4>
+        <h4>💰 Example Water Rates (Nanaimo 2025) - Rates May Vary Within RDN</h4>
+        <div class="rate-note" style="background: #fff3cd; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 0.9rem; color: #856404;">
+          <strong>Note:</strong> This calculator uses Nanaimo's 2025 water rates as an example. Rates vary by municipality within the RDN. Check with your local water utility for exact rates.
+        </div>
         <div class="rate-tier"><span>Base Rate (Daily):</span><span class="tier-rate">$1.06/day</span></div>
         <div class="rate-tier"><span>Tier 1 (0-110 gal/day):</span><span class="tier-rate">$0.00223/gallon</span></div>
         <div class="rate-tier"><span>Tier 2 (110-220 gal/day):</span><span class="tier-rate">$0.00555/gallon</span></div>
@@ -65,7 +68,22 @@
         </div>
         <div class="form-group"><label for="propertyAddress">Property Address</label><input type="text" id="propertyAddress" placeholder="123 Main Street"></div>
         <div class="form-row">
-          <div class="form-group"><label for="city">City</label><input type="text" id="city" placeholder="Nanaimo" value="Nanaimo"></div>
+          <div class="form-group">
+            <label for="city">City/Area within RDN</label>
+            <input type="text" id="city" placeholder="e.g., Nanaimo, Parksville, Qualicum Beach" list="rdnCities">
+            <datalist id="rdnCities">
+              <option value="Nanaimo">
+              <option value="Parksville">
+              <option value="Qualicum Beach">
+              <option value="Lantzville">
+              <option value="Gabriola Island">
+              <option value="Cedar">
+              <option value="Ladysmith">
+              <option value="Coombs">
+              <option value="Errington">
+              <option value="French Creek">
+            </datalist>
+          </div>
           <div class="form-group"><label for="postalCode">Postal Code</label><input type="text" id="postalCode" placeholder="V9S 1A1"></div>
         </div>
         <div class="form-group">
@@ -91,7 +109,7 @@
           <div class="form-group">
             <label for="irrigationMonths">Irrigation Months/Year</label>
             <input type="number" id="irrigationMonths" placeholder="6" value="6" onchange="updateUsageAnalysis()">
-            <p class="help-text">Typically May-October in Nanaimo</p>
+            <p class="help-text">Typically May-October in the RDN region</p>
           </div>
         </div>
         <div class="form-group">
@@ -116,8 +134,8 @@
           <div class="analysis-grid">
             <div class="analysis-metric"><div class="metric-value" id="avgDailyUsage">0</div><div>Daily Usage</div></div>
             <div class="analysis-metric"><div class="metric-value" id="outdoorUsage">0%</div><div>Outdoor Use</div></div>
-            <div class="analysis-metric"><div class="metric-value" id="currentTier">Tier 1</div><div>Rate Tier</div></div>
-            <div class="analysis-metric"><div class="metric-value" id="annualCost">$0</div><div>Annual Cost</div></div>
+            <div class="analysis-metric"><div class="metric-value" id="currentTier">Tier 1</div><div>Rate Tier (Example)</div></div>
+            <div class="analysis-metric"><div class="metric-value" id="annualCost">$0</div><div>Est. Annual Cost</div></div>
           </div>
           <div style="margin-top:15px;padding:15px;background:#f0f8ff;border-radius:8px;">
             <strong>Savings Potential:</strong> <span id="savingsPotential">Calculating...</span>
