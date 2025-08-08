@@ -267,46 +267,108 @@
         </div>
         
         <div class="upgrade-details" id="soilImprovementsDetails">
-          <h3>Soil Improvements</h3>
+          <h3>Soil Improvements Calculator</h3>
           <div class="form-row">
             <div class="form-group">
-              <label for="applicationArea">Application Area (sq ft)</label>
-              <input type="number" id="applicationArea" placeholder="500" onchange="calculateSoilAmounts()">
+              <label for="gardenBedArea">Garden Bed Area (sq ft)</label>
+              <input type="number" id="gardenBedArea" placeholder="200" value="200" onchange="calculateSoilAmounts()">
+              <p class="help-text">Minimum 200 sq ft for rebate eligibility</p>
             </div>
             <div class="form-group">
-              <label for="applicationDepth">Application Type</label>
-              <select id="applicationDepth" onchange="calculateSoilAmounts()">
-                <option value="">Select type</option>
-                <option value="garden">Garden Beds (2 inch)</option>
-                <option value="lawn">Lawn Topdressing (1/4 inch)</option>
+              <label for="lawnArea">Lawn Area for Topdressing (sq ft)</label>
+              <input type="number" id="lawnArea" placeholder="0" value="0" onchange="calculateSoilAmounts()">
+              <p class="help-text">Enter 0 if only doing garden beds</p>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="materialType">Material Type</label>
+              <select id="materialType" onchange="calculateSoilAmounts()">
+                <option value="compost">Quality Compost ($34-$45/yard)</option>
+                <option value="soilblend" selected>Soil/Compost Blend ($45-$62/yard)</option>
+                <option value="premium">Premium Garden Mix ($55-$75/yard)</option>
               </select>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="soilCost">Total Cost Estimate ($)</label>
-            <input type="number" id="soilCost" value="200">
-            <p class="help-text">Remember: 50% rebate up to $100</p>
-          </div>
-          <div class="cost-estimate-box" id="soilCalculator" style="display:none;">
-            <h4>Required Soil Amendment</h4>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;">
-              <div style="text-align:center;">
-                <div id="bagsNeeded" style="font-size:1.2em;font-weight:bold;">0 bags</div>
-                <div>28L Bags</div>
-              </div>
-              <div style="text-align:center;">
-                <div id="cubicYards" style="font-size:1.2em;font-weight:bold;">0 yards</div>
-                <div>Bulk Quantity</div>
-              </div>
-              <div style="text-align:center;">
-                <div id="estimatedSoilCost" style="font-size:1.2em;font-weight:bold;">$0</div>
-                <div>Est. Cost</div>
-              </div>
+            <div class="form-group">
+              <label for="truckCapacity">Your Truck Capacity (cubic yards)</label>
+              <input type="number" id="truckCapacity" value="1.25" step="0.25" onchange="calculateSoilAmounts()">
+              <p class="help-text">Small pickup = 1.25 yards</p>
             </div>
           </div>
+
+          <!-- Delivery Toggle -->
+          <div class="delivery-toggle">
+            <label class="toggle-label">
+              <input type="checkbox" id="includeDelivery" onchange="calculateSoilAmounts()">
+              <span class="toggle-slider"></span>
+              Include Delivery?
+            </label>
+            <p class="help-text">Delivery typically $50-$85 within RDN core area</p>
+          </div>
+
+          <div class="cost-estimate-box" id="soilCalculator">
+            <h4>📊 Your Soil Requirements</h4>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:15px 0;">
+              <div>
+                <h5>Quantities Needed:</h5>
+                <div class="quantity-item">
+                  <strong>Garden Beds (2" depth):</strong> <span id="gardenYards">0</span> yards
+                </div>
+                <div class="quantity-item">
+                  <strong>Lawn Topdressing (¼" depth):</strong> <span id="lawnYards">0</span> yards
+                </div>
+                <div class="quantity-item">
+                  <strong>Total Required:</strong> <span id="totalYards" style="color:#3a7f42;font-weight:bold;">0</span> yards
+                </div>
+              </div>
+              <div>
+                <h5>Transportation:</h5>
+                <div class="quantity-item">
+                  <strong>Trips Required:</strong> <span id="tripsRequired">0</span> trips
+                </div>
+                <div class="quantity-item">
+                  <strong>Or Bags Needed:</strong> <span id="bagsNeeded">0</span> × 28L bags
+                </div>
+              </div>
+            </div>
+            
+            <div class="cost-comparison">
+              <h5>💰 Cost Comparison:</h5>
+              <div class="cost-option">
+                <div class="cost-option-header">🚚 Pickup Option:</div>
+                <div class="cost-breakdown">
+                  <div>Material Cost: <span id="pickupMaterialCost">$0</span></div>
+                  <div><strong>Total: <span id="pickupTotalCost">$0</span></strong></div>
+                </div>
+              </div>
+              <div class="cost-option" id="deliveryOption" style="display:none;">
+                <div class="cost-option-header">🚛 Delivery Option:</div>
+                <div class="cost-breakdown">
+                  <div>Material Cost: <span id="deliveryMaterialCost">$0</span></div>
+                  <div>Delivery Fee: <span id="deliveryFee">$65</span></div>
+                  <div><strong>Total: <span id="deliveryTotalCost">$0</span></strong></div>
+                </div>
+                <div class="delivery-note" id="freeDeliveryNote" style="display:none;color:#3a7f42;font-style:italic;">
+                  ✓ Free delivery available for 4+ yards!
+                </div>
+              </div>
+            </div>
+            
+            <div class="rebate-reminder">
+              <strong>Remember:</strong> 50% rebate up to $100 = <span id="estimatedRebate">$0</span> back!
+            </div>
+          </div>
+          
           <div class="form-group">
-            <label for="soilDescription">Description</label>
-            <textarea id="soilDescription" placeholder="Describe soil improvements (e.g., 'Add 2 inches of quality compost to 500 sq ft of vegetable garden beds')"></textarea>
+            <label for="soilCost">Final Cost Estimate ($)</label>
+            <input type="number" id="soilCost" value="200">
+            <p class="help-text">Adjust based on your specific supplier quotes</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="soilDescription">Project Description</label>
+            <textarea id="soilDescription" placeholder="Describe soil improvements (e.g., 'Add 2 inches of quality compost to 200 sq ft of vegetable garden beds')"></textarea>
           </div>
         </div>
 
