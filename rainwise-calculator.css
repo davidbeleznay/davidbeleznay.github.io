@@ -345,7 +345,7 @@ input:focus, select:focus, textarea:focus {
   color: var(--primary-dark); 
 }
 
-/* Upgrade Selection */
+/* Upgrade Selection - FIXED ALIGNMENT */
 .checkbox-group { 
   display: flex; 
   flex-direction: column; 
@@ -354,7 +354,7 @@ input:focus, select:focus, textarea:focus {
 
 .checkbox-item { 
   display: flex; 
-  align-items: start; 
+  align-items: flex-start; /* Fixed from 'start' to 'flex-start' */
   padding: 15px; 
   border: 2px solid #e0e0e0; 
   border-radius: 8px; 
@@ -369,8 +369,11 @@ input:focus, select:focus, textarea:focus {
 
 .checkbox-item input[type="checkbox"] { 
   margin-right: 12px; 
-  margin-top: 3px; 
+  margin-top: 2px; /* Adjusted alignment */
   cursor: pointer; 
+  width: 18px; /* Fixed width */
+  height: 18px; /* Fixed height */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .checkbox-item input[type="checkbox"]:checked + .checkbox-content .checkbox-title {
@@ -384,11 +387,13 @@ input:focus, select:focus, textarea:focus {
 .checkbox-title { 
   font-weight: 600; 
   margin-bottom: 5px; 
+  line-height: 1.2; /* Added for better alignment */
 }
 
 .checkbox-description {
   font-size: 0.9em;
   color: #666;
+  line-height: 1.4; /* Added for better readability */
 }
 
 .rebate-amount-inline { 
