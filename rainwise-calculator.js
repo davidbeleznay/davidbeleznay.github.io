@@ -1,9 +1,12 @@
-// RainWise Calculator JavaScript
+// RainWise Calculator JavaScript - Water Savings & Rebate Focus
 let currentStep = 1;
 let formData = {};
 let selectedRebates = [];
 let waterBaseline = {};
-let roiResults = {};
+let savingsResults = {};
+
+// Conversion factor: 1 gallon = 3.78541 litres
+const GALLON_TO_LITRE = 3.78541;
 
 const waterRates = { 
   baseRate: 1.06, 
@@ -20,7 +23,8 @@ const rebateInfo = {
   smartController: { name: 'Smart Controller', rebate: 100, savingsRange: '20-40%' },
   dripConversion: { name: 'Drip Irrigation', rebate: 400, savingsRange: '30-50%' },
   mpRotators: { name: 'MP Rotators', rebate: 100, savingsRange: '20-30%' },
-  soilImprovements: { name: 'Soil Improvements', rebate: 'varies', savingsRange: '25% less water' }
+  soilImprovements: { name: 'Soil Improvements', rebate: 'varies', savingsRange: '25% less water' },
+  rainwaterHarvesting: { name: 'Rainwater Harvesting', rebate: 750, savingsRange: '100% outdoor water' }
 };
 
 // Property defaults based on type
@@ -67,6 +71,10 @@ function validateStep(step) {
         return false;
       }
     }
+    // Pre-fill lead form with contact info
+    document.getElementById('leadName').value = document.getElementById('fullName').value;
+    document.getElementById('leadEmail').value = document.getElementById('email').value;
+    document.getElementById('leadPhone').value = document.getElementById('phoneMain').value;
   }
   
   if (step === 2) {
@@ -86,22 +94,23 @@ function validateStep(step) {
   return true;
 }
 
-// Water usage analysis
+// Water usage analysis - now showing litres
 function updateUsageAnalysis() {
   const area = parseFloat(document.getElementById('irrigatedArea').value) || 0;
   const months = parseFloat(document.getElementById('irrigationMonths').value) || 6;
   const system = document.getElementById('irrigationSystem').value;
   
+  // Convert water bills from litres to gallons for internal calculations
   const usageInputs = [
-    parseFloat(document.getElementById('usage1').value) || 0,
-    parseFloat(document.getElementById('usage2').value) || 0,
-    parseFloat(document.getElementById('usage3').value) || 0,
-    parseFloat(document.getElementById('usage4').value) || 0
+    (parseFloat(document.getElementById('usage1').value) || 0) / GALLON_TO_LITRE,
+    (parseFloat(document.getElementById('usage2').value) || 0) / GALLON_TO_LITRE,
+    (parseFloat(document.getElementById('usage3').value) || 0) / GALLON_TO_LITRE,
+    (parseFloat(document.getElementById('usage4').value) || 0) / GALLON_TO_LITRE
   ];
   
   const hasActualData = usageInputs.some(u => u > 0);
   
-  let avgDailyUsage, outdoorPercentage, currentTier, annualCost;
+  let avgDailyUsage, outdoorPercentage, annualUsageLitres;
   
   if (hasActualData) {
     // Use actual water bill data
@@ -130,60 +139,32 @@ function updateUsageAnalysis() {
     outdoorPercentage = Math.round((outdoorRate / avgDailyUsage) * 100);
   }
   
-  // Determine tier and cost
-  currentTier = avgDailyUsage > 330 ? 'Tier 4 ⚠️' : 
-                avgDailyUsage > 220 ? 'Tier 3' : 
-                avgDailyUsage > 110 ? 'Tier 2' : 'Tier 1';
+  // Convert to litres for display
+  const avgDailyLitres = Math.round(avgDailyUsage * GALLON_TO_LITRE);
+  annualUsageLitres = Math.round(avgDailyUsage * 365 * GALLON_TO_LITRE);
   
-  annualCost = calculateWaterCost(avgDailyUsage * 365);
+  // Calculate savings potential in litres
+  const potentialSavingsLitres = Math.round(annualUsageLitres * outdoorPercentage / 100 * 0.35);
   
-  // Savings potential message
-  let potential = '';
-  if (avgDailyUsage > 200) {
-    potential = `Very High - You're in ${currentTier} with significant savings opportunities. Smart upgrades could save $${Math.round(annualCost * 0.35)}/year!`;
-  } else if (avgDailyUsage > 120) {
-    potential = `High - Currently in ${currentTier}. Upgrades could reduce bills by 25-40% ($${Math.round(annualCost * 0.3)}/year)`;
-  } else if (avgDailyUsage < 80) {
-    potential = 'Limited - Already efficient! Focus on soil improvements for best ROI';
-  } else {
-    potential = `Moderate - Good opportunities to optimize. Potential savings of $${Math.round(annualCost * 0.25)}/year`;
-  }
-  
-  // Update display
-  document.getElementById('avgDailyUsage').textContent = `${avgDailyUsage} gal/day`;
+  // Update display with litres
+  document.getElementById('avgDailyUsage').textContent = `${avgDailyLitres.toLocaleString()} L/day`;
+  document.getElementById('annualUsage').textContent = `${annualUsageLitres.toLocaleString()} L`;
   document.getElementById('outdoorUsage').textContent = `${outdoorPercentage}%`;
-  document.getElementById('currentTier').textContent = currentTier;
-  document.getElementById('annualCost').textContent = `$${Math.round(annualCost)}`;
-  document.getElementById('savingsPotential').textContent = potential;
+  document.getElementById('savingsPotential').textContent = `${potentialSavingsLitres.toLocaleString()} L/year`;
   
-  // Store baseline data
+  // Store baseline data (keep in gallons internally for calculations)
   waterBaseline = { 
-    dailyUsage: avgDailyUsage, 
-    annualUsage: avgDailyUsage * 365, 
-    outdoorPortion: outdoorPercentage / 100, 
-    currentTier, 
-    annualCost, 
-    irrigatedArea: area, 
+    dailyUsage: avgDailyUsage,
+    dailyUsageLitres: avgDailyLitres,
+    annualUsage: avgDailyUsage * 365,
+    annualUsageLitres: annualUsageLitres,
+    outdoorPortion: outdoorPercentage / 100,
+    irrigatedArea: area,
     irrigationMonths: months,
     system: system
   };
   
   document.getElementById('usageAnalysis').style.display = 'block';
-}
-
-// Calculate water cost based on tiered rates
-function calculateWaterCost(annualGallons) {
-  const dailyGallons = annualGallons / 365;
-  let totalCost = waterRates.baseRate * 365;
-  
-  for (let tier of waterRates.tiers) {
-    if (dailyGallons > tier.min) {
-      const tierUsage = Math.min(dailyGallons, tier.max) - tier.min;
-      totalCost += tierUsage * tier.rate * 365;
-    }
-  }
-  
-  return totalCost;
 }
 
 // Toggle upgrade details
@@ -222,6 +203,24 @@ function updateDripCost() {
   document.getElementById('dripTotalEstimate').textContent = `$${totalCost}`;
 }
 
+function updateHarvestingCost() {
+  const type = document.getElementById('harvestingType').value;
+  const costs = {
+    'barrel': 300,
+    'tank1000': 800,
+    'tank2500': 1500,
+    'tank5000': 3000
+  };
+  const savingsLitres = {
+    'barrel': 5000,
+    'tank1000': 15000,
+    'tank2500': 30000,
+    'tank5000': 50000
+  };
+  document.getElementById('harvestingCost').value = costs[type] || 500;
+  document.getElementById('harvestingSavings').value = savingsLitres[type] || 10000;
+}
+
 function calculateSoilAmounts() {
   const area = parseFloat(document.getElementById('applicationArea').value) || 0;
   const depthType = document.getElementById('applicationDepth').value;
@@ -248,19 +247,20 @@ function calculateSoilAmounts() {
   document.getElementById('soilCost').value = Math.round((minCost + maxCost) / 2);
 }
 
-// Calculate ROI
-function calculateROI() {
+// Calculate Water Savings (replacing ROI focus)
+function calculateSavings() {
   collectFormData();
   
-  roiResults = { 
+  savingsResults = { 
     upgrades: [], 
     totalCost: 0, 
     totalRebates: 0, 
-    totalWaterSavings: 0, 
+    totalWaterSavingsGallons: 0,
+    totalWaterSavingsLitres: 0,
     totalCostSavings: 0, 
     netCost: 0, 
-    paybackYears: 0, 
-    roiPercentage: 0, 
+    paybackYears: 0,
+    percentReduction: 0,
     environmentalImpact: {} 
   };
   
@@ -269,59 +269,73 @@ function calculateROI() {
   
   // Calculate each upgrade's impact
   selectedRebates.forEach(rebate => {
-    const upgrade = calculateUpgradeROI(rebate, outdoorUsage);
-    roiResults.upgrades.push(upgrade);
-    roiResults.totalCost += upgrade.cost;
-    roiResults.totalRebates += upgrade.rebate;
-    roiResults.totalWaterSavings += upgrade.waterSavings;
+    const upgrade = calculateUpgradeSavings(rebate, outdoorUsage);
+    savingsResults.upgrades.push(upgrade);
+    savingsResults.totalCost += upgrade.cost;
+    savingsResults.totalRebates += upgrade.rebate;
+    savingsResults.totalWaterSavingsGallons += upgrade.waterSavingsGallons;
+    savingsResults.totalWaterSavingsLitres += upgrade.waterSavingsLitres;
   });
   
   // Check for combo bonus
   const hasIrrigation = selectedRebates.some(r => ['rainSensor', 'smartController', 'dripConversion', 'mpRotators'].includes(r));
   const hasSoil = selectedRebates.includes('soilImprovements');
   if (hasIrrigation && hasSoil) {
-    roiResults.totalRebates += 100;
-    roiResults.comboBonus = true;
+    savingsResults.totalRebates += 100;
+    savingsResults.comboBonus = true;
   }
   
   // Calculate financial metrics
   const currentAnnualCost = calculateWaterCost(baselineUsage);
-  const newAnnualCost = calculateWaterCost(baselineUsage - roiResults.totalWaterSavings);
-  roiResults.totalCostSavings = currentAnnualCost - newAnnualCost;
-  roiResults.netCost = roiResults.totalCost - roiResults.totalRebates;
-  roiResults.paybackYears = roiResults.totalCostSavings > 0 ? roiResults.netCost / roiResults.totalCostSavings : 999;
-  roiResults.roiPercentage = roiResults.netCost > 0 ? ((roiResults.totalCostSavings * 5 - roiResults.netCost) / roiResults.netCost) * 100 : 0;
+  const newAnnualCost = calculateWaterCost(baselineUsage - savingsResults.totalWaterSavingsGallons);
+  savingsResults.totalCostSavings = currentAnnualCost - newAnnualCost;
+  savingsResults.netCost = savingsResults.totalCost - savingsResults.totalRebates;
+  savingsResults.paybackYears = savingsResults.totalCostSavings > 0 ? savingsResults.netCost / savingsResults.totalCostSavings : 999;
+  savingsResults.percentReduction = Math.round((savingsResults.totalWaterSavingsGallons / baselineUsage) * 100);
   
-  // Environmental impact
-  roiResults.environmentalImpact = {
-    lifetimeWaterSavings: roiResults.totalWaterSavings * 10,
-    waterReduction: Math.round((roiResults.totalWaterSavings / baselineUsage) * 100),
-    co2Savings: Math.round(roiResults.totalWaterSavings * 0.006),
-    lifetimeCostSavings: roiResults.totalCostSavings * 10,
-    propertyValueIncrease: Math.round(roiResults.netCost * 1.5)
+  // Environmental impact (10 year)
+  savingsResults.environmentalImpact = {
+    lifetimeWaterSavingsLitres: savingsResults.totalWaterSavingsLitres * 10,
+    lifetimeWaterSavingsGallons: savingsResults.totalWaterSavingsGallons * 10,
+    co2Savings: Math.round(savingsResults.totalWaterSavingsGallons * 0.006 * 10),
+    lifetimeCostSavings: savingsResults.totalCostSavings * 10
   };
   
   displayResults();
-  generateApplication();
 }
 
-// Calculate individual upgrade ROI
-function calculateUpgradeROI(upgradeType, outdoorUsage) {
-  let cost = 0, rebate = 0, waterSavings = 0, savingsPercent = 0;
+// Calculate water cost based on tiered rates
+function calculateWaterCost(annualGallons) {
+  const dailyGallons = annualGallons / 365;
+  let totalCost = waterRates.baseRate * 365;
+  
+  for (let tier of waterRates.tiers) {
+    if (dailyGallons > tier.min) {
+      const tierUsage = Math.min(dailyGallons, tier.max) - tier.min;
+      totalCost += tierUsage * tier.rate * 365;
+    }
+  }
+  
+  return totalCost;
+}
+
+// Calculate individual upgrade savings
+function calculateUpgradeSavings(upgradeType, outdoorUsage) {
+  let cost = 0, rebate = 0, waterSavingsGallons = 0, savingsPercent = 0;
   
   switch (upgradeType) {
     case 'rainSensor':
       cost = parseFloat(document.getElementById('rainSensorCost').value) || 150;
       rebate = 75;
       savingsPercent = parseFloat(document.getElementById('rainSensorSavings').value) || 15;
-      waterSavings = outdoorUsage * (savingsPercent / 100);
+      waterSavingsGallons = outdoorUsage * (savingsPercent / 100);
       break;
       
     case 'smartController':
       cost = parseFloat(document.getElementById('controllerCost').value) || 450;
       rebate = 100;
       savingsPercent = parseFloat(document.getElementById('controllerSavings').value) || 30;
-      waterSavings = outdoorUsage * (savingsPercent / 100);
+      waterSavingsGallons = outdoorUsage * (savingsPercent / 100);
       break;
       
     case 'dripConversion':
@@ -330,21 +344,30 @@ function calculateUpgradeROI(upgradeType, outdoorUsage) {
       const dripArea = parseFloat(document.getElementById('dripArea').value) || waterBaseline.irrigatedArea;
       const areaFraction = dripArea / waterBaseline.irrigatedArea;
       savingsPercent = parseFloat(document.getElementById('dripSavings').value) || 40;
-      waterSavings = outdoorUsage * areaFraction * (savingsPercent / 100);
+      waterSavingsGallons = outdoorUsage * areaFraction * (savingsPercent / 100);
       break;
       
     case 'mpRotators':
       cost = parseFloat(document.getElementById('rotatorCost').value) || 400;
       rebate = 100;
       savingsPercent = parseFloat(document.getElementById('rotatorSavings').value) || 25;
-      waterSavings = outdoorUsage * (savingsPercent / 100);
+      waterSavingsGallons = outdoorUsage * (savingsPercent / 100);
       break;
       
     case 'soilImprovements':
       cost = parseFloat(document.getElementById('soilCost').value) || 200;
       rebate = Math.min(cost * 0.5, 100);
       savingsPercent = 25;
-      waterSavings = outdoorUsage * 0.25;
+      waterSavingsGallons = outdoorUsage * 0.25;
+      break;
+      
+    case 'rainwaterHarvesting':
+      cost = parseFloat(document.getElementById('harvestingCost').value) || 1500;
+      rebate = Math.min(cost * 0.5, 750);
+      // Water savings from input (already in litres)
+      const savingsLitres = parseFloat(document.getElementById('harvestingSavings').value) || 10000;
+      waterSavingsGallons = savingsLitres / GALLON_TO_LITRE;
+      savingsPercent = Math.min(100, (waterSavingsGallons / outdoorUsage) * 100);
       break;
   }
   
@@ -352,7 +375,8 @@ function calculateUpgradeROI(upgradeType, outdoorUsage) {
     type: upgradeType, 
     cost, 
     rebate, 
-    waterSavings, 
+    waterSavingsGallons,
+    waterSavingsLitres: Math.round(waterSavingsGallons * GALLON_TO_LITRE),
     savingsPercent, 
     netCost: cost - rebate 
   };
@@ -360,39 +384,28 @@ function calculateUpgradeROI(upgradeType, outdoorUsage) {
 
 // Display results
 function displayResults() {
-  // Update summary cards
-  document.getElementById('waterSavings').textContent = Math.round(roiResults.totalWaterSavings).toLocaleString();
-  document.getElementById('costSavings').textContent = `$${Math.round(roiResults.totalCostSavings)}`;
-  document.getElementById('totalRebates').textContent = `$${roiResults.totalRebates}`;
-  document.getElementById('paybackPeriod').textContent = roiResults.paybackYears < 20 ? `${roiResults.paybackYears.toFixed(1)} years` : '20+ years';
-  document.getElementById('roiPercentage').textContent = `${Math.round(roiResults.roiPercentage)}%`;
-  document.getElementById('propertyValue').textContent = `+$${roiResults.environmentalImpact.propertyValueIncrease}`;
+  // Update primary results
+  document.getElementById('totalRebates').textContent = `$${savingsResults.totalRebates}`;
+  document.getElementById('waterSavings').textContent = `${savingsResults.totalWaterSavingsLitres.toLocaleString()} L`;
+  document.getElementById('percentReduction').textContent = `${savingsResults.percentReduction}%`;
+  document.getElementById('environmentalImpact').textContent = `${Math.round(savingsResults.environmentalImpact.lifetimeWaterSavingsLitres / 1000).toLocaleString()}k L saved`;
   
-  // Update environmental impact
-  document.getElementById('lifetimeWaterSavings').textContent = Math.round(roiResults.environmentalImpact.lifetimeWaterSavings).toLocaleString();
-  document.getElementById('waterReduction').textContent = `${roiResults.environmentalImpact.waterReduction}%`;
-  document.getElementById('co2Savings').textContent = roiResults.environmentalImpact.co2Savings.toLocaleString();
-  document.getElementById('lifetimeSavings').textContent = `$${Math.round(roiResults.environmentalImpact.lifetimeCostSavings).toLocaleString()}`;
+  // Update annual savings (shown but not emphasized)
+  document.getElementById('annualSavings').textContent = `$${Math.round(savingsResults.totalCostSavings)}`;
   
-  // Build payback table
-  const tableBody = document.getElementById('paybackTableBody');
+  // Build savings table
+  const tableBody = document.getElementById('savingsTableBody');
   tableBody.innerHTML = '';
   
-  roiResults.upgrades.forEach(upgrade => {
+  savingsResults.upgrades.forEach(upgrade => {
     const row = tableBody.insertRow();
     const upgradeName = getUpgradeName(upgrade.type);
-    const annualSavings = Math.round((roiResults.totalCostSavings * (upgrade.waterSavings / roiResults.totalWaterSavings)));
-    const payback = upgrade.netCost > 0 && annualSavings > 0 ? (upgrade.netCost / annualSavings).toFixed(1) + ' years' : 'Immediate';
-    const tenYearNet = (annualSavings * 10) - upgrade.netCost;
     
     row.innerHTML = `
       <td>${upgradeName}</td>
-      <td>$${upgrade.cost}</td>
       <td>$${upgrade.rebate}</td>
-      <td>$${upgrade.netCost}</td>
-      <td>$${annualSavings}</td>
-      <td>${payback}</td>
-      <td style="color:${tenYearNet > 0 ? 'green' : 'red'}">$${tenYearNet}</td>
+      <td>${upgrade.waterSavingsLitres.toLocaleString()} L</td>
+      <td>${Math.round(upgrade.savingsPercent)}%</td>
     `;
   });
   
@@ -400,20 +413,38 @@ function displayResults() {
   const totalRow = tableBody.insertRow();
   totalRow.style.background = '#e8f5ea';
   totalRow.style.fontWeight = 'bold';
-  const tenYearNetTotal = (roiResults.totalCostSavings * 10) - roiResults.netCost;
   
   totalRow.innerHTML = `
     <td>TOTALS</td>
-    <td>$${roiResults.totalCost}</td>
-    <td>$${roiResults.totalRebates}</td>
-    <td>$${roiResults.netCost}</td>
-    <td>$${Math.round(roiResults.totalCostSavings)}</td>
-    <td>${roiResults.paybackYears < 20 ? roiResults.paybackYears.toFixed(1) + ' years' : '20+ years'}</td>
-    <td style="color:green">$${tenYearNetTotal}</td>
+    <td>$${savingsResults.totalRebates}</td>
+    <td>${savingsResults.totalWaterSavingsLitres.toLocaleString()} L</td>
+    <td>${savingsResults.percentReduction}%</td>
   `;
+  
+  // Build ROI table (hidden by default)
+  const roiTableBody = document.getElementById('roiTableBody');
+  roiTableBody.innerHTML = '';
+  
+  savingsResults.upgrades.forEach(upgrade => {
+    const row = roiTableBody.insertRow();
+    const upgradeName = getUpgradeName(upgrade.type);
+    const annualSavings = Math.round((savingsResults.totalCostSavings * (upgrade.waterSavingsGallons / savingsResults.totalWaterSavingsGallons)));
+    const payback = upgrade.netCost > 0 && annualSavings > 0 ? (upgrade.netCost / annualSavings).toFixed(1) + ' years' : 'Immediate';
+    const tenYearNet = (annualSavings * 10) - upgrade.netCost;
+    
+    row.innerHTML = `
+      <td>${upgradeName}</td>
+      <td>$${upgrade.cost}</td>
+      <td>$${upgrade.netCost}</td>
+      <td>${payback}</td>
+      <td style="color:${tenYearNet > 0 ? 'green' : 'red'}">$${tenYearNet}</td>
+    `;
+  });
   
   document.getElementById('resultsSection').classList.add('active');
   document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+  
+  setupPDFDownload();
 }
 
 // Helper function to get upgrade names
@@ -423,7 +454,8 @@ function getUpgradeName(type) {
     'smartController': 'Smart Controller', 
     'dripConversion': 'Drip Irrigation', 
     'mpRotators': 'MP Rotators', 
-    'soilImprovements': 'Soil Improvements' 
+    'soilImprovements': 'Soil Improvements',
+    'rainwaterHarvesting': 'Rainwater Harvesting'
   };
   return names[type] || type;
 }
@@ -447,76 +479,38 @@ function collectFormData() {
   };
 }
 
-// Generate application text
-function generateApplication() {
-  const today = new Date().toLocaleDateString('en-CA');
-  let selectedUpgrades = '';
-  
-  roiResults.upgrades.forEach(upgrade => {
-    const annualSavings = Math.round((roiResults.totalCostSavings * (upgrade.waterSavings / roiResults.totalWaterSavings)));
-    selectedUpgrades += `• ${getUpgradeName(upgrade.type)} - Cost: $${upgrade.cost}, Rebate: $${upgrade.rebate}, Est. Savings: ${annualSavings}/yr\n`;
-  });
-  
-  const applicationText = `RDN IRRIGATION & SOIL IMPROVEMENTS APPLICATION
-Generated: ${today}
+// Toggle ROI details
+function toggleROI() {
+  const roiDetails = document.getElementById('roiDetails');
+  roiDetails.style.display = roiDetails.style.display === 'none' ? 'block' : 'none';
+  return false;
+}
 
-FINANCIAL SUMMARY:
-Total Investment: $${roiResults.totalCost}
-Total Rebates: $${roiResults.totalRebates} ${roiResults.comboBonus ? '(includes $100 combo bonus)' : ''}
-Net Cost: $${roiResults.netCost}
-Annual Water Bill Savings: $${Math.round(roiResults.totalCostSavings)}
-Simple Payback: ${roiResults.paybackYears < 20 ? roiResults.paybackYears.toFixed(1) + ' years' : '20+ years'}
-10-Year Net Benefit: $${(roiResults.totalCostSavings * 10) - roiResults.netCost}
-
-APPLICANT:
-Name: ${formData.fullName}
-Email: ${formData.email}
-Phone: ${formData.phoneMain}
-Address: ${formData.propertyAddress}, ${formData.city} ${formData.postalCode}
-
-PROPERTY:
-Type: ${formData.propertyType.charAt(0).toUpperCase() + formData.propertyType.slice(1).replace(/([A-Z])/g, ' $1')}
-Irrigated Area: ${formData.irrigatedArea} sq ft
-Current System: ${formData.irrigationSystem.replace(/([A-Z])/g, ' $1')}
-Irrigation Season: ${formData.irrigationMonths} months
-Current Usage: ${Math.round(waterBaseline.dailyUsage)} gal/day (${waterBaseline.currentTier})
-Annual Water Cost: $${Math.round(waterBaseline.annualCost)}
-
-UPGRADES:
-${selectedUpgrades}
-
-WATER SAVINGS ANALYSIS:
-Current Annual Usage: ${Math.round(waterBaseline.annualUsage).toLocaleString()} gallons
-Projected Annual Savings: ${Math.round(roiResults.totalWaterSavings).toLocaleString()} gallons (${roiResults.environmentalImpact.waterReduction}% reduction)
-10-Year Water Savings: ${Math.round(roiResults.environmentalImpact.lifetimeWaterSavings).toLocaleString()} gallons
-CO₂ Reduction: ${roiResults.environmentalImpact.co2Savings} lbs/year
-
-Declaration: Work must be completed by December 15, 2025.
-Signature: _________________________ Date: _____________`;
+// Submit lead form
+function submitLead() {
+  const leadData = {
+    name: document.getElementById('leadName').value,
+    email: document.getElementById('leadEmail').value,
+    phone: document.getElementById('leadPhone').value,
+    timing: document.getElementById('leadTiming').value,
+    notes: document.getElementById('leadNotes').value,
+    propertyAddress: formData.propertyAddress,
+    city: formData.city,
+    totalRebates: savingsResults.totalRebates,
+    waterSavings: savingsResults.totalWaterSavingsLitres,
+    selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
+  };
   
-  document.getElementById('applicationPreview').textContent = applicationText;
+  // In a real implementation, this would send to a server
+  console.log('Lead data:', leadData);
+  alert('Thank you! A certified irrigation specialist will contact you within 48 hours to provide a custom quote and help with your rebate applications.');
   
-  // Implementation checklist
-  const checklist = [
-    'Review application and ROI analysis',
-    'Get quotes from IIABC certified professionals',
-    'Take before photos of all upgrade areas',
-    'Submit application for pre-approval',
-    'Complete work within 90 days of approval',
-    'Document installation with photos',
-    'Keep all receipts and invoices',
-    'Submit final claim with documentation',
-    'Monitor water bills to verify savings'
-  ];
-  
-  document.getElementById('submissionChecklist').innerHTML = checklist.map(item => `<div style="margin:5px 0;">☐ ${item}</div>`).join('');
-  
-  setupPDFDownload(applicationText);
+  // Could also trigger email notification to contractor here
 }
 
 // Setup PDF download
-function setupPDFDownload(applicationText) {
-  document.getElementById('downloadApplication').onclick = function() {
+function setupPDFDownload() {
+  document.getElementById('downloadReport').onclick = function() {
     if (typeof window.jsPDF === 'undefined') {
       alert('PDF generation not available. Please copy the text manually.');
       return;
@@ -525,22 +519,94 @@ function setupPDFDownload(applicationText) {
     const { jsPDF } = window.jsPDF;
     const doc = new jsPDF();
     
-    doc.setFontSize(16);
-    doc.text('RDN Water Conservation ROI Analysis', 20, 20);
+    // Header
+    doc.setFontSize(20);
+    doc.setTextColor(58, 127, 66); // Green
+    doc.text('Water Savings & Rebate Report', 20, 20);
     
+    // Date
     doc.setFontSize(10);
-    const lines = applicationText.split('\n');
-    let y = 40;
+    doc.setTextColor(100);
+    doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 30);
     
-    lines.forEach(line => {
-      if (y > 270) {
-        doc.addPage();
-        y = 20;
-      }
-      doc.text(line, 20, y);
-      y += 6;
+    // Highlight Box
+    doc.setFillColor(255, 243, 205); // Light yellow
+    doc.rect(15, 40, 180, 30, 'F');
+    doc.setTextColor(0);
+    doc.setFontSize(12);
+    doc.text('Your Water Conservation Summary', 20, 50);
+    doc.setFontSize(16);
+    doc.setTextColor(231, 76, 60); // Red accent
+    doc.text(`Total Rebates Available: $${savingsResults.totalRebates}`, 20, 62);
+    
+    // Key Metrics
+    doc.setTextColor(0);
+    doc.setFontSize(12);
+    let y = 85;
+    doc.text(`Annual Water Savings: ${savingsResults.totalWaterSavingsLitres.toLocaleString()} litres`, 20, y);
+    y += 10;
+    doc.text(`Water Use Reduction: ${savingsResults.percentReduction}%`, 20, y);
+    y += 10;
+    doc.text(`10-Year Environmental Impact: ${Math.round(savingsResults.environmentalImpact.lifetimeWaterSavingsLitres / 1000).toLocaleString()}k litres saved`, 20, y);
+    y += 10;
+    doc.text(`Annual Bill Savings: $${Math.round(savingsResults.totalCostSavings)}`, 20, y);
+    
+    // Selected Upgrades
+    y += 20;
+    doc.setFontSize(14);
+    doc.text('Your Selected Upgrades:', 20, y);
+    doc.setFontSize(10);
+    y += 10;
+    
+    savingsResults.upgrades.forEach(upgrade => {
+      doc.text(`• ${getUpgradeName(upgrade.type)}`, 25, y);
+      doc.text(`Rebate: $${upgrade.rebate}`, 80, y);
+      doc.text(`Saves: ${upgrade.waterSavingsLitres.toLocaleString()} L/year`, 120, y);
+      y += 8;
     });
     
-    doc.save(`RDN_ROI_Analysis_${formData.fullName.replace(/ /g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+    // Contact Info
+    y += 15;
+    doc.setFontSize(12);
+    doc.text('Property Information:', 20, y);
+    doc.setFontSize(10);
+    y += 10;
+    doc.text(`${formData.fullName}`, 20, y);
+    y += 6;
+    doc.text(`${formData.propertyAddress}, ${formData.city} ${formData.postalCode}`, 20, y);
+    y += 6;
+    doc.text(`${formData.email} | ${formData.phoneMain}`, 20, y);
+    
+    // Next Steps
+    if (y > 220) {
+      doc.addPage();
+      y = 20;
+    } else {
+      y += 20;
+    }
+    
+    doc.setFontSize(12);
+    doc.text('Next Steps:', 20, y);
+    doc.setFontSize(10);
+    y += 10;
+    const steps = [
+      '1. Contact a certified irrigation specialist for a detailed quote',
+      '2. Take "before" photos of all areas to be upgraded',
+      '3. Submit your rebate pre-approval application to RDN',
+      '4. Complete upgrades within 90 days of approval',
+      '5. Submit final documentation with receipts and "after" photos'
+    ];
+    
+    steps.forEach(step => {
+      doc.text(step, 25, y);
+      y += 8;
+    });
+    
+    // Footer
+    doc.setTextColor(100);
+    doc.setFontSize(8);
+    doc.text('This report is an estimate based on typical water usage patterns. Actual savings may vary.', 20, 280);
+    
+    doc.save(`Water_Savings_Report_${formData.fullName.replace(/ /g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
   };
 }
