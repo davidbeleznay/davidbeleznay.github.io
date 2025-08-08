@@ -1,4 +1,4 @@
-// RainWise Calculator JavaScript - Water Savings & Rebate Focus
+// RainWise Calculator JavaScript - Water Savings & Rebate Focus with Hybrid Approach
 let currentStep = 1;
 let formData = {};
 let selectedRebates = [];
@@ -75,6 +75,10 @@ function validateStep(step) {
     document.getElementById('leadName').value = document.getElementById('fullName').value;
     document.getElementById('leadEmail').value = document.getElementById('email').value;
     document.getElementById('leadPhone').value = document.getElementById('phoneMain').value;
+    // Also pre-fill premium form
+    document.getElementById('premiumName').value = document.getElementById('fullName').value;
+    document.getElementById('premiumEmail').value = document.getElementById('email').value;
+    document.getElementById('premiumPhone').value = document.getElementById('phoneMain').value;
   }
   
   if (step === 2) {
@@ -486,26 +490,64 @@ function toggleROI() {
   return false;
 }
 
-// Submit lead form
-function submitLead() {
-  const leadData = {
-    name: document.getElementById('leadName').value,
-    email: document.getElementById('leadEmail').value,
-    phone: document.getElementById('leadPhone').value,
-    timing: document.getElementById('leadTiming').value,
-    notes: document.getElementById('leadNotes').value,
-    propertyAddress: formData.propertyAddress,
-    city: formData.city,
-    totalRebates: savingsResults.totalRebates,
-    waterSavings: savingsResults.totalWaterSavingsLitres,
-    selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
-  };
+// Show free quote form
+function showFreeQuote() {
+  document.getElementById('freeQuoteForm').style.display = 'block';
+  document.getElementById('premiumServiceForm').style.display = 'none';
+  document.getElementById('freeQuoteForm').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Show premium service form
+function showPremiumService() {
+  document.getElementById('premiumServiceForm').style.display = 'block';
+  document.getElementById('freeQuoteForm').style.display = 'none';
+  document.getElementById('premiumServiceForm').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Submit lead form (hybrid approach)
+function submitLead(type) {
+  let leadData = {};
   
-  // In a real implementation, this would send to a server
-  console.log('Lead data:', leadData);
-  alert('Thank you! A certified irrigation specialist will contact you within 48 hours to provide a custom quote and help with your rebate applications.');
-  
-  // Could also trigger email notification to contractor here
+  if (type === 'free') {
+    leadData = {
+      type: 'free',
+      name: document.getElementById('leadName').value,
+      email: document.getElementById('leadEmail').value,
+      phone: document.getElementById('leadPhone').value,
+      timing: document.getElementById('leadTiming').value,
+      notes: document.getElementById('leadNotes').value,
+      propertyAddress: formData.propertyAddress,
+      city: formData.city,
+      totalRebates: savingsResults.totalRebates,
+      waterSavings: savingsResults.totalWaterSavingsLitres,
+      selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
+    };
+    
+    // In a real implementation, this would send to a server
+    console.log('Free lead data:', leadData);
+    alert('Thank you! A certified irrigation specialist will contact you within 48 hours to provide a custom quote.');
+  } else if (type === 'premium') {
+    leadData = {
+      type: 'premium',
+      name: document.getElementById('premiumName').value,
+      email: document.getElementById('premiumEmail').value,
+      phone: document.getElementById('premiumPhone').value,
+      timing: document.getElementById('premiumTiming').value,
+      notes: document.getElementById('premiumNotes').value,
+      propertyAddress: formData.propertyAddress,
+      city: formData.city,
+      totalRebates: savingsResults.totalRebates,
+      waterSavings: savingsResults.totalWaterSavingsLitres,
+      selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
+    };
+    
+    // In a real implementation, this would redirect to payment processor
+    console.log('Premium lead data:', leadData);
+    alert('You will be redirected to secure payment. After payment, you\'ll receive your Application Concierge package within 24 hours and priority contractor response.');
+    
+    // Simulate payment redirect
+    // window.location.href = 'https://payment-processor.com/checkout?service=rdn-concierge&amount=35';
+  }
 }
 
 // Setup PDF download
