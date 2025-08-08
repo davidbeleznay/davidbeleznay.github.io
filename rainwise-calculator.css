@@ -12,6 +12,8 @@
   --info-border: #90caf9;
   --highlight: #4CAF50;
   --water-blue: #2196F3;
+  --premium: #FFD700;
+  --premium-dark: #FFA500;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -293,6 +295,10 @@ input:focus, select:focus, textarea:focus {
   color: #333; 
 }
 
+.btn-secondary:hover {
+  background: #d0d0d0;
+}
+
 .btn-success { 
   background: #4CAF50; 
   color: white; 
@@ -547,6 +553,99 @@ input:focus, select:focus, textarea:focus {
   font-size: 0.9em;
 }
 
+/* Path Selection (Hybrid Approach) */
+.path-selection {
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.path-selection h3 {
+  color: var(--primary-dark);
+  margin-bottom: 30px;
+  font-size: 1.8em;
+}
+
+.path-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.path-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.path-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.path-card.free {
+  border: 2px solid #e0e0e0;
+}
+
+.path-card.premium {
+  border: 3px solid var(--premium);
+  background: linear-gradient(135deg, #fff, #fffaf0);
+}
+
+.path-header {
+  margin-bottom: 20px;
+}
+
+.path-header h4 {
+  font-size: 1.5em;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.path-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  background: var(--success);
+  color: var(--primary-dark);
+}
+
+.premium-badge {
+  background: linear-gradient(135deg, var(--premium), var(--premium-dark));
+  color: white;
+}
+
+.path-price {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: var(--primary);
+  margin: 15px 0;
+}
+
+.path-features {
+  list-style: none;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.path-features li {
+  padding: 8px 0;
+  color: #555;
+}
+
+.path-features li strong {
+  color: var(--primary-dark);
+}
+
 /* Lead Capture Section */
 .lead-capture-section {
   background: linear-gradient(135deg, var(--success), #d1ead6);
@@ -560,6 +659,56 @@ input:focus, select:focus, textarea:focus {
   color: var(--primary-dark);
   margin-bottom: 15px;
   font-size: 1.8em;
+}
+
+/* Premium Service Section */
+.premium-service-section {
+  background: linear-gradient(135deg, #fffaf0, #fff);
+  padding: 40px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  border: 3px solid var(--premium);
+  position: relative;
+}
+
+.premium-service-section h3 {
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.premium-benefits {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.premium-benefits ul {
+  list-style: none;
+  margin-top: 15px;
+}
+
+.premium-benefits ul li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+}
+
+.premium-benefits ul li:before {
+  content: "✅";
+  position: absolute;
+  left: 0;
+}
+
+.payment-info {
+  background: var(--info);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: 1px solid var(--info-border);
 }
 
 .lead-form {
@@ -752,7 +901,8 @@ input:focus, select:focus, textarea:focus {
   .form-row, 
   .water-usage-grid,
   .primary-results,
-  .steps-grid { 
+  .steps-grid,
+  .path-cards { 
     grid-template-columns: 1fr; 
   } 
   
@@ -781,5 +931,9 @@ input:focus, select:focus, textarea:focus {
   .program-link {
     width: 100%;
     text-align: center;
+  }
+  
+  .path-card {
+    margin-bottom: 20px;
   }
 }
