@@ -1,5 +1,17 @@
 # Changelog
 
+## 2025-08-08 (Session 2)
+- **RAINWISE CALCULATOR ENHANCED:** Added delivery toggle and enhanced soil calculator features
+  - **Added:** "Include Delivery?" toggle option for soil/compost calculations
+  - **Enhanced:** Delivery fee of $50-$85 (configurable) added when toggle is active
+  - **New Feature:** Side-by-side cost comparison showing both Pickup and Delivered costs
+  - **Added:** Free delivery note for orders of 4+ yards to encourage bulk purchases
+  - **Improved:** Visual delivery toggle with smooth sliding animation
+  - **Enhanced:** Cost breakdown now shows material cost, delivery fee, and total separately
+  - **Added:** Small-load surcharge notice for orders under 3 yards
+  - **UI Update:** Clean cost comparison cards with better visual hierarchy
+  - **Result:** Users can now make informed decisions about pickup vs delivery options
+
 ## 2025-08-08
 - **RAINWISE CALCULATOR TRANSFORMED:** Complete rebrand from ROI Calculator to Water Savings & Rebate Finder
   - **New Focus:** Shifted from ROI-centric to water savings and rebate discovery tool
