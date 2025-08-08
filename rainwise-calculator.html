@@ -3,69 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RainWise Calculator - RDN Water Conservation ROI | AI Forester</title>
-  <meta name="description" content="Calculate water savings, ROI, and payback periods for RDN rebate programs. Get detailed consumption analysis, installation costs, and prepare your complete application.">
+  <title>RDN Water Savings & Rebate Finder | AI Forester</title>
+  <meta name="description" content="Discover your RDN water rebates (up to $875), calculate water savings in litres, and get a custom quote from certified irrigation specialists. Free water conservation calculator.">
   <link rel="stylesheet" href="rainwise-calculator.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>RDN Water Conservation ROI Calculator</h1>
-      <p class="subtitle">Complete Financial Analysis & Rebate Application Helper</p>
+      <h1>RDN Water Savings & Rebate Finder</h1>
+      <p class="subtitle">Discover how much water and money you can save with RDN rebates — and get a custom quote from a certified irrigation specialist.</p>
       <div class="badges">
         <span class="badge">💰 Up to $875 in Rebates</span>
-        <span class="badge">📊 ROI & Payback Analysis</span>
-        <span class="badge">💧 Water Savings Calculator</span>
-        <span class="badge">🔧 Installation Cost Estimates</span>
+        <span class="badge">💧 Save Thousands of Litres</span>
+        <span class="badge">📋 Free Custom Quote</span>
+        <span class="badge">🏡 Rainwater Harvesting Available</span>
       </div>
     </div>
   </header>
 
   <div class="container">
-    <div class="roi-showcase">
-      <h2>🎯 Complete Return on Investment Analysis</h2>
-      <div class="roi-intro">
-        <h3>Enhanced with Professional Cost Estimates</h3>
-        <p>✅ Analyzes your water consumption baseline using RDN seasonal patterns</p>
-        <p>✅ Provides rough installation cost estimates for budgeting</p>
-        <p>✅ Calculates potential water savings for each upgrade scenario</p>
-        <p>✅ Applies your local water rates to determine actual cost savings</p>
-        <p>✅ Computes payback periods based on net project costs after rebates</p>
-        <p>✅ Provides 10-year financial projections and environmental impact</p>
-      </div>
-      
-      <div class="water-rates-info">
-        <h4>💰 Example Water Rates (Nanaimo 2025) - Rates May Vary Within RDN</h4>
-        <div class="rate-note">
-          <strong>Note:</strong> This calculator uses Nanaimo's 2025 water rates as an example. Water rates vary by municipality within the RDN. Check with your local water utility for exact rates to get the most accurate ROI calculations.
-        </div>
-        <div class="rate-tier"><span class="tier-name">Base Rate (Daily):</span><span class="tier-rate">$1.06/day</span></div>
-        <div class="rate-tier"><span class="tier-name">Tier 1 (0-110 gal/day):</span><span class="tier-rate">$0.00223/gallon</span></div>
-        <div class="rate-tier"><span class="tier-name">Tier 2 (110-220 gal/day):</span><span class="tier-rate">$0.00555/gallon</span></div>
-        <div class="rate-tier"><span class="tier-name">Tier 3 (220-330 gal/day):</span><span class="tier-rate">$0.00971/gallon</span></div>
-        <div class="rate-tier"><span class="tier-name">Tier 4 (330+ gal/day):</span><span class="tier-rate">$0.01703/gallon</span></div>
+    <div class="rebate-highlight-box">
+      <h2>💡 Did you know?</h2>
+      <p>You can get <strong>up to $875 in rebates</strong> for simple upgrades like soil mulching — often covering most of the project cost. Plus, rainwater harvesting systems are eligible for additional rebates!</p>
+      <div class="program-links">
+        <a href="https://rdn.bc.ca/irrigation-upgrades-and-soil-improvements" target="_blank" class="program-link">View Irrigation Rebates →</a>
+        <a href="https://rdn.bc.ca/rainwater-harvesting" target="_blank" class="program-link">View Rainwater Harvesting →</a>
       </div>
     </div>
 
     <div class="calculator-wrapper">
       <div class="progress-bar">
-        <div class="progress-step active" id="step1"><div class="step-circle">1</div><div class="step-label">Property & Contact</div></div>
-        <div class="progress-step" id="step2"><div class="step-circle">2</div><div class="step-label">Water Usage Baseline</div></div>
+        <div class="progress-step active" id="step1"><div class="step-circle">1</div><div class="step-label">Property Info</div></div>
+        <div class="progress-step" id="step2"><div class="step-circle">2</div><div class="step-label">Current Usage</div></div>
         <div class="progress-step" id="step3"><div class="step-circle">3</div><div class="step-label">Select Upgrades</div></div>
-        <div class="progress-step" id="step4"><div class="step-circle">4</div><div class="step-label">ROI Analysis</div></div>
+        <div class="progress-step" id="step4"><div class="step-circle">4</div><div class="step-label">Your Savings</div></div>
       </div>
 
       <!-- Step 1: Property Information -->
       <div class="form-section active" id="section1">
-        <h2>Property Owner Information</h2>
+        <h2>Let's Start with Your Property</h2>
         <div class="form-row">
-          <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" placeholder="John Smith"></div>
+          <div class="form-group"><label for="fullName">Your Name</label><input type="text" id="fullName" placeholder="John Smith"></div>
           <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="john@email.com"></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label for="phoneMain">Phone (Main)</label><input type="tel" id="phoneMain" placeholder="250-555-0123"></div>
-          <div class="form-group"><label for="phoneAlt">Phone (Alt)</label><input type="tel" id="phoneAlt" placeholder="250-555-0456"></div>
+          <div class="form-group"><label for="phoneMain">Phone Number</label><input type="tel" id="phoneMain" placeholder="250-555-0123"></div>
+          <div class="form-group"><label for="phoneAlt">Alternative Phone</label><input type="tel" id="phoneAlt" placeholder="250-555-0456"></div>
         </div>
         <div class="form-group"><label for="propertyAddress">Property Address</label><input type="text" id="propertyAddress" placeholder="123 Main Street"></div>
         <div class="form-row">
@@ -101,7 +85,7 @@
 
       <!-- Step 2: Water Usage Baseline -->
       <div class="form-section" id="section2">
-        <h2>Water Usage Baseline</h2>
+        <h2>Current Water Usage</h2>
         <div class="form-row">
           <div class="form-group">
             <label for="irrigatedArea">Irrigated Area (sq ft)</label>
@@ -123,24 +107,21 @@
             <option value="mixed">Mixed System</option>
           </select>
         </div>
-        <h3>Water Bills (Optional - Improves Accuracy)</h3>
-        <p class="help-text">Enter your gallons from recent water bills for more accurate consumption analysis</p>
+        <h3>Recent Water Bills (Optional - Improves Accuracy)</h3>
+        <p class="help-text">Enter your water usage in litres from recent bills for more accurate savings calculations</p>
         <div class="water-usage-grid">
-          <div><label for="usage1">Winter 2024-25</label><input type="number" id="usage1" placeholder="8,000" onchange="updateUsageAnalysis()"></div>
-          <div><label for="usage2">Fall 2024</label><input type="number" id="usage2" placeholder="12,000" onchange="updateUsageAnalysis()"></div>
-          <div><label for="usage3">Summer 2024</label><input type="number" id="usage3" placeholder="20,000" onchange="updateUsageAnalysis()"></div>
-          <div><label for="usage4">Spring 2024</label><input type="number" id="usage4" placeholder="15,000" onchange="updateUsageAnalysis()"></div>
+          <div><label for="usage1">Winter 2024-25</label><input type="number" id="usage1" placeholder="30,000" onchange="updateUsageAnalysis()"></div>
+          <div><label for="usage2">Fall 2024</label><input type="number" id="usage2" placeholder="45,000" onchange="updateUsageAnalysis()"></div>
+          <div><label for="usage3">Summer 2024</label><input type="number" id="usage3" placeholder="75,000" onchange="updateUsageAnalysis()"></div>
+          <div><label for="usage4">Spring 2024</label><input type="number" id="usage4" placeholder="55,000" onchange="updateUsageAnalysis()"></div>
         </div>
         <div class="usage-analysis" id="usageAnalysis" style="display:none;">
-          <h4>📊 Water Consumption Analysis</h4>
+          <h4>💧 Your Water Usage Summary</h4>
           <div class="analysis-grid">
             <div class="analysis-metric"><div class="metric-value" id="avgDailyUsage">0</div><div>Daily Usage</div></div>
+            <div class="analysis-metric"><div class="metric-value" id="annualUsage">0</div><div>Annual Usage</div></div>
             <div class="analysis-metric"><div class="metric-value" id="outdoorUsage">0%</div><div>Outdoor Use</div></div>
-            <div class="analysis-metric"><div class="metric-value" id="currentTier">Tier 1</div><div>Rate Tier (Example)</div></div>
-            <div class="analysis-metric"><div class="metric-value" id="annualCost">$0</div><div>Est. Annual Cost</div></div>
-          </div>
-          <div style="margin-top:15px;padding:15px;background:#f0f8ff;border-radius:8px;">
-            <strong>Savings Potential:</strong> <span id="savingsPotential">Calculating...</span>
+            <div class="analysis-metric"><div class="metric-value" id="savingsPotential">0</div><div>Savings Potential</div></div>
           </div>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:30px;">
@@ -149,43 +130,50 @@
         </div>
       </div>
 
-      <!-- Step 3: Select Upgrades (Simplified) -->
+      <!-- Step 3: Select Upgrades -->
       <div class="form-section" id="section3">
-        <h2>Select Upgrades & Review Costs</h2>
+        <h2>Select Your Water-Saving Upgrades</h2>
         <div class="checkbox-group">
           <div class="checkbox-item">
             <input type="checkbox" id="rainSensor" value="rainSensor" onchange="toggleUpgradeDetails(this.value)">
             <div class="checkbox-content">
               <div class="checkbox-title">Rain Sensor <span class="rebate-amount-inline">($75 rebate)</span></div>
-              <div class="checkbox-description">10-15% water savings • Prevents watering in rain</div>
+              <div class="checkbox-description">Save 10-15% • Prevents watering in rain • Quick payback</div>
             </div>
           </div>
           <div class="checkbox-item">
             <input type="checkbox" id="smartController" value="smartController" onchange="toggleUpgradeDetails(this.value)">
             <div class="checkbox-content">
               <div class="checkbox-title">Smart Controller <span class="rebate-amount-inline">($100 rebate)</span></div>
-              <div class="checkbox-description">20-40% water savings • Weather-based scheduling</div>
+              <div class="checkbox-description">Save 20-40% • Weather-based scheduling • Top water saver</div>
             </div>
           </div>
           <div class="checkbox-item">
             <input type="checkbox" id="dripConversion" value="dripConversion" onchange="toggleUpgradeDetails(this.value)">
             <div class="checkbox-content">
               <div class="checkbox-title">Drip Irrigation <span class="rebate-amount-inline">($400 rebate)</span></div>
-              <div class="checkbox-description">30-50% water savings • Targeted root watering</div>
+              <div class="checkbox-description">Save 30-50% • Targeted root watering • Highest rebate</div>
             </div>
           </div>
           <div class="checkbox-item">
             <input type="checkbox" id="mpRotators" value="mpRotators" onchange="toggleUpgradeDetails(this.value)">
             <div class="checkbox-content">
               <div class="checkbox-title">MP Rotators <span class="rebate-amount-inline">($100 rebate)</span></div>
-              <div class="checkbox-description">20-30% water savings • Even water distribution</div>
+              <div class="checkbox-description">Save 20-30% • Even water distribution • Less runoff</div>
             </div>
           </div>
           <div class="checkbox-item">
             <input type="checkbox" id="soilImprovements" value="soilImprovements" onchange="toggleUpgradeDetails(this.value)">
             <div class="checkbox-content">
               <div class="checkbox-title">Soil Improvements <span class="rebate-amount-inline">(50% up to $100)</span></div>
-              <div class="checkbox-description">25% less watering needed • Better water retention</div>
+              <div class="checkbox-description">Save 25% on watering • Better water retention • Often free with rebate</div>
+            </div>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="rainwaterHarvesting" value="rainwaterHarvesting" onchange="toggleUpgradeDetails(this.value)">
+            <div class="checkbox-content">
+              <div class="checkbox-title">Rainwater Harvesting <span class="rebate-amount-inline">(50% up to $750)</span></div>
+              <div class="checkbox-description">Save 100% on outdoor water • Drought-proof • Highest savings</div>
             </div>
           </div>
         </div>
@@ -195,7 +183,7 @@
           <h3>Rain Sensor Details</h3>
           <div class="form-row">
             <div class="form-group">
-              <label for="rainSensorCost">Total Cost Estimate ($)</label>
+              <label for="rainSensorCost">Installation Cost Estimate ($)</label>
               <input type="number" id="rainSensorCost" value="150">
               <p class="help-text">Includes sensor and professional installation</p>
             </div>
@@ -219,7 +207,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="controllerCost">Total Cost Estimate ($)</label>
+              <label for="controllerCost">Installation Cost Estimate ($)</label>
               <input type="number" id="controllerCost" value="450">
             </div>
           </div>
@@ -238,7 +226,7 @@
               <p class="help-text">Garden beds and shrub areas</p>
             </div>
             <div class="form-group">
-              <label for="dripCost">Total Cost Estimate ($)</label>
+              <label for="dripCost">Installation Cost Estimate ($)</label>
               <input type="number" id="dripCost" value="1200">
             </div>
           </div>
@@ -268,7 +256,7 @@
               <input type="number" id="rotatorHeads" value="20" onchange="updateRotatorCost()">
             </div>
             <div class="form-group">
-              <label for="rotatorCost">Total Cost Estimate ($)</label>
+              <label for="rotatorCost">Installation Cost Estimate ($)</label>
               <input type="number" id="rotatorCost" value="400">
             </div>
           </div>
@@ -321,63 +309,176 @@
             <textarea id="soilDescription" placeholder="Describe soil improvements (e.g., 'Add 2 inches of quality compost to 500 sq ft of vegetable garden beds')"></textarea>
           </div>
         </div>
+
+        <div class="upgrade-details" id="rainwaterHarvestingDetails">
+          <h3>Rainwater Harvesting System</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="harvestingType">System Type</label>
+              <select id="harvestingType" onchange="updateHarvestingCost()">
+                <option value="barrel">Rain Barrel (200-400L)</option>
+                <option value="tank1000">Storage Tank (1000L)</option>
+                <option value="tank2500">Storage Tank (2500L)</option>
+                <option value="tank5000">Large System (5000L+)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="harvestingCost">Installation Cost Estimate ($)</label>
+              <input type="number" id="harvestingCost" value="500">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="harvestingSavings">Expected Water Savings (L/year)</label>
+            <input type="number" id="harvestingSavings" value="10000">
+            <p class="help-text">Based on roof area and annual rainfall</p>
+          </div>
+          <div class="cost-estimate-box">
+            <h4>💧 Rainwater Harvesting Benefits</h4>
+            <ul style="text-align:left;margin:10px 0;">
+              <li>Free water for outdoor irrigation</li>
+              <li>Reduce stormwater runoff</li>
+              <li>Emergency water supply</li>
+              <li>50% rebate up to $750</li>
+            </ul>
+          </div>
+        </div>
         
         <div style="display:flex;justify-content:space-between;margin-top:30px;">
           <button class="btn btn-secondary" onclick="previousStep(3)">← Back</button>
-          <button class="btn btn-success" onclick="calculateROI()">Calculate ROI →</button>
+          <button class="btn btn-success" onclick="calculateSavings()">Calculate My Savings →</button>
         </div>
       </div>
     </div>
 
     <!-- Results Section -->
     <div class="results-section" id="resultsSection">
-      <h2>📊 ROI Analysis Results</h2>
-      <div class="roi-results">
-        <div class="roi-card"><div>💧</div><div class="roi-value" id="waterSavings">0</div><div>Gallons Saved/Year</div></div>
-        <div class="roi-card"><div>💰</div><div class="roi-value" id="costSavings">$0</div><div>Annual Savings</div></div>
-        <div class="roi-card"><div>🎯</div><div class="roi-value" id="totalRebates">$0</div><div>Total Rebates</div></div>
-        <div class="roi-card"><div>📅</div><div class="roi-value" id="paybackPeriod">0</div><div>Payback Period</div></div>
-        <div class="roi-card"><div>📈</div><div class="roi-value" id="roiPercentage">0%</div><div>5-Year ROI</div></div>
-        <div class="roi-card"><div>🏠</div><div class="roi-value" id="propertyValue">+$0</div><div>Property Value</div></div>
-      </div>
+      <h2>🎉 Your Water Savings & Rebate Summary</h2>
       
-      <div style="background:#fff3cd;padding:25px;border-radius:12px;margin-bottom:30px;">
-        <h3>💡 Financial Breakdown</h3>
-        <table class="payback-table">
-          <thead><tr><th>Upgrade</th><th>Cost</th><th>Rebate</th><th>Net Cost</th><th>Annual Savings</th><th>Payback</th><th>10-Yr Net</th></tr></thead>
-          <tbody id="paybackTableBody"></tbody>
+      <div class="primary-results">
+        <div class="result-card highlight">
+          <div class="card-icon">💰</div>
+          <div class="result-value" id="totalRebates">$0</div>
+          <div class="result-label">Total Rebates Available</div>
+        </div>
+        <div class="result-card">
+          <div class="card-icon">💧</div>
+          <div class="result-value" id="waterSavings">0 L</div>
+          <div class="result-label">Litres Saved per Year</div>
+        </div>
+        <div class="result-card">
+          <div class="card-icon">📉</div>
+          <div class="result-value" id="percentReduction">0%</div>
+          <div class="result-label">Water Usage Reduction</div>
+        </div>
+        <div class="result-card">
+          <div class="card-icon">🌍</div>
+          <div class="result-value" id="environmentalImpact">0</div>
+          <div class="result-label">10-Year Environmental Impact</div>
+        </div>
+      </div>
+
+      <div class="detailed-breakdown">
+        <h3>💡 Your Selected Upgrades</h3>
+        <table class="savings-table">
+          <thead>
+            <tr>
+              <th>Upgrade</th>
+              <th>Rebate</th>
+              <th>Water Saved/Year</th>
+              <th>% Reduction</th>
+            </tr>
+          </thead>
+          <tbody id="savingsTableBody"></tbody>
         </table>
       </div>
-      
-      <div class="environmental-impact">
-        <h3>🌍 Environmental Impact (10-Year)</h3>
-        <div class="impact-grid">
-          <div class="impact-item"><div class="impact-value" id="lifetimeWaterSavings">0</div><div>Gallons Saved</div></div>
-          <div class="impact-item"><div class="impact-value" id="waterReduction">0%</div><div>Water Reduction</div></div>
-          <div class="impact-item"><div class="impact-value" id="co2Savings">0</div><div>lbs CO₂ Saved</div></div>
-          <div class="impact-item"><div class="impact-value" id="lifetimeSavings">$0</div><div>10-Year Savings</div></div>
-        </div>
-      </div>
-      
-      <div class="application-preview">
-        <h3>📋 Pre-filled Application with ROI Summary</h3>
-        <p style="background:#e3f2fd;padding:12px;border-radius:6px;margin-bottom:15px;">
-          <strong>Note:</strong> Water savings calculations use example rates. Your actual savings may vary based on your local water utility rates.
+
+      <div class="financial-summary" id="financialSummary">
+        <p class="summary-text">
+          <strong>Annual Bill Savings:</strong> <span id="annualSavings">$0</span><br>
+          <small>Want to see full ROI details? <a href="#" onclick="toggleROI()">Click here</a></small>
         </p>
-        <div class="form-preview" id="applicationPreview"></div>
-        <div style="background:#d1ecf1;padding:20px;border-radius:8px;">
-          <h4>📋 Implementation Checklist</h4>
-          <div id="submissionChecklist"></div>
+        <div id="roiDetails" style="display:none;">
+          <table class="roi-table">
+            <thead>
+              <tr>
+                <th>Upgrade</th>
+                <th>Cost</th>
+                <th>Net Cost</th>
+                <th>Payback</th>
+                <th>10-Yr Benefit</th>
+              </tr>
+            </thead>
+            <tbody id="roiTableBody"></tbody>
+          </table>
         </div>
       </div>
-      
+
+      <div class="lead-capture-section">
+        <h3>🏆 Get Your Custom Quote & Rebate Assistance</h3>
+        <p>Want a certified irrigation specialist to help you maximize your rebates and water savings? Enter your details below for a free custom quote.</p>
+        <div class="lead-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="leadName" placeholder="Your Name" value="">
+            </div>
+            <div class="form-group">
+              <input type="email" id="leadEmail" placeholder="Email Address" value="">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="tel" id="leadPhone" placeholder="Phone Number" value="">
+            </div>
+            <div class="form-group">
+              <select id="leadTiming">
+                <option value="">When to start?</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1month">Within 1 month</option>
+                <option value="3months">Within 3 months</option>
+                <option value="planning">Just planning</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea id="leadNotes" placeholder="Any specific questions or concerns about your water conservation project?"></textarea>
+          </div>
+          <button class="btn btn-primary btn-large" onclick="submitLead()">Get My Free Quote →</button>
+        </div>
+      </div>
+
+      <div class="next-steps">
+        <h3>📋 Next Steps</h3>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h4>Download Your Report</h4>
+            <p>Get your personalized Water Savings & Rebate Report as a PDF</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h4>Get Professional Quote</h4>
+            <p>Certified specialist will contact you within 48 hours</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h4>Apply for Rebates</h4>
+            <p>We'll help you complete and submit your rebate applications</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h4>Save Water & Money</h4>
+            <p>Start saving thousands of litres and dollars every year</p>
+          </div>
+        </div>
+      </div>
+
       <div class="cta-section">
-        <h2>Your Water Conservation Investment Plan is Ready!</h2>
-        <p>Complete ROI analysis shows strong returns through water savings and rebates.</p>
+        <h2>Ready to Start Saving?</h2>
+        <p>Download your personalized report or start a new calculation.</p>
         <div style="display:flex;gap:20px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
-          <button class="btn btn-primary" id="downloadApplication">📄 Download Analysis (PDF)</button>
-          <a href="https://www.rdn.bc.ca/sites/default/files/inline-files/2025%20I%26S%20Pre-approval%20Application%20Form.pdf" target="_blank" class="btn btn-secondary">📋 Official RDN Form</a>
-          <button class="btn btn-secondary" onclick="location.reload()">🔄 New Analysis</button>
+          <button class="btn btn-primary" id="downloadReport">📄 Download Report (PDF)</button>
+          <a href="https://rdn.bc.ca/irrigation-upgrades-and-soil-improvements" target="_blank" class="btn btn-secondary">📋 View RDN Programs</a>
+          <button class="btn btn-secondary" onclick="location.reload()">🔄 New Calculation</button>
         </div>
       </div>
     </div>
