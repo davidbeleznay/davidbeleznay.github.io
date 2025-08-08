@@ -413,9 +413,47 @@
         </div>
       </div>
 
-      <div class="lead-capture-section">
-        <h3>🏆 Get Your Custom Quote & Rebate Assistance</h3>
-        <p>Want a certified irrigation specialist to help you maximize your rebates and water savings? Enter your details below for a free custom quote.</p>
+      <!-- Choose Your Path Section -->
+      <div class="path-selection">
+        <h3>🚀 Choose How to Proceed</h3>
+        <div class="path-cards">
+          <div class="path-card free">
+            <div class="path-header">
+              <h4>Free Quote</h4>
+              <span class="path-badge">Most Popular</span>
+            </div>
+            <ul class="path-features">
+              <li>✓ Basic water savings report</li>
+              <li>✓ Connect with local contractor</li>
+              <li>✓ General rebate information</li>
+              <li>✓ Standard response time</li>
+            </ul>
+            <button class="btn btn-secondary btn-large" onclick="showFreeQuote()">Get Free Quote</button>
+          </div>
+          
+          <div class="path-card premium">
+            <div class="path-header">
+              <h4>Application Concierge</h4>
+              <span class="path-badge premium-badge">Premium Service</span>
+              <div class="path-price">$35</div>
+            </div>
+            <ul class="path-features">
+              <li>✓ Everything in Free Quote</li>
+              <li>✓ <strong>Pre-filled rebate applications</strong></li>
+              <li>✓ <strong>Priority contractor response</strong></li>
+              <li>✓ <strong>Application checklist & guides</strong></li>
+              <li>✓ <strong>Rebate submission support</strong></li>
+              <li>✓ <strong>30-day email support</strong></li>
+            </ul>
+            <button class="btn btn-primary btn-large" onclick="showPremiumService()">Get Premium Service</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Quote Form (hidden initially) -->
+      <div class="lead-capture-section" id="freeQuoteForm" style="display:none;">
+        <h3>📋 Get Your Free Quote</h3>
+        <p>Enter your details below and a certified irrigation specialist will contact you with a custom quote.</p>
         <div class="lead-form">
           <div class="form-row">
             <div class="form-group">
@@ -442,7 +480,53 @@
           <div class="form-group">
             <textarea id="leadNotes" placeholder="Any specific questions or concerns about your water conservation project?"></textarea>
           </div>
-          <button class="btn btn-primary btn-large" onclick="submitLead()">Get My Free Quote →</button>
+          <button class="btn btn-primary btn-large" onclick="submitLead('free')">Submit Free Quote Request →</button>
+        </div>
+      </div>
+
+      <!-- Premium Service Form (hidden initially) -->
+      <div class="premium-service-section" id="premiumServiceForm" style="display:none;">
+        <h3>🏆 Application Concierge Service</h3>
+        <div class="premium-benefits">
+          <p><strong>What you get for $35:</strong></p>
+          <ul>
+            <li>✅ All rebate applications pre-filled with your information</li>
+            <li>✅ Step-by-step submission guide with screenshots</li>
+            <li>✅ Priority response from certified contractors (within 24 hours)</li>
+            <li>✅ Complete application checklist with required documents</li>
+            <li>✅ 30 days of email support for questions</li>
+            <li>✅ Rebate tracking spreadsheet</li>
+          </ul>
+        </div>
+        <div class="lead-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="premiumName" placeholder="Your Name" value="">
+            </div>
+            <div class="form-group">
+              <input type="email" id="premiumEmail" placeholder="Email Address" value="">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="tel" id="premiumPhone" placeholder="Phone Number" value="">
+            </div>
+            <div class="form-group">
+              <select id="premiumTiming">
+                <option value="">When to start?</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1month">Within 1 month</option>
+                <option value="3months">Within 3 months</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea id="premiumNotes" placeholder="Tell us about your specific needs or questions"></textarea>
+          </div>
+          <div class="payment-info">
+            <p><strong>Payment:</strong> You'll be redirected to secure payment after clicking below.</p>
+          </div>
+          <button class="btn btn-primary btn-large" onclick="submitLead('premium')">Purchase Application Concierge ($35) →</button>
         </div>
       </div>
 
