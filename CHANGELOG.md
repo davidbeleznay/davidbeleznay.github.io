@@ -1,5 +1,24 @@
 # Changelog
 
+## 2025-08-08
+- **RAINWISE CALCULATOR TRANSFORMED:** Complete rebrand from ROI Calculator to Water Savings & Rebate Finder
+  - **New Focus:** Shifted from ROI-centric to water savings and rebate discovery tool
+  - **Rebranded:** Changed title from "ROI Calculator" to "RDN Water Savings & Rebate Finder"
+  - **Updated Subtitle:** "Discover how much water and money you can save with RDN rebates — and get a custom quote from a certified irrigation specialist"
+  - **Added:** Prominent rebate highlight box showing up to $875 in available rebates
+  - **Enhanced:** Added links to both irrigation upgrades and rainwater harvesting programs
+  - **New Feature:** Added rainwater harvesting option with 50% rebate up to $750
+  - **Water Focus:** All water measurements now displayed in litres instead of gallons
+  - **Primary Metrics:** Total rebates, litres saved per year, % water reduction, 10-year environmental impact
+  - **De-emphasized:** ROI percentages and payback periods moved to optional expandable section
+  - **Lead Generation:** Added prominent lead capture form with timing and notes fields
+  - **Contractor Integration:** Form designed to send leads directly to certified irrigation specialists
+  - **PDF Rebrand:** Report now titled "Water Savings & Rebate Report" with rebates highlighted at top
+  - **Next Steps:** Added clear 4-step process from quote to completion
+  - **UI Improvements:** Better visual hierarchy with card-based results and icon emphasis
+  - **Mobile Optimized:** Responsive design ensures all features work on mobile devices
+  - **Result:** Calculator now serves as effective lead generation tool for contractors while helping homeowners discover rebates
+
 ## 2025-08-07
 - **RAINWISE CALCULATOR MODULARIZED:** Split monolithic HTML file into separate CSS and JS files
   - **Problem:** RainWise calculator HTML was over 50KB with inline CSS and JavaScript making it difficult to maintain
