@@ -1,22 +1,41 @@
-// RainWise Calculator JavaScript - Water Savings & Rebate Focus with Hybrid Approach
+// RainWise Calculator JavaScript - Enhanced with Accurate Nanaimo Water Billing
 let currentStep = 1;
 let formData = {};
 let selectedRebates = [];
 let waterBaseline = {};
 let savingsResults = {};
 
-// Conversion factor: 1 gallon = 3.78541 litres
-const GALLON_TO_LITRE = 3.78541;
-
-const waterRates = { 
-  baseRate: 1.06, 
-  tiers: [
-    { min: 0, max: 110, rate: 0.00223 }, 
-    { min: 110, max: 220, rate: 0.00555 }, 
-    { min: 220, max: 330, rate: 0.00971 }, 
-    { min: 330, max: Infinity, rate: 0.01703 }
-  ] 
+// Nanaimo Water Rate Structure (2024-2025)
+const nanaimoWaterRates = {
+  2024: {
+    baseCharge: 0.99517, // per day
+    tiers: [
+      { min: 0, max: 110, rate: 0.00223 },      // Step 1
+      { min: 110, max: 220, rate: 0.00555 },    // Step 2  
+      { min: 220, max: 330, rate: 0.00971 },    // Step 3
+      { min: 330, max: Infinity, rate: 0.01703 } // Step 4
+    ]
+  },
+  2025: {
+    baseCharge: 1.04778, // per day (5.3% increase)
+    tiers: [
+      { min: 0, max: 110, rate: 0.00235 },      // Step 1
+      { min: 110, max: 220, rate: 0.00584 },    // Step 2
+      { min: 220, max: 330, rate: 0.01022 },    // Step 3
+      { min: 330, max: Infinity, rate: 0.01793 } // Step 4
+    ]
+  }
 };
+
+// Intrinsic "Peak Salmon" water value (environmental impact)
+const intrinsicWaterValue = {
+  peakSalmon: 1.00,  // $/m³ during Jun-Sep (critical salmon period)
+  offPeak: 0.20       // $/m³ during Oct-May
+};
+
+// Conversion factors
+const GALLONS_PER_M3 = 219.969; // Imperial gallons per cubic meter
+const LITRES_PER_M3 = 1000;
 
 const rebateInfo = {
   rainSensor: { name: 'Rain Sensor', rebate: 75, savingsRange: '10-15%' },
@@ -26,6 +45,94 @@ const rebateInfo = {
   soilImprovements: { name: 'Soil Improvements', rebate: 'varies', savingsRange: '25% less water' },
   rainwaterHarvesting: { name: 'Rainwater Harvesting', rebate: 750, savingsRange: '100% outdoor water' }
 };
+
+// Calculate accurate Nanaimo water bill
+function calculateNanaimoBill(consumption_m3, billingDays, startDate) {
+  const startYear = new Date(startDate).getFullYear();
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + billingDays);
+  const endYear = endDate.getFullYear();
+  
+  let totalCharge = 0;
+  
+  // Handle year transition (split billing if crosses Jan 1)
+  if (endYear > startYear) {
+    const daysIn2024 = Math.max(0, (new Date(2025, 0, 1) - new Date(startDate)) / (1000 * 60 * 60 * 24));
+    const daysIn2025 = billingDays - daysIn2024;
+    
+    // Split consumption proportionally
+    const consumption2024 = consumption_m3 * (daysIn2024 / billingDays);
+    const consumption2025 = consumption_m3 * (daysIn2025 / billingDays);
+    
+    // Calculate each year's portion
+    if (daysIn2024 > 0) {
+      totalCharge += calculateYearPortion(consumption2024, daysIn2024, 2024);
+    }
+    if (daysIn2025 > 0) {
+      totalCharge += calculateYearPortion(consumption2025, daysIn2025, 2025);
+    }
+  } else {
+    // Single year billing
+    const year = startYear >= 2025 ? 2025 : 2024;
+    totalCharge = calculateYearPortion(consumption_m3, billingDays, year);
+  }
+  
+  return totalCharge;
+}
+
+function calculateYearPortion(consumption_m3, days, year) {
+  const rates = nanaimoWaterRates[year] || nanaimoWaterRates[2024];
+  
+  // Base charge
+  let charge = rates.baseCharge * days;
+  
+  // Convert m³ to Imperial gallons
+  const totalGallons = consumption_m3 * GALLONS_PER_M3;
+  const avgGPD = totalGallons / days;
+  
+  // Calculate tiered volumetric charges
+  for (let tier of rates.tiers) {
+    if (avgGPD > tier.min) {
+      const tierGallons = Math.min(avgGPD - tier.min, tier.max - tier.min);
+      charge += tierGallons * tier.rate * days;
+    }
+  }
+  
+  return charge;
+}
+
+// Calculate intrinsic water value based on season
+function calculateIntrinsicValue(consumption_m3, startDate, billingDays) {
+  const start = new Date(startDate);
+  const end = new Date(startDate);
+  end.setDate(end.getDate() + billingDays);
+  
+  let peakDays = 0;
+  let offPeakDays = 0;
+  
+  // Count days in peak salmon period (Jun 1 - Sep 30)
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+    const month = d.getMonth();
+    if (month >= 5 && month <= 8) { // June (5) through September (8)
+      peakDays++;
+    } else {
+      offPeakDays++;
+    }
+  }
+  
+  // Calculate weighted intrinsic value
+  const peakPortion = peakDays / billingDays;
+  const offPeakPortion = offPeakDays / billingDays;
+  
+  const peakValue = consumption_m3 * peakPortion * intrinsicWaterValue.peakSalmon;
+  const offPeakValue = consumption_m3 * offPeakPortion * intrinsicWaterValue.offPeak;
+  
+  return {
+    total: peakValue + offPeakValue,
+    peakDays: peakDays,
+    peakConsumption: consumption_m3 * peakPortion
+  };
+}
 
 // Property defaults based on type
 function updatePropertyDefaults() {
@@ -71,11 +178,10 @@ function validateStep(step) {
         return false;
       }
     }
-    // Pre-fill lead form with contact info
+    // Pre-fill lead forms
     document.getElementById('leadName').value = document.getElementById('fullName').value;
     document.getElementById('leadEmail').value = document.getElementById('email').value;
     document.getElementById('leadPhone').value = document.getElementById('phoneMain').value;
-    // Also pre-fill premium form
     document.getElementById('premiumName').value = document.getElementById('fullName').value;
     document.getElementById('premiumEmail').value = document.getElementById('email').value;
     document.getElementById('premiumPhone').value = document.getElementById('phoneMain').value;
@@ -98,71 +204,91 @@ function validateStep(step) {
   return true;
 }
 
-// Water usage analysis - now showing litres
+// Enhanced water usage analysis with m³ and true cost
 function updateUsageAnalysis() {
   const area = parseFloat(document.getElementById('irrigatedArea').value) || 0;
   const months = parseFloat(document.getElementById('irrigationMonths').value) || 6;
   const system = document.getElementById('irrigationSystem').value;
   
-  // Convert water bills from litres to gallons for internal calculations
-  const usageInputs = [
-    (parseFloat(document.getElementById('usage1').value) || 0) / GALLON_TO_LITRE,
-    (parseFloat(document.getElementById('usage2').value) || 0) / GALLON_TO_LITRE,
-    (parseFloat(document.getElementById('usage3').value) || 0) / GALLON_TO_LITRE,
-    (parseFloat(document.getElementById('usage4').value) || 0) / GALLON_TO_LITRE
-  ];
+  // Get water usage in m³ (directly from bills)
+  const winterUsage = parseFloat(document.getElementById('usage1').value) || 0;
+  const springUsage = parseFloat(document.getElementById('usage2').value) || 0;
+  const summerUsage = parseFloat(document.getElementById('usage3').value) || 0;
+  const fallUsage = parseFloat(document.getElementById('usage4').value) || 0;
   
-  const hasActualData = usageInputs.some(u => u > 0);
+  const hasActualData = winterUsage > 0 || springUsage > 0 || summerUsage > 0 || fallUsage > 0;
   
-  let avgDailyUsage, outdoorPercentage, annualUsageLitres;
+  let totalAnnualM3, avgDailyLitres, outdoorPercentage, peakUsageM3;
   
   if (hasActualData) {
-    // Use actual water bill data
-    const totalUsage = usageInputs.reduce((sum, usage) => sum + usage, 0);
-    const periodsWithData = usageInputs.filter(u => u > 0).length;
-    avgDailyUsage = Math.round((totalUsage / periodsWithData) / 90);
+    // Calculate from actual bills
+    totalAnnualM3 = winterUsage + springUsage + summerUsage + fallUsage;
+    avgDailyLitres = (totalAnnualM3 * LITRES_PER_M3) / 365;
     
-    const summerUsage = usageInputs[2] || avgDailyUsage * 90;
-    const winterUsage = usageInputs[0] || avgDailyUsage * 90;
-    const seasonalIncrease = summerUsage - winterUsage;
-    outdoorPercentage = seasonalIncrease > 0 ? Math.round((seasonalIncrease / summerUsage) * 100) : 35;
+    // Estimate outdoor usage (difference between summer and winter)
+    const baselineUsage = Math.min(winterUsage, springUsage, fallUsage);
+    const outdoorM3 = Math.max(0, summerUsage - baselineUsage);
+    outdoorPercentage = totalAnnualM3 > 0 ? Math.round((outdoorM3 / totalAnnualM3) * 100) : 0;
+    peakUsageM3 = summerUsage; // Summer is peak salmon period
+    
+    // Calculate costs
+    const winterBill = calculateNanaimoBill(winterUsage, 90, '2024-12-01');
+    const springBill = calculateNanaimoBill(springUsage, 92, '2025-03-01');
+    const summerBill = calculateNanaimoBill(summerUsage, 92, '2024-06-01');
+    const fallBill = calculateNanaimoBill(fallUsage, 91, '2024-09-01');
+    
+    const totalCityBill = winterBill + springBill + summerBill + fallBill;
+    
+    // Calculate intrinsic values
+    const winterIntrinsic = calculateIntrinsicValue(winterUsage, '2024-12-01', 90);
+    const springIntrinsic = calculateIntrinsicValue(springUsage, '2025-03-01', 92);
+    const summerIntrinsic = calculateIntrinsicValue(summerUsage, '2024-06-01', 92);
+    const fallIntrinsic = calculateIntrinsicValue(fallUsage, '2024-09-01', 91);
+    
+    const totalIntrinsicValue = winterIntrinsic.total + springIntrinsic.total + 
+                                summerIntrinsic.total + fallIntrinsic.total;
+    const totalTrueValue = totalCityBill + totalIntrinsicValue;
+    
+    // Update display
+    document.getElementById('cityBillAmount').textContent = `$${totalCityBill.toFixed(2)}`;
+    document.getElementById('trueValueAmount').textContent = `$${totalTrueValue.toFixed(2)}`;
+    document.getElementById('hiddenSubsidy').textContent = `$${totalIntrinsicValue.toFixed(2)}`;
+    document.getElementById('waterCostBreakdown').style.display = 'block';
+    
   } else {
     // Estimate based on property characteristics
-    const baseIndoor = 60; // gallons/day indoor use
-    let irrigationEfficiency = 0.04; // Base gallons per sq ft per day
+    const baseIndoorM3 = 50; // m³/year indoor use
+    let irrigationEfficiency = 0.15; // m³ per sq ft per year
     
     switch(system) {
-      case 'manual': irrigationEfficiency = 0.06; break;
-      case 'timer': irrigationEfficiency = 0.045; break;
-      case 'inground': irrigationEfficiency = 0.035; break;
-      case 'mixed': irrigationEfficiency = 0.04; break;
+      case 'manual': irrigationEfficiency = 0.20; break;
+      case 'timer': irrigationEfficiency = 0.16; break;
+      case 'inground': irrigationEfficiency = 0.12; break;
+      case 'mixed': irrigationEfficiency = 0.15; break;
     }
     
-    const outdoorRate = area * irrigationEfficiency * (months / 12);
-    avgDailyUsage = Math.round(baseIndoor + outdoorRate);
-    outdoorPercentage = Math.round((outdoorRate / avgDailyUsage) * 100);
+    const outdoorM3 = (area / 100) * irrigationEfficiency * months;
+    totalAnnualM3 = baseIndoorM3 + outdoorM3;
+    avgDailyLitres = (totalAnnualM3 * LITRES_PER_M3) / 365;
+    outdoorPercentage = Math.round((outdoorM3 / totalAnnualM3) * 100);
+    peakUsageM3 = outdoorM3 * 0.6; // Assume 60% of outdoor use is in peak period
   }
   
-  // Convert to litres for display
-  const avgDailyLitres = Math.round(avgDailyUsage * GALLON_TO_LITRE);
-  annualUsageLitres = Math.round(avgDailyUsage * 365 * GALLON_TO_LITRE);
+  // Calculate savings potential
+  const potentialSavingsM3 = totalAnnualM3 * (outdoorPercentage / 100) * 0.35;
   
-  // Calculate savings potential in litres
-  const potentialSavingsLitres = Math.round(annualUsageLitres * outdoorPercentage / 100 * 0.35);
+  // Update display
+  document.getElementById('avgDailyUsage').textContent = `${Math.round(avgDailyLitres).toLocaleString()} L/day`;
+  document.getElementById('annualUsage').textContent = `${totalAnnualM3.toFixed(1)} m³`;
+  document.getElementById('peakUsage').textContent = `${peakUsageM3.toFixed(1)} m³`;
+  document.getElementById('savingsPotential').textContent = `${potentialSavingsM3.toFixed(1)} m³/year`;
   
-  // Update display with litres
-  document.getElementById('avgDailyUsage').textContent = `${avgDailyLitres.toLocaleString()} L/day`;
-  document.getElementById('annualUsage').textContent = `${annualUsageLitres.toLocaleString()} L`;
-  document.getElementById('outdoorUsage').textContent = `${outdoorPercentage}%`;
-  document.getElementById('savingsPotential').textContent = `${potentialSavingsLitres.toLocaleString()} L/year`;
-  
-  // Store baseline data (keep in gallons internally for calculations)
-  waterBaseline = { 
-    dailyUsage: avgDailyUsage,
-    dailyUsageLitres: avgDailyLitres,
-    annualUsage: avgDailyUsage * 365,
-    annualUsageLitres: annualUsageLitres,
+  // Store baseline data
+  waterBaseline = {
+    annualUsageM3: totalAnnualM3,
+    avgDailyLitres: avgDailyLitres,
     outdoorPortion: outdoorPercentage / 100,
+    peakUsageM3: peakUsageM3,
     irrigatedArea: area,
     irrigationMonths: months,
     system: system
@@ -225,60 +351,35 @@ function updateHarvestingCost() {
   document.getElementById('harvestingSavings').value = savingsLitres[type] || 10000;
 }
 
-function calculateSoilAmounts() {
-  const area = parseFloat(document.getElementById('applicationArea').value) || 0;
-  const depthType = document.getElementById('applicationDepth').value;
-  
-  if (!area || !depthType) return;
-  
-  let bags, cubicYards, minCost, maxCost;
-  
-  if (depthType === 'garden') {
-    bags = Math.ceil((area / 400) * 67);
-    cubicYards = (area / 400) * 2.4;
-  } else {
-    bags = Math.ceil((area / 400) * 10);
-    cubicYards = (area / 400) * 0.32;
-  }
-  
-  minCost = bags * 8;
-  maxCost = bags * 12;
-  
-  document.getElementById('bagsNeeded').textContent = `${bags} bags`;
-  document.getElementById('cubicYards').textContent = `${cubicYards.toFixed(1)} yards`;
-  document.getElementById('estimatedSoilCost').textContent = `$${minCost}-$${maxCost}`;
-  document.getElementById('soilCalculator').style.display = 'block';
-  document.getElementById('soilCost').value = Math.round((minCost + maxCost) / 2);
-}
-
-// Calculate Water Savings (replacing ROI focus)
+// Calculate Water Savings with true environmental value
 function calculateSavings() {
   collectFormData();
   
-  savingsResults = { 
-    upgrades: [], 
-    totalCost: 0, 
-    totalRebates: 0, 
-    totalWaterSavingsGallons: 0,
-    totalWaterSavingsLitres: 0,
-    totalCostSavings: 0, 
-    netCost: 0, 
+  savingsResults = {
+    upgrades: [],
+    totalCost: 0,
+    totalRebates: 0,
+    totalWaterSavingsM3: 0,
+    peakSavingsM3: 0,
+    totalCostSavings: 0,
+    totalTrueSavings: 0,
+    netCost: 0,
     paybackYears: 0,
     percentReduction: 0,
-    environmentalImpact: {} 
+    environmentalImpact: {}
   };
   
-  const baselineUsage = waterBaseline.annualUsage;
-  const outdoorUsage = baselineUsage * waterBaseline.outdoorPortion;
+  const baselineUsageM3 = waterBaseline.annualUsageM3;
+  const outdoorUsageM3 = baselineUsageM3 * waterBaseline.outdoorPortion;
   
   // Calculate each upgrade's impact
   selectedRebates.forEach(rebate => {
-    const upgrade = calculateUpgradeSavings(rebate, outdoorUsage);
+    const upgrade = calculateUpgradeSavings(rebate, outdoorUsageM3);
     savingsResults.upgrades.push(upgrade);
     savingsResults.totalCost += upgrade.cost;
     savingsResults.totalRebates += upgrade.rebate;
-    savingsResults.totalWaterSavingsGallons += upgrade.waterSavingsGallons;
-    savingsResults.totalWaterSavingsLitres += upgrade.waterSavingsLitres;
+    savingsResults.totalWaterSavingsM3 += upgrade.waterSavingsM3;
+    savingsResults.peakSavingsM3 += upgrade.peakSavingsM3;
   });
   
   // Check for combo bonus
@@ -290,56 +391,50 @@ function calculateSavings() {
   }
   
   // Calculate financial metrics
-  const currentAnnualCost = calculateWaterCost(baselineUsage);
-  const newAnnualCost = calculateWaterCost(baselineUsage - savingsResults.totalWaterSavingsGallons);
+  const currentAnnualCost = calculateNanaimoBill(baselineUsageM3, 365, new Date().toISOString());
+  const newAnnualCost = calculateNanaimoBill(baselineUsageM3 - savingsResults.totalWaterSavingsM3, 365, new Date().toISOString());
   savingsResults.totalCostSavings = currentAnnualCost - newAnnualCost;
+  
+  // Calculate true environmental value savings
+  const peakIntrinsicSaved = savingsResults.peakSavingsM3 * intrinsicWaterValue.peakSalmon;
+  const offPeakIntrinsicSaved = (savingsResults.totalWaterSavingsM3 - savingsResults.peakSavingsM3) * intrinsicWaterValue.offPeak;
+  savingsResults.totalTrueSavings = savingsResults.totalCostSavings + peakIntrinsicSaved + offPeakIntrinsicSaved;
+  
   savingsResults.netCost = savingsResults.totalCost - savingsResults.totalRebates;
-  savingsResults.paybackYears = savingsResults.totalCostSavings > 0 ? savingsResults.netCost / savingsResults.totalCostSavings : 999;
-  savingsResults.percentReduction = Math.round((savingsResults.totalWaterSavingsGallons / baselineUsage) * 100);
+  savingsResults.paybackYears = savingsResults.totalTrueSavings > 0 ? savingsResults.netCost / savingsResults.totalTrueSavings : 999;
+  savingsResults.percentReduction = Math.round((savingsResults.totalWaterSavingsM3 / baselineUsageM3) * 100);
   
   // Environmental impact (10 year)
   savingsResults.environmentalImpact = {
-    lifetimeWaterSavingsLitres: savingsResults.totalWaterSavingsLitres * 10,
-    lifetimeWaterSavingsGallons: savingsResults.totalWaterSavingsGallons * 10,
-    co2Savings: Math.round(savingsResults.totalWaterSavingsGallons * 0.006 * 10),
-    lifetimeCostSavings: savingsResults.totalCostSavings * 10
+    lifetimeWaterSavingsM3: savingsResults.totalWaterSavingsM3 * 10,
+    lifetimePeakSavingsM3: savingsResults.peakSavingsM3 * 10,
+    co2Savings: Math.round(savingsResults.totalWaterSavingsM3 * 0.3 * 10),
+    lifetimeCostSavings: savingsResults.totalCostSavings * 10,
+    lifetimeTrueSavings: savingsResults.totalTrueSavings * 10
   };
   
   displayResults();
 }
 
-// Calculate water cost based on tiered rates
-function calculateWaterCost(annualGallons) {
-  const dailyGallons = annualGallons / 365;
-  let totalCost = waterRates.baseRate * 365;
-  
-  for (let tier of waterRates.tiers) {
-    if (dailyGallons > tier.min) {
-      const tierUsage = Math.min(dailyGallons, tier.max) - tier.min;
-      totalCost += tierUsage * tier.rate * 365;
-    }
-  }
-  
-  return totalCost;
-}
-
 // Calculate individual upgrade savings
-function calculateUpgradeSavings(upgradeType, outdoorUsage) {
-  let cost = 0, rebate = 0, waterSavingsGallons = 0, savingsPercent = 0;
+function calculateUpgradeSavings(upgradeType, outdoorUsageM3) {
+  let cost = 0, rebate = 0, waterSavingsM3 = 0, savingsPercent = 0, peakSavingsM3 = 0;
   
   switch (upgradeType) {
     case 'rainSensor':
       cost = parseFloat(document.getElementById('rainSensorCost').value) || 150;
       rebate = 75;
       savingsPercent = parseFloat(document.getElementById('rainSensorSavings').value) || 15;
-      waterSavingsGallons = outdoorUsage * (savingsPercent / 100);
+      waterSavingsM3 = outdoorUsageM3 * (savingsPercent / 100);
+      peakSavingsM3 = waterSavingsM3 * 0.6; // 60% of savings in peak period
       break;
       
     case 'smartController':
       cost = parseFloat(document.getElementById('controllerCost').value) || 450;
       rebate = 100;
       savingsPercent = parseFloat(document.getElementById('controllerSavings').value) || 30;
-      waterSavingsGallons = outdoorUsage * (savingsPercent / 100);
+      waterSavingsM3 = outdoorUsageM3 * (savingsPercent / 100);
+      peakSavingsM3 = waterSavingsM3 * 0.7; // Smart controllers optimize peak usage more
       break;
       
     case 'dripConversion':
@@ -348,54 +443,58 @@ function calculateUpgradeSavings(upgradeType, outdoorUsage) {
       const dripArea = parseFloat(document.getElementById('dripArea').value) || waterBaseline.irrigatedArea;
       const areaFraction = dripArea / waterBaseline.irrigatedArea;
       savingsPercent = parseFloat(document.getElementById('dripSavings').value) || 40;
-      waterSavingsGallons = outdoorUsage * areaFraction * (savingsPercent / 100);
+      waterSavingsM3 = outdoorUsageM3 * areaFraction * (savingsPercent / 100);
+      peakSavingsM3 = waterSavingsM3 * 0.6;
       break;
       
     case 'mpRotators':
       cost = parseFloat(document.getElementById('rotatorCost').value) || 400;
       rebate = 100;
       savingsPercent = parseFloat(document.getElementById('rotatorSavings').value) || 25;
-      waterSavingsGallons = outdoorUsage * (savingsPercent / 100);
+      waterSavingsM3 = outdoorUsageM3 * (savingsPercent / 100);
+      peakSavingsM3 = waterSavingsM3 * 0.6;
       break;
       
     case 'soilImprovements':
       cost = parseFloat(document.getElementById('soilCost').value) || 200;
       rebate = Math.min(cost * 0.5, 100);
       savingsPercent = 25;
-      waterSavingsGallons = outdoorUsage * 0.25;
+      waterSavingsM3 = outdoorUsageM3 * 0.25;
+      peakSavingsM3 = waterSavingsM3 * 0.6;
       break;
       
     case 'rainwaterHarvesting':
       cost = parseFloat(document.getElementById('harvestingCost').value) || 1500;
       rebate = Math.min(cost * 0.5, 750);
-      // Water savings from input (already in litres)
       const savingsLitres = parseFloat(document.getElementById('harvestingSavings').value) || 10000;
-      waterSavingsGallons = savingsLitres / GALLON_TO_LITRE;
-      savingsPercent = Math.min(100, (waterSavingsGallons / outdoorUsage) * 100);
+      waterSavingsM3 = savingsLitres / LITRES_PER_M3;
+      savingsPercent = Math.min(100, (waterSavingsM3 / outdoorUsageM3) * 100);
+      peakSavingsM3 = waterSavingsM3 * 0.8; // Rainwater most valuable in peak period
       break;
   }
   
-  return { 
-    type: upgradeType, 
-    cost, 
-    rebate, 
-    waterSavingsGallons,
-    waterSavingsLitres: Math.round(waterSavingsGallons * GALLON_TO_LITRE),
-    savingsPercent, 
-    netCost: cost - rebate 
+  return {
+    type: upgradeType,
+    cost,
+    rebate,
+    waterSavingsM3,
+    peakSavingsM3,
+    savingsPercent,
+    netCost: cost - rebate
   };
 }
 
-// Display results
+// Display results with m³ and true value
 function displayResults() {
   // Update primary results
   document.getElementById('totalRebates').textContent = `$${savingsResults.totalRebates}`;
-  document.getElementById('waterSavings').textContent = `${savingsResults.totalWaterSavingsLitres.toLocaleString()} L`;
-  document.getElementById('percentReduction').textContent = `${savingsResults.percentReduction}%`;
-  document.getElementById('environmentalImpact').textContent = `${Math.round(savingsResults.environmentalImpact.lifetimeWaterSavingsLitres / 1000).toLocaleString()}k L saved`;
+  document.getElementById('waterSavings').textContent = `${savingsResults.totalWaterSavingsM3.toFixed(1)} m³`;
+  document.getElementById('peakSavings').textContent = `${savingsResults.peakSavingsM3.toFixed(1)} m³`;
+  document.getElementById('trueSavings').textContent = `$${Math.round(savingsResults.totalTrueSavings)}`;
   
-  // Update annual savings (shown but not emphasized)
+  // Update annual savings
   document.getElementById('annualSavings').textContent = `$${Math.round(savingsResults.totalCostSavings)}`;
+  document.getElementById('trueValueSaved').textContent = `$${Math.round(savingsResults.totalTrueSavings)}`;
   
   // Build savings table
   const tableBody = document.getElementById('savingsTableBody');
@@ -408,7 +507,7 @@ function displayResults() {
     row.innerHTML = `
       <td>${upgradeName}</td>
       <td>$${upgrade.rebate}</td>
-      <td>${upgrade.waterSavingsLitres.toLocaleString()} L</td>
+      <td>${upgrade.waterSavingsM3.toFixed(1)} m³</td>
       <td>${Math.round(upgrade.savingsPercent)}%</td>
     `;
   });
@@ -421,7 +520,7 @@ function displayResults() {
   totalRow.innerHTML = `
     <td>TOTALS</td>
     <td>$${savingsResults.totalRebates}</td>
-    <td>${savingsResults.totalWaterSavingsLitres.toLocaleString()} L</td>
+    <td>${savingsResults.totalWaterSavingsM3.toFixed(1)} m³</td>
     <td>${savingsResults.percentReduction}%</td>
   `;
   
@@ -432,7 +531,7 @@ function displayResults() {
   savingsResults.upgrades.forEach(upgrade => {
     const row = roiTableBody.insertRow();
     const upgradeName = getUpgradeName(upgrade.type);
-    const annualSavings = Math.round((savingsResults.totalCostSavings * (upgrade.waterSavingsGallons / savingsResults.totalWaterSavingsGallons)));
+    const annualSavings = Math.round((savingsResults.totalTrueSavings * (upgrade.waterSavingsM3 / savingsResults.totalWaterSavingsM3)));
     const payback = upgrade.netCost > 0 && annualSavings > 0 ? (upgrade.netCost / annualSavings).toFixed(1) + ' years' : 'Immediate';
     const tenYearNet = (annualSavings * 10) - upgrade.netCost;
     
@@ -453,11 +552,11 @@ function displayResults() {
 
 // Helper function to get upgrade names
 function getUpgradeName(type) {
-  const names = { 
-    'rainSensor': 'Rain Sensor', 
-    'smartController': 'Smart Controller', 
-    'dripConversion': 'Drip Irrigation', 
-    'mpRotators': 'MP Rotators', 
+  const names = {
+    'rainSensor': 'Rain Sensor',
+    'smartController': 'Smart Controller',
+    'dripConversion': 'Drip Irrigation',
+    'mpRotators': 'MP Rotators',
     'soilImprovements': 'Soil Improvements',
     'rainwaterHarvesting': 'Rainwater Harvesting'
   };
@@ -504,7 +603,7 @@ function showPremiumService() {
   document.getElementById('premiumServiceForm').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Submit lead form (hybrid approach)
+// Submit lead form
 function submitLead(type) {
   let leadData = {};
   
@@ -519,11 +618,10 @@ function submitLead(type) {
       propertyAddress: formData.propertyAddress,
       city: formData.city,
       totalRebates: savingsResults.totalRebates,
-      waterSavings: savingsResults.totalWaterSavingsLitres,
+      waterSavings: savingsResults.totalWaterSavingsM3,
       selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
     };
     
-    // In a real implementation, this would send to a server
     console.log('Free lead data:', leadData);
     alert('Thank you! A certified irrigation specialist will contact you within 48 hours to provide a custom quote.');
   } else if (type === 'premium') {
@@ -537,16 +635,12 @@ function submitLead(type) {
       propertyAddress: formData.propertyAddress,
       city: formData.city,
       totalRebates: savingsResults.totalRebates,
-      waterSavings: savingsResults.totalWaterSavingsLitres,
+      waterSavings: savingsResults.totalWaterSavingsM3,
       selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
     };
     
-    // In a real implementation, this would redirect to payment processor
     console.log('Premium lead data:', leadData);
     alert('You will be redirected to secure payment. After payment, you\'ll receive your Application Concierge package within 24 hours and priority contractor response.');
-    
-    // Simulate payment redirect
-    // window.location.href = 'https://payment-processor.com/checkout?service=rdn-concierge&amount=35';
   }
 }
 
@@ -573,23 +667,28 @@ function setupPDFDownload() {
     
     // Highlight Box
     doc.setFillColor(255, 243, 205); // Light yellow
-    doc.rect(15, 40, 180, 30, 'F');
+    doc.rect(15, 40, 180, 35, 'F');
     doc.setTextColor(0);
     doc.setFontSize(12);
     doc.text('Your Water Conservation Summary', 20, 50);
     doc.setFontSize(16);
     doc.setTextColor(231, 76, 60); // Red accent
     doc.text(`Total Rebates Available: $${savingsResults.totalRebates}`, 20, 62);
+    doc.setFontSize(12);
+    doc.setTextColor(255, 152, 0); // Orange
+    doc.text(`Peak Salmon Period Savings: ${savingsResults.peakSavingsM3.toFixed(1)} m³`, 20, 70);
     
     // Key Metrics
     doc.setTextColor(0);
     doc.setFontSize(12);
     let y = 85;
-    doc.text(`Annual Water Savings: ${savingsResults.totalWaterSavingsLitres.toLocaleString()} litres`, 20, y);
+    doc.text(`Annual Water Savings: ${savingsResults.totalWaterSavingsM3.toFixed(1)} m³`, 20, y);
     y += 10;
     doc.text(`Water Use Reduction: ${savingsResults.percentReduction}%`, 20, y);
     y += 10;
-    doc.text(`10-Year Environmental Impact: ${Math.round(savingsResults.environmentalImpact.lifetimeWaterSavingsLitres / 1000).toLocaleString()}k litres saved`, 20, y);
+    doc.text(`True Environmental Value Saved: $${Math.round(savingsResults.totalTrueSavings)}/year`, 20, y);
+    y += 10;
+    doc.text(`10-Year Environmental Impact: ${savingsResults.environmentalImpact.lifetimeWaterSavingsM3.toFixed(0)} m³ saved`, 20, y);
     y += 10;
     doc.text(`Annual Bill Savings: $${Math.round(savingsResults.totalCostSavings)}`, 20, y);
     
@@ -603,7 +702,7 @@ function setupPDFDownload() {
     savingsResults.upgrades.forEach(upgrade => {
       doc.text(`• ${getUpgradeName(upgrade.type)}`, 25, y);
       doc.text(`Rebate: $${upgrade.rebate}`, 80, y);
-      doc.text(`Saves: ${upgrade.waterSavingsLitres.toLocaleString()} L/year`, 120, y);
+      doc.text(`Saves: ${upgrade.waterSavingsM3.toFixed(1)} m³/year`, 120, y);
       y += 8;
     });
     
@@ -644,10 +743,17 @@ function setupPDFDownload() {
       y += 8;
     });
     
+    // Peak Salmon Note
+    y += 10;
+    doc.setTextColor(255, 152, 0);
+    doc.setFontSize(11);
+    doc.text('🐟 Remember: Every m³ saved during June-September has 10x the environmental benefit!', 20, y);
+    
     // Footer
     doc.setTextColor(100);
     doc.setFontSize(8);
-    doc.text('This report is an estimate based on typical water usage patterns. Actual savings may vary.', 20, 280);
+    doc.text('This report includes the true environmental value of water during critical salmon periods.', 20, 280);
+    doc.text('Actual savings may vary based on usage patterns and weather conditions.', 20, 285);
     
     doc.save(`Water_Savings_Report_${formData.fullName.replace(/ /g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
   };
