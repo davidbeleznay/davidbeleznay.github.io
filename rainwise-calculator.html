@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RDN Water Savings & Rebate Finder | AI Forester</title>
-  <meta name="description" content="Discover your RDN water rebates (up to $1,625 with rainwater harvesting), calculate water savings in litres, and get a custom quote from certified irrigation specialists. Free water conservation calculator.">
+  <meta name="description" content="Discover your RDN water rebates (up to $1,625 with rainwater harvesting), calculate water savings in cubic meters, and see the true environmental value of water during peak salmon periods.">
   <link rel="stylesheet" href="rainwise-calculator.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -12,12 +12,12 @@
   <header>
     <div class="container">
       <h1>RDN Water Savings & Rebate Finder</h1>
-      <p class="subtitle">Discover how much water and money you can save with RDN rebates — and get a custom quote from a certified irrigation specialist.</p>
+      <p class="subtitle">Discover how much water and money you can save with RDN rebates — and see the true environmental value of water during critical salmon periods.</p>
       <div class="badges">
         <span class="badge">💰 Up to $1,625 in Rebates</span>
-        <span class="badge">💧 Save Thousands of Litres</span>
-        <span class="badge">📋 Free Custom Quote</span>
-        <span class="badge">🏡 Rainwater Harvesting Available</span>
+        <span class="badge">💧 Save Thousands of m³</span>
+        <span class="badge">🐟 Protect Salmon Habitat</span>
+        <span class="badge">📊 True Water Value Calculator</span>
       </div>
     </div>
   </header>
@@ -26,6 +26,7 @@
     <div class="rebate-highlight-box">
       <h2>💡 Did you know?</h2>
       <p>You can get <strong>up to $875 in rebates</strong> for irrigation upgrades like smart controllers and drip irrigation. Plus, rainwater harvesting systems qualify for an additional <strong>50% rebate up to $750</strong> — that's potentially <strong>$1,625 in total savings</strong>!</p>
+      <p class="salmon-highlight">🐟 <strong>Peak Salmon Protection:</strong> During June-September, water's true environmental value is <strong>$1.00/m³ higher</strong> due to critical habitat needs.</p>
       <div class="program-links">
         <a href="https://rdn.bc.ca/irrigation-upgrades-and-soil-improvements" target="_blank" class="program-link">View Irrigation Rebates →</a>
         <a href="https://rdn.bc.ca/rainwater-harvesting" target="_blank" class="program-link">View Rainwater Harvesting →</a>
@@ -83,7 +84,7 @@
         <button class="btn btn-primary" onclick="nextStep(1)" style="float:right;">Next: Water Usage →</button>
       </div>
 
-      <!-- Step 2: Water Usage Baseline -->
+      <!-- Step 2: Water Usage Baseline - ENHANCED VERSION -->
       <div class="form-section" id="section2">
         <h2>Current Water Usage</h2>
         <div class="form-row">
@@ -107,23 +108,76 @@
             <option value="mixed">Mixed System</option>
           </select>
         </div>
-        <h3>Recent Water Bills (Optional - Improves Accuracy)</h3>
-        <p class="help-text">Enter your water usage in litres from recent bills for more accurate savings calculations</p>
+        
+        <h3>Recent Water Bills (Enter in Cubic Meters)</h3>
+        <p class="help-text">Enter your water consumption from Nanaimo water bills in cubic meters (m³) to calculate true costs including peak salmon protection periods</p>
+        
         <div class="water-usage-grid">
-          <div><label for="usage1">Winter 2024-25</label><input type="number" id="usage1" placeholder="30,000" onchange="updateUsageAnalysis()"></div>
-          <div><label for="usage2">Fall 2024</label><input type="number" id="usage2" placeholder="45,000" onchange="updateUsageAnalysis()"></div>
-          <div><label for="usage3">Summer 2024</label><input type="number" id="usage3" placeholder="75,000" onchange="updateUsageAnalysis()"></div>
-          <div><label for="usage4">Spring 2024</label><input type="number" id="usage4" placeholder="55,000" onchange="updateUsageAnalysis()"></div>
-        </div>
-        <div class="usage-analysis" id="usageAnalysis" style="display:none;">
-          <h4>💧 Your Water Usage Summary</h4>
-          <div class="analysis-grid">
-            <div class="analysis-metric"><div class="metric-value" id="avgDailyUsage">0</div><div>Daily Usage</div></div>
-            <div class="analysis-metric"><div class="metric-value" id="annualUsage">0</div><div>Annual Usage</div></div>
-            <div class="analysis-metric"><div class="metric-value" id="outdoorUsage">0%</div><div>Outdoor Use</div></div>
-            <div class="analysis-metric"><div class="metric-value" id="savingsPotential">0</div><div>Savings Potential</div></div>
+          <div>
+            <label for="usage1">Winter (m³)</label>
+            <input type="number" id="usage1" placeholder="30" step="0.1" onchange="updateUsageAnalysis()">
+            <span class="period-label">Dec-Feb</span>
+          </div>
+          <div>
+            <label for="usage2">Spring (m³)</label>
+            <input type="number" id="usage2" placeholder="45" step="0.1" onchange="updateUsageAnalysis()">
+            <span class="period-label">Mar-May</span>
+          </div>
+          <div class="peak-period">
+            <label for="usage3">Summer (m³) 🐟</label>
+            <input type="number" id="usage3" placeholder="75" step="0.1" onchange="updateUsageAnalysis()">
+            <span class="period-label peak">Jun-Aug (Peak Salmon)</span>
+          </div>
+          <div>
+            <label for="usage4">Fall (m³)</label>
+            <input type="number" id="usage4" placeholder="55" step="0.1" onchange="updateUsageAnalysis()">
+            <span class="period-label">Sep-Nov</span>
           </div>
         </div>
+        
+        <div class="usage-analysis" id="usageAnalysis" style="display:none;">
+          <h4>💧 Your Water Usage & True Cost Summary</h4>
+          <div class="analysis-grid">
+            <div class="analysis-metric">
+              <div class="metric-value" id="avgDailyUsage">0 L/day</div>
+              <div>Daily Usage</div>
+            </div>
+            <div class="analysis-metric">
+              <div class="metric-value" id="annualUsage">0 m³</div>
+              <div>Annual Usage</div>
+            </div>
+            <div class="analysis-metric highlight">
+              <div class="metric-value" id="peakUsage">0 m³</div>
+              <div>Peak Salmon Period</div>
+            </div>
+            <div class="analysis-metric">
+              <div class="metric-value" id="savingsPotential">0 m³/year</div>
+              <div>Savings Potential</div>
+            </div>
+          </div>
+          
+          <div class="water-cost-breakdown" id="waterCostBreakdown" style="display:none;">
+            <h5>💰 Your Water Costs (Based on Nanaimo Rates)</h5>
+            <div class="cost-table">
+              <div class="cost-row">
+                <span>City Water Bill (annual):</span>
+                <span id="cityBillAmount">$0</span>
+              </div>
+              <div class="cost-row highlight">
+                <span>True Environmental Value:</span>
+                <span id="trueValueAmount">$0</span>
+              </div>
+              <div class="cost-row">
+                <span>Hidden Subsidy (ecosystem impact):</span>
+                <span id="hiddenSubsidy">$0</span>
+              </div>
+            </div>
+            <div class="peak-warning" style="margin-top:15px;padding:10px;background:#fff3cd;border-left:4px solid #ff9800;">
+              <strong>🐟 Peak Salmon Impact:</strong> Every m³ saved during June-September has <strong>10x the environmental benefit</strong> for local salmon populations.
+            </div>
+          </div>
+        </div>
+        
         <div style="display:flex;justify-content:space-between;margin-top:30px;">
           <button class="btn btn-secondary" onclick="previousStep(2)">← Back</button>
           <button class="btn btn-primary" onclick="nextStep(2)">Next: Upgrades →</button>
@@ -267,105 +321,12 @@
         </div>
         
         <div class="upgrade-details" id="soilImprovementsDetails">
-          <h3>Soil Improvements Calculator</h3>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="gardenBedArea">Garden Bed Area (sq ft)</label>
-              <input type="number" id="gardenBedArea" placeholder="200" value="200" onchange="calculateSoilAmounts()">
-              <p class="help-text">Minimum 200 sq ft for rebate eligibility</p>
-            </div>
-            <div class="form-group">
-              <label for="lawnArea">Lawn Area for Topdressing (sq ft)</label>
-              <input type="number" id="lawnArea" placeholder="0" value="0" onchange="calculateSoilAmounts()">
-              <p class="help-text">Enter 0 if only doing garden beds</p>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="materialType">Material Type</label>
-              <select id="materialType" onchange="calculateSoilAmounts()">
-                <option value="compost">Quality Compost ($34-$45/yard)</option>
-                <option value="soilblend" selected>Soil/Compost Blend ($45-$62/yard)</option>
-                <option value="premium">Premium Garden Mix ($55-$75/yard)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="truckCapacity">Your Truck Capacity (cubic yards)</label>
-              <input type="number" id="truckCapacity" value="1.25" step="0.25" onchange="calculateSoilAmounts()">
-              <p class="help-text">Small pickup = 1.25 yards</p>
-            </div>
-          </div>
-
-          <!-- Delivery Toggle -->
-          <div class="delivery-toggle">
-            <label class="toggle-label">
-              <input type="checkbox" id="includeDelivery" onchange="calculateSoilAmounts()">
-              <span class="toggle-slider"></span>
-              Include Delivery?
-            </label>
-            <p class="help-text">Delivery typically $50-$85 within RDN core area</p>
-          </div>
-
-          <div class="cost-estimate-box" id="soilCalculator">
-            <h4>📊 Your Soil Requirements</h4>
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:15px 0;">
-              <div>
-                <h5>Quantities Needed:</h5>
-                <div class="quantity-item">
-                  <strong>Garden Beds (2" depth):</strong> <span id="gardenYards">0</span> yards
-                </div>
-                <div class="quantity-item">
-                  <strong>Lawn Topdressing (¼" depth):</strong> <span id="lawnYards">0</span> yards
-                </div>
-                <div class="quantity-item">
-                  <strong>Total Required:</strong> <span id="totalYards" style="color:#3a7f42;font-weight:bold;">0</span> yards
-                </div>
-              </div>
-              <div>
-                <h5>Transportation:</h5>
-                <div class="quantity-item">
-                  <strong>Trips Required:</strong> <span id="tripsRequired">0</span> trips
-                </div>
-                <div class="quantity-item">
-                  <strong>Or Bags Needed:</strong> <span id="bagsNeeded">0</span> × 28L bags
-                </div>
-              </div>
-            </div>
-            
-            <div class="cost-comparison">
-              <h5>💰 Cost Comparison:</h5>
-              <div class="cost-option">
-                <div class="cost-option-header">🚚 Pickup Option:</div>
-                <div class="cost-breakdown">
-                  <div>Material Cost: <span id="pickupMaterialCost">$0</span></div>
-                  <div><strong>Total: <span id="pickupTotalCost">$0</span></strong></div>
-                </div>
-              </div>
-              <div class="cost-option" id="deliveryOption" style="display:none;">
-                <div class="cost-option-header">🚛 Delivery Option:</div>
-                <div class="cost-breakdown">
-                  <div>Material Cost: <span id="deliveryMaterialCost">$0</span></div>
-                  <div>Delivery Fee: <span id="deliveryFee">$65</span></div>
-                  <div><strong>Total: <span id="deliveryTotalCost">$0</span></strong></div>
-                </div>
-                <div class="delivery-note" id="freeDeliveryNote" style="display:none;color:#3a7f42;font-style:italic;">
-                  ✓ Free delivery available for 4+ yards!
-                </div>
-              </div>
-            </div>
-            
-            <div class="rebate-reminder">
-              <strong>Remember:</strong> 50% rebate up to $100 = <span id="estimatedRebate">$0</span> back!
-            </div>
-          </div>
-          
+          <h3>Soil Improvements</h3>
           <div class="form-group">
-            <label for="soilCost">Final Cost Estimate ($)</label>
+            <label for="soilCost">Cost Estimate ($)</label>
             <input type="number" id="soilCost" value="200">
-            <p class="help-text">Adjust based on your specific supplier quotes</p>
+            <p class="help-text">50% rebate up to $100</p>
           </div>
-          
           <div class="form-group">
             <label for="soilDescription">Project Description</label>
             <textarea id="soilDescription" placeholder="Describe soil improvements (e.g., 'Add 2 inches of quality compost to 200 sq ft of vegetable garden beds')"></textarea>
@@ -424,18 +385,18 @@
         </div>
         <div class="result-card">
           <div class="card-icon">💧</div>
-          <div class="result-value" id="waterSavings">0 L</div>
-          <div class="result-label">Litres Saved per Year</div>
+          <div class="result-value" id="waterSavings">0 m³</div>
+          <div class="result-label">Water Saved per Year</div>
         </div>
         <div class="result-card">
-          <div class="card-icon">📉</div>
-          <div class="result-value" id="percentReduction">0%</div>
-          <div class="result-label">Water Usage Reduction</div>
+          <div class="card-icon">🐟</div>
+          <div class="result-value" id="peakSavings">0 m³</div>
+          <div class="result-label">Peak Salmon Period Savings</div>
         </div>
         <div class="result-card">
-          <div class="card-icon">🌍</div>
-          <div class="result-value" id="environmentalImpact">0</div>
-          <div class="result-label">10-Year Environmental Impact</div>
+          <div class="card-icon">💵</div>
+          <div class="result-value" id="trueSavings">$0</div>
+          <div class="result-label">True Value Saved/Year</div>
         </div>
       </div>
 
@@ -457,6 +418,7 @@
       <div class="financial-summary" id="financialSummary">
         <p class="summary-text">
           <strong>Annual Bill Savings:</strong> <span id="annualSavings">$0</span><br>
+          <strong>True Environmental Value Saved:</strong> <span id="trueValueSaved">$0</span><br>
           <small>Want to see full ROI details? <a href="#" onclick="toggleROI()">Click here</a></small>
         </p>
         <div id="roiDetails" style="display:none;">
