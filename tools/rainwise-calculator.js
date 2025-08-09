@@ -1,9 +1,25 @@
-// RainWise Calculator JavaScript
+// RainWise Calculator JavaScript - Enhanced with True Water Value
 let currentStep = 1;
 let formData = {};
 let selectedRebates = [];
 let waterBaseline = {};
 let roiResults = {};
+
+// Water value configuration - NEW!
+const waterValueConfig = {
+  // Utility rate (what you pay on your bill)
+  utilityValue: 0.00555, // Average $/gallon based on Tier 2
+  
+  // True societal/environmental value of water
+  trueValue: 0.015, // $0.015/gallon - reflects environmental, infrastructure, and scarcity costs
+  
+  // Multiplier for environmental benefits
+  environmentalMultiplier: 2.7, // True value is 2.7x the utility rate
+  
+  // Display settings
+  showTrueValue: true,
+  defaultToTrueValue: false // Set to true to use true value in primary calculations
+};
 
 const waterRates = { 
   baseRate: 1.06, 
@@ -20,7 +36,8 @@ const rebateInfo = {
   smartController: { name: 'Smart Controller', rebate: 100, savingsRange: '20-40%' },
   dripConversion: { name: 'Drip Irrigation', rebate: 400, savingsRange: '30-50%' },
   mpRotators: { name: 'MP Rotators', rebate: 100, savingsRange: '20-30%' },
-  soilImprovements: { name: 'Soil Improvements', rebate: 'varies', savingsRange: '25% less water' }
+  soilImprovements: { name: 'Soil Improvements', rebate: 'varies', savingsRange: '25% less water' },
+  rainwaterHarvesting: { name: 'Rainwater Harvesting', rebate: 750, savingsRange: '30-50%' }
 };
 
 // Property defaults based on type
@@ -34,6 +51,30 @@ function updatePropertyDefaults() {
     'large': 5000
   };
   areaField.value = defaults[type] || 2500;
+}
+
+// Toggle between utility and true water value - NEW!
+function toggleWaterValue() {
+  const toggle = document.getElementById('waterValueToggle');
+  if (toggle) {
+    waterValueConfig.defaultToTrueValue = toggle.checked;
+    
+    // Update display labels
+    const label = document.getElementById('waterValueLabel');
+    if (label) {
+      label.textContent = toggle.checked ? 
+        'Using True Water Value (Environmental + Societal Costs)' : 
+        'Using Utility Bill Value Only';
+    }
+    
+    // Recalculate if we have baseline data
+    if (waterBaseline.annualUsage) {
+      updateUsageAnalysis();
+      if (roiResults.upgrades && roiResults.upgrades.length > 0) {
+        calculateROI();
+      }
+    }
+  }
 }
 
 // Navigation functions
@@ -86,7 +127,7 @@ function validateStep(step) {
   return true;
 }
 
-// Water usage analysis
+// Water usage analysis with true value calculation - ENHANCED!
 function updateUsageAnalysis() {
   const area = parseFloat(document.getElementById('irrigatedArea').value) || 0;
   const months = parseFloat(document.getElementById('irrigationMonths').value) || 6;
@@ -101,7 +142,7 @@ function updateUsageAnalysis() {
   
   const hasActualData = usageInputs.some(u => u > 0);
   
-  let avgDailyUsage, outdoorPercentage, currentTier, annualCost;
+  let avgDailyUsage, outdoorPercentage, currentTier, annualCost, trueAnnualValue;
   
   if (hasActualData) {
     // Use actual water bill data
@@ -135,34 +176,46 @@ function updateUsageAnalysis() {
                 avgDailyUsage > 220 ? 'Tier 3' : 
                 avgDailyUsage > 110 ? 'Tier 2' : 'Tier 1';
   
+  // Calculate both utility cost and true value - NEW!
   annualCost = calculateWaterCost(avgDailyUsage * 365);
+  trueAnnualValue = calculateTrueWaterValue(avgDailyUsage * 365);
   
-  // Savings potential message
+  // Savings potential message - ENHANCED!
   let potential = '';
+  const valueToUse = waterValueConfig.defaultToTrueValue ? trueAnnualValue : annualCost;
+  
   if (avgDailyUsage > 200) {
-    potential = `Very High - You're in ${currentTier} with significant savings opportunities. Smart upgrades could save $${Math.round(annualCost * 0.35)}/year!`;
+    potential = `Very High - You're in ${currentTier}. Smart upgrades could save $${Math.round(valueToUse * 0.35)}/year in ${waterValueConfig.defaultToTrueValue ? 'true water value' : 'utility bills'}!`;
   } else if (avgDailyUsage > 120) {
-    potential = `High - Currently in ${currentTier}. Upgrades could reduce bills by 25-40% ($${Math.round(annualCost * 0.3)}/year)`;
+    potential = `High - Currently in ${currentTier}. Upgrades could reduce ${waterValueConfig.defaultToTrueValue ? 'water impact' : 'bills'} by 25-40% ($${Math.round(valueToUse * 0.3)}/year)`;
   } else if (avgDailyUsage < 80) {
     potential = 'Limited - Already efficient! Focus on soil improvements for best ROI';
   } else {
-    potential = `Moderate - Good opportunities to optimize. Potential savings of $${Math.round(annualCost * 0.25)}/year`;
+    potential = `Moderate - Good opportunities. Potential savings of $${Math.round(valueToUse * 0.25)}/year`;
   }
   
-  // Update display
+  // Update display - ENHANCED!
   document.getElementById('avgDailyUsage').textContent = `${avgDailyUsage} gal/day`;
   document.getElementById('outdoorUsage').textContent = `${outdoorPercentage}%`;
   document.getElementById('currentTier').textContent = currentTier;
   document.getElementById('annualCost').textContent = `$${Math.round(annualCost)}`;
+  
+  // Add true value display if element exists
+  const trueValueElement = document.getElementById('trueAnnualValue');
+  if (trueValueElement) {
+    trueValueElement.textContent = `$${Math.round(trueAnnualValue)}`;
+  }
+  
   document.getElementById('savingsPotential').textContent = potential;
   
-  // Store baseline data
+  // Store baseline data - ENHANCED!
   waterBaseline = { 
     dailyUsage: avgDailyUsage, 
     annualUsage: avgDailyUsage * 365, 
     outdoorPortion: outdoorPercentage / 100, 
     currentTier, 
     annualCost, 
+    trueAnnualValue, // NEW!
     irrigatedArea: area, 
     irrigationMonths: months,
     system: system
@@ -186,6 +239,11 @@ function calculateWaterCost(annualGallons) {
   return totalCost;
 }
 
+// Calculate true water value - NEW!
+function calculateTrueWaterValue(annualGallons) {
+  return annualGallons * waterValueConfig.trueValue;
+}
+
 // Toggle upgrade details
 function toggleUpgradeDetails(upgrade) {
   selectedRebates = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
@@ -200,6 +258,92 @@ function toggleUpgradeDetails(upgrade) {
     if (!area.value) area.value = Math.round(waterBaseline.irrigatedArea * 0.5);
     updateDripCost();
   }
+  
+  // Handle delivery toggle for soil improvements
+  if (upgrade === 'soilImprovements' && checkbox.checked) {
+    const deliveryToggle = document.getElementById('includeDelivery');
+    if (deliveryToggle) {
+      updateSoilCostWithDelivery();
+    }
+  }
+}
+
+// Update soil cost with delivery option - ENHANCED!
+function updateSoilCostWithDelivery() {
+  const area = parseFloat(document.getElementById('applicationArea').value) || 0;
+  const depthType = document.getElementById('applicationDepth').value;
+  const includeDelivery = document.getElementById('includeDelivery')?.checked || false;
+  
+  if (!area || !depthType) return;
+  
+  let bags, cubicYards, materialCost, deliveryFee = 0, totalCost;
+  
+  if (depthType === 'garden') {
+    bags = Math.ceil((area / 400) * 67);
+    cubicYards = (area / 400) * 2.4;
+  } else {
+    bags = Math.ceil((area / 400) * 10);
+    cubicYards = (area / 400) * 0.32;
+  }
+  
+  // Material cost calculation
+  const bulkCostPerYard = 48; // Average of $34-62
+  
+  // Use bulk pricing for pickup
+  materialCost = Math.round(cubicYards * bulkCostPerYard);
+  
+  // Delivery fee logic
+  if (includeDelivery) {
+    if (cubicYards >= 4) {
+      deliveryFee = 0; // Free delivery for 4+ yards
+    } else if (cubicYards < 3) {
+      deliveryFee = 85; // Higher fee for small loads
+    } else {
+      deliveryFee = 65; // Standard delivery fee
+    }
+    totalCost = materialCost + deliveryFee;
+  } else {
+    totalCost = materialCost;
+  }
+  
+  // Update display
+  document.getElementById('bagsNeeded').textContent = `${bags} bags`;
+  document.getElementById('cubicYards').textContent = `${cubicYards.toFixed(1)} yards`;
+  
+  // Show cost comparison
+  const costComparison = document.getElementById('costComparison');
+  if (costComparison) {
+    costComparison.innerHTML = `
+      <div class="cost-option">
+        <div class="cost-option-header">💪 Pickup Cost</div>
+        <div class="cost-breakdown">
+          <div>Material: $${materialCost}</div>
+          <div><strong>Total: $${materialCost}</strong></div>
+        </div>
+      </div>
+      ${includeDelivery ? `
+        <div class="cost-option">
+          <div class="cost-option-header">🚚 Delivered Cost</div>
+          <div class="cost-breakdown">
+            <div>Material: $${materialCost}</div>
+            <div>Delivery: $${deliveryFee}</div>
+            <div><strong>Total: $${totalCost}</strong></div>
+          </div>
+          ${deliveryFee === 0 ? '<div class="delivery-note">✅ Free delivery for 4+ yards!</div>' : ''}
+          ${cubicYards < 3 ? '<div class="rebate-reminder">⚠️ Small load surcharge applies for orders under 3 yards</div>' : ''}
+        </div>
+      ` : ''}
+    `;
+    costComparison.style.display = 'block';
+  }
+  
+  document.getElementById('soilCalculator').style.display = 'block';
+  document.getElementById('soilCost').value = totalCost;
+}
+
+// Calculate soil amounts (wrapper for backward compatibility)
+function calculateSoilAmounts() {
+  updateSoilCostWithDelivery();
 }
 
 // Update cost estimates
@@ -222,33 +366,7 @@ function updateDripCost() {
   document.getElementById('dripTotalEstimate').textContent = `$${totalCost}`;
 }
 
-function calculateSoilAmounts() {
-  const area = parseFloat(document.getElementById('applicationArea').value) || 0;
-  const depthType = document.getElementById('applicationDepth').value;
-  
-  if (!area || !depthType) return;
-  
-  let bags, cubicYards, minCost, maxCost;
-  
-  if (depthType === 'garden') {
-    bags = Math.ceil((area / 400) * 67);
-    cubicYards = (area / 400) * 2.4;
-  } else {
-    bags = Math.ceil((area / 400) * 10);
-    cubicYards = (area / 400) * 0.32;
-  }
-  
-  minCost = bags * 8;
-  maxCost = bags * 12;
-  
-  document.getElementById('bagsNeeded').textContent = `${bags} bags`;
-  document.getElementById('cubicYards').textContent = `${cubicYards.toFixed(1)} yards`;
-  document.getElementById('estimatedSoilCost').textContent = `$${minCost}-$${maxCost}`;
-  document.getElementById('soilCalculator').style.display = 'block';
-  document.getElementById('soilCost').value = Math.round((minCost + maxCost) / 2);
-}
-
-// Calculate ROI
+// Calculate ROI with true water value - ENHANCED!
 function calculateROI() {
   collectFormData();
   
@@ -257,10 +375,13 @@ function calculateROI() {
     totalCost: 0, 
     totalRebates: 0, 
     totalWaterSavings: 0, 
-    totalCostSavings: 0, 
+    totalCostSavings: 0,
+    totalTrueValueSavings: 0, // NEW!
     netCost: 0, 
-    paybackYears: 0, 
-    roiPercentage: 0, 
+    paybackYears: 0,
+    trueValuePaybackYears: 0, // NEW!
+    roiPercentage: 0,
+    trueValueROI: 0, // NEW!
     environmentalImpact: {} 
   };
   
@@ -284,21 +405,39 @@ function calculateROI() {
     roiResults.comboBonus = true;
   }
   
-  // Calculate financial metrics
+  // Calculate both utility and true value metrics - ENHANCED!
   const currentAnnualCost = calculateWaterCost(baselineUsage);
   const newAnnualCost = calculateWaterCost(baselineUsage - roiResults.totalWaterSavings);
   roiResults.totalCostSavings = currentAnnualCost - newAnnualCost;
-  roiResults.netCost = roiResults.totalCost - roiResults.totalRebates;
-  roiResults.paybackYears = roiResults.totalCostSavings > 0 ? roiResults.netCost / roiResults.totalCostSavings : 999;
-  roiResults.roiPercentage = roiResults.netCost > 0 ? ((roiResults.totalCostSavings * 5 - roiResults.netCost) / roiResults.netCost) * 100 : 0;
   
-  // Environmental impact
+  // True value calculations - NEW!
+  const currentTrueValue = calculateTrueWaterValue(baselineUsage);
+  const newTrueValue = calculateTrueWaterValue(baselineUsage - roiResults.totalWaterSavings);
+  roiResults.totalTrueValueSavings = currentTrueValue - newTrueValue;
+  
+  roiResults.netCost = roiResults.totalCost - roiResults.totalRebates;
+  
+  // Calculate payback for both values - ENHANCED!
+  roiResults.paybackYears = roiResults.totalCostSavings > 0 ? 
+    roiResults.netCost / roiResults.totalCostSavings : 999;
+  roiResults.trueValuePaybackYears = roiResults.totalTrueValueSavings > 0 ? 
+    roiResults.netCost / roiResults.totalTrueValueSavings : 999;
+  
+  // Calculate ROI for both values - ENHANCED!
+  roiResults.roiPercentage = roiResults.netCost > 0 ? 
+    ((roiResults.totalCostSavings * 5 - roiResults.netCost) / roiResults.netCost) * 100 : 0;
+  roiResults.trueValueROI = roiResults.netCost > 0 ? 
+    ((roiResults.totalTrueValueSavings * 5 - roiResults.netCost) / roiResults.netCost) * 100 : 0;
+  
+  // Environmental impact - ENHANCED!
   roiResults.environmentalImpact = {
     lifetimeWaterSavings: roiResults.totalWaterSavings * 10,
     waterReduction: Math.round((roiResults.totalWaterSavings / baselineUsage) * 100),
     co2Savings: Math.round(roiResults.totalWaterSavings * 0.006),
     lifetimeCostSavings: roiResults.totalCostSavings * 10,
-    propertyValueIncrease: Math.round(roiResults.netCost * 1.5)
+    lifetimeTrueValueSavings: roiResults.totalTrueValueSavings * 10, // NEW!
+    propertyValueIncrease: Math.round(roiResults.netCost * 1.5),
+    ecosystemBenefit: Math.round(roiResults.totalTrueValueSavings * 10 * 0.3) // NEW! 30% of true value goes to ecosystem
   };
   
   displayResults();
@@ -346,6 +485,13 @@ function calculateUpgradeROI(upgradeType, outdoorUsage) {
       savingsPercent = 25;
       waterSavings = outdoorUsage * 0.25;
       break;
+      
+    case 'rainwaterHarvesting':
+      cost = parseFloat(document.getElementById('rainwaterCost')?.value) || 1500;
+      rebate = Math.min(cost * 0.5, 750);
+      savingsPercent = parseFloat(document.getElementById('rainwaterSavings')?.value) || 40;
+      waterSavings = outdoorUsage * (savingsPercent / 100);
+      break;
   }
   
   return { 
@@ -358,23 +504,77 @@ function calculateUpgradeROI(upgradeType, outdoorUsage) {
   };
 }
 
-// Display results
+// Display results with true water value - ENHANCED!
 function displayResults() {
+  // Determine which values to display prominently
+  const primarySavings = waterValueConfig.defaultToTrueValue ? 
+    roiResults.totalTrueValueSavings : roiResults.totalCostSavings;
+  const primaryPayback = waterValueConfig.defaultToTrueValue ? 
+    roiResults.trueValuePaybackYears : roiResults.paybackYears;
+  const primaryROI = waterValueConfig.defaultToTrueValue ? 
+    roiResults.trueValueROI : roiResults.roiPercentage;
+  
+  // Convert water savings to litres (1 gallon = 3.78541 litres)
+  const litresSaved = Math.round(roiResults.totalWaterSavings * 3.78541);
+  
   // Update summary cards
-  document.getElementById('waterSavings').textContent = Math.round(roiResults.totalWaterSavings).toLocaleString();
-  document.getElementById('costSavings').textContent = `$${Math.round(roiResults.totalCostSavings)}`;
+  document.getElementById('waterSavings').textContent = litresSaved.toLocaleString();
+  document.getElementById('costSavings').textContent = `$${Math.round(primarySavings)}`;
   document.getElementById('totalRebates').textContent = `$${roiResults.totalRebates}`;
-  document.getElementById('paybackPeriod').textContent = roiResults.paybackYears < 20 ? `${roiResults.paybackYears.toFixed(1)} years` : '20+ years';
-  document.getElementById('roiPercentage').textContent = `${Math.round(roiResults.roiPercentage)}%`;
+  document.getElementById('paybackPeriod').textContent = 
+    primaryPayback < 20 ? `${primaryPayback.toFixed(1)} years` : '20+ years';
+  document.getElementById('roiPercentage').textContent = `${Math.round(primaryROI)}%`;
   document.getElementById('propertyValue').textContent = `+$${roiResults.environmentalImpact.propertyValueIncrease}`;
   
   // Update environmental impact
-  document.getElementById('lifetimeWaterSavings').textContent = Math.round(roiResults.environmentalImpact.lifetimeWaterSavings).toLocaleString();
+  const lifetimeLitres = Math.round(roiResults.environmentalImpact.lifetimeWaterSavings * 3.78541);
+  document.getElementById('lifetimeWaterSavings').textContent = lifetimeLitres.toLocaleString();
   document.getElementById('waterReduction').textContent = `${roiResults.environmentalImpact.waterReduction}%`;
   document.getElementById('co2Savings').textContent = roiResults.environmentalImpact.co2Savings.toLocaleString();
-  document.getElementById('lifetimeSavings').textContent = `$${Math.round(roiResults.environmentalImpact.lifetimeCostSavings).toLocaleString()}`;
   
-  // Build payback table
+  // Show appropriate lifetime savings based on toggle
+  const lifetimeSavingsValue = waterValueConfig.defaultToTrueValue ? 
+    roiResults.environmentalImpact.lifetimeTrueValueSavings : 
+    roiResults.environmentalImpact.lifetimeCostSavings;
+  document.getElementById('lifetimeSavings').textContent = `$${Math.round(lifetimeSavingsValue).toLocaleString()}`;
+  
+  // Add comparison section if both values are available - NEW!
+  const comparisonSection = document.getElementById('valueComparison');
+  if (comparisonSection && waterValueConfig.showTrueValue) {
+    comparisonSection.innerHTML = `
+      <div class="value-comparison-box">
+        <h4>💧 Water Value Comparison</h4>
+        <div class="comparison-grid">
+          <div class="comparison-item">
+            <div class="comparison-label">Utility Bill Savings</div>
+            <div class="comparison-value">$${Math.round(roiResults.totalCostSavings)}/year</div>
+            <div class="comparison-metric">Payback: ${roiResults.paybackYears.toFixed(1)} years</div>
+          </div>
+          <div class="comparison-item highlight">
+            <div class="comparison-label">True Water Value Savings</div>
+            <div class="comparison-value">$${Math.round(roiResults.totalTrueValueSavings)}/year</div>
+            <div class="comparison-metric">Payback: ${roiResults.trueValuePaybackYears.toFixed(1)} years</div>
+          </div>
+          <div class="comparison-item">
+            <div class="comparison-label">10-Year Bill Savings</div>
+            <div class="comparison-value">$${Math.round(roiResults.totalCostSavings * 10).toLocaleString()}</div>
+          </div>
+          <div class="comparison-item highlight">
+            <div class="comparison-label">10-Year True Value</div>
+            <div class="comparison-value">$${Math.round(roiResults.totalTrueValueSavings * 10).toLocaleString()}</div>
+          </div>
+        </div>
+        <p class="value-explanation">
+          <strong>Why True Water Value?</strong> The true cost of water includes environmental impacts, 
+          infrastructure maintenance, water scarcity, and ecosystem services. This reflects the real 
+          value of your conservation efforts to society and the environment.
+        </p>
+      </div>
+    `;
+    comparisonSection.style.display = 'block';
+  }
+  
+  // Build payback table with both values - ENHANCED!
   const tableBody = document.getElementById('paybackTableBody');
   tableBody.innerHTML = '';
   
@@ -382,7 +582,11 @@ function displayResults() {
     const row = tableBody.insertRow();
     const upgradeName = getUpgradeName(upgrade.type);
     const annualSavings = Math.round((roiResults.totalCostSavings * (upgrade.waterSavings / roiResults.totalWaterSavings)));
-    const payback = upgrade.netCost > 0 && annualSavings > 0 ? (upgrade.netCost / annualSavings).toFixed(1) + ' years' : 'Immediate';
+    const trueSavings = Math.round((roiResults.totalTrueValueSavings * (upgrade.waterSavings / roiResults.totalWaterSavings)));
+    const payback = upgrade.netCost > 0 && annualSavings > 0 ? 
+      (upgrade.netCost / annualSavings).toFixed(1) + ' years' : 'Immediate';
+    const truePayback = upgrade.netCost > 0 && trueSavings > 0 ? 
+      (upgrade.netCost / trueSavings).toFixed(1) + ' years' : 'Immediate';
     const tenYearNet = (annualSavings * 10) - upgrade.netCost;
     
     row.innerHTML = `
@@ -390,8 +594,8 @@ function displayResults() {
       <td>$${upgrade.cost}</td>
       <td>$${upgrade.rebate}</td>
       <td>$${upgrade.netCost}</td>
-      <td>$${annualSavings}</td>
-      <td>${payback}</td>
+      <td>$${annualSavings} ${waterValueConfig.showTrueValue ? `<br><span class="true-value">($${trueSavings} true)</span>` : ''}</td>
+      <td>${payback} ${waterValueConfig.showTrueValue ? `<br><span class="true-value">(${truePayback} true)</span>` : ''}</td>
       <td style="color:${tenYearNet > 0 ? 'green' : 'red'}">$${tenYearNet}</td>
     `;
   });
@@ -401,15 +605,16 @@ function displayResults() {
   totalRow.style.background = '#e8f5ea';
   totalRow.style.fontWeight = 'bold';
   const tenYearNetTotal = (roiResults.totalCostSavings * 10) - roiResults.netCost;
+  const trueTenYearNet = (roiResults.totalTrueValueSavings * 10) - roiResults.netCost;
   
   totalRow.innerHTML = `
     <td>TOTALS</td>
     <td>$${roiResults.totalCost}</td>
     <td>$${roiResults.totalRebates}</td>
     <td>$${roiResults.netCost}</td>
-    <td>$${Math.round(roiResults.totalCostSavings)}</td>
-    <td>${roiResults.paybackYears < 20 ? roiResults.paybackYears.toFixed(1) + ' years' : '20+ years'}</td>
-    <td style="color:green">$${tenYearNetTotal}</td>
+    <td>$${Math.round(roiResults.totalCostSavings)} ${waterValueConfig.showTrueValue ? `<br><span class="true-value">($${Math.round(roiResults.totalTrueValueSavings)} true)</span>` : ''}</td>
+    <td>${roiResults.paybackYears < 20 ? roiResults.paybackYears.toFixed(1) + ' years' : '20+ years'} ${waterValueConfig.showTrueValue ? `<br><span class="true-value">(${roiResults.trueValuePaybackYears.toFixed(1)} years true)</span>` : ''}</td>
+    <td style="color:green">$${tenYearNetTotal} ${waterValueConfig.showTrueValue ? `<br><span class="true-value">($${trueTenYearNet} true)</span>` : ''}</td>
   `;
   
   document.getElementById('resultsSection').classList.add('active');
@@ -423,7 +628,8 @@ function getUpgradeName(type) {
     'smartController': 'Smart Controller', 
     'dripConversion': 'Drip Irrigation', 
     'mpRotators': 'MP Rotators', 
-    'soilImprovements': 'Soil Improvements' 
+    'soilImprovements': 'Soil Improvements',
+    'rainwaterHarvesting': 'Rainwater Harvesting'
   };
   return names[type] || type;
 }
@@ -447,26 +653,35 @@ function collectFormData() {
   };
 }
 
-// Generate application text
+// Generate application text with true water value - ENHANCED!
 function generateApplication() {
   const today = new Date().toLocaleDateString('en-CA');
   let selectedUpgrades = '';
   
   roiResults.upgrades.forEach(upgrade => {
     const annualSavings = Math.round((roiResults.totalCostSavings * (upgrade.waterSavings / roiResults.totalWaterSavings)));
-    selectedUpgrades += `• ${getUpgradeName(upgrade.type)} - Cost: $${upgrade.cost}, Rebate: $${upgrade.rebate}, Est. Savings: ${annualSavings}/yr\n`;
+    const trueSavings = Math.round((roiResults.totalTrueValueSavings * (upgrade.waterSavings / roiResults.totalWaterSavings)));
+    selectedUpgrades += `• ${getUpgradeName(upgrade.type)} - Cost: $${upgrade.cost}, Rebate: $${upgrade.rebate}, Est. Savings: $${annualSavings}/yr (True Value: $${trueSavings}/yr)\n`;
   });
   
-  const applicationText = `RDN IRRIGATION & SOIL IMPROVEMENTS APPLICATION
+  const litresSaved = Math.round(roiResults.totalWaterSavings * 3.78541);
+  const lifetimeLitres = Math.round(roiResults.environmentalImpact.lifetimeWaterSavings * 3.78541);
+  
+  const applicationText = `RDN WATER SAVINGS & REBATE REPORT
 Generated: ${today}
 
 FINANCIAL SUMMARY:
 Total Investment: $${roiResults.totalCost}
 Total Rebates: $${roiResults.totalRebates} ${roiResults.comboBonus ? '(includes $100 combo bonus)' : ''}
 Net Cost: $${roiResults.netCost}
+
+SAVINGS COMPARISON:
 Annual Water Bill Savings: $${Math.round(roiResults.totalCostSavings)}
-Simple Payback: ${roiResults.paybackYears < 20 ? roiResults.paybackYears.toFixed(1) + ' years' : '20+ years'}
-10-Year Net Benefit: $${(roiResults.totalCostSavings * 10) - roiResults.netCost}
+Annual True Water Value: $${Math.round(roiResults.totalTrueValueSavings)}
+Utility Payback: ${roiResults.paybackYears < 20 ? roiResults.paybackYears.toFixed(1) + ' years' : '20+ years'}
+True Value Payback: ${roiResults.trueValuePaybackYears < 20 ? roiResults.trueValuePaybackYears.toFixed(1) + ' years' : '20+ years'}
+10-Year Net Benefit (Bills): $${(roiResults.totalCostSavings * 10) - roiResults.netCost}
+10-Year Net Benefit (True): $${(roiResults.totalTrueValueSavings * 10) - roiResults.netCost}
 
 APPLICANT:
 Name: ${formData.fullName}
@@ -481,15 +696,21 @@ Current System: ${formData.irrigationSystem.replace(/([A-Z])/g, ' $1')}
 Irrigation Season: ${formData.irrigationMonths} months
 Current Usage: ${Math.round(waterBaseline.dailyUsage)} gal/day (${waterBaseline.currentTier})
 Annual Water Cost: $${Math.round(waterBaseline.annualCost)}
+Annual True Water Value: $${Math.round(waterBaseline.trueAnnualValue)}
 
 UPGRADES:
 ${selectedUpgrades}
 
 WATER SAVINGS ANALYSIS:
-Current Annual Usage: ${Math.round(waterBaseline.annualUsage).toLocaleString()} gallons
-Projected Annual Savings: ${Math.round(roiResults.totalWaterSavings).toLocaleString()} gallons (${roiResults.environmentalImpact.waterReduction}% reduction)
-10-Year Water Savings: ${Math.round(roiResults.environmentalImpact.lifetimeWaterSavings).toLocaleString()} gallons
+Current Annual Usage: ${Math.round(waterBaseline.annualUsage).toLocaleString()} gallons (${Math.round(waterBaseline.annualUsage * 3.78541).toLocaleString()} litres)
+Projected Annual Savings: ${Math.round(roiResults.totalWaterSavings).toLocaleString()} gallons (${litresSaved.toLocaleString()} litres)
+Water Reduction: ${roiResults.environmentalImpact.waterReduction}%
+10-Year Water Savings: ${Math.round(roiResults.environmentalImpact.lifetimeWaterSavings).toLocaleString()} gallons (${lifetimeLitres.toLocaleString()} litres)
 CO₂ Reduction: ${roiResults.environmentalImpact.co2Savings} lbs/year
+Ecosystem Value Created: $${roiResults.environmentalImpact.ecosystemBenefit}
+
+Note: True water value reflects the full environmental and societal cost of water,
+including infrastructure, treatment, scarcity, and ecosystem services.
 
 Declaration: Work must be completed by December 15, 2025.
 Signature: _________________________ Date: _____________`;
@@ -526,7 +747,7 @@ function setupPDFDownload(applicationText) {
     const doc = new jsPDF();
     
     doc.setFontSize(16);
-    doc.text('RDN Water Conservation ROI Analysis', 20, 20);
+    doc.text('RDN Water Savings & Rebate Report', 20, 20);
     
     doc.setFontSize(10);
     const lines = applicationText.split('\n');
@@ -541,6 +762,6 @@ function setupPDFDownload(applicationText) {
       y += 6;
     });
     
-    doc.save(`RDN_ROI_Analysis_${formData.fullName.replace(/ /g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+    doc.save(`RDN_Water_Report_${formData.fullName.replace(/ /g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
   };
 }
