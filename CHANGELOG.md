@@ -1,5 +1,22 @@
 # Changelog
 
+## 2025-08-12
+- **WEBHOOK INTEGRATION COMPLETE:** Added comprehensive email capture and lead generation system to RainWise Calculator
+  - **New Feature:** Email capture form integrated throughout calculator flow for lead generation
+  - **Added:** Webhook integration module (`assets/js/rainwise-webhook.js`) for Make.com/Zapier connectivity
+  - **Enhanced:** Calculator now captures comprehensive lead data including calculations, property info, and engagement metrics
+  - **New System:** Local queue management for offline resilience with automatic retry logic
+  - **Added:** Rate limiting to prevent spam (5 attempts per hour per email)
+  - **UI Enhancement:** Success modal with timeline showing next steps after calculation
+  - **Lead Scoring:** Automatic categorization based on rebate amount and project readiness
+  - **Data Captured:** Contact info, calculation results, property details, selected upgrades, environmental impact
+  - **Engagement Tracking:** Time on page, fields completed, scroll depth, calculations performed
+  - **New CSS:** Added `rainwise-calculator-webhook.css` with notification styles and modal designs
+  - **Email Banner:** Prominent email capture in results section with save functionality
+  - **Webhook Ready:** Configurable webhook URL for integration with any automation platform
+  - **Concierge Upsell:** Success modal promotes $35 premium service for guaranteed rebate approval
+  - **Result:** Calculator now functions as powerful lead generation tool while maintaining user experience
+
 ## 2025-08-08 (Session 3)
 - **RAINWISE CALCULATOR TRUE WATER VALUE:** Added dual-value ROI calculations comparing utility vs environmental costs
   - **NEW FEATURE:** True water value calculator at $0.015/gallon (2.7x utility rate)
