@@ -7,6 +7,8 @@
   <meta name="description" content="Discover your RDN water rebates (up to $1,625 with rainwater harvesting), calculate water savings in cubic meters, and see the true environmental value of water during peak salmon periods.">
   <link rel="stylesheet" href="rainwise-calculator.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Include the webhook integration script -->
+  <script src="/assets/js/rainwise-webhook.js"></script>
 </head>
 <body>
   <header>
@@ -400,6 +402,16 @@
         </div>
       </div>
 
+      <!-- Email Capture Section for Webhook -->
+      <div class="email-capture-banner" style="background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; padding: 30px; border-radius: 10px; margin: 30px 0; text-align: center;">
+        <h3 style="margin: 0 0 10px 0; font-size: 24px;">📧 Get Your Results Emailed!</h3>
+        <p style="margin: 0 0 20px 0; opacity: 0.95;">Save your calculation and receive your personalized water savings report</p>
+        <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; justify-content: center;">
+          <input type="email" id="user-email" placeholder="Enter your email address" style="flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 16px;">
+          <button onclick="captureLeadWithResults()" class="btn btn-light" style="padding: 12px 30px; background: white; color: #2E7D32; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Save My Results</button>
+        </div>
+      </div>
+
       <div class="detailed-breakdown">
         <h3>💡 Your Selected Upgrades</h3>
         <table class="savings-table">
@@ -589,6 +601,15 @@
           <button class="btn btn-secondary" onclick="location.reload()">🔄 New Calculation</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999;">
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:30px; border-radius:10px; text-align:center; max-width:400px;">
+      <h3 style="color:#4CAF50; margin-bottom:15px;">✅ Success!</h3>
+      <p id="successMessage">Your results have been saved! Check your email for your personalized report.</p>
+      <button onclick="closeSuccessModal()" style="background:#4CAF50; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; margin-top:15px;">Close</button>
     </div>
   </div>
 
