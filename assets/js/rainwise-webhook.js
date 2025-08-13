@@ -11,8 +11,8 @@
 // ============================================
 
 const WEBHOOK_CONFIG = {
-  // Replace with your actual webhook URL from Make.com, Zapier, or n8n
-  WEBHOOK_URL: 'https://hook.us1.make.com/YOUR_UNIQUE_WEBHOOK_ID',
+  // Your Make.com webhook URL - LIVE AND READY!
+  WEBHOOK_URL: 'https://hook.us2.make.com/i2jxgrjhi5q1xuzaeewd5xtmdp8k5r5i',
   
   // Fallback email for testing (replace with your email)
   ADMIN_EMAIL: 'david@aiforester.com',
@@ -100,87 +100,44 @@ function prepareLeadData(email, calcResults) {
   // Calculate engagement metrics
   const engagementData = calculateEngagement();
   
+  // Simplified data structure for Make.com
   return {
-    // Contact Information
-    contact: {
-      email: email,
-      name: document.getElementById('fullName')?.value || '',
-      phone: document.getElementById('phoneMain')?.value || '',
-      phoneAlt: document.getElementById('phoneAlt')?.value || '',
-      address: document.getElementById('propertyAddress')?.value || '',
-      city: document.getElementById('city')?.value || 'Nanaimo',
-      province: 'BC',
-      postalCode: document.getElementById('postalCode')?.value || ''
-    },
+    // Essential contact info
+    name: document.getElementById('fullName')?.value || '',
+    email: email,
+    phone: document.getElementById('phoneMain')?.value || '',
+    address: document.getElementById('propertyAddress')?.value || '',
     
-    // Calculation Results
-    calculation: {
-      // Rebate amounts
-      totalRebate: calcResults.totalRebates || 0,
-      
-      // Water savings
-      annualWaterSaved_m3: calcResults.totalWaterSavingsM3 || 0,
-      peakPeriodSavings_m3: calcResults.peakSavingsM3 || 0,
-      
-      // Financial impact
-      annualCostSavings: calcResults.totalCostSavings || 0,
-      environmentalValue: calcResults.totalTrueSavings - calcResults.totalCostSavings || 0,
-      totalAnnualValue: calcResults.totalTrueSavings || 0,
-      
-      // ROI metrics
-      paybackPeriod: calcResults.paybackYears || 0,
-      tenYearSavings: calcResults.environmentalImpact?.lifetimeCostSavings || 0,
-      
-      // Selected upgrades
-      upgrades: calcResults.upgrades?.map(upgrade => ({
-        name: getUpgradeName(upgrade.type),
-        selected: true,
-        rebateAmount: upgrade.rebate,
-        waterSavings: upgrade.waterSavingsM3,
-        cost: upgrade.cost,
-        netCost: upgrade.netCost
-      })) || []
-    },
+    // Key metrics
+    totalRebate: calcResults.totalRebates || 0,
+    waterSavings: calcResults.totalWaterSavingsM3 || 0,
+    annualSavings: calcResults.totalTrueSavings || 0,
     
-    // Property Information
-    property: {
-      irrigatedArea_sqft: formData.irrigatedArea || 0,
-      currentUsage_m3: waterBaseline?.annualUsageM3 || 0,
-      irrigationMonths: formData.irrigationMonths || 6,
-      irrigationSystem: formData.irrigationSystem || '',
-      propertyType: formData.propertyType || 'single',
-      hasSmartController: selectedRebates?.includes('smartController') || false,
-      hasRainSensor: selectedRebates?.includes('rainSensor') || false,
-      hasDripIrrigation: selectedRebates?.includes('dripConversion') || false
-    },
+    // Upgrades as string
+    upgrades: calcResults.upgrades?.map(u => getUpgradeName(u.type)).join(', ') || '',
     
-    // Lead Scoring & Segmentation
-    scoring: {
-      rebateTier: categorizeRebateAmount(calcResults.totalRebates),
-      projectType: determineProjectType(calcResults.upgrades),
-      readinessScore: assessProjectReadiness(),
-      environmentalMotivation: calcResults.totalTrueSavings > 500 ? 'high' : 'moderate',
-      seasonalUrgency: isInPeakSeason() ? 'high' : 'low'
-    },
+    // Property info
+    propertyType: formData.propertyType || 'Single Family',
+    irrigatedArea: formData.irrigatedArea || 0,
+    
+    // Timeline
+    timeline: document.getElementById('project-timeline')?.value || 'exploring',
     
     // Metadata
-    metadata: {
-      timestamp: new Date().toISOString(),
-      source: 'rainwise-calculator',
-      version: '2.0',
-      pageUrl: window.location.href,
-      referrer: document.referrer || 'direct',
-      device: getDeviceType(),
-      ...engagementData
-    },
-    
-    // Marketing Preferences
-    preferences: {
-      emailConsent: document.getElementById('email-consent')?.checked || true,
-      smsConsent: document.getElementById('sms-consent')?.checked || false,
-      contractorMatching: document.getElementById('need-contractor')?.checked || true,
-      projectTimeline: document.getElementById('leadTiming')?.value || 'exploring'
-    }
+    timestamp: new Date().toISOString(),
+    source: 'rainwise-calculator'
+  };
+}
+
+/**
+ * Collect form data
+ */
+function collectFormData() {
+  return {
+    propertyType: document.getElementById('propertyType')?.options[document.getElementById('propertyType')?.selectedIndex]?.text || 'Single Family',
+    irrigatedArea: parseFloat(document.getElementById('irrigatedArea')?.value) || 0,
+    irrigationMonths: parseFloat(document.getElementById('irrigationMonths')?.value) || 6,
+    irrigationSystem: document.getElementById('irrigationSystem')?.value || ''
   };
 }
 
@@ -273,67 +230,6 @@ function calculateEngagement() {
     calculationsPerformed: window.calculationCount || 1,
     scrollDepth: window.maxScrollDepth || 100
   };
-}
-
-/**
- * Categorize rebate amount for segmentation
- */
-function categorizeRebateAmount(amount) {
-  if (amount >= 700) return 'high-value';
-  if (amount >= 400) return 'medium-value';
-  if (amount >= 100) return 'low-value';
-  return 'exploring';
-}
-
-/**
- * Determine project type from selected upgrades
- */
-function determineProjectType(upgrades) {
-  if (!upgrades || upgrades.length === 0) return 'none';
-  
-  const hasSmartController = upgrades.some(u => u.type === 'smartController');
-  const hasDrip = upgrades.some(u => u.type === 'dripConversion');
-  const hasRainSensor = upgrades.some(u => u.type === 'rainSensor');
-  const hasRainwater = upgrades.some(u => u.type === 'rainwaterHarvesting');
-  
-  if (hasRainwater) return 'rainwater-harvesting';
-  if (hasSmartController && hasDrip) return 'comprehensive';
-  if (hasSmartController) return 'smart-upgrade';
-  if (hasDrip) return 'drip-conversion';
-  if (hasRainSensor) return 'basic-efficiency';
-  
-  return 'mixed';
-}
-
-/**
- * Assess project readiness
- */
-function assessProjectReadiness() {
-  const timeline = document.getElementById('leadTiming')?.value || document.getElementById('premiumTiming')?.value;
-  const hasEmail = document.getElementById('email')?.value;
-  const hasPhone = document.getElementById('phoneMain')?.value;
-  
-  let score = 0;
-  
-  if (timeline === 'asap') score += 3;
-  else if (timeline === '1month') score += 2;
-  else if (timeline === '3months') score += 1;
-  
-  if (hasEmail) score += 2;
-  if (hasPhone) score += 1;
-  
-  if (score >= 5) return 'hot-lead';
-  if (score >= 3) return 'warm-lead';
-  if (score >= 1) return 'cool-lead';
-  return 'cold-lead';
-}
-
-/**
- * Check if currently in peak water season
- */
-function isInPeakSeason() {
-  const month = new Date().getMonth() + 1;
-  return month >= 6 && month <= 9; // June to September
 }
 
 /**
@@ -465,10 +361,8 @@ function showSuccessModal(calcResults, userEmail) {
       
       <div class="modal-footer">
         <p class="savings-highlight">
-          💰 You could save <strong>$${Math.round(calcResults.totalTrueSavings || 0)}</strong> annually
-          <br>
-          💧 That's <strong>${Math.round(calcResults.totalWaterSavingsM3 || 0)}m³</strong> of water saved
-          <br>
+          💰 You could save <strong>$${Math.round(calcResults.totalTrueSavings || 0)}</strong> annually<br>
+          💧 That's <strong>${Math.round(calcResults.totalWaterSavingsM3 || 0)}m³</strong> of water saved<br>
           🐟 Including <strong>${Math.round(calcResults.peakSavingsM3 || 0)}m³</strong> during peak salmon periods
         </p>
       </div>
@@ -547,7 +441,7 @@ async function processLocalQueue() {
         // Keep in queue if still failing
         remaining.push(leadData);
       } else {
-        console.log('Successfully sent queued lead:', leadData.contact.email);
+        console.log('Successfully sent queued lead:', leadData.email);
       }
       
       // Small delay between requests
@@ -598,6 +492,7 @@ function trackEvent(eventName, eventData) {
  */
 function initializeWebhookIntegration() {
   console.log('RainWise Webhook Integration initialized');
+  console.log('Webhook URL:', WEBHOOK_CONFIG.WEBHOOK_URL);
   
   // Track page load time for engagement metrics
   window.pageLoadTime = Date.now();
