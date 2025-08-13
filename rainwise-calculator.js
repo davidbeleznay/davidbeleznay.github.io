@@ -644,6 +644,108 @@ function submitLead(type) {
   }
 }
 
+// Webhook integration function - captures lead with results
+function captureLeadWithResults() {
+  const emailInput = document.getElementById('user-email');
+  
+  if (!emailInput || !emailInput.value) {
+    alert('Please enter your email address');
+    return;
+  }
+  
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailInput.value)) {
+    alert('Please enter a valid email address');
+    return;
+  }
+  
+  // Gather all data for webhook
+  const webhookData = {
+    // Contact info (from initial form + email capture)
+    email: emailInput.value,
+    name: formData.fullName || 'Not provided',
+    phone: formData.phoneMain || 'Not provided',
+    
+    // Property details
+    address: formData.propertyAddress || 'Not provided',
+    city: formData.city || 'Not provided',
+    postalCode: formData.postalCode || 'Not provided',
+    propertyType: formData.propertyType || 'Not provided',
+    
+    // Water usage details
+    irrigatedArea: waterBaseline.irrigatedArea || 0,
+    irrigationMonths: waterBaseline.irrigationMonths || 0,
+    currentSystem: waterBaseline.system || 'Not provided',
+    annualUsageM3: waterBaseline.annualUsageM3 || 0,
+    
+    // Savings results
+    totalRebates: savingsResults.totalRebates || 0,
+    totalWaterSavingsM3: savingsResults.totalWaterSavingsM3 || 0,
+    peakSavingsM3: savingsResults.peakSavingsM3 || 0,
+    totalTrueSavings: savingsResults.totalTrueSavings || 0,
+    
+    // Selected upgrades
+    upgrades: savingsResults.upgrades.map(u => ({
+      type: getUpgradeName(u.type),
+      rebate: u.rebate,
+      waterSavingsM3: u.waterSavingsM3
+    })),
+    
+    // Timestamp
+    timestamp: new Date().toISOString(),
+    source: 'RainWise Calculator'
+  };
+  
+  // Check if webhook config exists
+  if (typeof WEBHOOK_CONFIG !== 'undefined' && WEBHOOK_CONFIG.WEBHOOK_URL) {
+    // Send to webhook
+    fetch(WEBHOOK_CONFIG.WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(webhookData)
+    })
+    .then(response => {
+      if (response.ok) {
+        // Show success modal
+        showSuccessModal();
+        // Clear email input
+        emailInput.value = '';
+      } else {
+        throw new Error('Webhook failed');
+      }
+    })
+    .catch(error => {
+      console.error('Webhook error:', error);
+      alert('There was an error saving your results. Please try again or contact us directly.');
+    });
+  } else {
+    // Fallback if webhook not configured
+    console.log('Webhook data:', webhookData);
+    alert('Email capture is being set up. Please contact us directly at the email provided.');
+  }
+}
+
+// Show success modal
+function showSuccessModal() {
+  const modal = document.getElementById('successModal');
+  if (modal) {
+    modal.style.display = 'block';
+  } else {
+    alert('Success! Your results have been saved and will be emailed to you shortly.');
+  }
+}
+
+// Close success modal
+function closeSuccessModal() {
+  const modal = document.getElementById('successModal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
+
 // Setup PDF download
 function setupPDFDownload() {
   document.getElementById('downloadReport').onclick = function() {
