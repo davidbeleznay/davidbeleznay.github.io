@@ -400,7 +400,7 @@
         </div>
       </div>
 
-      <!-- FIXED Email Capture Section with visible button -->
+      <!-- ENHANCED Email Capture Section with better data structure -->
       <div style="background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; padding: 30px; border-radius: 10px; margin: 30px 0; text-align: center;">
         <h3 style="margin: 0 0 10px 0; font-size: 24px; color: white;">📧 Get Your Results Emailed!</h3>
         <p style="margin: 0 0 20px 0; opacity: 0.95; color: white;">Save your calculation and receive your personalized water savings report</p>
@@ -495,7 +495,7 @@
     </div>
   </div>
 
-  <!-- Webhook function inline -->
+  <!-- ENHANCED Webhook function with better data structure -->
   <script>
   function captureLeadWithResults() {
     const emailInput = document.getElementById('user-email');
@@ -512,29 +512,53 @@
       return;
     }
     
-    // Get the data from the page
+    // Get the data from the page - ENHANCED for Airtable compatibility
+    const fullName = document.getElementById('fullName')?.value || '';
+    const totalRebateText = document.getElementById('totalRebates')?.textContent || '$0';
+    const waterSavingsText = document.getElementById('waterSavings')?.textContent || '0';
+    const trueSavingsText = document.getElementById('trueSavings')?.textContent || '$0';
+    
+    // Clean numeric values
+    const totalRebate = parseInt(totalRebateText.replace(/[$,]/g,'')) || 0;
+    const waterSavings = parseFloat(waterSavingsText.replace(/[^0-9.]/g,'')) || 0;
+    const trueSavings = parseInt(trueSavingsText.replace(/[$,]/g,'')) || 0;
+    
+    // Get selected upgrades
+    const upgradeRows = Array.from(document.querySelectorAll('#savingsTableBody tr'));
+    const upgrades = upgradeRows
+      .map(row => row.cells[0]?.textContent)
+      .filter(text => text && text !== 'TOTALS')
+      .join(', ') || 'None selected';
+    
+    // Build webhook data with cleaner structure for Airtable
     const webhookData = {
-      email: emailInput.value,
-      name: document.getElementById('fullName')?.value || 'Not provided',
-      phone: document.getElementById('phoneMain')?.value || 'Not provided',
-      address: document.getElementById('propertyAddress')?.value || 'Not provided',
-      city: document.getElementById('city')?.value || 'Not provided',
-      postalCode: document.getElementById('postalCode')?.value || 'Not provided',
-      propertyType: document.getElementById('propertyType')?.value || 'Single Family',
-      irrigatedArea: document.getElementById('irrigatedArea')?.value || 0,
-      totalRebate: parseInt(document.getElementById('totalRebates')?.textContent.replace(/[$,]/g,'')) || 0,
-      waterSavings: parseFloat(document.getElementById('waterSavings')?.textContent) || 0,
-      annualSavings: parseInt(document.getElementById('trueSavings')?.textContent.replace(/[$,]/g,'')) || 0,
-      upgrades: Array.from(document.querySelectorAll('#savingsTableBody tr'))
-        .map(row => row.cells[0]?.textContent)
-        .filter(text => text && text !== 'TOTALS')
-        .join(', ') || 'None selected',
-      timeline: 'asap',
-      timestamp: new Date().toISOString(),
-      source: 'RainWise Calculator'
+      // Contact fields
+      Email: emailInput.value,
+      Name: fullName || 'Not provided',
+      Phone: document.getElementById('phoneMain')?.value || '',
+      
+      // Address fields
+      Address: document.getElementById('propertyAddress')?.value || '',
+      City: document.getElementById('city')?.value || '',
+      PostalCode: document.getElementById('postalCode')?.value || '',
+      PropertyType: document.getElementById('propertyType')?.value || 'Single Family',
+      
+      // Numeric fields (as numbers, not strings)
+      IrrigatedArea: parseInt(document.getElementById('irrigatedArea')?.value) || 0,
+      TotalRebate: totalRebate,
+      WaterSavingsM3: waterSavings,
+      AnnualSavings: trueSavings,
+      
+      // Text fields
+      Upgrades: upgrades,
+      Timeline: 'ASAP',
+      Source: 'RainWise Calculator',
+      
+      // Date field
+      SubmittedAt: new Date().toISOString()
     };
     
-    console.log('Sending data:', webhookData);
+    console.log('Sending clean data to webhook:', webhookData);
     
     // Send to webhook
     fetch('https://hook.us2.make.com/i2jxgrjhi5q1xuzaeewd5xtmdp8k5r5i', {
@@ -551,14 +575,16 @@
         showSuccessModal();
         // Clear email input
         emailInput.value = '';
+        // Log success
+        console.log('Webhook success! Data sent to Make.com');
       } else {
         throw new Error('Webhook failed with status: ' + response.status);
       }
     })
     .catch(error => {
-      console.error('Error:', error);
+      console.error('Webhook error:', error);
       // More user-friendly error message
-      alert('We couldn\'t save your results right now. Please try again in a moment, or contact us directly at the email provided.');
+      alert('We couldn\'t save your results right now. Please try again in a moment, or contact us directly.');
     });
   }
 
@@ -577,7 +603,7 @@
   }
   
   // Log that the webhook is ready
-  console.log('RainWise webhook integration loaded and ready');
+  console.log('RainWise webhook integration loaded - Enhanced for Airtable compatibility');
   </script>
 
   <script src="rainwise-calculator.js"></script>
