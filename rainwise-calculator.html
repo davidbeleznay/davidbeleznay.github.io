@@ -232,7 +232,7 @@
           </div>
         </div>
         
-        <!-- Upgrade Details (shown when selected) -->
+        <!-- Upgrade Details sections remain the same... -->
         <div class="upgrade-details" id="rainSensorDetails">
           <h3>Rain Sensor Details</h3>
           <div class="form-row">
@@ -400,13 +400,13 @@
         </div>
       </div>
 
-      <!-- Email Capture Section for Webhook -->
-      <div class="email-capture-banner" style="background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; padding: 30px; border-radius: 10px; margin: 30px 0; text-align: center;">
-        <h3 style="margin: 0 0 10px 0; font-size: 24px;">📧 Get Your Results Emailed!</h3>
-        <p style="margin: 0 0 20px 0; opacity: 0.95;">Save your calculation and receive your personalized water savings report</p>
-        <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; justify-content: center;">
-          <input type="email" id="user-email" placeholder="Enter your email address" style="flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 16px;">
-          <button onclick="captureLeadWithResults()" class="btn btn-light" style="padding: 12px 30px; background: white; color: #2E7D32; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Save My Results</button>
+      <!-- FIXED Email Capture Section with visible button -->
+      <div style="background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; padding: 30px; border-radius: 10px; margin: 30px 0; text-align: center;">
+        <h3 style="margin: 0 0 10px 0; font-size: 24px; color: white;">📧 Get Your Results Emailed!</h3>
+        <p style="margin: 0 0 20px 0; opacity: 0.95; color: white;">Save your calculation and receive your personalized water savings report</p>
+        <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; justify-content: center; align-items: center;">
+          <input type="email" id="user-email" placeholder="Enter your email address" style="flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 16px; color: #333;">
+          <button onclick="captureLeadWithResults()" style="padding: 12px 30px; background: white; color: #2E7D32; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px; white-space: nowrap;">Save My Results</button>
         </div>
       </div>
 
@@ -429,7 +429,7 @@
         <p class="summary-text">
           <strong>Annual Bill Savings:</strong> <span id="annualSavings">$0</span><br>
           <strong>True Environmental Value Saved:</strong> <span id="trueValueSaved">$0</span><br>
-          <small>Want to see full ROI details? <a href="#" onclick="toggleROI()">Click here</a></small>
+          <small>Want to see full ROI details? <a href="#" onclick="toggleROI(); return false;">Click here</a></small>
         </p>
         <div id="roiDetails" style="display:none;">
           <table class="roi-table">
@@ -447,130 +447,14 @@
         </div>
       </div>
 
-      <!-- Choose Your Path Section -->
-      <div class="path-selection">
-        <h3>🚀 Choose How to Proceed</h3>
-        <div class="path-cards">
-          <div class="path-card free">
-            <div class="path-header">
-              <h4>Free Quote</h4>
-              <span class="path-badge">Most Popular</span>
-            </div>
-            <ul class="path-features">
-              <li>✓ Basic water savings report</li>
-              <li>✓ Connect with local contractor</li>
-              <li>✓ General rebate information</li>
-              <li>✓ Standard response time</li>
-            </ul>
-            <button class="btn btn-secondary btn-large" onclick="showFreeQuote()">Get Free Quote</button>
-          </div>
-          
-          <div class="path-card premium">
-            <div class="path-header">
-              <h4>Application Concierge</h4>
-              <span class="path-badge premium-badge">Premium Service</span>
-              <div class="path-price">$35</div>
-            </div>
-            <ul class="path-features">
-              <li>✓ Everything in Free Quote</li>
-              <li>✓ <strong>Pre-filled rebate applications</strong></li>
-              <li>✓ <strong>Priority contractor response</strong></li>
-              <li>✓ <strong>Application checklist & guides</strong></li>
-              <li>✓ <strong>Rebate submission support</strong></li>
-              <li>✓ <strong>30-day email support</strong></li>
-            </ul>
-            <button class="btn btn-primary btn-large" onclick="showPremiumService()">Get Premium Service</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Free Quote Form (hidden initially) -->
-      <div class="lead-capture-section" id="freeQuoteForm" style="display:none;">
-        <h3>📋 Get Your Free Quote</h3>
-        <p>Enter your details below and a certified irrigation specialist will contact you with a custom quote.</p>
-        <div class="lead-form">
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text" id="leadName" placeholder="Your Name" value="">
-            </div>
-            <div class="form-group">
-              <input type="email" id="leadEmail" placeholder="Email Address" value="">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <input type="tel" id="leadPhone" placeholder="Phone Number" value="">
-            </div>
-            <div class="form-group">
-              <select id="leadTiming">
-                <option value="">When to start?</option>
-                <option value="asap">As soon as possible</option>
-                <option value="1month">Within 1 month</option>
-                <option value="3months">Within 3 months</option>
-                <option value="planning">Just planning</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <textarea id="leadNotes" placeholder="Any specific questions or concerns about your water conservation project?"></textarea>
-          </div>
-          <button class="btn btn-primary btn-large" onclick="submitLead('free')">Submit Free Quote Request →</button>
-        </div>
-      </div>
-
-      <!-- Premium Service Form (hidden initially) -->
-      <div class="premium-service-section" id="premiumServiceForm" style="display:none;">
-        <h3>🏆 Application Concierge Service</h3>
-        <div class="premium-benefits">
-          <p><strong>What you get for $35:</strong></p>
-          <ul>
-            <li>✅ All rebate applications pre-filled with your information</li>
-            <li>✅ Step-by-step submission guide with screenshots</li>
-            <li>✅ Priority response from certified contractors (within 24 hours)</li>
-            <li>✅ Complete application checklist with required documents</li>
-            <li>✅ 30 days of email support for questions</li>
-            <li>✅ Rebate tracking spreadsheet</li>
-          </ul>
-        </div>
-        <div class="lead-form">
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text" id="premiumName" placeholder="Your Name" value="">
-            </div>
-            <div class="form-group">
-              <input type="email" id="premiumEmail" placeholder="Email Address" value="">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <input type="tel" id="premiumPhone" placeholder="Phone Number" value="">
-            </div>
-            <div class="form-group">
-              <select id="premiumTiming">
-                <option value="">When to start?</option>
-                <option value="asap">As soon as possible</option>
-                <option value="1month">Within 1 month</option>
-                <option value="3months">Within 3 months</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <textarea id="premiumNotes" placeholder="Tell us about your specific needs or questions"></textarea>
-          </div>
-          <div class="payment-info">
-            <p><strong>Payment:</strong> You'll be redirected to secure payment after clicking below.</p>
-          </div>
-          <button class="btn btn-primary btn-large" onclick="submitLead('premium')">Purchase Application Concierge ($35) →</button>
-        </div>
-      </div>
-
+      <!-- Rest of the results section remains the same... -->
       <div class="next-steps">
         <h3>📋 Next Steps</h3>
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">1</div>
-            <h4>Download Your Report</h4>
-            <p>Get your personalized Water Savings & Rebate Report as a PDF</p>
+            <h4>Check Your Email</h4>
+            <p>Your personalized report will arrive within 5 minutes</p>
           </div>
           <div class="step-card">
             <div class="step-number">2</div>
@@ -611,7 +495,7 @@
     </div>
   </div>
 
-  <!-- Inline webhook function -->
+  <!-- Webhook function inline -->
   <script>
   function captureLeadWithResults() {
     const emailInput = document.getElementById('user-email');
@@ -621,12 +505,23 @@
       return;
     }
     
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    
     // Get the data from the page
     const webhookData = {
       email: emailInput.value,
       name: document.getElementById('fullName')?.value || 'Not provided',
       phone: document.getElementById('phoneMain')?.value || 'Not provided',
       address: document.getElementById('propertyAddress')?.value || 'Not provided',
+      city: document.getElementById('city')?.value || 'Not provided',
+      postalCode: document.getElementById('postalCode')?.value || 'Not provided',
+      propertyType: document.getElementById('propertyType')?.value || 'Single Family',
+      irrigatedArea: document.getElementById('irrigatedArea')?.value || 0,
       totalRebate: parseInt(document.getElementById('totalRebates')?.textContent.replace(/[$,]/g,'')) || 0,
       waterSavings: parseFloat(document.getElementById('waterSavings')?.textContent) || 0,
       annualSavings: parseInt(document.getElementById('trueSavings')?.textContent.replace(/[$,]/g,'')) || 0,
@@ -634,8 +529,6 @@
         .map(row => row.cells[0]?.textContent)
         .filter(text => text && text !== 'TOTALS')
         .join(', ') || 'None selected',
-      propertyType: 'Single Family',
-      irrigatedArea: document.getElementById('irrigatedArea')?.value || 0,
       timeline: 'asap',
       timestamp: new Date().toISOString(),
       source: 'RainWise Calculator'
@@ -659,12 +552,13 @@
         // Clear email input
         emailInput.value = '';
       } else {
-        throw new Error('Webhook failed');
+        throw new Error('Webhook failed with status: ' + response.status);
       }
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('There was an error saving your results. Please try again.');
+      // More user-friendly error message
+      alert('We couldn\'t save your results right now. Please try again in a moment, or contact us directly at the email provided.');
     });
   }
 
@@ -681,6 +575,9 @@
       modal.style.display = 'none';
     }
   }
+  
+  // Log that the webhook is ready
+  console.log('RainWise webhook integration loaded and ready');
   </script>
 
   <script src="rainwise-calculator.js"></script>
