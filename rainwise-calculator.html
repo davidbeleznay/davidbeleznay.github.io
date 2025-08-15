@@ -400,7 +400,7 @@
         </div>
       </div>
 
-      <!-- ENHANCED Email Capture with better error handling -->
+      <!-- FIXED Email Capture with proper data collection -->
       <div style="background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; padding: 30px; border-radius: 10px; margin: 30px 0; text-align: center;">
         <h3 style="margin: 0 0 10px 0; font-size: 24px; color: white;">📧 Get Your Results Emailed!</h3>
         <p style="margin: 0 0 20px 0; opacity: 0.95; color: white;">Save your calculation and receive your personalized water savings report</p>
@@ -409,6 +409,11 @@
           <button onclick="captureLeadWithResults()" style="padding: 12px 30px; background: white; color: #2E7D32; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px; white-space: nowrap;">Save My Results</button>
         </div>
         <div id="webhook-status" style="margin-top: 10px; font-size: 14px; display: none;"></div>
+        <!-- Debug info display -->
+        <div id="debug-info" style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 5px; text-align: left; font-size: 12px; display: none;">
+          <strong>Debug Info:</strong>
+          <div id="debug-content"></div>
+        </div>
       </div>
 
       <div class="detailed-breakdown">
@@ -496,14 +501,54 @@
     </div>
   </div>
 
-  <!-- ENHANCED Webhook with better error handling and debugging -->
+  <!-- COMPLETELY REWRITTEN Webhook function to ensure data capture -->
   <script>
-  // IMPORTANT: Check if this webhook URL is still active in your Make.com scenario
-  const WEBHOOK_URL = 'https://hook.us2.make.com/i2jxgrjhi5q1xuzaeewd5xtmdp8k5r5i';
+  // Store form data globally
+  var globalFormData = {};
+  var globalSavingsData = {};
+  
+  // Update global data when calculating savings
+  function storeCalculationData() {
+    // Store form inputs
+    globalFormData = {
+      fullName: document.getElementById('fullName')?.value || '',
+      email: document.getElementById('email')?.value || '',
+      phoneMain: document.getElementById('phoneMain')?.value || '',
+      propertyAddress: document.getElementById('propertyAddress')?.value || '',
+      city: document.getElementById('city')?.value || '',
+      postalCode: document.getElementById('postalCode')?.value || '',
+      propertyType: document.getElementById('propertyType')?.value || 'Single Family',
+      irrigatedArea: document.getElementById('irrigatedArea')?.value || '0'
+    };
+    
+    // Store calculation results
+    globalSavingsData = {
+      totalRebates: document.getElementById('totalRebates')?.textContent || '$0',
+      waterSavings: document.getElementById('waterSavings')?.textContent || '0 m³',
+      peakSavings: document.getElementById('peakSavings')?.textContent || '0 m³',
+      trueSavings: document.getElementById('trueSavings')?.textContent || '$0'
+    };
+    
+    console.log('Data stored:', globalFormData, globalSavingsData);
+  }
+  
+  // Hook into the calculate savings function to store data
+  window.addEventListener('load', function() {
+    // Override or hook into calculateSavings
+    const originalCalculateSavings = window.calculateSavings;
+    if (originalCalculateSavings) {
+      window.calculateSavings = function() {
+        originalCalculateSavings();
+        setTimeout(storeCalculationData, 500); // Store data after calculation
+      };
+    }
+  });
   
   function captureLeadWithResults() {
     const emailInput = document.getElementById('user-email');
     const statusDiv = document.getElementById('webhook-status');
+    const debugDiv = document.getElementById('debug-info');
+    const debugContent = document.getElementById('debug-content');
     
     if (!emailInput || !emailInput.value) {
       alert('Please enter your email address');
@@ -520,75 +565,88 @@
     // Show status
     statusDiv.style.display = 'block';
     statusDiv.style.color = 'white';
-    statusDiv.textContent = 'Sending your results...';
+    statusDiv.textContent = 'Preparing your data...';
     
-    // Get the data from the page
-    const fullName = document.getElementById('fullName')?.value || '';
-    const totalRebateText = document.getElementById('totalRebates')?.textContent || '$0';
-    const waterSavingsText = document.getElementById('waterSavings')?.textContent || '0';
-    const trueSavingsText = document.getElementById('trueSavings')?.textContent || '$0';
+    // First, try to recapture the data right now
+    storeCalculationData();
     
-    // Clean numeric values
-    const totalRebate = parseInt(totalRebateText.replace(/[$,]/g,'')) || 0;
-    const waterSavings = parseFloat(waterSavingsText.replace(/[^0-9.]/g,'')) || 0;
-    const trueSavings = parseInt(trueSavingsText.replace(/[$,]/g,'')) || 0;
-    
-    // Get selected upgrades
-    const upgradeRows = Array.from(document.querySelectorAll('#savingsTableBody tr'));
-    const upgrades = upgradeRows
-      .map(row => row.cells[0]?.textContent)
-      .filter(text => text && text !== 'TOTALS')
-      .join(', ') || 'None selected';
-    
-    // Build webhook data
+    // Build webhook data using stored global data
     const webhookData = {
+      // Use email from capture box
       Email: emailInput.value,
-      Name: fullName || 'Not provided',
-      Phone: document.getElementById('phoneMain')?.value || '',
-      Address: document.getElementById('propertyAddress')?.value || '',
-      City: document.getElementById('city')?.value || '',
-      PostalCode: document.getElementById('postalCode')?.value || '',
-      PropertyType: document.getElementById('propertyType')?.value || 'Single Family',
-      IrrigatedArea: parseInt(document.getElementById('irrigatedArea')?.value) || 0,
-      TotalRebate: totalRebate,
-      WaterSavingsM3: waterSavings,
-      AnnualSavings: trueSavings,
-      Upgrades: upgrades,
+      
+      // Use stored form data or current values
+      Name: globalFormData.fullName || document.getElementById('fullName')?.value || 'Not provided',
+      Phone: globalFormData.phoneMain || document.getElementById('phoneMain')?.value || 'Not provided',
+      Address: globalFormData.propertyAddress || document.getElementById('propertyAddress')?.value || 'Not provided',
+      City: globalFormData.city || document.getElementById('city')?.value || 'Not provided',
+      PostalCode: globalFormData.postalCode || document.getElementById('postalCode')?.value || 'Not provided',
+      PropertyType: globalFormData.propertyType || document.getElementById('propertyType')?.value || 'Single Family',
+      
+      // Numeric fields
+      IrrigatedArea: parseInt(globalFormData.irrigatedArea || document.getElementById('irrigatedArea')?.value || '0'),
+      
+      // Use stored savings data
+      TotalRebate: parseInt((globalSavingsData.totalRebates || document.getElementById('totalRebates')?.textContent || '$0').replace(/[$,]/g,'')) || 0,
+      WaterSavingsM3: parseFloat((globalSavingsData.waterSavings || document.getElementById('waterSavings')?.textContent || '0').replace(/[^0-9.]/g,'')) || 0,
+      AnnualSavings: parseInt((globalSavingsData.trueSavings || document.getElementById('trueSavings')?.textContent || '$0').replace(/[$,]/g,'')) || 0,
+      
+      // Get upgrades
+      Upgrades: Array.from(document.querySelectorAll('#savingsTableBody tr'))
+        .map(row => row.cells[0]?.textContent)
+        .filter(text => text && text !== 'TOTALS')
+        .join(', ') || 'None selected',
+      
       Timeline: 'ASAP',
       Source: 'RainWise Calculator',
       SubmittedAt: new Date().toISOString()
     };
     
-    console.log('Sending data to webhook:', webhookData);
-    console.log('Webhook URL:', WEBHOOK_URL);
+    // Show debug info
+    debugDiv.style.display = 'block';
+    debugContent.innerHTML = `
+      <strong>Data being sent:</strong><br>
+      Email: ${webhookData.Email}<br>
+      Name: ${webhookData.Name}<br>
+      Phone: ${webhookData.Phone}<br>
+      City: ${webhookData.City}<br>
+      Total Rebate: $${webhookData.TotalRebate}<br>
+      Water Savings: ${webhookData.WaterSavingsM3} m³<br>
+      Upgrades: ${webhookData.Upgrades}
+    `;
     
-    // Send to webhook with better error handling
+    console.log('Full webhook data:', JSON.stringify(webhookData, null, 2));
+    
+    statusDiv.textContent = 'Sending to server...';
+    
+    // Send to webhook
+    const WEBHOOK_URL = 'https://hook.us2.make.com/i2jxgrjhi5q1xuzaeewd5xtmdp8k5r5i';
+    
     fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(webhookData),
-      mode: 'no-cors' // This prevents CORS errors but also prevents reading the response
+      mode: 'no-cors'
     })
     .then(() => {
-      // With no-cors mode, we can't read the response, so we assume success
-      console.log('Webhook request sent (no-cors mode)');
+      console.log('Webhook request sent successfully');
       statusDiv.style.color = '#90EE90';
       statusDiv.textContent = '✓ Results sent successfully!';
       showSuccessModal();
       emailInput.value = '';
       
-      // Hide status after 3 seconds
+      // Hide debug info after success
       setTimeout(() => {
         statusDiv.style.display = 'none';
-      }, 3000);
+        debugDiv.style.display = 'none';
+      }, 5000);
     })
     .catch(error => {
       console.error('Webhook error:', error);
       statusDiv.style.color = '#FFB6C1';
-      statusDiv.textContent = '⚠️ Error sending results. Please try again.';
-      alert('We couldn\'t save your results. Please check your internet connection and try again.');
+      statusDiv.textContent = '⚠️ Error sending results. Check debug info below.';
     });
   }
 
@@ -607,8 +665,7 @@
   }
   
   // Log that the webhook is ready
-  console.log('RainWise webhook integration loaded');
-  console.log('Webhook URL configured:', WEBHOOK_URL);
+  console.log('RainWise webhook integration loaded - Enhanced debugging version');
   </script>
 
   <script src="rainwise-calculator.js"></script>
