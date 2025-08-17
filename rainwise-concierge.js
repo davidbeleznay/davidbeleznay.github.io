@@ -1,8 +1,8 @@
 // Concierge Service Addition for RainWise Calculator
 // This script adds the concierge service offer to the existing calculator
 
-// IMPORTANT: Replace this with your new Make.com webhook URL for concierge updates
-const CONCIERGE_UPDATE_WEBHOOK = 'https://hook.us2.make.com/YOUR_NEW_WEBHOOK_HERE';
+// Webhook URL for updating existing records when concierge is selected
+const CONCIERGE_UPDATE_WEBHOOK = 'https://hook.us2.make.com/19p8ls4flqou0jqsy368v8rjmzwz7ydh';
 
 // Function to add concierge section when results are shown
 function addConciergeSection() {
@@ -181,13 +181,7 @@ window.activateConciergeService = function() {
     Phone: document.getElementById('phoneMain')?.value || ''
   };
   
-  console.log('Sending concierge update:', updateData);
-  
-  // Check if webhook URL has been updated
-  if (CONCIERGE_UPDATE_WEBHOOK.includes('YOUR_NEW_WEBHOOK_HERE')) {
-    alert('Developer: Please update the CONCIERGE_UPDATE_WEBHOOK URL in rainwise-concierge.js');
-    return;
-  }
+  console.log('Sending concierge update to webhook:', updateData);
   
   // Send to the SEPARATE concierge update webhook
   const formData = new URLSearchParams();
@@ -221,5 +215,4 @@ window.activateConciergeService = function() {
   });
 };
 
-console.log('RainWise Concierge Service script loaded');
-console.log('IMPORTANT: Update CONCIERGE_UPDATE_WEBHOOK with your new Make.com webhook URL!');
+console.log('RainWise Concierge Service loaded - Update webhook configured');
