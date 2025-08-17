@@ -61,9 +61,27 @@ function addConciergeSection() {
   }
 }
 
+// Store the record ID from the first submission
+window.lastRecordEmail = null;
+
 // Try multiple ways to ensure the concierge section is added
 document.addEventListener('DOMContentLoaded', function() {
   console.log('RainWise Concierge Service initializing...');
+  
+  // Hook into the email capture to store the user's email
+  const originalCaptureLeadWithResults = window.captureLeadWithResults;
+  if (originalCaptureLeadWithResults) {
+    window.captureLeadWithResults = function() {
+      // Store the email for later use
+      const emailInput = document.getElementById('user-email');
+      if (emailInput && emailInput.value) {
+        window.lastRecordEmail = emailInput.value;
+        console.log('Stored email for record update:', window.lastRecordEmail);
+      }
+      // Call original function
+      originalCaptureLeadWithResults();
+    };
+  }
   
   // Method 1: Override calculateSavings function
   setTimeout(function() {
@@ -140,9 +158,16 @@ window.activateConciergeService = function() {
     }
   }
   
-  // Prepare concierge webhook data
+  // Get the email - either from the stored value or from the form
+  const emailToUpdate = window.lastRecordEmail || 
+                        (window.globalFormData && window.globalFormData.email) || 
+                        document.getElementById('email')?.value || 
+                        document.getElementById('user-email')?.value || '';
+  
+  // Prepare concierge webhook data - INCLUDING EMAIL AS IDENTIFIER
   const conciergeData = {
-    Email: (window.globalFormData && window.globalFormData.email) || document.getElementById('email')?.value || '',
+    Email: emailToUpdate,  // This is the KEY to finding the record to update
+    UpdateType: 'ConciergeUpgrade',  // Flag to indicate this is an update
     Name: (window.globalFormData && window.globalFormData.fullName) || document.getElementById('fullName')?.value || '',
     Phone: (window.globalFormData && window.globalFormData.phoneMain) || document.getElementById('phoneMain')?.value || '',
     ServiceType: 'Concierge',
@@ -155,17 +180,18 @@ window.activateConciergeService = function() {
       .filter(text => text && text !== 'TOTALS')
       .join(', ') || 'None selected',
     Source: 'RainWise Calculator - Concierge Upsell',
-    SubmittedAt: new Date().toISOString()
+    ConciergeSelectedAt: new Date().toISOString()
   };
   
-  console.log('Concierge data prepared:', conciergeData);
+  console.log('Concierge update data prepared:', conciergeData);
   
   // Check if we have email
   if (!conciergeData.Email) {
-    alert('Please enter your email address in Step 1 to activate the concierge service.');
-    const section1 = document.getElementById('section1');
-    if (section1) {
-      section1.scrollIntoView({ behavior: 'smooth' });
+    alert('Please enter your email address first (use the "Save My Results" button), then activate the concierge service.');
+    // Scroll to email capture section
+    const emailSection = document.querySelector('[style*="background: linear-gradient(135deg, #4CAF50, #2E7D32)"]');
+    if (emailSection) {
+      emailSection.scrollIntoView({ behavior: 'smooth' });
     }
     return;
   }
