@@ -12,13 +12,27 @@ function addConciergeSection() {
   const ctaSection = document.querySelector('.cta-section');
   
   if (ctaSection && ctaSection.parentNode) {
+    // Get the bath savings if available
+    let bathsSaved = '';
+    let savingsMessage = 'Our concierge service completely simplifies the rebate process.';
+    
+    // Try to get bath savings from the results
+    const waterSavingsElement = document.getElementById('waterSavings');
+    if (waterSavingsElement) {
+      const bathText = waterSavingsElement.querySelector('div')?.textContent;
+      if (bathText && bathText.includes('baths')) {
+        bathsSaved = bathText;
+        savingsMessage = `Save ${bathsSaved} of water every year! Our concierge service makes it easy.`;
+      }
+    }
+    
     // Create the concierge service section
     const conciergeSection = document.createElement('div');
     conciergeSection.id = 'conciergeServiceSection';
     conciergeSection.innerHTML = `
       <div style="background: #F0F7FF; border: 2px solid #2196F3; border-radius: 10px; padding: 30px; margin: 40px 0; text-align: center;">
         <h3 style="color: #1976D2; margin-bottom: 15px;">💼 Want Us to Handle Everything for You?</h3>
-        <p style="font-size: 1.1em; margin-bottom: 20px;">Our concierge service completely simplifies the rebate process. We handle all the paperwork, follow-ups, and submissions.</p>
+        <p style="font-size: 1.1em; margin-bottom: 20px;">${savingsMessage} We handle all the paperwork, follow-ups, and submissions.</p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 25px 0; text-align: left;">
           <div style="padding: 10px;">✅ Complete all application forms</div>
@@ -112,6 +126,20 @@ window.activateConciergeService = function() {
     storeCalculationData();
   }
   
+  // Get bath savings if available
+  let bathsSaved = 0;
+  const waterSavingsElement = document.getElementById('waterSavings');
+  if (waterSavingsElement) {
+    const bathText = waterSavingsElement.querySelector('div')?.textContent;
+    if (bathText) {
+      // Extract number from text like "1,234 baths"
+      const bathMatch = bathText.match(/[\d,]+/);
+      if (bathMatch) {
+        bathsSaved = parseInt(bathMatch[0].replace(/,/g, ''));
+      }
+    }
+  }
+  
   // Prepare concierge webhook data
   const conciergeData = {
     Email: (window.globalFormData && window.globalFormData.email) || document.getElementById('email')?.value || '',
@@ -120,6 +148,8 @@ window.activateConciergeService = function() {
     ServiceType: 'Concierge',
     ServiceFee: 25,
     TotalRebate: parseInt(((window.globalSavingsData && window.globalSavingsData.totalRebates) || document.getElementById('totalRebates')?.textContent || '$0').replace(/[$,]/g,'')) || 0,
+    BathsSaved: bathsSaved,
+    WaterSavingsM3: parseFloat(((window.globalSavingsData && window.globalSavingsData.waterSavings) || '0').replace(/[^0-9.]/g,'')) || 0,
     Upgrades: Array.from(document.querySelectorAll('#savingsTableBody tr'))
       .map(row => row.cells[0]?.textContent)
       .filter(text => text && text !== 'TOTALS')
