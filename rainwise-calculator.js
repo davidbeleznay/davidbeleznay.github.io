@@ -1,4 +1,4 @@
-// RainWise Calculator JavaScript - Enhanced with Accurate Nanaimo Water Billing
+// RainWise Calculator JavaScript - Open Access Version (No Email Required)
 let currentStep = 1;
 let formData = {};
 let selectedRebates = [];
@@ -168,19 +168,13 @@ function previousStep(step) {
   currentStep = step - 1;
 }
 
-// Validation - FIXED VERSION
+// Validation - OPEN ACCESS VERSION (all fields optional in step 1)
 function validateStep(step) {
   if (step === 1) {
-    const required = ['fullName', 'email', 'phoneMain', 'propertyAddress', 'city', 'postalCode'];
-    for (let field of required) {
-      const element = document.getElementById(field);
-      if (!element || !element.value.trim()) {
-        alert(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
-        return false;
-      }
-    }
-    // Store form data
+    // No validation required - all fields are optional
+    // Just store whatever data is provided
     collectFormData();
+    return true;
   }
   
   if (step === 2) {
@@ -559,16 +553,16 @@ function getUpgradeName(type) {
   return names[type] || type;
 }
 
-// Collect form data
+// Collect form data (now with optional fields)
 function collectFormData() {
   formData = {
-    fullName: document.getElementById('fullName').value,
-    email: document.getElementById('email').value,
-    phoneMain: document.getElementById('phoneMain').value,
+    fullName: document.getElementById('fullName').value || 'Not Provided',
+    email: document.getElementById('email').value || 'Not Provided',
+    phoneMain: document.getElementById('phoneMain').value || 'Not Provided',
     phoneAlt: document.getElementById('phoneAlt').value || 'N/A',
-    propertyAddress: document.getElementById('propertyAddress').value,
-    city: document.getElementById('city').value,
-    postalCode: document.getElementById('postalCode').value,
+    propertyAddress: document.getElementById('propertyAddress').value || 'Not Provided',
+    city: document.getElementById('city').value || 'Not Provided',
+    postalCode: document.getElementById('postalCode').value || 'Not Provided',
     propertyType: document.getElementById('propertyType').value,
     irrigatedArea: document.getElementById('irrigatedArea').value,
     irrigationMonths: document.getElementById('irrigationMonths').value,
@@ -640,7 +634,7 @@ function submitLead(type) {
   }
 }
 
-// Setup PDF download
+// Setup PDF download (works even without personal info)
 function setupPDFDownload() {
   document.getElementById('downloadReport').onclick = function() {
     if (typeof window.jsPDF === 'undefined') {
@@ -702,17 +696,23 @@ function setupPDFDownload() {
       y += 8;
     });
     
-    // Contact Info
-    y += 15;
-    doc.setFontSize(12);
-    doc.text('Property Information:', 20, y);
-    doc.setFontSize(10);
-    y += 10;
-    doc.text(`${formData.fullName}`, 20, y);
-    y += 6;
-    doc.text(`${formData.propertyAddress}, ${formData.city} ${formData.postalCode}`, 20, y);
-    y += 6;
-    doc.text(`${formData.email} | ${formData.phoneMain}`, 20, y);
+    // Contact Info (only if provided)
+    if (formData.fullName && formData.fullName !== 'Not Provided') {
+      y += 15;
+      doc.setFontSize(12);
+      doc.text('Property Information:', 20, y);
+      doc.setFontSize(10);
+      y += 10;
+      doc.text(`${formData.fullName}`, 20, y);
+      y += 6;
+      if (formData.propertyAddress !== 'Not Provided') {
+        doc.text(`${formData.propertyAddress}, ${formData.city} ${formData.postalCode}`, 20, y);
+        y += 6;
+      }
+      if (formData.email !== 'Not Provided' || formData.phoneMain !== 'Not Provided') {
+        doc.text(`${formData.email} | ${formData.phoneMain}`, 20, y);
+      }
+    }
     
     // Next Steps
     if (y > 220) {
@@ -751,6 +751,11 @@ function setupPDFDownload() {
     doc.text('This report includes the true environmental value of water during critical salmon periods.', 20, 280);
     doc.text('Actual savings may vary based on usage patterns and weather conditions.', 20, 285);
     
-    doc.save(`Water_Savings_Report_${formData.fullName.replace(/ /g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+    // Generate filename (use name if provided, otherwise use date)
+    const filename = formData.fullName && formData.fullName !== 'Not Provided' 
+      ? `Water_Savings_Report_${formData.fullName.replace(/ /g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`
+      : `Water_Savings_Report_${new Date().toISOString().split('T')[0]}.pdf`;
+    
+    doc.save(filename);
   };
 }
