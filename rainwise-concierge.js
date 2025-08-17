@@ -1,6 +1,9 @@
 // Concierge Service Addition for RainWise Calculator
 // This script adds the concierge service offer to the existing calculator
 
+// IMPORTANT: Replace this with your new Make.com webhook URL for concierge updates
+const CONCIERGE_UPDATE_WEBHOOK = 'https://hook.us2.make.com/YOUR_NEW_WEBHOOK_HERE';
+
 // Function to add concierge section when results are shown
 function addConciergeSection() {
   // Check if concierge section already exists
@@ -61,8 +64,8 @@ function addConciergeSection() {
   }
 }
 
-// Store the record ID from the first submission
-window.lastRecordEmail = null;
+// Store the user's email when they save results
+window.userEmailForUpdate = null;
 
 // Try multiple ways to ensure the concierge section is added
 document.addEventListener('DOMContentLoaded', function() {
@@ -72,11 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const originalCaptureLeadWithResults = window.captureLeadWithResults;
   if (originalCaptureLeadWithResults) {
     window.captureLeadWithResults = function() {
-      // Store the email for later use
+      // Store the email for later use in concierge update
       const emailInput = document.getElementById('user-email');
       if (emailInput && emailInput.value) {
-        window.lastRecordEmail = emailInput.value;
-        console.log('Stored email for record update:', window.lastRecordEmail);
+        window.userEmailForUpdate = emailInput.value;
+        console.log('Stored email for concierge update:', window.userEmailForUpdate);
       }
       // Call original function
       originalCaptureLeadWithResults();
@@ -139,55 +142,13 @@ document.addEventListener('DOMContentLoaded', function() {
 window.activateConciergeService = function() {
   console.log('Concierge service activation started');
   
-  // Check if storeCalculationData exists
-  if (typeof storeCalculationData === 'function') {
-    storeCalculationData();
-  }
+  // Get the email to identify which record to update
+  const emailToUpdate = window.userEmailForUpdate || 
+                        document.getElementById('user-email')?.value ||
+                        document.getElementById('email')?.value || '';
   
-  // Get bath savings if available
-  let bathsSaved = 0;
-  const waterSavingsElement = document.getElementById('waterSavings');
-  if (waterSavingsElement) {
-    const bathText = waterSavingsElement.querySelector('div')?.textContent;
-    if (bathText) {
-      // Extract number from text like "1,234 baths"
-      const bathMatch = bathText.match(/[\d,]+/);
-      if (bathMatch) {
-        bathsSaved = parseInt(bathMatch[0].replace(/,/g, ''));
-      }
-    }
-  }
-  
-  // Get the email - either from the stored value or from the form
-  const emailToUpdate = window.lastRecordEmail || 
-                        (window.globalFormData && window.globalFormData.email) || 
-                        document.getElementById('email')?.value || 
-                        document.getElementById('user-email')?.value || '';
-  
-  // Prepare concierge webhook data - INCLUDING EMAIL AS IDENTIFIER
-  const conciergeData = {
-    Email: emailToUpdate,  // This is the KEY to finding the record to update
-    UpdateType: 'ConciergeUpgrade',  // Flag to indicate this is an update
-    Name: (window.globalFormData && window.globalFormData.fullName) || document.getElementById('fullName')?.value || '',
-    Phone: (window.globalFormData && window.globalFormData.phoneMain) || document.getElementById('phoneMain')?.value || '',
-    ServiceType: 'Concierge',
-    ServiceFee: 25,
-    TotalRebate: parseInt(((window.globalSavingsData && window.globalSavingsData.totalRebates) || document.getElementById('totalRebates')?.textContent || '$0').replace(/[$,]/g,'')) || 0,
-    BathsSaved: bathsSaved,
-    WaterSavingsM3: parseFloat(((window.globalSavingsData && window.globalSavingsData.waterSavings) || '0').replace(/[^0-9.]/g,'')) || 0,
-    Upgrades: Array.from(document.querySelectorAll('#savingsTableBody tr'))
-      .map(row => row.cells[0]?.textContent)
-      .filter(text => text && text !== 'TOTALS')
-      .join(', ') || 'None selected',
-    Source: 'RainWise Calculator - Concierge Upsell',
-    ConciergeSelectedAt: new Date().toISOString()
-  };
-  
-  console.log('Concierge update data prepared:', conciergeData);
-  
-  // Check if we have email
-  if (!conciergeData.Email) {
-    alert('Please enter your email address first (use the "Save My Results" button), then activate the concierge service.');
+  if (!emailToUpdate) {
+    alert('Please save your results first using the "Save My Results" button above, then activate the concierge service.');
     // Scroll to email capture section
     const emailSection = document.querySelector('[style*="background: linear-gradient(135deg, #4CAF50, #2E7D32)"]');
     if (emailSection) {
@@ -196,15 +157,45 @@ window.activateConciergeService = function() {
     return;
   }
   
-  // Send to webhook
-  const CONCIERGE_WEBHOOK_URL = 'https://hook.us2.make.com/i2jxgrjhi5q1xuzaeewd5xtmdp8k5r5i';
-  
-  const formData = new URLSearchParams();
-  for (const key in conciergeData) {
-    formData.append(key, conciergeData[key]);
+  // Get bath savings if available
+  let bathsSaved = 0;
+  const waterSavingsElement = document.getElementById('waterSavings');
+  if (waterSavingsElement) {
+    const bathText = waterSavingsElement.querySelector('div')?.textContent;
+    if (bathText) {
+      const bathMatch = bathText.match(/[\d,]+/);
+      if (bathMatch) {
+        bathsSaved = parseInt(bathMatch[0].replace(/,/g, ''));
+      }
+    }
   }
   
-  fetch(CONCIERGE_WEBHOOK_URL, {
+  // Prepare data for the UPDATE webhook (not create)
+  const updateData = {
+    Email: emailToUpdate,  // This is the KEY to find the record
+    ServiceType: 'Concierge',  // Update to Concierge
+    ServiceFee: 25,
+    BathsSaved: bathsSaved,
+    ConciergeActivatedAt: new Date().toISOString(),
+    Name: document.getElementById('fullName')?.value || '',
+    Phone: document.getElementById('phoneMain')?.value || ''
+  };
+  
+  console.log('Sending concierge update:', updateData);
+  
+  // Check if webhook URL has been updated
+  if (CONCIERGE_UPDATE_WEBHOOK.includes('YOUR_NEW_WEBHOOK_HERE')) {
+    alert('Developer: Please update the CONCIERGE_UPDATE_WEBHOOK URL in rainwise-concierge.js');
+    return;
+  }
+  
+  // Send to the SEPARATE concierge update webhook
+  const formData = new URLSearchParams();
+  for (const key in updateData) {
+    formData.append(key, updateData[key]);
+  }
+  
+  fetch(CONCIERGE_UPDATE_WEBHOOK, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -213,8 +204,7 @@ window.activateConciergeService = function() {
     mode: 'no-cors'
   })
   .then(() => {
-    console.log('Concierge webhook sent successfully');
-    // Show success message
+    console.log('Concierge update sent successfully');
     alert('Thank you for choosing our concierge service! We\'ll contact you within 24 hours to get started and arrange payment.');
     
     // Update button to show activated
@@ -226,9 +216,10 @@ window.activateConciergeService = function() {
     }
   })
   .catch(error => {
-    console.error('Concierge webhook error:', error);
+    console.error('Concierge update error:', error);
     alert('There was an error processing your request. Please try again or contact us directly.');
   });
 };
 
-console.log('RainWise Concierge Service script loaded successfully');
+console.log('RainWise Concierge Service script loaded');
+console.log('IMPORTANT: Update CONCIERGE_UPDATE_WEBHOOK with your new Make.com webhook URL!');
