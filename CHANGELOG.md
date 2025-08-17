@@ -1,5 +1,16 @@
 # Changelog
 
+## 2025-08-16
+- **RAINWISE CALCULATOR OPEN ACCESS:** Removed all email requirements, making calculator fully open
+  - **Changed:** Step 1 personal information fields now completely optional
+  - **Updated:** All form labels marked as "(optional)" to clarify no fields are required
+  - **Modified:** JavaScript validation removed for Step 1 - users can skip directly to calculations
+  - **Enhanced:** PDF generation works with or without personal information
+  - **Kept:** Optional email capture after results for users who want report emailed
+  - **Improved:** Clear messaging that email is optional with "Skip this if you prefer to just download the PDF"
+  - **Updated:** Form data collection uses default values when fields are empty
+  - **Result:** Calculator is now 100% open access with no gates or requirements
+
 ## 2025-08-12
 - **WEBHOOK INTEGRATION COMPLETE:** Added comprehensive email capture and lead generation system to RainWise Calculator
   - **New Feature:** Email capture form integrated throughout calculator flow for lead generation
