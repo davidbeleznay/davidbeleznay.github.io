@@ -1,4 +1,4 @@
-// RainWise Calculator JavaScript - Open Access Version (No Email Required)
+// RainWise Calculator JavaScript - Open Access Version with Bath Conversions
 let currentStep = 1;
 let formData = {};
 let selectedRebates = [];
@@ -36,6 +36,27 @@ const intrinsicWaterValue = {
 // Conversion factors
 const GALLONS_PER_M3 = 219.969; // Imperial gallons per cubic meter
 const LITRES_PER_M3 = 1000;
+const LITRES_PER_BATH = 150;  // Average bath uses 150 liters
+const BATHS_PER_M3 = 1000 / LITRES_PER_BATH;  // ~6.67 baths per cubic meter
+
+// Helper function to convert m³ to baths
+function convertToBaths(m3) {
+  return Math.round(m3 * BATHS_PER_M3);
+}
+
+// Helper function to format bath display
+function formatBathDisplay(m3) {
+  const baths = convertToBaths(m3);
+  if (baths < 100) {
+    return `${baths} baths`;
+  } else if (baths < 1000) {
+    return `${baths.toLocaleString()} baths`;
+  } else {
+    // For large numbers, also show per day/week
+    const bathsPerWeek = Math.round(baths / 52);
+    return `${baths.toLocaleString()} baths/year (${bathsPerWeek}/week)`;
+  }
+}
 
 const rebateInfo = {
   rainSensor: { name: 'Rain Sensor', rebate: 75, savingsRange: '10-15%' },
@@ -194,7 +215,7 @@ function validateStep(step) {
   return true;
 }
 
-// Enhanced water usage analysis with m³ and true cost
+// Enhanced water usage analysis with m³ and bath conversions
 function updateUsageAnalysis() {
   const area = parseFloat(document.getElementById('irrigatedArea').value) || 0;
   const months = parseFloat(document.getElementById('irrigationMonths').value) || 6;
@@ -267,11 +288,31 @@ function updateUsageAnalysis() {
   // Calculate savings potential
   const potentialSavingsM3 = totalAnnualM3 * (outdoorPercentage / 100) * 0.35;
   
-  // Update display
-  document.getElementById('avgDailyUsage').textContent = `${Math.round(avgDailyLitres).toLocaleString()} L/day`;
-  document.getElementById('annualUsage').textContent = `${totalAnnualM3.toFixed(1)} m³`;
-  document.getElementById('peakUsage').textContent = `${peakUsageM3.toFixed(1)} m³`;
-  document.getElementById('savingsPotential').textContent = `${potentialSavingsM3.toFixed(1)} m³/year`;
+  // Convert to baths for display
+  const annualBaths = convertToBaths(totalAnnualM3);
+  const peakBaths = convertToBaths(peakUsageM3);
+  const potentialSavingsBaths = convertToBaths(potentialSavingsM3);
+  
+  // Update display with bath equivalents
+  document.getElementById('avgDailyUsage').innerHTML = `
+    <div>${Math.round(avgDailyLitres).toLocaleString()} L/day</div>
+    <small style="color:#666">${Math.round(annualBaths/365)} baths/day</small>
+  `;
+  
+  document.getElementById('annualUsage').innerHTML = `
+    <div>${totalAnnualM3.toFixed(1)} m³</div>
+    <small style="color:#666">${annualBaths.toLocaleString()} baths</small>
+  `;
+  
+  document.getElementById('peakUsage').innerHTML = `
+    <div>${peakUsageM3.toFixed(1)} m³</div>
+    <small style="color:#666">${peakBaths.toLocaleString()} baths 🐟</small>
+  `;
+  
+  document.getElementById('savingsPotential').innerHTML = `
+    <div>${potentialSavingsM3.toFixed(1)} m³/year</div>
+    <small style="color:#666">Save ${potentialSavingsBaths.toLocaleString()} baths!</small>
+  `;
   
   // Store baseline data
   waterBaseline = {
@@ -474,35 +515,50 @@ function calculateUpgradeSavings(upgradeType, outdoorUsageM3) {
   };
 }
 
-// Display results with m³ and true value
+// Display results with bath conversions
 function displayResults() {
-  // Update primary results
+  // Update primary results with bath conversions
+  const totalBaths = convertToBaths(savingsResults.totalWaterSavingsM3);
+  const peakBaths = convertToBaths(savingsResults.peakSavingsM3);
+  
   document.getElementById('totalRebates').textContent = `$${savingsResults.totalRebates}`;
-  document.getElementById('waterSavings').textContent = `${savingsResults.totalWaterSavingsM3.toFixed(1)} m³`;
-  document.getElementById('peakSavings').textContent = `${savingsResults.peakSavingsM3.toFixed(1)} m³`;
+  
+  // Enhanced water savings display with baths
+  document.getElementById('waterSavings').innerHTML = `
+    <div style="font-size: 1.5em; font-weight: bold; color: #2E7D32;">${totalBaths.toLocaleString()} baths</div>
+    <div style="font-size: 0.8em; color: #666; margin-top: 4px;">(${savingsResults.totalWaterSavingsM3.toFixed(1)} m³)</div>
+  `;
+  
+  // Enhanced peak savings display
+  document.getElementById('peakSavings').innerHTML = `
+    <div style="font-size: 1.5em; font-weight: bold; color: #FF6B35;">${peakBaths.toLocaleString()} baths</div>
+    <div style="font-size: 0.8em; color: #666; margin-top: 4px;">during salmon season</div>
+  `;
+  
   document.getElementById('trueSavings').textContent = `$${Math.round(savingsResults.totalTrueSavings)}`;
   
   // Update annual savings
   document.getElementById('annualSavings').textContent = `$${Math.round(savingsResults.totalCostSavings)}`;
   document.getElementById('trueValueSaved').textContent = `$${Math.round(savingsResults.totalTrueSavings)}`;
   
-  // Build savings table
+  // Build savings table with bath conversions
   const tableBody = document.getElementById('savingsTableBody');
   tableBody.innerHTML = '';
   
   savingsResults.upgrades.forEach(upgrade => {
     const row = tableBody.insertRow();
     const upgradeName = getUpgradeName(upgrade.type);
+    const bathsSaved = convertToBaths(upgrade.waterSavingsM3);
     
     row.innerHTML = `
       <td>${upgradeName}</td>
       <td>$${upgrade.rebate}</td>
-      <td>${upgrade.waterSavingsM3.toFixed(1)} m³</td>
+      <td>${bathsSaved.toLocaleString()} baths<br><small style="color:#666">(${upgrade.waterSavingsM3.toFixed(1)} m³)</small></td>
       <td>${Math.round(upgrade.savingsPercent)}%</td>
     `;
   });
   
-  // Add totals row
+  // Add totals row with bath conversion
   const totalRow = tableBody.insertRow();
   totalRow.style.background = '#e8f5ea';
   totalRow.style.fontWeight = 'bold';
@@ -510,7 +566,7 @@ function displayResults() {
   totalRow.innerHTML = `
     <td>TOTALS</td>
     <td>$${savingsResults.totalRebates}</td>
-    <td>${savingsResults.totalWaterSavingsM3.toFixed(1)} m³</td>
+    <td>${totalBaths.toLocaleString()} baths<br><small style="color:#666">(${savingsResults.totalWaterSavingsM3.toFixed(1)} m³)</small></td>
     <td>${savingsResults.percentReduction}%</td>
   `;
   
@@ -609,6 +665,7 @@ function submitLead(type) {
       city: formData.city,
       totalRebates: savingsResults.totalRebates,
       waterSavings: savingsResults.totalWaterSavingsM3,
+      bathsSaved: convertToBaths(savingsResults.totalWaterSavingsM3),
       selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
     };
     
@@ -626,6 +683,7 @@ function submitLead(type) {
       city: formData.city,
       totalRebates: savingsResults.totalRebates,
       waterSavings: savingsResults.totalWaterSavingsM3,
+      bathsSaved: convertToBaths(savingsResults.totalWaterSavingsM3),
       selectedUpgrades: savingsResults.upgrades.map(u => getUpgradeName(u.type)).join(', ')
     };
     
@@ -634,7 +692,7 @@ function submitLead(type) {
   }
 }
 
-// Setup PDF download (works even without personal info)
+// Setup PDF download with bath conversions
 function setupPDFDownload() {
   document.getElementById('downloadReport').onclick = function() {
     if (typeof window.jsPDF === 'undefined') {
@@ -657,28 +715,34 @@ function setupPDFDownload() {
     
     // Highlight Box
     doc.setFillColor(255, 243, 205); // Light yellow
-    doc.rect(15, 40, 180, 35, 'F');
+    doc.rect(15, 40, 180, 45, 'F');
     doc.setTextColor(0);
     doc.setFontSize(12);
     doc.text('Your Water Conservation Summary', 20, 50);
     doc.setFontSize(16);
     doc.setTextColor(231, 76, 60); // Red accent
     doc.text(`Total Rebates Available: $${savingsResults.totalRebates}`, 20, 62);
+    doc.setFontSize(14);
+    doc.setTextColor(41, 128, 185); // Blue
+    const totalBaths = convertToBaths(savingsResults.totalWaterSavingsM3);
+    doc.text(`Annual Water Savings: ${totalBaths.toLocaleString()} baths`, 20, 72);
     doc.setFontSize(12);
     doc.setTextColor(255, 152, 0); // Orange
-    doc.text(`Peak Salmon Period Savings: ${savingsResults.peakSavingsM3.toFixed(1)} m³`, 20, 70);
+    const peakBaths = convertToBaths(savingsResults.peakSavingsM3);
+    doc.text(`Peak Salmon Period: ${peakBaths.toLocaleString()} baths saved`, 20, 80);
     
     // Key Metrics
     doc.setTextColor(0);
     doc.setFontSize(12);
-    let y = 85;
-    doc.text(`Annual Water Savings: ${savingsResults.totalWaterSavingsM3.toFixed(1)} m³`, 20, y);
+    let y = 95;
+    doc.text(`Total Water Savings: ${savingsResults.totalWaterSavingsM3.toFixed(1)} m³ (${totalBaths.toLocaleString()} baths)`, 20, y);
     y += 10;
     doc.text(`Water Use Reduction: ${savingsResults.percentReduction}%`, 20, y);
     y += 10;
     doc.text(`True Environmental Value Saved: $${Math.round(savingsResults.totalTrueSavings)}/year`, 20, y);
     y += 10;
-    doc.text(`10-Year Environmental Impact: ${savingsResults.environmentalImpact.lifetimeWaterSavingsM3.toFixed(0)} m³ saved`, 20, y);
+    const lifetimeBaths = convertToBaths(savingsResults.environmentalImpact.lifetimeWaterSavingsM3);
+    doc.text(`10-Year Impact: ${lifetimeBaths.toLocaleString()} baths saved`, 20, y);
     y += 10;
     doc.text(`Annual Bill Savings: $${Math.round(savingsResults.totalCostSavings)}`, 20, y);
     
@@ -690,9 +754,10 @@ function setupPDFDownload() {
     y += 10;
     
     savingsResults.upgrades.forEach(upgrade => {
+      const bathsSaved = convertToBaths(upgrade.waterSavingsM3);
       doc.text(`• ${getUpgradeName(upgrade.type)}`, 25, y);
       doc.text(`Rebate: $${upgrade.rebate}`, 80, y);
-      doc.text(`Saves: ${upgrade.waterSavingsM3.toFixed(1)} m³/year`, 120, y);
+      doc.text(`Saves: ${bathsSaved} baths/year`, 120, y);
       y += 8;
     });
     
@@ -739,16 +804,21 @@ function setupPDFDownload() {
       y += 8;
     });
     
-    // Peak Salmon Note
+    // Peak Salmon Note with bath conversion
     y += 10;
     doc.setTextColor(255, 152, 0);
     doc.setFontSize(11);
-    doc.text('🐟 Remember: Every m³ saved during June-September has 10x the environmental benefit!', 20, y);
+    doc.text(`🐟 Every bath saved June-September = 10x environmental benefit for salmon!`, 20, y);
+    
+    // Fun fact
+    y += 10;
+    doc.setTextColor(41, 128, 185);
+    doc.text(`💧 You're saving enough water to fill ${Math.round(totalBaths/365)} bathtubs every day!`, 20, y);
     
     // Footer
     doc.setTextColor(100);
     doc.setFontSize(8);
-    doc.text('This report includes the true environmental value of water during critical salmon periods.', 20, 280);
+    doc.text('Bath calculation based on 150L average bath size. Environmental values include salmon habitat protection.', 20, 280);
     doc.text('Actual savings may vary based on usage patterns and weather conditions.', 20, 285);
     
     // Generate filename (use name if provided, otherwise use date)
